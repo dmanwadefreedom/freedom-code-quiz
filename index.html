@@ -927,27 +927,21 @@ function submitGate() {
   const patternNames = { fight: 'Controller', flight: 'Runner', freeze: 'Ghost', fawn: 'Chameleon' };
   const patternTag = 'pattern-' + patternNames[primary].toLowerCase();
 
-  // Send to GHL
-  const ghlData = {
-    firstName: name,
+  // Send to GHL via webhook (triggers workflow automatically)
+  const webhookData = {
+    first_name: name,
     email: email,
     phone: phone || '',
-    tags: ['quiz-completed', patternTag, 'freedom-code'],
-    source: 'Freedom Code Pattern Quiz',
-    customFields: [
-      { key: 'pattern_result', value: patternNames[primary] },
-      { key: 'pattern_scores', value: JSON.stringify(totals) }
-    ]
+    pattern_result: patternNames[primary],
+    pattern_scores: `Controller:${totals.fight},Runner:${totals.flight},Ghost:${totals.freeze},Chameleon:${totals.fawn}`,
+    source: 'quiz',
+    tags: ['quiz-completed', patternTag, 'freedom-code']
   };
 
-  fetch('https://services.leadconnectorhq.com/contacts/', {
+  fetch('https://services.leadconnectorhq.com/hooks/0rTH6E3MWkHn5cjPmzLt/webhook-trigger/48f34643-f153-4358-bf1f-c6fdab1f36bc', {
     method: 'POST',
-    headers: {
-      'Authorization': 'Bearer pit-7b725af5-5055-4207-b16e-e7434d2d1555',
-      'Version': '2021-07-28',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ ...ghlData, locationId: '0rTH6E3MWkHn5cjPmzLt' })
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(webhookData)
   }).catch(() => {});
 
   // Show results regardless
