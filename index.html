@@ -495,7 +495,7 @@ body {
     <div class="intro-badge">Self-Assessment</div>
     <h1>What's <em>Actually</em><br>Running You?</h1>
     <p>Most people think they're making free choices every day. They're not. They're running old survival programs that got wired in before they could spell their own name.</p>
-    <p>This 20-question assessment maps your dominant pattern — the one calling the shots when you think you're in control.</p>
+    <p>This 14-question assessment maps your dominant pattern — the one calling the shots when you think you're in control.</p>
     <div class="science">
       <strong>Built on real research.</strong> This assessment draws from the CDC/Kaiser ACE Study (Felitti et al., 1998), Dr. Stephen Porges' Polyvagal Theory, and Deb Dana's nervous system mapping framework. It is not a clinical tool — it's a mirror.
     </div>
@@ -507,7 +507,7 @@ body {
     <div class="progress-wrap">
       <div class="progress-top">
         <span class="progress-label">Your Pattern Map</span>
-        <span class="progress-count" id="progressCount">1 / 20</span>
+        <span class="progress-count" id="progressCount">1 / 14</span>
       </div>
       <div class="progress-bar">
         <div class="progress-fill" id="progressFill" style="width:5%"></div>
@@ -540,211 +540,154 @@ body {
 
 <script>
 const questions = [
-  // NERVOUS SYSTEM — how your body responds day-to-day
+  // YOUR DEFAULT MODE — how you show up before you think about it
   {
-    category: "Nervous System State",
-    text: "When someone raises their voice — even playfully — what happens in your body first?",
+    category: "Your Default Mode",
+    text: "You walk into a party where you only know one person. What kicks in first?",
     options: [
-      { text: "My jaw tightens. Something in me is ready to push back.", scores: {fight:3,flight:0,freeze:0,fawn:1} },
-      { text: "My chest gets tight. I want to leave the room.", scores: {fight:0,flight:3,freeze:0,fawn:1} },
-      { text: "I go blank. Like someone turned the volume down on everything.", scores: {fight:0,flight:0,freeze:3,fawn:1} },
-      { text: "I immediately try to fix it. Make them calm. Make it okay.", scores: {fight:0,flight:0,freeze:0,fawn:3} }
+      { text: "I own the room. I find someone to talk to and take charge of the conversation.", scores: {fight:3,flight:0,freeze:0,fawn:1} },
+      { text: "I scope exits. I'll stay an hour then have a reason to leave early.", scores: {fight:0,flight:3,freeze:0,fawn:0} },
+      { text: "I hover near the wall. I'm there but not really there.", scores: {fight:0,flight:0,freeze:3,fawn:1} },
+      { text: "I find whoever looks uncomfortable and make them feel welcome.", scores: {fight:0,flight:1,freeze:0,fawn:3} }
     ]
   },
   {
-    category: "Nervous System State",
-    text: "You have a completely free Saturday. No obligations. What actually happens?",
+    category: "Your Default Mode",
+    text: "A friend cancels plans last minute. What's the first thing you feel?",
     options: [
-      { text: "I fill it. I can't not be productive — rest feels like falling behind.", scores: {fight:3,flight:1,freeze:0,fawn:0} },
-      { text: "I plan an escape. Road trip, new place, anything that's not here.", scores: {fight:0,flight:3,freeze:0,fawn:0} },
-      { text: "I stay in bed way too long and feel guilty about it but still don't move.", scores: {fight:0,flight:0,freeze:3,fawn:0} },
-      { text: "I check in on other people. See who needs something.", scores: {fight:0,flight:0,freeze:0,fawn:3} }
+      { text: "Annoyed. My time matters and they just wasted it.", scores: {fight:3,flight:0,freeze:0,fawn:0} },
+      { text: "Honestly? Relieved. Now I don't have to go.", scores: {fight:0,flight:3,freeze:1,fawn:0} },
+      { text: "Nothing. I kind of expected it. Things always fall through.", scores: {fight:0,flight:0,freeze:3,fawn:0} },
+      { text: "Worried. Did I do something? Are they mad at me?", scores: {fight:0,flight:0,freeze:0,fawn:3} }
     ]
   },
   {
-    category: "Nervous System State",
-    text: "When you're stressed, where does your body hold it?",
+    category: "Your Default Mode",
+    text: "How do you usually fall asleep?",
     options: [
-      { text: "Jaw, fists, shoulders — I'm clenched like I'm about to fight something.", scores: {fight:3,flight:0,freeze:0,fawn:0} },
-      { text: "Chest and breath — shallow breathing, racing heart.", scores: {fight:0,flight:3,freeze:0,fawn:0} },
-      { text: "Everywhere and nowhere. I feel heavy, foggy, disconnected from my body.", scores: {fight:0,flight:0,freeze:3,fawn:0} },
-      { text: "Stomach. That sick feeling of wondering if someone's upset with me.", scores: {fight:0,flight:0,freeze:0,fawn:3} }
-    ]
-  },
-  {
-    category: "Nervous System State",
-    text: "How do you fall asleep most nights?",
-    options: [
-      { text: "I replay the day. What I should've said. What I need to fix.", scores: {fight:3,flight:1,freeze:0,fawn:0} },
-      { text: "I need something — podcast, TV, scrolling — to quiet my brain.", scores: {fight:0,flight:3,freeze:1,fawn:0} },
-      { text: "I crash. I'm so drained I just shut off.", scores: {fight:0,flight:0,freeze:3,fawn:0} },
-      { text: "I worry about tomorrow. Whether people are okay. Whether I did enough.", scores: {fight:0,flight:1,freeze:0,fawn:3} }
-    ]
-  },
-  {
-    category: "Nervous System State",
-    text: "Someone cuts you off in traffic. What's your first internal response?",
-    options: [
-      { text: "Rage. Instant. I might honk or say something under my breath.", scores: {fight:3,flight:0,freeze:0,fawn:0} },
-      { text: "Adrenaline spike. I grip the wheel and my mind races.", scores: {fight:1,flight:3,freeze:0,fawn:0} },
-      { text: "Nothing really. I barely register it.", scores: {fight:0,flight:0,freeze:3,fawn:0} },
-      { text: "I wonder if I did something wrong. Maybe I was in their way.", scores: {fight:0,flight:0,freeze:0,fawn:3} }
+      { text: "Replaying what I should've said today. Planning tomorrow's attack.", scores: {fight:3,flight:1,freeze:0,fawn:0} },
+      { text: "I need noise. Podcast, TV, scrolling — silence is too loud.", scores: {fight:0,flight:3,freeze:0,fawn:0} },
+      { text: "I just crash. My body hits the bed and I'm done.", scores: {fight:0,flight:0,freeze:3,fawn:1} },
+      { text: "Running through everyone's day. Did I miss anyone? Is everyone okay?", scores: {fight:0,flight:0,freeze:0,fawn:3} }
     ]
   },
 
-  // PATTERNS — how you move through work and life
+  // HOW YOU'RE WIRED — what's happening under the surface
   {
-    category: "Daily Patterns",
-    text: "When you look at your to-do list, what's the honest feeling?",
+    category: "How You're Wired",
+    text: "You're in a meeting and someone takes credit for your idea. What do you do?",
     options: [
-      { text: "Fuel. I attack it. If I'm not checking things off I feel worthless.", scores: {fight:3,flight:1,freeze:0,fawn:0} },
-      { text: "Overwhelm. I jump between tasks and never finish one thing properly.", scores: {fight:0,flight:3,freeze:1,fawn:0} },
-      { text: "Paralysis. I see it, I know what to do, but I can't start.", scores: {fight:0,flight:0,freeze:3,fawn:0} },
-      { text: "Other people's stuff first. Mine stays at the bottom.", scores: {fight:0,flight:0,freeze:0,fawn:3} }
+      { text: "Call it out. Right there. I'm not letting that slide.", scores: {fight:3,flight:0,freeze:0,fawn:0} },
+      { text: "Say nothing now but start planning my next move. I'll handle it later.", scores: {fight:1,flight:3,freeze:0,fawn:0} },
+      { text: "Go blank. I know I should say something but the words won't come.", scores: {fight:0,flight:0,freeze:3,fawn:0} },
+      { text: "Let it go. It's not worth the conflict. They probably need the win more.", scores: {fight:0,flight:0,freeze:1,fawn:3} }
     ]
   },
   {
-    category: "Daily Patterns",
-    text: "How do you handle being wrong about something?",
+    category: "How You're Wired",
+    text: "Pick the sentence that sounds most like your inner voice:",
     options: [
-      { text: "I double down first. My gut reaction is to defend my position.", scores: {fight:3,flight:0,freeze:0,fawn:0} },
-      { text: "I quickly move on to something else. Don't dwell.", scores: {fight:0,flight:3,freeze:0,fawn:0} },
-      { text: "I shut down. I can't really process it in the moment.", scores: {fight:0,flight:0,freeze:3,fawn:0} },
-      { text: "I over-apologize. I make sure the other person knows I feel terrible.", scores: {fight:0,flight:0,freeze:0,fawn:3} }
+      { text: "\"I'll figure it out myself. I always do.\"", scores: {fight:3,flight:0,freeze:0,fawn:0} },
+      { text: "\"I need to get out of here.\"", scores: {fight:0,flight:3,freeze:0,fawn:0} },
+      { text: "\"I don't even know what I want anymore.\"", scores: {fight:0,flight:0,freeze:3,fawn:1} },
+      { text: "\"As long as they're happy, I'm fine.\"", scores: {fight:0,flight:0,freeze:0,fawn:3} }
     ]
   },
   {
-    category: "Daily Patterns",
-    text: "What's your relationship with your phone like?",
+    category: "How You're Wired",
+    text: "When life gets really stressful, what do you reach for?",
     options: [
-      { text: "It's my command center. I need to be on top of everything at all times.", scores: {fight:3,flight:1,freeze:0,fawn:0} },
-      { text: "I can't stop scrolling. It's how I escape without leaving.", scores: {fight:0,flight:3,freeze:1,fawn:0} },
-      { text: "I ignore it. Notifications pile up. Sometimes I avoid it for days.", scores: {fight:0,flight:0,freeze:3,fawn:0} },
-      { text: "I respond to everyone immediately. Leaving someone on read gives me anxiety.", scores: {fight:0,flight:0,freeze:0,fawn:3} }
-    ]
-  },
-  {
-    category: "Daily Patterns",
-    text: "How often do you take a real break — no screens, no productivity, just existing?",
-    options: [
-      { text: "Almost never. I can rest when I've earned it.", scores: {fight:3,flight:0,freeze:0,fawn:0} },
-      { text: "I try but I get restless in minutes. Stillness feels dangerous.", scores: {fight:0,flight:3,freeze:0,fawn:0} },
-      { text: "I take too many. Except they don't feel like rest — they feel like giving up.", scores: {fight:0,flight:0,freeze:3,fawn:0} },
-      { text: "When everyone else is taken care of. So... rarely.", scores: {fight:0,flight:0,freeze:0,fawn:3} }
-    ]
-  },
-  {
-    category: "Daily Patterns",
-    text: "When something great happens to you, what's the first thing you feel?",
-    options: [
-      { text: "Already thinking about the next thing. This isn't enough yet.", scores: {fight:3,flight:1,freeze:0,fawn:0} },
-      { text: "A quick high, then anxiety about losing it.", scores: {fight:0,flight:3,freeze:0,fawn:0} },
-      { text: "Weirdly... not much. Like I can't fully absorb it.", scores: {fight:0,flight:0,freeze:3,fawn:0} },
-      { text: "Happy — but I immediately want to share it with someone else to feel it fully.", scores: {fight:0,flight:0,freeze:0,fawn:3} }
+      { text: "More work. More control. I double down and grind harder.", scores: {fight:3,flight:0,freeze:0,fawn:0} },
+      { text: "A drink, a scroll, a binge — anything to take the edge off.", scores: {fight:0,flight:3,freeze:1,fawn:0} },
+      { text: "My bed. The couch. Somewhere I can disappear for a while.", scores: {fight:0,flight:1,freeze:3,fawn:0} },
+      { text: "I check on other people. Helping them distracts me from my own stuff.", scores: {fight:0,flight:0,freeze:0,fawn:3} }
     ]
   },
 
-  // RELATIONSHIPS — how you connect (or don't)
+  // THE REAL YOU — what you do when no one's watching
   {
-    category: "Relationships",
-    text: "Someone you care about says \"we need to talk.\" What fires first?",
+    category: "The Real You",
+    text: "Someone you respect gives you honest criticism. What happens inside?",
     options: [
-      { text: "What did I do wrong? I start building my defense.", scores: {fight:3,flight:0,freeze:0,fawn:1} },
-      { text: "I want to avoid it. I'll come up with a reason to delay.", scores: {fight:0,flight:3,freeze:0,fawn:0} },
-      { text: "I go numb. I already feel like I'm watching this from outside my body.", scores: {fight:0,flight:0,freeze:3,fawn:0} },
-      { text: "I start apologizing before they even talk. I'll fix whatever it is.", scores: {fight:0,flight:0,freeze:0,fawn:3} }
+      { text: "I push back. Even if they're right, my first move is to defend.", scores: {fight:3,flight:0,freeze:0,fawn:0} },
+      { text: "I nod, leave, and replay it 47 times in my head.", scores: {fight:1,flight:3,freeze:0,fawn:0} },
+      { text: "I shut down. Can't really process it until later — if ever.", scores: {fight:0,flight:0,freeze:3,fawn:0} },
+      { text: "I agree with everything. Then change myself to make sure it never happens again.", scores: {fight:0,flight:0,freeze:0,fawn:3} }
     ]
   },
   {
-    category: "Relationships",
-    text: "When someone close to you is upset — even if it's not about you — what do you do?",
+    category: "The Real You",
+    text: "You have a completely free weekend. Nothing planned. What actually happens?",
     options: [
-      { text: "Try to fix it. Give them a solution. I can't just sit with their pain.", scores: {fight:3,flight:0,freeze:0,fawn:1} },
-      { text: "Give them space. I pull back because I don't want to make it worse.", scores: {fight:0,flight:3,freeze:0,fawn:0} },
-      { text: "Shut down emotionally. I want to help but I can't access anything.", scores: {fight:0,flight:0,freeze:3,fawn:0} },
-      { text: "Absorb it. Their mood becomes my mood.", scores: {fight:0,flight:0,freeze:0,fawn:3} }
+      { text: "I fill every hour. I can't sit still if I'm not producing something.", scores: {fight:3,flight:1,freeze:0,fawn:0} },
+      { text: "I leave. Road trip, new spot, anything that feels like an adventure.", scores: {fight:0,flight:3,freeze:0,fawn:0} },
+      { text: "I stay home. Don't shower. Don't leave. Feel guilty about all of it.", scores: {fight:0,flight:0,freeze:3,fawn:0} },
+      { text: "I text around to see who needs me. A free day means I'm available.", scores: {fight:0,flight:0,freeze:0,fawn:3} }
     ]
   },
   {
-    category: "Relationships",
-    text: "How do you ask for help?",
+    category: "The Real You",
+    text: "What's your relationship with \"no\"?",
     options: [
-      { text: "I don't. I'd rather burn out than admit I can't handle it.", scores: {fight:3,flight:0,freeze:1,fawn:0} },
-      { text: "I hint. If they don't get it, I figure it out myself.", scores: {fight:0,flight:3,freeze:0,fawn:1} },
-      { text: "I know I need it but the words won't come out.", scores: {fight:0,flight:0,freeze:3,fawn:0} },
-      { text: "I only ask when I've already helped them ten times first. I need to earn it.", scores: {fight:0,flight:0,freeze:0,fawn:3} }
-    ]
-  },
-  {
-    category: "Relationships",
-    text: "Someone gives you a genuine compliment. How does it land?",
-    options: [
-      { text: "I deflect. \"It's nothing\" or I point out what still needs work.", scores: {fight:3,flight:0,freeze:0,fawn:0} },
-      { text: "Uncomfortable. I change the subject fast.", scores: {fight:0,flight:3,freeze:0,fawn:0} },
-      { text: "I hear it but can't feel it. Like there's glass between me and the words.", scores: {fight:0,flight:0,freeze:3,fawn:0} },
-      { text: "I feel amazing... for a second. Then I wonder if they meant it.", scores: {fight:0,flight:0,freeze:0,fawn:3} }
-    ]
-  },
-  {
-    category: "Relationships",
-    text: "When was the last time you told someone what you actually need — without filtering it?",
-    options: [
-      { text: "I tell people what I need all the time. The problem is how I say it.", scores: {fight:3,flight:0,freeze:0,fawn:0} },
-      { text: "A while ago. I keep things surface level because it's easier.", scores: {fight:0,flight:3,freeze:0,fawn:0} },
-      { text: "I honestly don't know what I need most of the time.", scores: {fight:0,flight:0,freeze:3,fawn:1} },
-      { text: "I shape what I say based on what I think they can handle hearing.", scores: {fight:0,flight:0,freeze:0,fawn:3} }
+      { text: "I say it too hard. People call me intense or aggressive.", scores: {fight:3,flight:0,freeze:0,fawn:1} },
+      { text: "I avoid situations where I'd have to say it.", scores: {fight:0,flight:3,freeze:0,fawn:1} },
+      { text: "I mean to say it. But then the moment passes and I just didn't.", scores: {fight:0,flight:0,freeze:3,fawn:1} },
+      { text: "I say yes, then feel resentful. Every single time.", scores: {fight:1,flight:0,freeze:0,fawn:3} }
     ]
   },
 
-  // IDENTITY — who you are under the armor
+  // YOUR BLIND SPOT — the patterns you don't see
   {
-    category: "Identity & Self-Worth",
-    text: "If you stopped working for 6 months, who would you be?",
+    category: "Your Blind Spot",
+    text: "What would your ex (or closest person) say is the hardest part of being close to you?",
     options: [
-      { text: "Lost. My worth is tied to what I produce.", scores: {fight:3,flight:1,freeze:0,fawn:0} },
-      { text: "Anxious. I need forward motion or I start falling apart.", scores: {fight:0,flight:3,freeze:0,fawn:0} },
-      { text: "Honestly? Maybe relieved. I'm so tired.", scores: {fight:0,flight:0,freeze:3,fawn:0} },
-      { text: "Worried about everyone else. Who would take care of things?", scores: {fight:0,flight:0,freeze:0,fawn:3} }
+      { text: "I'm controlling. I need things my way or I get frustrated.", scores: {fight:3,flight:0,freeze:0,fawn:0} },
+      { text: "I'm never fully here. I'm always planning the next thing.", scores: {fight:0,flight:3,freeze:0,fawn:0} },
+      { text: "I'm hard to reach. Like there's a wall they can't get past.", scores: {fight:0,flight:0,freeze:3,fawn:0} },
+      { text: "They never know what I actually think. I just agree with them.", scores: {fight:0,flight:0,freeze:1,fawn:3} }
     ]
   },
   {
-    category: "Identity & Self-Worth",
-    text: "Which statement hits closest to home?",
+    category: "Your Blind Spot",
+    text: "When something good finally happens for you, what's the feeling?",
     options: [
-      { text: "\"If I let my guard down, people will take advantage of me.\"", scores: {fight:3,flight:0,freeze:0,fawn:0} },
-      { text: "\"If I stop moving, everything will catch up to me.\"", scores: {fight:0,flight:3,freeze:0,fawn:0} },
-      { text: "\"Nothing I do matters anyway, so why bother trying hard.\"", scores: {fight:0,flight:0,freeze:3,fawn:0} },
-      { text: "\"If I'm not useful to people, they won't want me around.\"", scores: {fight:0,flight:0,freeze:0,fawn:3} }
+      { text: "Already chasing the next win. This one doesn't count yet.", scores: {fight:3,flight:1,freeze:0,fawn:0} },
+      { text: "A quick rush, then fear it'll get taken away.", scores: {fight:0,flight:3,freeze:0,fawn:1} },
+      { text: "Honestly? Not much. I can't really let it in.", scores: {fight:0,flight:0,freeze:3,fawn:0} },
+      { text: "I only enjoy it if someone else is there to share it with.", scores: {fight:0,flight:0,freeze:0,fawn:3} }
+    ]
+  },
+
+  {
+    category: "Your Blind Spot",
+    text: "Be honest — how do you act when you're really angry?",
+    options: [
+      { text: "I explode. Then I feel justified. Then... maybe guilty later.", scores: {fight:3,flight:0,freeze:0,fawn:0} },
+      { text: "I go quiet and distance myself. You won't see me angry — you'll see me gone.", scores: {fight:0,flight:3,freeze:1,fawn:0} },
+      { text: "I don't really get angry. I just get tired.", scores: {fight:0,flight:0,freeze:3,fawn:0} },
+      { text: "I swallow it. Then it leaks out as passive comments or crying later.", scores: {fight:1,flight:0,freeze:0,fawn:3} }
+    ]
+  },
+
+  // WHAT RUNS DEEPER — the stuff that's been there a while
+  {
+    category: "What Runs Deeper",
+    text: "Which one stings? Be honest.",
+    options: [
+      { text: "\"You don't have to be strong all the time.\"", scores: {fight:3,flight:0,freeze:1,fawn:0} },
+      { text: "\"You can't outrun this.\"", scores: {fight:0,flight:3,freeze:0,fawn:0} },
+      { text: "\"You're allowed to want things.\"", scores: {fight:0,flight:0,freeze:3,fawn:1} },
+      { text: "\"You matter even when you're not helping someone.\"", scores: {fight:0,flight:0,freeze:0,fawn:3} }
     ]
   },
   {
-    category: "Identity & Self-Worth",
-    text: "What's the voice in your head say most often?",
+    category: "What Runs Deeper",
+    text: "If you could change one thing about yourself tomorrow, what would it be?",
     options: [
-      { text: "\"Not enough. Do more. Be more. You're falling behind.\"", scores: {fight:3,flight:1,freeze:0,fawn:0} },
-      { text: "\"Something bad is about to happen. Stay ready.\"", scores: {fight:1,flight:3,freeze:0,fawn:0} },
-      { text: "\"What's the point?\" or just... silence.", scores: {fight:0,flight:0,freeze:3,fawn:0} },
-      { text: "\"Did I say the wrong thing? Are they mad at me?\"", scores: {fight:0,flight:0,freeze:0,fawn:3} }
-    ]
-  },
-  {
-    category: "Identity & Self-Worth",
-    text: "When you think about your childhood, what's the first thing that comes up?",
-    options: [
-      { text: "I had to grow up fast. I was the strong one before I was ready.", scores: {fight:3,flight:0,freeze:0,fawn:1} },
-      { text: "Chaos. Things were unpredictable and I learned to stay ready.", scores: {fight:1,flight:3,freeze:0,fawn:0} },
-      { text: "Loneliness. I was there but not really seen.", scores: {fight:0,flight:0,freeze:3,fawn:1} },
-      { text: "I was the peacekeeper. I made sure everyone else was okay.", scores: {fight:0,flight:0,freeze:0,fawn:3} }
-    ]
-  },
-  {
-    category: "Identity & Self-Worth",
-    text: "What would it feel like to be fully, completely at peace — right now, as you are?",
-    options: [
-      { text: "Terrifying. If I'm at peace I'm not growing.", scores: {fight:3,flight:0,freeze:0,fawn:0} },
-      { text: "Suspicious. Good things don't last. I'm waiting for the other shoe.", scores: {fight:0,flight:3,freeze:0,fawn:0} },
-      { text: "I can't even imagine it. I don't know what that feels like.", scores: {fight:0,flight:0,freeze:3,fawn:0} },
-      { text: "Only if the people around me are at peace too. Otherwise I can't relax.", scores: {fight:0,flight:0,freeze:0,fawn:3} }
+      { text: "I wish I could let people in without needing to be in charge.", scores: {fight:3,flight:0,freeze:0,fawn:1} },
+      { text: "I wish I could stay. In one place. In one relationship. In one moment.", scores: {fight:0,flight:3,freeze:0,fawn:0} },
+      { text: "I wish I could feel something. Like really feel it.", scores: {fight:0,flight:0,freeze:3,fawn:0} },
+      { text: "I wish I knew who I am when I'm not performing for someone.", scores: {fight:0,flight:0,freeze:1,fawn:3} }
     ]
   }
 ];
