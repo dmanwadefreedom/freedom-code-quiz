@@ -938,11 +938,17 @@ function submitGate() {
     tags: ['quiz-completed', patternTag, 'freedom-code']
   };
 
-  fetch('https://services.leadconnectorhq.com/hooks/0rTH6E3MWkHn5cjPmzLt/webhook-trigger/48f34643-f153-4358-bf1f-c6fdab1f36bc', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(webhookData)
-  }).catch(() => {});
+  // Send to Apps Script relay (GET with query params — POST blocked by Google)
+  const relayBase = 'https://script.google.com/macros/s/AKfycbzZshqOu_Q5UUtETIR1qIXOBCIcNzu2kkJT_7806UN-PlsNYA6Elwke-hL1IprQklbgfg/exec';
+  const params = new URLSearchParams({
+    action: 'quiz',
+    first_name: webhookData.first_name,
+    email: webhookData.email,
+    phone: webhookData.phone,
+    pattern_result: webhookData.pattern_result,
+    pattern_scores: webhookData.pattern_scores
+  });
+  fetch(relayBase + '?' + params.toString(), { mode: 'no-cors' }).catch(() => {});
 
   // Show results regardless
   revealResults(totals);
