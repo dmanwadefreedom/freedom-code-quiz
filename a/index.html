@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Free Quiz — Why Can't You Stick With Anything?</title>
+<meta name="description" content="3-minute quiz. There are 4 reasons people stay stuck. Find out which one is yours — and what to do about it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#1a1714;--bg2:#232019;--bg3:#2a2620;--txt:#e8e0d4;--dim:#a09888;--mute:#706858;--gold:#c8a45c;--goldg:rgba(200,164,92,.12);--goldh:#ddb96e;--ctrl:#d4644a;--run:#d4a74a;--gho:#6a8fb5;--cha:#6ab58f}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
+
+.screen{display:none;position:relative;z-index:1}
+.screen.active{display:block}
+.wrap{max-width:620px;margin:0 auto;padding:0 24px}
+
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--bg);font-family:'DM Sans',sans-serif;font-size:16px;font-weight:700;padding:17px 40px;border:none;border-radius:8px;cursor:pointer;text-decoration:none;transition:all .3s ease}
+.btn:hover{background:var(--goldh);transform:translateY(-2px);box-shadow:0 10px 36px rgba(200,164,92,.22)}
+.btn-note{display:block;text-align:center;font-size:13px;color:var(--dim);margin-top:14px}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.anim{opacity:0;animation:fadeUp .7s ease forwards}
+.d1{animation-delay:.1s}.d2{animation-delay:.25s}.d3{animation-delay:.4s}.d4{animation-delay:.55s}.d5{animation-delay:.7s}.d6{animation-delay:.85s}.d7{animation-delay:1s}
+
+/* LANDING */
+.landing{padding:60px 0 80px}
+.landing .label{display:inline-block;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold)}
+.landing h1{font-family:'DM Serif Display',serif;font-size:clamp(30px,7vw,48px);line-height:1.15;margin:28px 0 24px}
+.landing h1 em{font-style:italic;color:var(--gold)}
+.landing .sub{font-size:17px;line-height:1.75;color:var(--dim);margin-bottom:40px;max-width:520px}
+.divider{width:48px;height:1px;background:var(--gold);opacity:.35;margin:48px 0}
+.disc-label{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:24px}
+.disc-grid{display:flex;flex-direction:column;gap:14px;margin-bottom:48px}
+.disc-item{display:flex;align-items:flex-start;gap:16px;padding:20px;background:var(--bg2);border-radius:8px;border:1px solid rgba(200,164,92,.08);transition:border-color .3s}
+.disc-item:hover{border-color:rgba(200,164,92,.2)}
+.disc-icon{flex-shrink:0;width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:var(--goldg);border-radius:8px;font-size:14px;font-weight:700;color:var(--gold)}
+.disc-text h3{font-size:15px;font-weight:600;margin-bottom:4px}
+.disc-text p{font-size:14px;line-height:1.6;color:var(--dim)}
+.research{padding:20px 24px;background:var(--bg3);border-radius:0 10px 10px 0;border-left:3px solid var(--gold);margin-bottom:48px}
+.research p{font-size:14px;line-height:1.7;color:var(--dim)}
+.bottom-cta{text-align:center}
+.bottom-cta .btn{width:100%;max-width:400px;justify-content:center}
+
+/* QUIZ */
+.quiz-screen{padding:40px 0 60px}
+.progress-wrap{margin-bottom:32px}
+.progress-label{display:flex;justify-content:space-between;font-size:13px;color:var(--dim);margin-bottom:8px}
+.progress-bar{height:4px;background:var(--bg3);border-radius:4px;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .4s ease}
+.q-num{font-size:12px;font-weight:700;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px}
+.q-text{font-family:'DM Serif Display',serif;font-size:clamp(20px,5vw,28px);line-height:1.3;margin-bottom:28px}
+.scale-options{display:flex;flex-direction:column;gap:8px}
+.scale-opt{display:flex;align-items:center;padding:14px 18px;background:var(--bg2);border:1.5px solid rgba(200,164,92,.08);border-radius:8px;cursor:pointer;transition:all .25s;font-size:15px;color:var(--dim)}
+.scale-opt:hover{border-color:rgba(200,164,92,.25);color:var(--txt)}
+.scale-opt.selected{border-color:var(--gold);background:var(--goldg);color:var(--txt);font-weight:600}
+.scenario-options{display:flex;flex-direction:column;gap:8px}
+.scenario-opt{display:flex;align-items:flex-start;gap:14px;padding:14px 18px;background:var(--bg2);border:1.5px solid rgba(200,164,92,.08);border-radius:8px;cursor:pointer;transition:all .25s;font-size:14px;line-height:1.55;color:var(--dim)}
+.scenario-opt:hover{border-color:rgba(200,164,92,.25);color:var(--txt)}
+.scenario-opt.selected{border-color:var(--gold);background:var(--goldg);color:var(--txt)}
+.opt-letter{flex-shrink:0;width:24px;height:24px;display:flex;align-items:center;justify-content:center;border-radius:6px;font-size:12px;font-weight:700;background:rgba(200,164,92,.1);color:var(--gold)}
+.quiz-nav{display:flex;justify-content:space-between;align-items:center;margin-top:32px}
+.nav-back{background:none;border:1px solid rgba(200,164,92,.2);color:var(--dim);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;padding:12px 24px;border-radius:8px;cursor:pointer;transition:all .3s}
+.nav-back:hover{border-color:var(--gold);color:var(--txt)}
+.nav-next{background:var(--gold);color:var(--bg);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;padding:12px 32px;border:none;border-radius:8px;cursor:pointer;transition:all .3s;opacity:.4;pointer-events:none}
+.nav-next.ready{opacity:1;pointer-events:auto}
+.nav-next.ready:hover{background:var(--goldh);transform:translateY(-1px)}
+
+/* EMAIL GATE */
+.gate-screen{padding:80px 0;text-align:center}
+.gate-screen h2{font-family:'DM Serif Display',serif;font-size:clamp(24px,5vw,36px);margin-bottom:12px}
+.gate-screen .gate-sub{font-size:16px;color:var(--dim);margin-bottom:36px;max-width:440px;margin-left:auto;margin-right:auto}
+.gate-form{max-width:380px;margin:0 auto}
+.gate-input{width:100%;padding:14px 18px;background:var(--bg2);border:1.5px solid rgba(200,164,92,.15);border-radius:8px;color:var(--txt);font-family:'DM Sans',sans-serif;font-size:15px;margin-bottom:12px;outline:none;transition:border-color .3s}
+.gate-input:focus{border-color:var(--gold)}
+.gate-input::placeholder{color:var(--mute)}
+.gate-form .btn{width:100%;justify-content:center;margin-top:4px}
+.gate-note{font-size:12px;color:var(--mute);margin-top:16px}
+
+/* LOADING */
+.load-screen{padding:120px 0;text-align:center}
+.load-dots{display:flex;justify-content:center;gap:8px;margin-bottom:24px}
+.load-dot{width:10px;height:10px;border-radius:50%;background:var(--gold);animation:pulse 1.2s ease infinite}
+.load-dot:nth-child(2){animation-delay:.2s}
+.load-dot:nth-child(3){animation-delay:.4s}
+.load-text{font-size:15px;color:var(--dim)}
+
+/* RESULTS */
+.results-screen{padding:60px 0 80px}
+.results-screen .rlabel{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);text-align:center;margin-bottom:8px}
+.results-screen h2{font-family:'DM Serif Display',serif;font-size:clamp(28px,6vw,42px);text-align:center;margin-bottom:8px}
+.pattern-name{color:var(--gold)}
+.results-sub{text-align:center;font-size:15px;color:var(--dim);margin-bottom:40px}
+.chart{margin-bottom:40px}
+.chart-row{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.chart-label{width:100px;font-size:13px;font-weight:600;text-align:right;flex-shrink:0}
+.chart-bar-wrap{flex:1;height:28px;background:var(--bg3);border-radius:6px;overflow:hidden;position:relative}
+.chart-bar{height:100%;border-radius:6px;transition:width 1.2s ease;width:0}
+.chart-pct{font-size:13px;font-weight:600;width:40px;text-align:left;flex-shrink:0;color:var(--dim)}
+.bar-ctrl{background:var(--ctrl)}.bar-run{background:var(--run)}.bar-gho{background:var(--gho)}.bar-cha{background:var(--cha)}
+.result-section{background:var(--bg2);border-radius:12px;padding:28px;margin-bottom:20px;border:1px solid rgba(200,164,92,.06)}
+.result-section h3{font-family:'DM Serif Display',serif;font-size:20px;margin-bottom:12px}
+.result-section p{font-size:15px;line-height:1.75;color:var(--dim);margin-bottom:12px}
+.result-section p:last-child{margin-bottom:0}
+.next-steps{background:var(--bg3);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:24px 28px;margin-top:40px}
+.next-steps h3{font-size:16px;font-weight:700;margin-bottom:12px}
+.next-steps p{font-size:14px;line-height:1.7;color:var(--dim);margin-bottom:10px}
+.next-steps p:last-child{margin-bottom:0}
+.next-steps strong{color:var(--txt)}
+.results-cta{text-align:center;margin-top:48px}
+.results-cta .btn{width:100%;max-width:400px;justify-content:center}
+
+/* SHARE */
+.share-section{background:var(--bg2);border-radius:12px;padding:28px;margin-top:32px;text-align:center;border:1px solid rgba(200,164,92,.1)}
+.share-section h3{font-family:'DM Serif Display',serif;font-size:20px;margin-bottom:8px;color:var(--gold)}
+.share-section p{font-size:14px;color:var(--dim);margin-bottom:16px}
+.share-link{display:flex;gap:8px;max-width:360px;margin:0 auto}
+.share-link input{flex:1;padding:10px 14px;background:var(--bg3);border:1px solid rgba(200,164,92,.15);border-radius:6px;color:var(--txt);font-family:'DM Sans',sans-serif;font-size:13px;outline:none}
+.share-link button{background:var(--gold);color:var(--bg);border:none;padding:10px 18px;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s}
+.share-link button:hover{background:var(--goldh)}
+
+.footer{text-align:center;padding:32px 0;font-size:12px;color:var(--mute);border-top:1px solid rgba(200,164,92,.06);margin-top:40px}
+.footer a{color:var(--mute);text-decoration:none}
+
+@media(max-width:480px){
+  .landing{padding:40px 0 60px}
+  .quiz-screen{padding:32px 0 48px}
+  .share-link{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════ -->
+<!-- SCREEN 1: LANDING — VERSION A      -->
+<!-- ═══════════════════════════════════ -->
+<div class="screen active" id="screen-landing">
+<div class="landing">
+<div class="wrap">
+  <div class="label anim d1">Free 3-Minute Quiz</div>
+  <h1 class="anim d2">Everything's fine.<br>So why doesn't it <em>feel</em> like it?</h1>
+  <p class="sub anim d3">There are 4 reasons people stay stuck — even after the books, the podcasts, the promises to themselves. This quiz tells you which one is yours — and what to do about it.</p>
+  <div class="anim d4" style="margin-bottom:48px">
+    <button class="btn" onclick="startQuiz()">Take The Quiz <span>&rarr;</span></button>
+    <span class="btn-note">3 minutes. Free. No sign-up to start.</span>
+  </div>
+  <div class="divider anim d5"></div>
+  <div class="anim d5">
+    <div class="disc-label">What You Walk Away With</div>
+    <div class="disc-grid">
+      <div class="disc-item"><div class="disc-icon">01</div><div class="disc-text"><h3>Which Of The 4 You Are</h3><p>And why it explains the cycles you keep repeating.</p></div></div>
+      <div class="disc-item"><div class="disc-icon">02</div><div class="disc-text"><h3>Why Nothing's Worked</h3><p>It's not willpower. It's not laziness. There's a real reason — and it's not your fault.</p></div></div>
+      <div class="disc-item"><div class="disc-icon">03</div><div class="disc-text"><h3>What To Do About It</h3><p>A free 20-minute reset exercise built for your specific result. Not generic. A real starting point.</p></div></div>
+    </div>
+  </div>
+  <div class="research anim d6">
+    <p>Based on the largest study ever done on why adults repeat the same cycles — even when they know better.</p>
+  </div>
+  <div class="bottom-cta anim d7">
+    <button class="btn" onclick="startQuiz()">Take The Quiz <span>&rarr;</span></button>
+    <span class="btn-note">3 minutes. Completely free. No sign-up to start.</span>
+  </div>
+  <div class="footer"><p>&copy; 2026 Dylan Ewing &middot; <a href="#">Privacy</a></p></div>
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════ -->
+<!-- SCREEN 2: QUIZ                     -->
+<!-- ═══════════════════════════════════ -->
+<div class="screen" id="screen-quiz">
+<div class="quiz-screen">
+<div class="wrap">
+  <div class="progress-wrap">
+    <div class="progress-label"><span id="q-counter">Question 1 of 22</span><span id="q-pct">0%</span></div>
+    <div class="progress-bar"><div class="progress-fill" id="prog-fill"></div></div>
+  </div>
+  <div id="q-num" class="q-num"></div>
+  <div id="q-text" class="q-text"></div>
+  <div id="q-options"></div>
+  <div class="quiz-nav">
+    <button class="nav-back" id="btn-back" onclick="prevQ()">&larr; Back</button>
+    <button class="nav-next" id="btn-next" onclick="nextQ()">Next &rarr;</button>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════ -->
+<!-- SCREEN 3: EMAIL GATE               -->
+<!-- ═══════════════════════════════════ -->
+<div class="screen" id="screen-gate">
+<div class="gate-screen">
+<div class="wrap">
+  <div class="label anim d1">Your Results Are Ready</div>
+  <h2 class="anim d2">We found yours.</h2>
+  <p class="gate-sub anim d3">Enter your name and email to see which of the 4 you are, what it means, and what to do about it.</p>
+  <div class="gate-form anim d4">
+    <input type="text" class="gate-input" id="gate-name" placeholder="First name" required>
+    <input type="email" class="gate-input" id="gate-email" placeholder="Email address" required>
+    <button class="btn" onclick="submitGate()">Show Me <span>&rarr;</span></button>
+  </div>
+  <p class="gate-note anim d5">No spam. Just your results + a free exercise built for your type.</p>
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════ -->
+<!-- SCREEN 4: LOADING                  -->
+<!-- ═══════════════════════════════════ -->
+<div class="screen" id="screen-loading">
+<div class="load-screen">
+<div class="wrap">
+  <div class="load-dots"><div class="load-dot"></div><div class="load-dot"></div><div class="load-dot"></div></div>
+  <div class="load-text" id="load-msg">Comparing your responses to 17,000 research profiles...</div>
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════ -->
+<!-- SCREEN 5: RESULTS                  -->
+<!-- ═══════════════════════════════════ -->
+<div class="screen" id="screen-results">
+<div class="results-screen">
+<div class="wrap">
+  <div class="rlabel">Your Result</div>
+  <h2>You're <span class="pattern-name" id="r-name"></span></h2>
+  <p class="results-sub" id="r-sub"></p>
+
+  <div class="chart" id="r-chart"></div>
+
+  <div id="r-strength"></div>
+  <div id="r-shadow"></div>
+  <div id="r-daily"></div>
+  <div id="r-science"></div>
+  <div id="r-forward"></div>
+  <div id="r-why"></div>
+
+  <div class="share-section" id="r-share">
+    <h3 id="share-title"></h3>
+    <p>Send this to someone and see what they get.</p>
+    <div class="share-link">
+      <input type="text" value="https://thedylanewing.com/quiz" id="share-url" readonly>
+      <button onclick="copyShareLink()">Copy Link</button>
+    </div>
+  </div>
+
+  <div class="next-steps">
+    <h3>What happens next</h3>
+    <p><strong>Step 1 &mdash; Check your inbox.</strong> We just sent your free Day 1 Reset. 20 minutes. 4 steps. Built for your specific type.</p>
+    <p><strong>Step 2 &mdash; Do it today.</strong> Not tomorrow. Pay attention to what shifts &mdash; even small stuff.</p>
+    <p><strong>Step 3 &mdash; Go deeper.</strong> The free reset cracks the door. If you want to actually change the pattern for good &mdash; <a href="https://dmanwadefreedom.github.io/freedom-code-sales/" style="color:var(--gold)">The Pattern Reset</a> was built for that.</p>
+  </div>
+
+  <div class="results-cta">
+    <a href="https://dmanwadefreedom.github.io/freedom-code-sales/" class="btn">Get The Pattern Reset &mdash; $47 <span>&rarr;</span></a>
+    <span class="btn-note">4 modules. Self-paced. Lifetime access.</span>
+  </div>
+
+  <div class="footer"><p>&copy; 2026 Dylan Ewing &middot; <a href="https://thedylanewing.com">thedylanewing.com</a> &middot; <a href="#">Privacy</a></p></div>
+</div>
+</div>
+</div>
+
+<script>
+// ════════════════════════════════════════
+// QUESTIONS — 22 total: 12 scaled + 10 scenarios
+// Balanced: 3 per pattern in Part 1
+// Shuffled answer order in Part 2
+// ════════════════════════════════════════
+const questions = [
+  // PART 1: SCALED (Q1-12) — 3 per pattern
+  {type:'scale',pattern:'controller',text:"When things feel out of control, my first reaction is to take charge of the situation."},
+  {type:'scale',pattern:'runner',text:"I feel uncomfortable when I have nothing to do. Sitting still makes me anxious."},
+  {type:'scale',pattern:'ghost',text:"When I'm overwhelmed, I tend to shut down and go quiet instead of dealing with it."},
+  {type:'scale',pattern:'chameleon',text:"I often change how I act depending on who I'm around. I read the room before I show up."},
+  {type:'scale',pattern:'controller',text:"I have a hard time trusting other people to handle things the right way."},
+  {type:'scale',pattern:'runner',text:"I fill my schedule on purpose. If there's a gap, I find something to fill it with."},
+  {type:'scale',pattern:'ghost',text:"Sometimes I feel like I'm watching my own life from the outside instead of actually living it."},
+  {type:'scale',pattern:'chameleon',text:"Saying no to people \u2014 even when I want to \u2014 makes me feel guilty."},
+  {type:'scale',pattern:'controller',text:"I feel responsible for fixing problems even when they're not mine to fix."},
+  {type:'scale',pattern:'runner',text:"When something painful comes up emotionally, I'd rather stay busy than sit with it."},
+  {type:'scale',pattern:'ghost',text:"I often feel tired even when I haven't done anything. Like my battery is always low."},
+  {type:'scale',pattern:'chameleon',text:"I'm really good at knowing what other people need \u2014 but I have no idea what I actually want."},
+
+  // PART 2: SCENARIOS (Q13-22) — answer order shuffled per question
+  {type:'scenario',text:"You're in an argument with someone you care about. What do you do first?",opts:[
+    {txt:"I apologize even if I'm not sure it was my fault. I just want the tension gone.",p:'chameleon'},
+    {txt:"I make my point clearly. I need them to understand where I'm coming from.",p:'controller'},
+    {txt:"I go quiet. I don't know what to say so I just stop talking.",p:'ghost'},
+    {txt:"I leave. I need space before I say something I regret.",p:'runner'},
+    {txt:"Honestly none of these. I handle it differently.",p:'neutral'}
+  ]},
+  {type:'scenario',text:"You have a completely free weekend. Nothing planned. How does that feel?",opts:[
+    {txt:"I stay in bed most of the day. Not sad exactly. Just low energy.",p:'ghost'},
+    {txt:"Restless. I need to go somewhere or do something.",p:'runner'},
+    {txt:"I check if anyone else needs anything. I feel weird doing nothing for myself.",p:'chameleon'},
+    {txt:"Uncomfortable. I start making plans or organizing something.",p:'controller'},
+    {txt:"None of these. I actually enjoy a free weekend.",p:'neutral'}
+  ]},
+  {type:'scenario',text:"Someone close to you is upset but won't tell you why. What happens inside you?",opts:[
+    {txt:"I feel the tension and want to leave the room.",p:'runner'},
+    {txt:"I assume I did something wrong and start going over everything I said.",p:'chameleon'},
+    {txt:"I press for answers. I need to know what's wrong so I can fix it.",p:'controller'},
+    {txt:"I freeze up. I don't know what to say or do so I do nothing.",p:'ghost'},
+    {txt:"None of these really. I give them space and move on.",p:'neutral'}
+  ]},
+  {type:'scenario',text:"You get unexpected bad news. What's your body's first reaction?",opts:[
+    {txt:"I go numb. Like the volume on everything turns down.",p:'ghost'},
+    {txt:"My jaw tightens. I immediately start thinking about what to do about it.",p:'controller'},
+    {txt:"I think about how this affects the people around me before I think about myself.",p:'chameleon'},
+    {txt:"My legs feel restless. I want to move or go somewhere.",p:'runner'},
+    {txt:"I'm not sure. It depends on the situation.",p:'neutral'}
+  ]},
+  {type:'scenario',text:"Think about how you've been sleeping lately. Which sounds most like you?",opts:[
+    {txt:"I stay up way too late scrolling, watching, or working on things that don't matter.",p:'runner'},
+    {txt:"I sleep a lot but still wake up exhausted. Like my body is always tired.",p:'ghost'},
+    {txt:"My brain won't shut off at night. I'm planning, reviewing, solving.",p:'controller'},
+    {txt:"I lie awake replaying conversations. Wondering if I said the wrong thing.",p:'chameleon'},
+    {txt:"None of these. I sleep fine most nights.",p:'neutral'}
+  ]},
+  {type:'scenario',text:"A friend asks you for help during a week where you're already stretched thin. What do you do?",opts:[
+    {txt:"I drop my own plans to help them. Their need feels more important than mine.",p:'chameleon'},
+    {txt:"I say I'll think about it and then never respond.",p:'ghost'},
+    {txt:"I help \u2014 and take over more than they asked for because I'll do it better.",p:'controller'},
+    {txt:"I say yes quickly and figure out the logistics later. I'll make it work somehow.",p:'runner'},
+    {txt:"I set a boundary and let them know I can't this week.",p:'neutral'}
+  ]},
+  {type:'scenario',text:"You just achieved something you worked really hard for. How do you feel?",opts:[
+    {txt:"Good for a second, then restless. Like I need to keep moving.",p:'runner'},
+    {txt:"Already thinking about the next thing. This one doesn't feel like enough.",p:'controller'},
+    {txt:"I immediately share it to see how other people react. Their reaction tells me how to feel.",p:'chameleon'},
+    {txt:"Weirdly empty. Like I should feel more than I do but I can't access it.",p:'ghost'},
+    {txt:"I actually feel proud and take a moment to enjoy it.",p:'neutral'}
+  ]},
+  {type:'scenario',text:"Which of these sounds most like something you'd say about yourself?",opts:[
+    {txt:"I'm always planning the next thing. I can't remember the last time I had nothing to do.",p:'runner'},
+    {txt:"I'm the friend everyone comes to with their problems. I'm not sure anyone knows mine.",p:'chameleon'},
+    {txt:"I don't trust anyone else to do it right, so I just do everything myself.",p:'controller'},
+    {txt:"People tell me I'm hard to read. I don't really let anyone in.",p:'ghost'},
+    {txt:"None of these really sound like me.",p:'neutral'}
+  ]},
+  {type:'scenario',text:"Be honest \u2014 what's your relationship with rest?",opts:[
+    {txt:"I rest all the time but it never actually recharges me.",p:'ghost'},
+    {txt:"Rest feels lazy. I feel guilty when I'm not doing something productive.",p:'controller'},
+    {txt:"I only rest when everyone else is taken care of first.",p:'chameleon'},
+    {txt:"I try to rest but I end up doing something else within minutes.",p:'runner'},
+    {txt:"I actually rest well. This isn't a struggle for me.",p:'neutral'}
+  ]},
+  {type:'scenario',text:"Last one. What brought you here today? Pick the one that's closest.",opts:[
+    {txt:"I feel disconnected from my own life and I don't know why.",p:'ghost'},
+    {txt:"I want to understand why I can't stop pushing so hard.",p:'controller'},
+    {txt:"I've spent so long being what other people need that I lost myself.",p:'chameleon'},
+    {txt:"I'm tired of running but I don't know how to stop.",p:'runner'},
+    {txt:"Just curious. None of these really describe me.",p:'neutral'}
+  ]}
+];
+
+const TOTAL = 22;
+const SCALED = 12;
+const scaleLabels = ['Strongly Agree','Agree','Somewhere In Between','Disagree','Strongly Disagree'];
+const scalePoints = [4,3,1,0,0];
+const letters = ['A','B','C','D','E'];
+
+// Results — lead with strength, then shadow
+const patternData = {
+  controller: {
+    name:'The Controller', color:'var(--ctrl)',
+    sub:"You're the one everyone calls when things fall apart. You hold the room together.",
+    strength:"You see what needs to happen and you make it happen. While everyone else is still figuring out the problem, you're already three steps into the solution. People trust you because you deliver. You carry things most people can't even see \u2014 and you make it look effortless.",
+    shadow:"That's your gift \u2014 and your trap. At some point, being in charge became the only way you felt safe. Now you can't put it down. You can't rest because resting means letting go, and letting go feels like everything will fall apart.",
+    daily:"You're the fixer. The one who holds it all together. But underneath that, there's a tiredness you don't show anyone. Your brain won't shut off at night. You feel responsible for problems that aren't yours. And the idea of doing nothing makes you physically uncomfortable.",
+    science:"This shows up in research as a Fight response \u2014 your nervous system's way of creating safety through control. The ACE Study (17,000+ adults) found that early experiences where safety felt unpredictable often wire this response into autopilot. It's not a flaw. It was brilliant. It just hasn't updated.",
+    forward:"The path forward isn't about losing control. It's about teaching your body that safety doesn't require you to hold everything. That starts with small moments of letting go \u2014 and noticing that the world doesn't end.",
+    why:"This is shaping your relationships, your energy, your income, and your health right now. Not someday. Right now. The good news: once you see it, you can change it."
+  },
+  runner: {
+    name:'The Runner', color:'var(--run)',
+    sub:"You're the one who gets things done. Always moving, always building, always ahead of everyone else.",
+    strength:"Your energy is magnetic. You start things other people just talk about. You've probably built more in the last year than most people do in five. You don't wait for permission. You move \u2014 and things happen because of it.",
+    shadow:"That's your gift \u2014 and your trap. All that movement isn't just ambition. It's escape. You stay busy because stopping means feeling something you've been outrunning for a long time. The gap in your schedule isn't freedom \u2014 it's a threat.",
+    daily:"You fill every gap. New project, new goal, new plan. You stay up too late doing things that don't even matter. Not because you love being busy \u2014 because being still feels dangerous.",
+    science:"This shows up in research as a Flight response \u2014 your nervous system's way of creating safety through motion. Studies on early adversity show that when a child's environment is emotionally overwhelming, movement becomes the escape route. It worked then. It's still running now.",
+    forward:"The path forward isn't about stopping everything. It's about building the ability to be still without your body treating it like an emergency. That starts with small doses of presence \u2014 and learning that what you're running from can't actually hurt you anymore.",
+    why:"This is shaping your relationships, your energy, your income, and your health right now. Not someday. Right now. The good news: once you see it, you can change it."
+  },
+  ghost: {
+    name:'The Ghost', color:'var(--gho)',
+    sub:"You're the calm one. The one who stays steady when everyone else is losing it.",
+    strength:"You don't react. You observe. While everyone around you is in chaos, you stay level. People feel safe around you because you don't add to the noise. You're perceptive in ways most people aren't \u2014 you see things others miss entirely.",
+    shadow:"That's your gift \u2014 and your trap. That calm isn't always peace. Sometimes it's shutdown. You can't seem to start things. You feel tired even when you haven't done anything. There's a fog between you and your own life.",
+    daily:"You zone out in conversations. You sleep a lot but wake up exhausted. You have ideas and goals but can't seem to start them. It's not laziness. It's not depression exactly. It's your body pulling the emergency brake over and over again.",
+    science:"This shows up in research as a Freeze response \u2014 your nervous system's way of creating safety through shutdown. When early environments are too overwhelming to fight or flee, the body learns to disappear internally. It's protective. It's also still running.",
+    forward:"The path forward isn't about forcing yourself to 'snap out of it.' It's about gently teaching your body that it's safe to come back online. That starts with small, body-based practices \u2014 not willpower. Gentle re-engagement.",
+    why:"This is shaping your relationships, your energy, your income, and your health right now. Not someday. Right now. The good news: once you see it, you can change it."
+  },
+  chameleon: {
+    name:'The Chameleon', color:'var(--cha)',
+    sub:"You're the one who makes everyone feel understood. You walk into a room and people immediately feel comfortable.",
+    strength:"You read people like a language most humans don't speak. You know what someone needs before they say it. You're the friend everyone calls, the one who holds space, the one who keeps the peace. That ability is genuinely rare \u2014 and powerful.",
+    shadow:"That's your gift \u2014 and your trap. You didn't learn to read people because it was a fun skill. You learned it because your safety once depended on it. Now you say yes when you mean no. You absorb other people's moods. You don't know what you actually want.",
+    daily:"You change how you show up depending on who you're with. You feel guilty saying no, even about small things. You replay conversations wondering if you said the wrong thing. And if you're honest \u2014 you're not sure anyone really knows the real you.",
+    science:"This shows up in research as a Fawn response \u2014 your nervous system's way of creating safety through people-pleasing. When a child's safety depends on managing the emotions of adults around them, the boundary between 'self' and 'others' never forms. It's adaptive. It's also exhausting.",
+    forward:"The path forward isn't about becoming selfish. It's about finding where you end and other people begin. That starts with small acts of choosing yourself \u2014 and sitting with the discomfort of not automatically putting someone else first.",
+    why:"This is shaping your relationships, your energy, your income, and your health right now. Not someday. Right now. The good news: once you see it, you can change it."
+  }
+};
+
+// STATE
+let currentQ = 0;
+let answers = new Array(TOTAL).fill(null);
+let scores = {controller:0,runner:0,ghost:0,chameleon:0};
+
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function startQuiz(){
+  showScreen('screen-quiz');
+  renderQuestion();
+}
+
+function renderQuestion(){
+  const q = questions[currentQ];
+  const i = currentQ;
+  document.getElementById('q-counter').textContent = `Question ${i+1} of ${TOTAL}`;
+  document.getElementById('q-pct').textContent = Math.round((i/TOTAL)*100)+'%';
+  document.getElementById('prog-fill').style.width = (i/TOTAL)*100+'%';
+  document.getElementById('q-num').textContent = i<SCALED?'How much do you relate?':'Pick the closest match';
+  document.getElementById('q-text').textContent = q.text;
+
+  const container = document.getElementById('q-options');
+  container.innerHTML = '';
+
+  if(q.type==='scale'){
+    const wrap = document.createElement('div');
+    wrap.className = 'scale-options';
+    scaleLabels.forEach((label,j)=>{
+      const opt = document.createElement('div');
+      opt.className = 'scale-opt'+(answers[i]===j?' selected':'');
+      opt.textContent = label;
+      opt.onclick = ()=>selectAnswer(j);
+      wrap.appendChild(opt);
+    });
+    container.appendChild(wrap);
+  } else {
+    const wrap = document.createElement('div');
+    wrap.className = 'scenario-options';
+    q.opts.forEach((opt,j)=>{
+      const el = document.createElement('div');
+      el.className = 'scenario-opt'+(answers[i]===j?' selected':'');
+      el.innerHTML = `<span class="opt-letter">${letters[j]}</span><span>${opt.txt}</span>`;
+      el.onclick = ()=>selectAnswer(j);
+      wrap.appendChild(el);
+    });
+    container.appendChild(wrap);
+  }
+
+  document.getElementById('btn-back').style.visibility = i===0?'hidden':'visible';
+  const nextBtn = document.getElementById('btn-next');
+  nextBtn.className = 'nav-next'+(answers[i]!==null?' ready':'');
+  nextBtn.innerHTML = i===TOTAL-1?'See My Results &rarr;':'Next &rarr;';
+}
+
+function selectAnswer(j){
+  answers[currentQ] = j;
+  renderQuestion();
+}
+
+function nextQ(){
+  if(answers[currentQ]===null) return;
+  if(currentQ===TOTAL-1){
+    showScreen('screen-gate');
+    return;
+  }
+  currentQ++;
+  renderQuestion();
+}
+
+function prevQ(){
+  if(currentQ>0){currentQ--;renderQuestion();}
+}
+
+// EMAIL GATE + WEBHOOK
+function submitGate(){
+  const name = document.getElementById('gate-name').value.trim();
+  const email = document.getElementById('gate-email').value.trim();
+  if(!name||!email||!email.includes('@')) return alert('Please enter your name and email.');
+
+  calculateScores();
+  showScreen('screen-loading');
+
+  const loadMsgs = ['Comparing your responses to 17,000 research profiles...','Analyzing your results...','Building your profile...'];
+  let mi = 0;
+  const msgInterval = setInterval(()=>{
+    mi++;
+    if(mi<loadMsgs.length) document.getElementById('load-msg').textContent = loadMsgs[mi];
+  },1200);
+
+  const primary = getPrimary();
+  const webhookUrl = 'https://script.google.com/macros/s/AKfycbzZshqOu_Q5UUtETIR1qIXOBCIcNzu2kkJT_7806UN-PlsNYA6Elwke-hL1IprQklbgfg/exec';
+  const typeName = patternData[primary].name.replace('The ','').toLowerCase();
+  const tags = ['quiz-completed','pattern-'+typeName,'freedom-code'];
+  const params = new URLSearchParams({
+    firstName: name,
+    email: email,
+    pattern: patternData[primary].name,
+    patternType: primary,
+    fightScore: scores.controller,
+    flightScore: scores.runner,
+    freezeScore: scores.ghost,
+    fawnScore: scores.chameleon,
+    source: 'freedom-code-quiz-a',
+    quizVersion: 'a',
+    tags: tags.join(',')
+  });
+
+  fetch(`${webhookUrl}?${params.toString()}`).catch(()=>{});
+
+  setTimeout(()=>{
+    clearInterval(msgInterval);
+    showResults(primary);
+  },4000);
+}
+
+function calculateScores(){
+  scores = {controller:0,runner:0,ghost:0,chameleon:0};
+  for(let i=0;i<SCALED;i++){
+    if(answers[i]!==null) scores[questions[i].pattern] += scalePoints[answers[i]];
+  }
+  for(let i=SCALED;i<TOTAL;i++){
+    if(answers[i]!==null){
+      const chosen = questions[i].opts[answers[i]];
+      if(chosen.p!=='neutral') scores[chosen.p] += 2;
+    }
+  }
+}
+
+function getPrimary(){
+  let max=0, primary='controller';
+  for(const [k,v] of Object.entries(scores)){
+    if(v>max){max=v;primary=k;}
+  }
+  return primary;
+}
+
+function showResults(primary){
+  showScreen('screen-results');
+  const d = patternData[primary];
+  document.getElementById('r-name').textContent = d.name;
+  document.getElementById('r-name').style.color = d.color;
+  document.getElementById('r-sub').textContent = d.sub;
+  document.getElementById('share-title').textContent = `I'm ${d.name}. What are you?`;
+
+  const total = Math.max(scores.controller+scores.runner+scores.ghost+scores.chameleon,1);
+  const chartData = [
+    {label:'Controller',score:scores.controller,cls:'bar-ctrl',color:patternData.controller.color},
+    {label:'Runner',score:scores.runner,cls:'bar-run',color:patternData.runner.color},
+    {label:'Ghost',score:scores.ghost,cls:'bar-gho',color:patternData.ghost.color},
+    {label:'Chameleon',score:scores.chameleon,cls:'bar-cha',color:patternData.chameleon.color}
+  ];
+  const maxScore = Math.max(...chartData.map(c=>c.score),1);
+
+  let chartHTML = '';
+  chartData.forEach(c=>{
+    const pct = Math.round((c.score/total)*100);
+    chartHTML += `<div class="chart-row">
+      <div class="chart-label" style="color:${c.color}">${c.label}</div>
+      <div class="chart-bar-wrap"><div class="chart-bar ${c.cls}" id="bar-${c.label.toLowerCase()}"></div></div>
+      <div class="chart-pct">${pct}%</div>
+    </div>`;
+  });
+  document.getElementById('r-chart').innerHTML = chartHTML;
+
+  setTimeout(()=>{
+    chartData.forEach(c=>{
+      const width = Math.max(Math.round((c.score/maxScore)*100),4);
+      document.getElementById('bar-'+c.label.toLowerCase()).style.width = width+'%';
+    });
+  },200);
+
+  const sec = (title,content)=>`<div class="result-section"><h3>${title}</h3><p>${content}</p></div>`;
+  document.getElementById('r-strength').innerHTML = sec('Your Strength',d.strength);
+  document.getElementById('r-shadow').innerHTML = sec('The Other Side',d.shadow);
+  document.getElementById('r-daily').innerHTML = sec('What This Looks Like Day to Day',d.daily);
+  document.getElementById('r-science').innerHTML = sec('The Science Behind It',d.science);
+  document.getElementById('r-forward').innerHTML = sec('Your Path Forward',d.forward);
+  document.getElementById('r-why').innerHTML = sec('Why This Matters Right Now',d.why);
+}
+
+function copyShareLink(){
+  const input = document.getElementById('share-url');
+  input.select();
+  navigator.clipboard.writeText(input.value).then(()=>{
+    const btn = input.nextElementSibling;
+    btn.textContent = 'Copied!';
+    setTimeout(()=>{btn.textContent = 'Copy Link';},2000);
+  });
+}
+
+document.addEventListener('keydown',(e)=>{
+  if(document.getElementById('screen-quiz').classList.contains('active')){
+    if(e.key==='ArrowRight'||e.key==='Enter') nextQ();
+    if(e.key==='ArrowLeft') prevQ();
+  }
+});
+</script>
+</body>
+</html>
