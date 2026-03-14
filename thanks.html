@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>You're In — The Pattern Reset</title>
+<meta name="description" content="Welcome to The Pattern Reset. Your 30-day transformation starts now.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#ffffff;--bg2:#f8f6f3;--bg3:#f0ece6;--bg4:#e8e2da;
+  --gold:#b8943f;--gold-dim:rgba(184,148,63,0.1);--gold-glow:rgba(184,148,63,0.2);
+  --text:#1a1714;--text-dim:#5a5248;--text-muted:#8a8078;
+  --controller:#c4442a;--runner:#c4871a;--ghost:#4a6f95;--chameleon:#3a8560;
+  --font-head:'DM Serif Display',serif;--font-body:'DM Sans',sans-serif;
+}
+html{scroll-behavior:smooth;background:#ffffff}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);min-height:100vh;-webkit-font-smoothing:antialiased}
+
+.container{max-width:640px;margin:0 auto;padding:40px 20px 80px}
+
+/* ═══ HERO ═══ */
+.hero{text-align:center;padding:60px 20px 40px}
+.hero-check{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#d4b050);display:flex;align-items:center;justify-content:center;margin:0 auto 28px;box-shadow:0 8px 32px rgba(184,148,63,0.3);animation:pulse 2s ease-in-out infinite}
+.hero-check svg{width:40px;height:40px}
+@keyframes pulse{0%,100%{box-shadow:0 8px 32px rgba(184,148,63,0.3)}50%{box-shadow:0 8px 48px rgba(184,148,63,0.5)}}
+.hero h1{font-family:var(--font-head);font-size:42px;color:var(--gold);margin-bottom:12px;letter-spacing:0.5px}
+.hero .welcome-name{font-family:var(--font-head);font-size:22px;color:var(--text);margin-bottom:8px}
+.hero .tagline{font-size:18px;color:var(--text-dim);font-weight:500;line-height:1.5}
+
+/* ═══ DIVIDER ═══ */
+.gold-line{width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:32px auto}
+
+/* ═══ CTA SECTION ═══ */
+.cta-section{text-align:center;padding:32px 24px;background:linear-gradient(135deg,var(--bg2),var(--bg3));border:1px solid var(--gold-dim);border-radius:16px;margin-bottom:32px}
+.cta-section p{font-size:15px;color:var(--text-dim);margin-bottom:24px;line-height:1.6}
+.cta-btn{display:inline-block;background:linear-gradient(135deg,var(--gold),#d4b050);color:#fff;font-family:var(--font-body);font-size:18px;font-weight:700;padding:18px 48px;border-radius:50px;text-decoration:none;letter-spacing:0.5px;transition:all 0.3s;box-shadow:0 4px 20px rgba(184,148,63,0.35)}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(184,148,63,0.5)}
+.cta-btn:active{transform:translateY(0)}
+.cta-sub{font-size:13px;color:var(--text-muted);margin-top:16px}
+
+/* ═══ EMAIL NOTICE ═══ */
+.email-notice{display:flex;align-items:flex-start;gap:14px;background:var(--bg2);border:1px solid rgba(184,148,63,0.1);border-radius:12px;padding:20px;margin-bottom:32px}
+.email-notice .icon{flex-shrink:0;width:40px;height:40px;background:var(--gold-dim);border-radius:10px;display:flex;align-items:center;justify-content:center}
+.email-notice .icon svg{width:20px;height:20px;color:var(--gold)}
+.email-notice .content h3{font-family:var(--font-head);font-size:16px;color:var(--text);margin-bottom:4px}
+.email-notice .content p{font-size:14px;color:var(--text-dim);line-height:1.5}
+
+/* ═══ WHAT TO EXPECT ═══ */
+.expect{margin-bottom:32px}
+.expect h2{font-family:var(--font-head);font-size:24px;color:var(--text);text-align:center;margin-bottom:24px}
+.phase-card{display:flex;align-items:flex-start;gap:16px;background:var(--bg2);border:1px solid rgba(184,148,63,0.06);border-radius:14px;padding:20px;margin-bottom:12px;transition:all 0.3s}
+.phase-card:hover{border-color:rgba(184,148,63,0.2);background:var(--bg3)}
+.phase-num{font-family:var(--font-head);font-size:28px;color:var(--gold);min-width:36px;line-height:1}
+.phase-info h3{font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px}
+.phase-info .days{font-size:11px;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;font-weight:700;margin-bottom:4px}
+.phase-info p{font-size:13px;color:var(--text-dim);line-height:1.5}
+
+/* ═══ FEATURES ═══ */
+.features{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:32px}
+.feature{background:var(--bg2);border:1px solid rgba(184,148,63,0.06);border-radius:12px;padding:20px;text-align:center}
+.feature .emoji{font-size:28px;margin-bottom:8px}
+.feature h4{font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px}
+.feature p{font-size:12px;color:var(--text-muted);line-height:1.4}
+
+/* ═══ FOOTER ═══ */
+.footer{text-align:center;padding:24px 0;border-top:1px solid var(--bg3)}
+.footer p{font-size:12px;color:var(--text-muted)}
+.footer a{color:var(--gold);text-decoration:none}
+
+/* ═══ PATTERN BADGE ═══ */
+.pattern-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 20px;border-radius:24px;font-size:13px;font-weight:700;letter-spacing:1px;margin-top:16px}
+.pattern-badge.controller{background:rgba(196,68,42,0.1);color:var(--controller);border:1px solid rgba(196,68,42,0.2)}
+.pattern-badge.runner{background:rgba(196,135,26,0.1);color:var(--runner);border:1px solid rgba(196,135,26,0.2)}
+.pattern-badge.ghost{background:rgba(74,111,149,0.1);color:var(--ghost);border:1px solid rgba(74,111,149,0.2)}
+.pattern-badge.chameleon{background:rgba(58,133,96,0.1);color:var(--chameleon);border:1px solid rgba(58,133,96,0.2)}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:480px){
+  .hero h1{font-size:36px}
+  .hero .welcome-name{font-size:18px}
+  .hero .tagline{font-size:16px}
+  .cta-btn{font-size:16px;padding:16px 36px;width:100%}
+  .features{grid-template-columns:1fr}
+  .container{padding:20px 16px 60px}
+  .hero{padding:40px 16px 32px}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-check">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+    </div>
+    <h1>You're In.</h1>
+    <p class="welcome-name">Welcome to The Pattern Reset, <span id="buyer-name">Friend</span>.</p>
+    <p class="tagline">Your 30-day transformation starts now.</p>
+    <div id="pattern-badge-wrap"></div>
+  </div>
+
+  <div class="gold-line"></div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <p>Your course is unlocked and ready. Start Day 1 right now.</p>
+    <a href="#" id="course-link" class="cta-btn">Open Your Course</a>
+    <p class="cta-sub">Bookmark this link. It's your home for the next 30 days.</p>
+  </div>
+
+  <!-- EMAIL NOTICE -->
+  <div class="email-notice">
+    <div class="icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="4" width="20" height="16" rx="2"/>
+        <path d="M22 4L12 13L2 4"/>
+      </svg>
+    </div>
+    <div class="content">
+      <h3>Check your email</h3>
+      <p>Your Day 1 instructions are on the way. If you don't see it in a few minutes, check your spam folder and mark it as "not spam."</p>
+    </div>
+  </div>
+
+  <!-- WHAT TO EXPECT -->
+  <div class="expect">
+    <h2>What to Expect</h2>
+
+    <div class="phase-card">
+      <div class="phase-num">1</div>
+      <div class="phase-info">
+        <div class="days">Days 1–7</div>
+        <h3>The Awakening</h3>
+        <p>Recognize the pattern running your life. Shadow work, somatic awareness, and your first real look in the mirror.</p>
+      </div>
+    </div>
+
+    <div class="phase-card">
+      <div class="phase-num">2</div>
+      <div class="phase-info">
+        <div class="days">Days 8–14</div>
+        <h3>The Disruption</h3>
+        <p>Break the loop. Nervous system rewiring, pattern interrupts, and building new neural pathways through daily practice.</p>
+      </div>
+    </div>
+
+    <div class="phase-card">
+      <div class="phase-num">3</div>
+      <div class="phase-info">
+        <div class="days">Days 15–21</div>
+        <h3>The Rebuild</h3>
+        <p>Install new operating systems. Identity work, Gateway Experience integration, and conscious reprogramming.</p>
+      </div>
+    </div>
+
+    <div class="phase-card">
+      <div class="phase-num">4</div>
+      <div class="phase-info">
+        <div class="days">Days 22–30</div>
+        <h3>The Integration</h3>
+        <p>Lock it in. Stress-test your new patterns, build your maintenance protocol, and step into who you actually are.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <div class="features">
+    <div class="feature">
+      <div class="emoji">&#x1F513;</div>
+      <h4>Daily Unlock</h4>
+      <p>One lesson per day. No skipping ahead. Trust the process.</p>
+    </div>
+    <div class="feature">
+      <div class="emoji">&#x1F4D3;</div>
+      <h4>Shadow Journal</h4>
+      <p>Built-in journal prompts. Track what surfaces as you do the work.</p>
+    </div>
+    <div class="feature">
+      <div class="emoji">&#x1F30A;</div>
+      <h4>Gateway Experience</h4>
+      <p>Guided meditations using hemispheric synchronization technology.</p>
+    </div>
+    <div class="feature">
+      <div class="emoji">&#x1F50A;</div>
+      <h4>Audio Lessons</h4>
+      <p>Listen anywhere. Every lesson includes full audio narration.</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>The Pattern Reset &mdash; <a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a></p>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  const params = new URLSearchParams(window.location.search);
+  const name = params.get('name') || '';
+  const pattern = params.get('pattern') || '';
+
+  // Set buyer name
+  if(name){
+    document.getElementById('buyer-name').textContent = name;
+  }
+
+  // Build course link with params
+  const courseParams = new URLSearchParams();
+  if(pattern) courseParams.set('pattern', pattern);
+  if(name) courseParams.set('name', name);
+  const courseUrl = 'course.html' + (courseParams.toString() ? '?' + courseParams.toString() : '');
+  document.getElementById('course-link').href = courseUrl;
+
+  // Show pattern badge
+  if(pattern){
+    const labels = {
+      controller: 'The Controller',
+      runner: 'The Runner',
+      ghost: 'The Ghost',
+      chameleon: 'The Chameleon'
+    };
+    const label = labels[pattern.toLowerCase()] || pattern;
+    const wrap = document.getElementById('pattern-badge-wrap');
+    wrap.innerHTML = '<div class="pattern-badge ' + pattern.toLowerCase() + '">' + label.toUpperCase() + '</div>';
+  }
+})();
+</script>
+
+</body>
+</html>
