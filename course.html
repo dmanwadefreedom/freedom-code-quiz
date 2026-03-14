@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>The Pattern Reset — 30-Day Course</title>
+<meta name="description" content="Your 30-day transformation. Daily lessons, meditations, shadow work, and nervous system rewiring.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#ffffff;--bg2:#f8f6f3;--bg3:#f0ece6;--bg4:#e8e2da;
+  --gold:#b8943f;--gold-dim:rgba(184,148,63,0.1);--gold-glow:rgba(184,148,63,0.2);
+  --text:#1a1714;--text-dim:#5a5248;--text-muted:#8a8078;
+  --controller:#c4442a;--runner:#c4871a;--ghost:#4a6f95;--chameleon:#3a8560;
+  --green:#16a34a;--red:#dc2626;--font-head:'DM Serif Display',serif;--font-body:'DM Sans',sans-serif;
+}
+html{scroll-behavior:smooth;background:#ffffff}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);min-height:100vh;-webkit-font-smoothing:antialiased}
+
+/* ═══ HEADER ═══ */
+.header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(184,148,63,0.15);padding:12px 20px;display:flex;align-items:center;justify-content:space-between}
+.header-left{display:flex;align-items:center;gap:12px}
+.header-logo{font-family:var(--font-head);font-size:18px;color:var(--gold);letter-spacing:1px}
+.header-phase{font-size:11px;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase}
+.header-right{display:flex;align-items:center;gap:16px}
+.streak-badge{display:flex;align-items:center;gap:6px;background:var(--gold-dim);border:1px solid rgba(201,169,110,0.2);border-radius:20px;padding:6px 14px;font-size:13px;color:var(--gold);font-weight:700}
+.streak-badge .fire{font-size:16px}
+.progress-ring{width:36px;height:36px;position:relative}
+.progress-ring svg{transform:rotate(-90deg)}
+.progress-ring .bg{stroke:var(--bg3);stroke-width:3;fill:none}
+.progress-ring .fg{stroke:var(--gold);stroke-width:3;fill:none;stroke-linecap:round;transition:stroke-dashoffset 0.8s ease}
+.progress-pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:var(--gold)}
+
+/* ═══ MAIN LAYOUT ═══ */
+.container{max-width:680px;margin:0 auto;padding:20px 16px 100px}
+
+/* ═══ WELCOME CARD ═══ */
+.welcome{background:linear-gradient(135deg,var(--bg2),var(--bg3));border:1px solid var(--gold-dim);border-radius:16px;padding:32px 24px;margin-bottom:24px;text-align:center}
+.welcome h1{font-family:var(--font-head);font-size:28px;color:var(--gold);margin-bottom:8px}
+.welcome .sub{color:var(--text-dim);font-size:14px;line-height:1.6;margin-bottom:16px}
+.welcome .pattern-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 20px;border-radius:24px;font-size:13px;font-weight:700;letter-spacing:1px}
+
+/* ═══ MOOD CHECK ═══ */
+.mood-check{background:var(--bg2);border:1px solid rgba(201,169,110,0.08);border-radius:12px;padding:20px;margin-bottom:24px}
+.mood-check h3{font-family:var(--font-head);font-size:16px;color:var(--text);margin-bottom:12px}
+.mood-row{display:flex;gap:8px;justify-content:center}
+.mood-btn{background:var(--bg3);border:1px solid rgba(201,169,110,0.1);border-radius:10px;padding:10px 14px;font-size:22px;cursor:pointer;transition:all 0.2s;flex:1;text-align:center}
+.mood-btn:hover{background:var(--gold-dim);border-color:var(--gold);transform:scale(1.05)}
+.mood-btn.selected{background:var(--gold-dim);border-color:var(--gold);box-shadow:0 0 12px rgba(201,169,110,0.2)}
+.mood-btn span{display:block;font-size:10px;color:var(--text-dim);margin-top:4px;font-family:var(--font-body)}
+
+/* ═══ PHASE HEADER ═══ */
+.phase-header{margin:32px 0 16px;padding:16px 20px;background:var(--bg2);border-left:3px solid var(--gold);border-radius:0 12px 12px 0}
+.phase-header h2{font-family:var(--font-head);font-size:20px;color:var(--gold);margin-bottom:4px}
+.phase-header p{font-size:13px;color:var(--text-dim);font-style:italic}
+.phase-header .phase-progress{margin-top:10px;height:4px;background:var(--bg4);border-radius:2px;overflow:hidden}
+.phase-header .phase-fill{height:100%;background:linear-gradient(90deg,var(--gold),#d4b050);border-radius:2px;transition:width 0.6s ease}
+
+/* ═══ DAY CARD ═══ */
+.day-card{background:var(--bg2);border:1px solid rgba(201,169,110,0.06);border-radius:14px;margin-bottom:12px;overflow:hidden;transition:all 0.3s}
+.day-card.locked{opacity:0.4;pointer-events:none}
+.day-card.locked .day-header::after{content:'';position:absolute;right:16px;top:50%;transform:translateY(-50%);width:20px;height:20px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23706858' viewBox='0 0 24 24'%3E%3Cpath d='M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1s3.1 1.39 3.1 3.1v2z'/%3E%3C/svg%3E") center/contain no-repeat}
+.day-card.completed{border-color:rgba(201,169,110,0.15)}
+.day-card.current{border-color:var(--gold);box-shadow:0 0 20px rgba(201,169,110,0.1)}
+.day-header{position:relative;padding:16px 20px;cursor:pointer;display:flex;align-items:center;gap:14px;transition:background 0.2s}
+.day-header:hover{background:rgba(201,169,110,0.03)}
+.day-num{font-family:var(--font-head);font-size:24px;color:var(--gold);min-width:40px}
+.day-info{flex:1}
+.day-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:2px}
+.day-phase{font-size:11px;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase}
+.day-check{width:24px;height:24px;border-radius:50%;border:2px solid var(--text-muted);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.3s}
+.day-card.completed .day-check{background:var(--gold);border-color:var(--gold)}
+.day-card.completed .day-check::after{content:'';width:8px;height:5px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg) translateY(-1px)}
+
+/* ═══ DAY CONTENT (expanded) ═══ */
+.day-content{display:none;padding:0 20px 20px}
+.day-card.expanded .day-content{display:block}
+
+/* Section Cards */
+.section{background:var(--bg3);border-radius:10px;padding:16px 18px;margin-bottom:12px;border:1px solid rgba(201,169,110,0.04)}
+.section-label{font-size:11px;font-weight:700;color:var(--gold);letter-spacing:2px;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.section-label .icon{font-size:16px}
+.section-text{font-size:14px;line-height:1.7;color:var(--text-dim)}
+.section-text a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,169,110,0.3)}
+.section-text a:hover{border-color:var(--gold)}
+.section-check{display:flex;align-items:center;gap:8px;margin-top:10px;cursor:pointer;font-size:12px;color:var(--text-muted)}
+.section-check input[type=checkbox]{appearance:none;width:18px;height:18px;border:2px solid var(--text-muted);border-radius:4px;cursor:pointer;position:relative;flex-shrink:0}
+.section-check input[type=checkbox]:checked{background:var(--gold);border-color:var(--gold)}
+.section-check input[type=checkbox]:checked::after{content:'';position:absolute;left:4px;top:1px;width:6px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+
+/* Audio Player */
+.audio-row{display:flex;align-items:center;gap:10px;margin-top:10px;padding:10px 14px;background:#fff;border-radius:8px;border:1px solid rgba(184,148,63,0.12)}
+.audio-play{width:36px;height:36px;border-radius:50%;background:var(--gold);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.audio-play::after{content:'';width:0;height:0;border-style:solid;border-width:6px 0 6px 10px;border-color:transparent transparent transparent #fff;margin-left:2px}
+.audio-title{font-size:12px;color:var(--text);flex:1}
+.audio-dur{font-size:11px;color:var(--text-muted);font-family:monospace}
+
+/* Journal / Reflection Inputs */
+.journal-box{width:100%;min-height:80px;background:#fff;border:1px solid rgba(184,148,63,0.2);border-radius:8px;padding:12px 14px;color:var(--text);font-family:var(--font-body);font-size:14px;line-height:1.6;resize:vertical;outline:none;transition:border-color 0.3s}
+.journal-box:focus{border-color:var(--gold)}
+.journal-box::placeholder{color:var(--text-muted)}
+.journal-saved{font-size:11px;color:var(--gold);margin-top:4px;opacity:0;transition:opacity 0.3s}
+.journal-saved.show{opacity:1}
+
+/* Reflection Questions */
+.reflection-q{margin-bottom:14px}
+.reflection-q label{font-size:13px;color:var(--text);display:block;margin-bottom:6px;line-height:1.5}
+.reflection-q textarea{width:100%;min-height:60px;background:#fff;border:1px solid rgba(184,148,63,0.18);border-radius:8px;padding:10px 12px;color:var(--text);font-family:var(--font-body);font-size:13px;line-height:1.5;resize:vertical;outline:none}
+.reflection-q textarea:focus{border-color:var(--gold)}
+.reflection-q textarea::placeholder{color:var(--text-muted)}
+
+/* Save Button */
+.save-btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--gold),#d4b050);color:#fff;border:none;border-radius:8px;padding:10px 20px;font-family:var(--font-body);font-size:13px;font-weight:700;letter-spacing:1px;cursor:pointer;transition:all 0.2s;margin-top:8px}
+.save-btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(201,169,110,0.3)}
+
+/* Complete Day Button */
+.complete-day{width:100%;padding:14px;background:#fff;border:2px solid var(--gold);border-radius:10px;color:var(--gold);font-family:var(--font-head);font-size:16px;cursor:pointer;transition:all 0.3s;margin-top:16px;letter-spacing:1px}
+.complete-day:hover{background:var(--gold);color:#fff}
+.complete-day.done{background:var(--gold);color:#fff;cursor:default}
+
+/* ═══ MILESTONE CARD ═══ */
+.milestone{background:linear-gradient(135deg,rgba(201,169,110,0.1),rgba(201,169,110,0.03));border:1px solid var(--gold-dim);border-radius:14px;padding:24px;margin:24px 0;text-align:center}
+.milestone h3{font-family:var(--font-head);font-size:20px;color:var(--gold);margin-bottom:8px}
+.milestone p{font-size:14px;color:var(--text-dim);line-height:1.6;font-style:italic}
+
+/* ═══ QUOTE ═══ */
+.day-quote{font-size:13px;color:var(--text-muted);font-style:italic;text-align:center;padding:12px 20px;line-height:1.6}
+
+/* ═══ BOTTOM NAV ═══ */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);border-top:1px solid rgba(184,148,63,0.15);padding:8px 16px;display:flex;justify-content:space-around;z-index:100}
+.nav-btn{background:none;border:none;color:var(--text-muted);font-size:10px;font-family:var(--font-body);cursor:pointer;padding:6px 12px;display:flex;flex-direction:column;align-items:center;gap:4px;transition:color 0.2s;letter-spacing:1px}
+.nav-btn .nav-icon{font-size:20px}
+.nav-btn.active{color:var(--gold)}
+.nav-btn:hover{color:var(--text)}
+
+/* ═══ VIEWS ═══ */
+.view{display:none}
+.view.active{display:block}
+
+/* ═══ JOURNEY VIEW ═══ */
+.journey-entry{background:var(--bg2);border:1px solid rgba(201,169,110,0.06);border-radius:10px;padding:14px 16px;margin-bottom:10px}
+.journey-date{font-size:11px;color:var(--gold);letter-spacing:1px;margin-bottom:6px}
+.journey-text{font-size:13px;color:var(--text-dim);line-height:1.6}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:480px){
+  .welcome h1{font-size:22px}
+  .container{padding:12px 12px 90px}
+  .day-num{font-size:20px;min-width:32px}
+  .section{padding:14px}
+  .mood-btn{padding:8px 6px}
+}
+
+/* ═══ ANIMATIONS ═══ */
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.day-content{animation:fadeIn 0.3s ease}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(184,148,63,0.15)}50%{box-shadow:0 0 16px 4px rgba(184,148,63,0.12)}}
+.day-card.current{animation:pulse 3s infinite}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <div class="header-logo">Pattern Reset</div>
+    <div class="header-phase" id="headerPhase">PHASE 1: STABILIZE</div>
+  </div>
+  <div class="header-right">
+    <div class="streak-badge"><span class="fire">&#x1F525;</span> <span id="streakCount">0</span> day streak</div>
+    <div class="progress-ring">
+      <svg width="36" height="36"><circle class="bg" cx="18" cy="18" r="15"/><circle class="fg" id="progressArc" cx="18" cy="18" r="15" stroke-dasharray="94.25" stroke-dashoffset="94.25"/></svg>
+      <div class="progress-pct" id="progressPct">0%</div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTAINER -->
+<div class="container">
+
+  <!-- VIEW: COURSE (default) -->
+  <div class="view active" id="viewCourse">
+
+    <!-- WELCOME CARD -->
+    <div class="welcome" id="welcomeCard">
+      <h1>Welcome Back</h1>
+      <div class="sub">Your transformation continues. One day at a time.</div>
+      <div class="pattern-badge" id="patternBadge" style="background:var(--gold-dim);color:var(--gold);border:1px solid rgba(201,169,110,0.2);">Loading pattern...</div>
+    </div>
+
+    <!-- MOOD CHECK-IN -->
+    <div class="mood-check" id="moodCheck">
+      <h3>How are you feeling right now?</h3>
+      <div class="mood-row">
+        <button class="mood-btn" onclick="setMood('heavy')">&#x1F614;<span>Heavy</span></button>
+        <button class="mood-btn" onclick="setMood('low')">&#x1F611;<span>Low</span></button>
+        <button class="mood-btn" onclick="setMood('neutral')">&#x1F610;<span>Neutral</span></button>
+        <button class="mood-btn" onclick="setMood('good')">&#x1F60A;<span>Good</span></button>
+        <button class="mood-btn" onclick="setMood('great')">&#x1F929;<span>Alive</span></button>
+      </div>
+    </div>
+
+    <!-- COURSE CONTENT (generated by JS) -->
+    <div id="courseContent"></div>
+
+  </div>
+
+  <!-- VIEW: JOURNEY -->
+  <div class="view" id="viewJourney">
+    <div class="welcome" style="margin-bottom:20px">
+      <h1>My Journey</h1>
+      <div class="sub">Every reflection, every breakthrough. Your transformation story.</div>
+    </div>
+    <div id="journeyEntries"></div>
+  </div>
+
+  <!-- VIEW: RESOURCES -->
+  <div class="view" id="viewResources">
+    <div class="welcome" style="margin-bottom:20px">
+      <h1>Resources</h1>
+      <div class="sub">Meditations, breathwork, and tools for your practice.</div>
+    </div>
+    <div id="resourcesList">
+      <div class="section" style="margin-bottom:12px">
+        <div class="section-label"><span class="icon">&#x1F9D8;</span>DYLAN'S BREATHWORK</div>
+        <div class="audio-row"><button class="audio-play" onclick="window.open('https://youtu.be/jrjC6yqYSNE')"></button><div class="audio-title">5-Minute Breathwork</div><div class="audio-dur">5:00</div></div>
+        <div class="audio-row" style="margin-top:8px"><button class="audio-play" onclick="window.open('https://youtu.be/PlDc_Fvo48Y')"></button><div class="audio-title">Abundance Breathwork</div><div class="audio-dur">10:00</div></div>
+      </div>
+      <div class="section" style="margin-bottom:12px">
+        <div class="section-label"><span class="icon">&#x1F30C;</span>GATEWAY EXPERIENCE</div>
+        <div class="section-text" style="margin-bottom:10px">Progressive consciousness expansion developed by Robert Monroe. These tracks use Hemi-Sync binaural beats to guide you through Focus 10 → 12 → 15 → 21 → 25.</div>
+        <div id="gatewayList"></div>
+      </div>
+      <div class="section">
+        <div class="section-label"><span class="icon">&#x1F9D1;&#x200D;&#x1F91D;&#x200D;&#x1F9D1;</span>YOGA COUPLE SERIES</div>
+        <div class="section-text">13-day relationship and self-discovery series. Shadow work, inner child, communication, forgiveness, sacred connection.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <button class="nav-btn active" onclick="switchView('course')"><span class="nav-icon">&#x1F4D6;</span>COURSE</button>
+  <button class="nav-btn" onclick="switchView('journey')"><span class="nav-icon">&#x1F4DD;</span>JOURNEY</button>
+  <button class="nav-btn" onclick="switchView('resources')"><span class="nav-icon">&#x1F3B5;</span>RESOURCES</button>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+// THE PATTERN RESET — 30-DAY COURSE ENGINE
+// ═══════════════════════════════════════════════════════
+
+const PHASES = [
+  { id: 1, name: 'STABILIZE', sub: 'Stop the bleeding. Build the morning anchor. Get honest.', days: [1,7] },
+  { id: 2, name: 'DECONSTRUCT', sub: 'Tear down the old programming. Rewire the brain.', days: [8,14] },
+  { id: 3, name: 'INSTALL', sub: 'New habits. New identity. New operating system.', days: [15,23] },
+  { id: 4, name: 'EXPAND', sub: 'Lock it in. Level up. Become the person who doesn\'t need this program.', days: [24,30] }
+];
+
+const PATTERN_COLORS = {
+  controller: { color: '#d4644a', bg: 'rgba(212,100,74,0.12)', border: 'rgba(212,100,74,0.25)', label: 'The Controller', emoji: '&#x1F451;' },
+  runner: { color: '#d4a74a', bg: 'rgba(212,167,74,0.12)', border: 'rgba(212,167,74,0.25)', label: 'The Runner', emoji: '&#x1F3C3;' },
+  ghost: { color: '#6a8fb5', bg: 'rgba(106,143,181,0.12)', border: 'rgba(106,143,181,0.25)', label: 'The Ghost', emoji: '&#x1F47B;' },
+  chameleon: { color: '#6ab58f', bg: 'rgba(106,181,143,0.12)', border: 'rgba(106,181,143,0.25)', label: 'The Chameleon', emoji: '&#x1F98E;' }
+};
+
+const DAYS = [
+  { day:1, title:'The Wake-Up Call', phase:1,
+    morning:{text:'Get 5-10 minutes of direct sunlight within 30 minutes of waking (resets your cortisol clock — you\'ll sleep better tonight). Then 5-minute breathwork session.',link:'https://youtu.be/jrjC6yqYSNE',linkText:'Dylan\'s Breathwork',dur:'10:00'},
+    read:{title:'WHAT IS A PATTERN?',text:'You didn\'t choose your patterns. They chose you. Your nervous system learned to survive — not thrive. Between ages 0-7, your brain was in theta state — pure programming mode. Every fight your parents had, every time you were ignored, praised, shamed — it wrote code on your hard drive. That code is still running. Today we name it.'},
+    action:'Write your Pattern Map results in your journal. Read your 7-day protocol PDF. Circle the 3 things that hit hardest.',
+    video:{title:'Gateway Experience Wave 1 Track 1 — Orientation',link:'https://youtube.com/watch?v=xQhwZRWzczs',dur:'35:00'},
+    reflection:['What pattern showed up today that I didn\'t notice before?','What did I do on autopilot?','One thing I\'m grateful for right now.'],
+    quote:'The old you would have stayed asleep. You\'re awake now.' },
+  { day:2, title:'Taking Inventory', phase:1,
+    morning:{text:'5-min cold water exposure (face/hands if no cold shower) + 3 rounds box breathing (4-4-4-4).',link:null,dur:'5:00'},
+    read:{title:'SUGAR: THE SILENT HIJACKER',text:'The average American eats 73g of sugar daily. Sugar triggers the same dopamine pathways as cocaine. It causes brain fog, mood crashes, inflammation, gut damage, and hormonal chaos. When you eat sugar, your blood glucose spikes → insulin floods → crash → cravings repeat. This cycle keeps you in survival mode. Your brain literally cannot think clearly while riding the sugar rollercoaster. Today: read every label. Count your grams.'},
+    action:'Food journal. Write down everything you eat today. No judgment. Just awareness.',
+    video:{title:'Yoga Couple Day 2 — Accountability',link:'https://youtube.com/watch?v=XLUnC8pEJco',dur:'15:00'},
+    reflection:['How many grams of sugar did I eat today?','What emotion was I feeling before I reached for food?','What would I eat differently tomorrow?'],
+    quote:'You can\'t heal what you can\'t see. Today we open our eyes.' },
+  { day:3, title:'Shadow Awareness', phase:1,
+    morning:{text:'10-min guided meditation — Gateway Wave 1 Track 2: Intro to Focus 10.',link:'https://youtube.com/watch?v=3tpTvhVyZ5k',linkText:'Gateway W1T2',dur:'10:00'},
+    read:{title:'YOUR SHADOW RUNS THE SHOW',text:'Carl Jung said: "Until you make the unconscious conscious, it will direct your life and you will call it fate." Your shadow is the parts of you that you buried to survive. The anger you swallowed. The sadness you numbed. The needs you pretended didn\'t exist. Your pattern IS your shadow\'s operating system. NOTE: The next few days go deep. If intense emotions surface that feel unmanageable, that\'s a signal to work with a therapist alongside this program. That\'s not weakness — that\'s wisdom.'},
+    action:'Shadow journal. Write: "The thing I don\'t want anyone to know about me is..." — fill 1 full page. Burn it or keep it. Your choice.',
+    video:{title:'Yoga Couple Day 3 — Shadow Awareness',link:'https://youtube.com/watch?v=qqJCSiDXHnM',dur:'15:00'},
+    reflection:['What did writing that feel like?','What shadow behavior showed up today?','Did I judge myself? Can I choose compassion instead?'],
+    quote:'The shadow isn\'t your enemy. It\'s your uninvited guest who\'s been running the house.' },
+  { day:4, title:'Inner Child', phase:1,
+    morning:{text:'5-min breathwork — Dylan\'s Abundance Breathwork.',link:'https://youtu.be/PlDc_Fvo48Y',linkText:'Abundance Breathwork',dur:'5:00'},
+    read:{title:'THE INNER CHILD NEVER LEFT',text:'Your inner child isn\'t a metaphor. It\'s a neurological reality. The amygdala stores every emotional memory from childhood — and it doesn\'t know time has passed. When you get triggered as an adult, it\'s a 5-year-old\'s survival strategy firing in a grown body. The rage. The shutdown. The people-pleasing. All learned before you could tie your shoes. Today we meet that kid. Not to fix them — to finally hear them.'},
+    action:'Write a letter to your 7-year-old self. Tell them what they needed to hear. Read it out loud.',
+    video:{title:'Yoga Couple Day 4 — Inner Child, Unmet Needs',link:'https://youtube.com/watch?v=CktBPfD-OsQ',dur:'15:00'},
+    reflection:['What did your inner child need that they never got?','How does that unmet need show up in your relationships today?','What\'s one thing you can give yourself right now?'],
+    quote:'That scared kid inside you isn\'t broken. They\'re still waiting to be heard.' },
+  { day:5, title:'Defense Mechanisms', phase:1,
+    morning:{text:'10-min meditation — Gateway Wave 1 Track 3: Advanced Focus 10.',link:'https://youtube.com/watch?v=gfWTF5u-zpY',linkText:'Gateway W1T3',dur:'10:00'},
+    read:{title:'YOUR ARMOR IS KILLING YOU',text:'Defense mechanisms: denial, projection, intellectualization, humor as deflection, people-pleasing, stonewalling, rage, withdrawal. These kept you alive as a kid. But in adulthood? They destroy intimacy, block growth, and keep you stuck in the same loops. The pattern you run IS your primary defense mechanism.'},
+    action:'List your top 3 defense mechanisms. For each one, write: "I use this when I feel ___." Share with your partner or accountability person.',
+    video:{title:'Yoga Couple Day 5 — Defense Mechanisms',link:'https://youtube.com/watch?v=QKTHOlsqpZU',dur:'15:00'},
+    reflection:['Which defense mechanism did I use today?','What was I actually feeling underneath it?','What would it look like to respond without the armor?'],
+    quote:'The armor that protected you then is the prison that holds you now.' },
+  { day:6, title:'Core Values', phase:1,
+    morning:{text:'Gateway Wave 1 Track 4 — Release and Recharge.',link:'https://youtube.com/watch?v=sd0hB37gBo0',linkText:'Gateway W1T4',dur:'35:00'},
+    read:{title:'WHAT YOUR BODY IS TELLING YOU',text:'Chronic stress keeps cortisol elevated. Cortisol = belly fat, poor sleep, brain fog, low libido, weakened immune system. Your body keeps the score. Trauma lives in the tissues. In somatic work, tight hips often hold fear. A clenched jaw can carry suppressed anger. A heavy chest may be holding grief. Movement isn\'t optional — it\'s medicine.'},
+    action:'20-min walk outside. No phone. No music. Just walk and breathe. Then write your top 5 non-negotiable values.',
+    video:{title:'Yoga Couple Day 6 — Core Needs, Values',link:'https://youtube.com/watch?v=_IBzh1Zb_Fo',dur:'15:00'},
+    reflection:['What values am I currently violating in my life?','What would change if I honored them?','Where in my body am I holding tension right now?'],
+    quote:'Your body has been screaming. Today you learn to listen.' },
+  { day:7, title:'Mission Statement', phase:1,
+    morning:{text:'Gateway Wave 1 Track 5 — Exploration Sleep. Do this one lying down.',link:'https://youtube.com/watch?v=bZ_EIh6omL0',linkText:'Gateway W1T5',dur:'35:00'},
+    read:{title:'WEEK 1 REVIEW',text:'You\'ve named your pattern. Met your shadow. Heard your inner child. Identified your armor. Found your values. This is more internal work than most people do in a decade. The old you would have quit by now. You\'re still here. That means something. If the meditations feel like nothing is happening — that\'s normal. Your prefrontal cortex is learning to observe without reacting. The rewire is happening below conscious awareness. Trust the process.'},
+    action:'Write your personal mission statement (1-3 sentences). Who are you becoming? What do you stand for? What will you no longer tolerate?',
+    video:{title:'Yoga Couple Day 7 — Mission Statement',link:'https://youtube.com/watch?v=suuZI1y5HQA',dur:'15:00'},
+    reflection:['What\'s the biggest thing I learned about myself this week?','What pattern did I catch in real-time?','Read your mission statement out loud. Does it feel true?'],
+    quote:'Seven days of showing up. You just did what most people never will.' },
+  { day:8, title:'Communication Styles', phase:2,
+    morning:{text:'New breathwork: cyclic sighing — double inhale through the nose (short + long), then slow exhale through the mouth. 5 minutes. Stanford research (2023) found this reduces anxiety faster than any other breathing technique. Then cold shower 30 seconds.',link:null,dur:'10:00'},
+    read:{title:'THE GUT-BRAIN AXIS',text:'95% of your serotonin is made in your gut. Not your brain. Your gut. Processed food, sugar, alcohol, and antibiotics destroy gut bacteria. Destroyed gut = anxiety, depression, brain fog, poor sleep. You can\'t meditate your way out of a diet that\'s poisoning your nervous system. Healing starts in the kitchen.'},
+    action:'Eliminate ONE thing today: sugar, alcohol, processed food, or social media. Just one. For 24 hours.',
+    video:{title:'Yoga Couple Day 8 — Communication Styles',link:'https://youtube.com/watch?v=jwBtOzRtUas',dur:'15:00'},
+    reflection:['What did I eliminate? How did it feel?','What did I reach for as a replacement?','How is this work starting to affect the people around me? Are they noticing changes?'],
+    quote:'Phase 2 begins. The comfortable part is over. The real work starts now.' },
+  { day:9, title:'Masculine & Feminine Energy', phase:2,
+    morning:{text:'Gateway Wave 1 Track 6 — Free Flow.',link:'https://youtube.com/watch?v=3Hdeb0r6WNs',linkText:'Gateway W1T6',dur:'35:00'},
+    read:{title:'WHAT ARE YOU PUTTING IN YOUR BODY?',text:'Your pineal gland produces melatonin and DMT — the chemicals that regulate sleep and expanded consciousness. Research shows heavy metals and environmental toxins accumulate in your tissues over time (National Research Council, 2006). Your skin is your largest organ — it absorbs what you put on it. Most people never read a label on their toothpaste, deodorant, or shampoo. Today you start. Question everything you consume — food, water, products. Your body is the vehicle. Treat it like one.'},
+    action:'Audit your bathroom. Check toothpaste for fluoride, deodorant for aluminum, shampoo for parabens. Research one natural alternative.',
+    video:{title:'Yoga Couple Day 9 — Masculine & Feminine',link:'https://youtube.com/watch?v=9jKFtMZtXww',dur:'15:00'},
+    reflection:['What products am I using daily that might be harming me?','Am I living more in masculine or feminine energy right now?','What would balance look like?'],
+    quote:'You are what you consume — food, media, products, people. Audit everything.' },
+  { day:10, title:'Forgiveness', phase:2,
+    morning:{text:'Gateway Wave 2 Track 1 — Intro to Focus 12. Expanded awareness begins.',link:'https://youtube.com/watch?v=L07-1tPjQmU',linkText:'Gateway W2T1',dur:'35:00'},
+    read:{title:'THE COST OF UNFORGIVENESS',text:'If you\'re feeling worse right now than Day 1 — good. That means it\'s working. You\'re in the messy middle. The old operating system is crashing and the new one isn\'t installed yet. This is where most people quit. Don\'t. Now: holding resentment keeps your nervous system in fight-or-flight 24/7. Your body doesn\'t know the difference between a real threat and a memory. Every time you replay that scene — the betrayal, the abuse, the abandonment — your cortisol spikes like it\'s happening right now. Forgiveness isn\'t about them. It\'s about taking your nervous system off a war footing.'},
+    action:'Write a forgiveness letter. To someone who hurt you. To yourself. You don\'t have to send it. Just write it. Read it out loud.',
+    video:{title:'Yoga Couple Day 10 — Forgiveness',link:'https://youtube.com/watch?v=gwp8SgIjZA0',dur:'15:00'},
+    reflection:['Who am I still holding resentment toward?','What would my life look like if I let it go?','Can I forgive myself for the ways I\'ve hurt others?'],
+    quote:'Resentment is drinking poison and expecting the other person to die. Put the glass down.' },
+  { day:11, title:'Confrontation', phase:2,
+    morning:{text:'5-min breathwork + 20 push-ups + 1-min plank.',link:'https://youtu.be/jrjC6yqYSNE',linkText:'Dylan\'s Breathwork',dur:'10:00'},
+    read:{title:'SLEEP: THE #1 PERFORMANCE DRUG',text:'7-9 hours. Non-negotiable. During deep sleep your brain clears toxic waste via the glymphatic system. Without it: memory loss, weight gain, weakened immunity, emotional instability. Blue light from screens suppresses melatonin by 50%. No screens 1 hour before bed. Sleep in total darkness. Cool room (65-68°F). This alone will change your life.'},
+    action:'Set a "screens off" alarm for 1 hour before bed. Tonight: read, journal, stretch, or meditate instead.',
+    video:{title:'Yoga Couple Day 11 — Confrontation Styles',link:'https://youtube.com/watch?v=yAMSEaYeW8s',dur:'15:00'},
+    reflection:['How many hours did I sleep last night?','How do I handle confrontation? (Fight, flight, freeze, fawn?)','What conversation am I avoiding right now?'],
+    quote:'The conversation you\'re avoiding is the one that will set you free.' },
+  { day:12, title:'Love Languages', phase:2,
+    morning:{text:'Gateway Wave 2 Track 2 — Problem Solving.',link:'https://youtube.com/watch?v=76RVRz5gBvA',linkText:'Gateway W2T2',dur:'35:00'},
+    read:{title:'DOPAMINE ADDICTION: WHY YOU CAN\'T STOP SCROLLING',text:'Social media, porn, sugar, gambling, shopping — all hijack dopamine. Your baseline drops. You need MORE stimulation to feel NORMAL. This is why you\'re tired, unmotivated, and numbed out. A dopamine detox isn\'t deprivation — it\'s recalibration. Boredom is the doorway to creativity.'},
+    action:'4-hour dopamine fast. No phone, no social media, no TV, no sugar, no music. Journal what comes up. The discomfort IS the medicine.',
+    video:{title:'Yoga Couple Day 12 — Love Languages',link:'https://youtube.com/watch?v=7Oy5G1rIECk',dur:'15:00'},
+    reflection:['What was the hardest part of the dopamine fast?','What thoughts/feelings surfaced when I removed distractions?','What\'s my primary love language?'],
+    quote:'Sit with the discomfort. That\'s where every breakthrough lives.' },
+  { day:13, title:'Sacred Connection', phase:2,
+    morning:{text:'Gateway Wave 2 Track 3 — One Month Patterning.',link:'https://youtube.com/watch?v=VPmOSSlomTM',linkText:'Gateway W2T3',dur:'35:00'},
+    read:{title:'GROUNDING & YOUR ELECTRIC BODY',text:'Your body runs on electricity. Your heart generates a measurable electromagnetic field. Your nervous system is an electrical network. Walking barefoot on earth — grounding — has been shown to reduce inflammation, normalize cortisol rhythms, and improve sleep quality (Chevalier et al., 2012, Journal of Environmental and Public Health). We spend our lives insulated from the earth by rubber shoes and concrete. Today you reconnect.'},
+    action:'10 minutes barefoot on grass or dirt. While standing there, do 5 minutes of deep belly breathing.',
+    video:{title:'Yoga Couple Day 13 — Sacred Sexuality',link:'https://youtube.com/watch?v=R-XlO7tmixI',dur:'15:00'},
+    reflection:['How did grounding feel physically?','What\'s my relationship with my own body?','Am I comfortable with intimacy — or do I use my pattern to avoid it?'],
+    quote:'You are an electrical being who forgot to plug in. Today you reconnect.' },
+  { day:14, title:'Week 2 Integration', phase:2,
+    morning:{text:'Gateway Wave 2 Track 4 — Color Breathing.',link:'https://youtube.com/watch?v=x75TUcqdVvE',linkText:'Gateway W2T4',dur:'35:00'},
+    read:{title:'PHASE 2 COMPLETE',text:'You\'ve torn down old beliefs about food, products, sleep, dopamine, and connection. You\'ve forgiven. You\'ve confronted. You\'ve fasted from stimulation. The old operating system is fragmenting. That uncomfortable feeling? That\'s the old you dying. Let it. The new code is about to install.'},
+    action:'Write "Phase 2 Report Card." Rate yourself 1-10 on: sleep, nutrition, screen time, emotional honesty, physical movement, meditation consistency. Then tell one person close to you what you\'re going through. Not to explain — just to let them in.',
+    video:{title:'Gateway Wave 2 Track 5 — Energy Bar',link:'https://youtube.com/watch?v=my2RGujVPKM',dur:'35:00'},
+    reflection:['What old belief did I destroy this week?','What habit did I break (even for a day)?','What\'s one thing I\'m doing now that I wasn\'t doing 14 days ago?'],
+    quote:'Halfway. The old operating system is crashing. Let it. The new code is loading.' },
+  { day:15, title:'New Morning Ritual', phase:3,
+    morning:{text:'Build YOUR morning stack. Minimum: breathwork (5 min) + meditation (10 min) + movement (10 min) + journaling (5 min). Do it all. Time it. This is your new non-negotiable.',link:null,dur:'30:00'},
+    read:{title:'NEUROPLASTICITY: YOUR BRAIN CAN CHANGE',text:'Until the 1990s, scientists believed the adult brain was fixed. Wrong. You can literally rewire your neural pathways through repeated thought, behavior, and meditation. Brain imaging studies show measurable structural changes in the prefrontal cortex after just 8 weeks of consistent meditation (Hölzel et al., 2011). Dr. Joe Dispenza\'s workshops have documented cases of healing through sustained meditation combined with elevated emotion — thousands of testimonials, measured with brain scans and blood panels. You are not stuck. Your brain is waiting for new instructions. This program builds on the work of Dr. Joe Dispenza, Robert Monroe, Carl Jung, Gabor Maté, and decades of neuroscience research. You\'re standing on the shoulders of giants.'},
+    action:'Write your new identity statement: "I am ___." Not what you were. What you\'re becoming. Write it 10 times. Say it out loud 10 times. Put it on your mirror.',
+    video:{title:'Gateway Wave 2 Track 6 — Living Body Map',link:'https://youtube.com/watch?v=hYEdD4zBkLQ',dur:'35:00'},
+    reflection:['How did the full morning stack feel?','What time did I start? Can I do it earlier?','Does my identity statement feel real yet? (It will.)'],
+    quote:'Phase 3. New code installing. Your brain is literally rewiring right now.' },
+  { day:16, title:'Environment Design', phase:3,
+    morning:{text:'Full morning stack + Gateway Wave 3 Track 1 — Lift Off.',link:'https://youtube.com/watch?v=g1plj23P2HY',linkText:'Gateway W3T1',dur:'35:00'},
+    read:{title:'YOU ARE THE AVERAGE OF YOUR ENVIRONMENT',text:'Not just the 5 people — your entire environment. The food in your kitchen. The apps on your phone. The shows you watch. The clutter in your room. Every input is programming. Clean the environment = clean the mind.'},
+    action:'Clean ONE space: bedroom, desk, car, or kitchen. Remove 10 things you don\'t need. Delete 5 apps from your phone.',
+    video:{title:'Gateway Wave 3 Track 2 — Remote Viewing',link:'https://youtube.com/watch?v=CaG7fco5ob4',dur:'35:00'},
+    reflection:['What did I remove from my environment today?','How does the clean space feel?','What inputs (people, media, food) are still poisoning me?'],
+    quote:'Your environment is programming you 24/7. Today you take control of the code.' },
+  { day:17, title:'Movement as Medicine', phase:3,
+    morning:{text:'Full morning stack + 20-minute workout (push-ups, squats, lunges, plank, burpees — no gym needed).',link:null,dur:'30:00'},
+    read:{title:'EXERCISE: THE REAL ANTIDEPRESSANT',text:'30 minutes of exercise is as effective as SSRIs for mild-moderate depression (Blumenthal et al., 2007). Exercise increases BDNF (brain fertilizer), boosts serotonin, reduces cortisol, improves sleep, and builds confidence. Your body was designed to MOVE. Sitting 8+ hours a day is literally killing you.'},
+    action:'30-minute workout. Walk, run, lift, yoga, swim — anything. Track it. This is now daily.',
+    video:{title:'Gateway Wave 3 Track 3 — Vectors',link:'https://youtube.com/watch?v=YFR1SfdRQG8',dur:'35:00'},
+    reflection:['What did I do for movement today?','How did my mood change after?','What\'s stopping me from doing this every day? (The answer is your pattern.)'],
+    quote:'Your body was built to move. Every workout is a vote for the new you.' },
+  { day:18, title:'Nutrition Reset', phase:3,
+    morning:{text:'Full morning stack + Dylan\'s Abundance Breathwork.',link:'https://youtu.be/PlDc_Fvo48Y',linkText:'Abundance Breathwork',dur:'30:00'},
+    read:{title:'WHAT BIG FOOD DOESN\'T WANT YOU TO KNOW',text:'Seed oils (canola, soybean, sunflower) cause inflammation at the cellular level. High fructose corn syrup rewires your hunger signals. Artificial sweeteners destroy gut bacteria. MSG activates glutamate receptors and in excess may overstimulate the nervous system. Read labels like your life depends on it — because it does. Eat real food: meat, fish, eggs, vegetables, fruit, nuts, seeds.'},
+    action:'Meal prep ONE day of clean food. No sugar, no seed oils, no processed ingredients. Document what you eat.',
+    video:{title:'Gateway Wave 3 Track 4 — Five Questions',link:'https://youtube.com/watch?v=LVpo1D4bqGc',dur:'35:00'},
+    reflection:['What did I eat today? Was it real food?','How did clean eating affect my energy and mood?','What\'s the hardest food/drink to give up? (That\'s the one that owns you.)'],
+    quote:'If it has a commercial, question it. Real food doesn\'t need marketing.' },
+  { day:19, title:'Gratitude Rewiring', phase:3,
+    morning:{text:'Full morning stack + write 10 specific things you\'re grateful for.',link:null,dur:'30:00'},
+    read:{title:'GRATITUDE CHANGES BRAIN CHEMISTRY',text:'5 minutes of genuine gratitude activates the parasympathetic nervous system. It increases serotonin and dopamine naturally. MRI scans show the hypothalamus lights up during gratitude practice. People who journal gratitude daily show 25% higher well-being scores (Emmons & McCullough, 2003). This isn\'t woo-woo. It\'s neuroscience.'},
+    action:'Send 3 gratitude texts/messages to real people in your life. Tell them specifically what they mean to you. Not "thanks" — real, detailed appreciation.',
+    video:{title:'Gateway Wave 3 Track 5 — Energy Food',link:'https://youtube.com/watch?v=n6G8oPJGNYU',dur:'35:00'},
+    reflection:['How did those 3 people respond?','What did it feel like to express gratitude openly?','What\'s one thing I took for granted today?'],
+    quote:'Gratitude isn\'t a feeling. It\'s a practice that rewires your brain.' },
+  { day:20, title:'The 12-Step Mirror', phase:3,
+    morning:{text:'Full morning stack + Gateway Wave 3 Track 6 — First Stage Separation.',link:'https://youtube.com/watch?v=hoXMTwVw6wQ',linkText:'Gateway W3T6',dur:'35:00'},
+    read:{title:'THE 12 STEPS AREN\'T JUST FOR ADDICTS',text:'Step 1: Admit powerlessness over the pattern. Step 4: Fearless moral inventory. Step 8: List of people harmed. Step 9: Make amends. Controllers are addicted to control. Runners are addicted to escape. Ghosts are addicted to invisibility. Chameleons are addicted to approval. What are you addicted to?'},
+    action:'Do a mini Step 4: Fearless inventory. 3 columns: (1) Person/situation that triggers me, (2) What I feel, (3) What my part was. Minimum 10 entries.',
+    video:{title:'Gateway Wave 4 Track 1 — One Year Patterning',link:'https://youtube.com/watch?v=cmVvbYp6rhE',dur:'35:00'},
+    reflection:['What patterns showed up in my inventory?','Where do I keep repeating the same mistake?','Who do I owe an amends to?'],
+    quote:'Every pattern is an addiction. Name the substance. Then you can quit.' },
+  { day:21, title:'Amends & Release', phase:3,
+    morning:{text:'Full morning stack + 5-min cold exposure (full cold shower or ice bath).',link:null,dur:'30:00'},
+    read:{title:'MAKING AMENDS ISN\'T APOLOGIZING',text:'An apology says "I\'m sorry." Amends says "Here\'s what I did, here\'s how it affected you, and here\'s what I\'m doing differently." Amends is action. Some amends are direct. Some are living amends — being different from now on. You don\'t owe everyone an apology. But you owe yourself the freedom that comes from cleaning your side of the street.'},
+    action:'Make ONE amends today. Call, text, or write someone you\'ve wronged. If you can\'t reach them, write the letter and read it out loud.',
+    video:{title:'Gateway Wave 4 Track 3 — Free Flow 12',link:'https://youtube.com/watch?v=PLBxNUD2f3o',dur:'35:00'},
+    reflection:['How did making amends feel?','What weight lifted (or didn\'t)?','21 days in. Read your Day 1 journal entry. How far have you come?'],
+    quote:'Clean your side of the street. The freedom on the other side is worth it.' },
+  { day:22, title:'Vision Casting', phase:3,
+    morning:{text:'Full morning stack + Gateway Wave 4 Track 4 — NVC1.',link:'https://youtube.com/watch?v=OsYKtMhI7yA',linkText:'Gateway W4T4',dur:'35:00'},
+    read:{title:'THE RETICULAR ACTIVATING SYSTEM (RAS)',text:'Your brain has a filter. It only shows you what you\'re focused on. Buy a red car? You see red cars everywhere. Focus on problems? Only problems. Focus on opportunities? Your brain reorganizes to find them. Vision boards and future-self journaling aren\'t magical thinking — they\'re programming your RAS.'},
+    action:'Create a vision board (digital or physical). OR write a detailed description of your life 1 year from now. Be specific.',
+    video:{title:'Gateway Wave 4 Track 5 — NVC2',link:'https://youtube.com/watch?v=kzYowSezV8o',dur:'35:00'},
+    reflection:['What does my ideal life actually look like?','What\'s the gap between where I am and where I want to be?','What ONE thing could I start tomorrow that would close that gap fastest?'],
+    quote:'Your brain shows you what you focus on. Time to change the channel.' },
+  { day:23, title:'Phase 3 Integration', phase:3,
+    morning:{text:'Full morning stack (should feel automatic now) + Gateway Wave 5 Track 1 — Advanced Focus 12.',link:'https://youtube.com/watch?v=rhYDh5BJc4U',linkText:'Gateway W5T1',dur:'35:00'},
+    read:{title:'PHASE 3 COMPLETE',text:'New identity written. Environment cleaned. Body moving. Food clean. Gratitude flowing. Inventory done. Amends made. Vision cast. You have a new operating system. The old patterns will still knock on the door. But now you know their name. You know their game. And you have tools.'},
+    action:'Write "Phase 3 Report Card." Compare to Phase 2. Rate: morning routine consistency, nutrition, exercise, meditation, emotional awareness, relationships.',
+    video:{title:'Gateway Wave 5 Track 2 — Discovering Intuition',link:'https://youtube.com/watch?v=QEmfHkZKZmI',dur:'35:00'},
+    reflection:['What habit stuck this week?','What still needs work?','What pattern tried to pull me back — and how did I respond?'],
+    quote:'The new OS is installed. The old patterns will knock. You have the tools now.' },
+  { day:24, title:'Intuition & Inner Knowing', phase:4,
+    morning:{text:'Full morning stack + Gateway Wave 5 Track 3 — Exploring Intuition.',link:'https://youtube.com/watch?v=Ul7o5AucM1k',linkText:'Gateway W5T3',dur:'35:00'},
+    read:{title:'YOUR GUT FEELING IS REAL DATA',text:'The vagus nerve connects your gut to your brain. It sends MORE signals up than down. Your "gut feeling" is literal neural communication. Meditation strengthens this connection. The more you quiet the mind, the louder your intuition becomes. Stop outsourcing your decisions to Google, friends, and social media. The answer is already in you.'},
+    action:'Make every decision today from intuition first. Before checking your phone, asking someone, or Googling — pause and ask: "What does my gut say?"',
+    video:{title:'Gateway Wave 5 Track 4 — Intro to Focus 15',link:'https://youtube.com/watch?v=TSgHRRv5c8Q',dur:'35:00'},
+    reflection:['When did my intuition speak clearly today?','Did I follow it or override it?','What happens when I trust myself?'],
+    quote:'Phase 4. The final frontier. You\'re not the same person who started this.' },
+  { day:25, title:'Manifestation & Creation', phase:4,
+    morning:{text:'Full morning stack + Gateway Wave 5 Track 5 — Mission Creation Manifestation.',link:'https://youtube.com/watch?v=IRS8cujO9L0',linkText:'Gateway W5T5',dur:'35:00'},
+    read:{title:'THE SCIENCE OF MANIFESTATION',text:'Dr. Joe Dispenza\'s work shows that when you combine a clear intention with an elevated emotion, your heart\'s electromagnetic signal changes — measurably. In his workshops, thousands of participants have documented cases of healing — tumors shrinking, autoimmune conditions reversing, chronic pain disappearing — measured with brain scans and blood panels. This isn\'t "The Secret" or wishful thinking. It\'s what happens when you sustain a new emotional state long enough for your biology to match it. Think + feel + sustain = create.'},
+    action:'20-minute manifestation meditation. Visualize your 1-year vision from Day 22. FEEL the emotions of already having it. Stay there for 20 minutes.',
+    video:{title:'Gateway Wave 5 Track 6 — Exploring Focus 15',link:'https://youtube.com/watch?v=M1I97NdVhoY',dur:'35:00'},
+    reflection:['What did I feel during the manifestation meditation?','Can I hold this feeling throughout my normal day?','What would change if I lived from this state permanently?'],
+    quote:'Think it. Feel it. Become it. This isn\'t wishful thinking. It\'s physics.' },
+  { day:26, title:'Service & Purpose', phase:4,
+    morning:{text:'Full morning stack + Gateway Wave 6 Track 1 — Sensing Locale.',link:'https://youtube.com/watch?v=aJb7SjnyCvg',linkText:'Gateway W6T1',dur:'35:00'},
+    read:{title:'HEALING HAPPENS IN SERVICE',text:'The final stage of every recovery program: help others. Not because you\'re a saint — because service rewires your brain from "survive" to "contribute." It shifts your identity from broken person healing to healed person serving. Your pain has purpose. Your story will save someone else.'},
+    action:'Help ONE person today. Not for credit. Not for social media. Genuinely serve. Buy someone coffee. Listen to someone struggling. Share your story.',
+    video:{title:'Gateway Wave 6 Track 2 — Expansion',link:'https://youtube.com/watch?v=8A5cd8gnMSs',dur:'35:00'},
+    reflection:['Who did I serve today?','How did it make me feel?','What if this became my daily practice?'],
+    quote:'Your pain has purpose. Your story will save someone who\'s where you were.' },
+  { day:27, title:'Relationships Audit', phase:4,
+    morning:{text:'Full morning stack + Gateway Wave 6 Track 3 — Point of Departure.',link:'https://youtube.com/watch?v=VzxwR8xmxzI',linkText:'Gateway W6T3',dur:'35:00'},
+    read:{title:'YOU CAN\'T HEAL IN THE ENVIRONMENT THAT MADE YOU SICK',text:'Some relationships are medicine. Some are poison. You now have the awareness to tell the difference. This isn\'t about cutting people off. It\'s about setting boundaries, communicating needs, and choosing who gets access to the new you.'},
+    action:'Draw 3 circles. Inner: people who fuel you. Middle: neutral. Outer: people who drain you. Set ONE boundary with someone in the outer circle today.',
+    video:{title:'Gateway Wave 6 Track 4 — Non-Physical Friends',link:'https://youtube.com/watch?v=fgpGWlY9I8U',dur:'35:00'},
+    reflection:['Who\'s in my inner circle? Am I investing enough in them?','What boundary did I set today?','What relationship needs a hard conversation?'],
+    quote:'Not everyone gets access to the new you. Choose wisely.' },
+  { day:28, title:'Expanded Consciousness', phase:4,
+    morning:{text:'Full morning stack + Gateway Wave 6 Track 5 — Intro to Focus 21.',link:'https://youtube.com/watch?v=sX9uTPwdmu4',linkText:'Gateway W6T5',dur:'35:00'},
+    read:{title:'YOU ARE NOT YOUR BODY',text:'The Gateway Experience was developed by Robert Monroe at the Monroe Institute, partially funded by the CIA. Declassified documents show the CIA invested significant resources researching whether human consciousness could extend beyond the physical body — and what they found was compelling enough to keep funding it. Focus 10, Focus 12, Focus 15, Focus 21. You\'ve experienced states of consciousness most people never access. This changes everything.'},
+    action:'Full Gateway session — Wave 6 Track 6 — Free Flow Journey in Focus 21. 45 minutes. Dark room. Headphones. After: spend 2 minutes returning to your body — wiggle your fingers, feel your feet on the ground, drink water. Then journal everything.',
+    video:{title:'Gateway Wave 6 Track 6 — Free Flow in Focus 21',link:'https://youtube.com/watch?v=mnRl_dylKAo',dur:'45:00'},
+    reflection:['What did I experience in Focus 21?','How has my perception of reality shifted in 28 days?','What do I now believe is possible that I didn\'t before?'],
+    quote:'28 days. You\'ve accessed states of consciousness most humans never will.' },
+  { day:29, title:'Integration Day', phase:4,
+    morning:{text:'Full morning stack + Gateway Wave 7 Track 1 — Explore Total Self.',link:'https://youtube.com/watch?v=rlgDBdDoFv4',linkText:'Gateway W7T1',dur:'35:00'},
+    read:{title:'THE NEW YOU IS NOT TEMPORARY',text:'Science says it takes 66 days — not 21 — for a new habit to become automatic (Lally et al., 2010, European Journal of Social Psychology). You\'re at Day 29. You\'re past the hardest part. But the next 36 days are where identity locks in. The key: you don\'t "do" the morning routine — you ARE someone who does it. You don\'t "try" to eat clean — you ARE someone who eats clean. When the identity shifts, the behavior is automatic. After Day 30, keep your morning stack going. Weekly: reread one day\'s content that hit you hardest. Monthly: redo your report card. The program ends. The practice doesn\'t.'},
+    action:'Write your "Before & After." Two columns: Who I was on Day 1 vs. Who I am on Day 29. Read it out loud. Share it with someone you trust.',
+    video:{title:'Gateway Wave 7 Track 2 — Intro to Focus 23',link:'https://youtube.com/watch?v=mKppFZvPzf8',dur:'35:00'},
+    reflection:['What\'s the single biggest change in me?','What would the Day 1 version of me think of the Day 29 version?','What commitment am I making for the next 30 days?'],
+    quote:'Tomorrow you graduate. Tonight, honor how far you\'ve come.' },
+  { day:30, title:'Graduation', phase:4,
+    morning:{text:'Extended ceremony: breathwork (10 min) + meditation (20 min) + movement (20 min) + journaling (10 min). One hour total. This is your ceremony.',link:null,dur:'60:00'},
+    read:{title:'YOU ARE FREE',text:'F — Face the pattern. R — Release the story. E — Educate the mind. E — Exercise the body. D — Destroy old programming. O — Open to new possibilities. M — Master your inner world. You did it. 30 days. 4 phases. Stabilize. Deconstruct. Install. Expand. The code is written. The pattern is broken. Now go live it. YOUR NEXT 36 DAYS: Keep the morning stack daily. Every Sunday, journal one page about your week — what pattern tried to come back, how you handled it. On Day 66, redo the quiz. Compare your results to Day 1. That\'s your proof.'},
+    action:'Record a 2-minute video of yourself. Talk to the camera like you\'re talking to someone about to start Day 1. What would you tell them? Save it. Then set a calendar reminder for Day 66 to retake the quiz.',
+    video:{title:'Gateway Wave 7 Track 3 — Intro to Focus 25',link:'https://youtube.com/watch?v=8wcZIsHOr-Y',dur:'35:00'},
+    reflection:['What am I most proud of?','What pattern will I keep watching for?','What\'s next?'],
+    quote:'The code is written. The pattern is broken. Now go live it. — Dylan' }
+];
+
+// ═══ STATE ═══
+const STATE_KEY = 'pattern_reset_state';
+let state = loadState();
+
+function loadState() {
+  try {
+    const s = JSON.parse(localStorage.getItem(STATE_KEY));
+    if (s && s.version === 2) return s;
+  } catch(e) {}
+  return {
+    version: 2,
+    startDate: new Date().toISOString().split('T')[0],
+    pattern: getPatternFromURL() || 'controller',
+    firstName: getNameFromURL() || '',
+    completedDays: [],
+    sectionChecks: {},
+    journals: {},
+    reflections: {},
+    moods: {},
+    streak: 0,
+    lastActiveDate: null,
+    expanded: null
+  };
+}
+
+function saveState() { localStorage.setItem(STATE_KEY, JSON.stringify(state)); }
+
+function getPatternFromURL() {
+  const p = new URLSearchParams(window.location.search);
+  return p.get('pattern') || null;
+}
+function getNameFromURL() {
+  const p = new URLSearchParams(window.location.search);
+  return p.get('name') || '';
+}
+
+// ═══ STREAK ═══
+function updateStreak() {
+  const today = new Date().toISOString().split('T')[0];
+  if (state.lastActiveDate === today) return;
+  const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
+  if (state.lastActiveDate === yesterday) {
+    state.streak++;
+  } else if (state.lastActiveDate !== today) {
+    state.streak = state.completedDays.length > 0 ? 1 : 0;
+  }
+  state.lastActiveDate = today;
+  saveState();
+}
+
+// ═══ UNLOCK LOGIC ═══
+function isDayUnlocked(dayNum) {
+  if (dayNum === 1) return true;
+  return state.completedDays.includes(dayNum - 1);
+}
+
+function getCurrentDay() {
+  for (let i = 1; i <= 30; i++) {
+    if (!state.completedDays.includes(i)) return i;
+  }
+  return 30;
+}
+
+function getPhaseForDay(dayNum) {
+  return PHASES.find(p => dayNum >= p.days[0] && dayNum <= p.days[1]);
+}
+
+function getPhaseProgress(phase) {
+  const total = phase.days[1] - phase.days[0] + 1;
+  const done = state.completedDays.filter(d => d >= phase.days[0] && d <= phase.days[1]).length;
+  return Math.round((done / total) * 100);
+}
+
+// ═══ MOOD ═══
+function setMood(mood) {
+  const today = new Date().toISOString().split('T')[0];
+  state.moods[today] = mood;
+  saveState();
+  document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+  // Hide after selection
+  setTimeout(() => {
+    document.getElementById('moodCheck').style.display = 'none';
+  }, 500);
+}
+
+// ═══ RENDER ═══
+function render() {
+  updateStreak();
+  const currentDay = getCurrentDay();
+  const currentPhase = getPhaseForDay(currentDay);
+
+  // Header
+  document.getElementById('headerPhase').textContent = 'PHASE ' + currentPhase.id + ': ' + currentPhase.name;
+  document.getElementById('streakCount').textContent = state.streak;
+
+  // Progress ring
+  const pct = Math.round((state.completedDays.length / 30) * 100);
+  document.getElementById('progressPct').textContent = pct + '%';
+  const circ = 2 * Math.PI * 15;
+  document.getElementById('progressArc').style.strokeDashoffset = circ - (circ * pct / 100);
+
+  // Pattern badge
+  const pc = PATTERN_COLORS[state.pattern] || PATTERN_COLORS.controller;
+  const badge = document.getElementById('patternBadge');
+  badge.style.background = pc.bg;
+  badge.style.color = pc.color;
+  badge.style.borderColor = pc.border;
+  badge.innerHTML = pc.emoji + ' ' + pc.label;
+
+  // Welcome name
+  if (state.firstName) {
+    document.querySelector('.welcome h1').textContent = 'Welcome Back, ' + state.firstName;
+  }
+
+  // Mood check - hide if already done today
+  const today = new Date().toISOString().split('T')[0];
+  if (state.moods[today]) {
+    document.getElementById('moodCheck').style.display = 'none';
+  }
+
+  // Render course content
+  let html = '';
+  let lastPhase = 0;
+
+  DAYS.forEach(d => {
+    const phase = getPhaseForDay(d.day);
+    const unlocked = isDayUnlocked(d.day);
+    const completed = state.completedDays.includes(d.day);
+    const isCurrent = d.day === currentDay;
+    const isExpanded = state.expanded === d.day;
+
+    // Phase header
+    if (phase.id !== lastPhase) {
+      lastPhase = phase.id;
+      const pp = getPhaseProgress(phase);
+      html += '<div class="phase-header"><h2>Phase ' + phase.id + ': ' + phase.name + '</h2><p>' + phase.sub + '</p>';
+      html += '<div class="phase-progress"><div class="phase-fill" style="width:' + pp + '%"></div></div></div>';
+
+      // Milestone at phase transitions
+      if (phase.id > 1 && state.completedDays.includes(phase.days[0] - 1)) {
+        const milestones = {
+          2: {t:'Phase 1 Complete', m:'You\'ve named your pattern. Met your shadow. Heard your inner child. More internal work than most people do in a decade.'},
+          3: {t:'Phase 2 Complete', m:'The old operating system is fragmenting. That uncomfortable feeling? That\'s the old you dying. Let it.'},
+          4: {t:'Phase 3 Complete', m:'New identity installed. New habits locked. You have a new operating system. The final frontier awaits.'}
+        };
+        const ms = milestones[phase.id];
+        if (ms) html += '<div class="milestone"><h3>' + ms.t + '</h3><p>' + ms.m + '</p></div>';
+      }
+    }
+
+    const cls = ['day-card'];
+    if (!unlocked) cls.push('locked');
+    if (completed) cls.push('completed');
+    if (isCurrent && unlocked) cls.push('current');
+    if (isExpanded && unlocked) cls.push('expanded');
+
+    html += '<div class="' + cls.join(' ') + '" id="day-' + d.day + '">';
+
+    // Header
+    html += '<div class="day-header" onclick="toggleDay(' + d.day + ')">';
+    html += '<div class="day-num">' + String(d.day).padStart(2, '0') + '</div>';
+    html += '<div class="day-info"><div class="day-title">' + d.title + '</div>';
+    html += '<div class="day-phase">Phase ' + phase.id + ' &bull; Day ' + (d.day - phase.days[0] + 1) + ' of ' + (phase.days[1] - phase.days[0] + 1) + '</div></div>';
+    html += '<div class="day-check"></div>';
+    html += '</div>';
+
+    // Expanded content
+    if (isExpanded && unlocked) {
+      html += '<div class="day-content">';
+
+      // Morning Protocol
+      html += '<div class="section">';
+      html += '<div class="section-label"><span class="icon">&#x2600;&#xFE0F;</span>MORNING PROTOCOL</div>';
+      html += '<div class="section-text">' + d.morning.text + '</div>';
+      if (d.morning.link) {
+        html += '<div class="audio-row"><button class="audio-play" onclick="window.open(\'' + d.morning.link + '\',\'_blank\')"></button>';
+        html += '<div class="audio-title">' + (d.morning.linkText || 'Listen') + '</div>';
+        html += '<div class="audio-dur">' + d.morning.dur + '</div></div>';
+      }
+      html += sectionCheck(d.day, 'morning');
+      html += '</div>';
+
+      // Daily Read
+      html += '<div class="section">';
+      html += '<div class="section-label"><span class="icon">&#x1F4D6;</span>DAILY READ: ' + d.read.title + '</div>';
+      html += '<div class="section-text">' + d.read.text + '</div>';
+      html += sectionCheck(d.day, 'read');
+      html += '</div>';
+
+      // Daily Action
+      html += '<div class="section">';
+      html += '<div class="section-label"><span class="icon">&#x26A1;</span>DAILY ACTION</div>';
+      html += '<div class="section-text">' + d.action + '</div>';
+      const jKey = 'action_' + d.day;
+      const jVal = state.journals[jKey] || '';
+      html += '<textarea class="journal-box" placeholder="Write your response here... your journal is saved automatically." oninput="saveJournal(\'' + jKey + '\',this.value)" style="margin-top:10px">' + escHtml(jVal) + '</textarea>';
+      html += '<div class="journal-saved" id="saved_' + jKey + '">Saved</div>';
+      html += sectionCheck(d.day, 'action');
+      html += '</div>';
+
+      // Video
+      html += '<div class="section">';
+      html += '<div class="section-label"><span class="icon">&#x1F3AC;</span>VIDEO</div>';
+      html += '<div class="audio-row"><button class="audio-play" onclick="window.open(\'' + d.video.link + '\',\'_blank\')"></button>';
+      html += '<div class="audio-title">' + d.video.title + '</div>';
+      html += '<div class="audio-dur">' + d.video.dur + '</div></div>';
+      html += sectionCheck(d.day, 'video');
+      html += '</div>';
+
+      // Evening Reflection
+      html += '<div class="section">';
+      html += '<div class="section-label"><span class="icon">&#x1F319;</span>EVENING REFLECTION</div>';
+      d.reflection.forEach((q, i) => {
+        const rKey = 'ref_' + d.day + '_' + i;
+        const rVal = state.reflections[rKey] || '';
+        html += '<div class="reflection-q"><label>' + (i+1) + '. ' + q + '</label>';
+        html += '<textarea placeholder="Your reflection..." oninput="saveReflection(\'' + rKey + '\',this.value)">' + escHtml(rVal) + '</textarea></div>';
+      });
+      html += '<button class="save-btn" onclick="saveAllReflections(' + d.day + ')">Save Reflections</button>';
+      html += '</div>';
+
+      // Quote
+      html += '<div class="day-quote">"' + d.quote + '"</div>';
+
+      // Complete Day button
+      if (!completed) {
+        html += '<button class="complete-day" onclick="completeDay(' + d.day + ')">Complete Day ' + d.day + '</button>';
+      } else {
+        html += '<button class="complete-day done">Day ' + d.day + ' Complete &#x2713;</button>';
+      }
+
+      html += '</div>'; // .day-content
+    }
+
+    html += '</div>'; // .day-card
+  });
+
+  // Graduation milestone
+  if (state.completedDays.length === 30) {
+    html += '<div class="milestone" style="margin-top:32px"><h3>&#x1F3C6; You Graduated</h3><p>F.R.E.E.D.O.M. — Face the pattern. Release the story. Educate the mind. Exercise the body. Destroy old programming. Open to new possibilities. Master your inner world. The code is written. Now go live it.</p></div>';
+  }
+
+  document.getElementById('courseContent').innerHTML = html;
+
+  // Auto-scroll to current day
+  if (state.expanded === null && !completed) {
+    const currentEl = document.getElementById('day-' + currentDay);
+    if (currentEl) setTimeout(() => currentEl.scrollIntoView({ behavior: 'smooth', block: 'center' }), 300);
+  }
+}
+
+function sectionCheck(day, section) {
+  const key = day + '_' + section;
+  const checked = state.sectionChecks[key] ? 'checked' : '';
+  return '<label class="section-check"><input type="checkbox" ' + checked + ' onchange="toggleSection(\'' + key + '\',this.checked)"> Mark complete</label>';
+}
+
+function escHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+// ═══ INTERACTIONS ═══
+function toggleDay(day) {
+  if (!isDayUnlocked(day)) return;
+  state.expanded = state.expanded === day ? null : day;
+  saveState();
+  render();
+  if (state.expanded) {
+    setTimeout(() => {
+      const el = document.getElementById('day-' + day);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  }
+}
+
+function toggleSection(key, checked) {
+  state.sectionChecks[key] = checked;
+  saveState();
+}
+
+function saveJournal(key, value) {
+  state.journals[key] = value;
+  saveState();
+  const el = document.getElementById('saved_' + key);
+  if (el) { el.classList.add('show'); setTimeout(() => el.classList.remove('show'), 2000); }
+}
+
+function saveReflection(key, value) {
+  state.reflections[key] = value;
+  saveState();
+}
+
+function saveAllReflections(day) {
+  saveState();
+  // Visual feedback
+  const btn = event.currentTarget;
+  btn.textContent = 'Saved!';
+  btn.style.background = 'var(--green)';
+  setTimeout(() => { btn.textContent = 'Save Reflections'; btn.style.background = ''; }, 2000);
+}
+
+function completeDay(day) {
+  if (!state.completedDays.includes(day)) {
+    state.completedDays.push(day);
+    state.completedDays.sort((a,b) => a - b);
+  }
+  state.expanded = null;
+  saveState();
+  render();
+  // Scroll to next day
+  const next = day + 1;
+  if (next <= 30) {
+    setTimeout(() => {
+      const el = document.getElementById('day-' + next);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 500);
+  }
+}
+
+// ═══ VIEWS ═══
+function switchView(view) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('view' + view.charAt(0).toUpperCase() + view.slice(1)).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  if (view === 'journey') renderJourney();
+}
+
+function renderJourney() {
+  const entries = [];
+  // Collect all journals and reflections
+  Object.keys(state.journals).forEach(k => {
+    if (state.journals[k]) {
+      const day = k.replace('action_', '');
+      const dayData = DAYS.find(d => d.day === parseInt(day));
+      entries.push({ day: parseInt(day), type: 'journal', title: 'Day ' + day + ': ' + (dayData ? dayData.title : ''), text: state.journals[k] });
+    }
+  });
+  Object.keys(state.reflections).forEach(k => {
+    if (state.reflections[k]) {
+      const parts = k.replace('ref_', '').split('_');
+      const day = parseInt(parts[0]);
+      const qi = parseInt(parts[1]);
+      const dayData = DAYS.find(d => d.day === day);
+      const q = dayData && dayData.reflection[qi] ? dayData.reflection[qi] : '';
+      entries.push({ day, type: 'reflection', title: 'Day ' + day + ' Reflection', text: q + '\n\n' + state.reflections[k] });
+    }
+  });
+  entries.sort((a, b) => a.day - b.day);
+
+  const container = document.getElementById('journeyEntries');
+  if (entries.length === 0) {
+    container.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text-muted)">Your journey entries will appear here as you complete lessons and write reflections.</div>';
+    return;
+  }
+  container.innerHTML = entries.map(e =>
+    '<div class="journey-entry"><div class="journey-date">' + e.title.toUpperCase() + ' &bull; ' + e.type.toUpperCase() + '</div><div class="journey-text">' + escHtml(e.text).replace(/\n/g, '<br>') + '</div></div>'
+  ).join('');
+}
+
+// ═══ INIT ═══
+render();
+</script>
+</body>
+</html>
