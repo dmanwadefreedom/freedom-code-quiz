@@ -288,29 +288,19 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);min-
     <h3>Your Full Score</h3>
   </div>
 
-  <!-- Do This Today — type-specific exercise -->
+  <!-- Free 20-min practice CTA -->
   <div class="free-practice anim d5" id="r-free-practice">
-    <h3>Do This Today</h3>
-    <p id="r-practice-desc"></p>
-    <div id="r-do-this" style="background:var(--goldg);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:16px 20px;margin:16px 0;font-size:14px;line-height:1.7;color:var(--txt)"></div>
+    <h3>Your Free 20-Minute Practice</h3>
+    <p id="r-practice-desc">We're sending it to your email right now. It's built for your pattern. Do it today.</p>
+    <a class="btn-secondary" id="r-practice-link" href="#" style="display:none">Listen Now &rarr;</a>
   </div>
 
-  <!-- Free Breathwork Video -->
-  <div class="breathwork-section anim d6" style="margin:32px 0">
-    <h3 style="font-family:'DM Serif Display',serif;font-size:22px;margin-bottom:8px">Your Free 6-Minute Reset</h3>
-    <p style="font-size:14px;color:var(--dim);margin-bottom:16px">This beginner breathwork was built for people who've never done this before. Do it now. Feel the difference.</p>
-    <div style="position:relative;width:100%;padding-bottom:56.25%;border-radius:12px;overflow:hidden;background:#000">
-      <iframe src="https://www.youtube.com/embed/jrjC6yqYSNE" title="6-Minute Beginner Breathwork" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
-    </div>
-    <p style="font-size:12px;color:var(--mute);margin-top:10px;text-align:center">Press play. Follow along. 6 minutes. That's it.</p>
-  </div>
-
-  <!-- Paid CTA — direct to Freedom Code -->
-  <div class="paid-cta anim d7">
-    <h3>Want 30 Days of This?</h3>
-    <p>That breathwork is Day 1. Freedom Code is 30 days of guided protocols built for YOUR specific pattern. Breathwork. Meditation. Shadow work. Nervous system education. Morning email. Daily action.</p>
-    <p style="font-size:13px;color:var(--mute);margin-bottom:20px">One therapy session: $150. A weekend retreat: $1,500. 30 days of guided transformation: $47.</p>
-    <a href="https://thedylanewing.com/freedom-code/" class="btn">Get Freedom Code &mdash; $47 <span>&rarr;</span></a>
+  <!-- Paid CTA — direct to checkout -->
+  <div class="paid-cta anim d6">
+    <h3>Ready to Break The Pattern?</h3>
+    <p>The free practice cracked the door. Freedom Code walks you through 30 days of real change. Morning breathwork. Daily protocols. Evening reflection. Everything shifts.</p>
+    <p style="font-size:13px;color:var(--mute);margin-bottom:20px">One therapy session: $150. A weekend retreat: $1,500. This: $47.</p>
+    <a href="https://dmanwadefreedom.github.io/freedom-code-sales/#checkout" class="btn">Start Freedom Code &mdash; $47 <span>&rarr;</span></a>
     <span class="btn-note">30-day money-back guarantee. Most people feel different by Day 3.</span>
   </div>
 
@@ -439,14 +429,13 @@ const patternData = {
     icon:'<svg width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="16" stroke="currentColor" stroke-width="2"/><path d="M12 18h12M18 12v12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
     iconBg:'rgba(196,84,58,.12)',
     iconColor:'var(--ctrl)',
-    sub:"You're the one everyone calls when things fall apart. That's your superpower. It's also why you can't sleep.",
+    sub:"You're the one who holds it all together. When things fall apart, people call you.",
     means:[
-      "Your brain won't stop solving. Even when nothing's broken, you're looking for something to fix.",
-      "You feel like if you let go, everything falls apart. So you hold it all. Alone.",
-      "You're tired in a way that sleep doesn't fix. Because the weight isn't physical — it's the need to control everything around you."
+      "You can't relax because your brain is always solving something.",
+      "You feel like if you stop, everything falls apart.",
+      "You're tired in a way you don't show anyone."
     ],
-    practice:"Next time you feel the urge to fix something that isn't yours — pause. 3 deep breaths. Say out loud: 'not mine.' Then try this 6-minute breathwork reset.",
-    doThis:"Box breathing: 4 seconds in. 4 hold. 4 out. 4 hold. Repeat 5 times. Calms the control center without you losing your edge."
+    practice:"This practice helps you feel safe without being in charge. Just 20 minutes. No pressure."
   },
   runner: {
     name:'The Busy One',
@@ -454,14 +443,13 @@ const patternData = {
     icon:'<svg width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="16" stroke="currentColor" stroke-width="2"/><path d="M13 23l5-5 5 5M18 18V10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
     iconBg:'rgba(196,154,58,.12)',
     iconColor:'var(--run)',
-    sub:"You've built more than most people dream about. You also can't remember the last time you sat still without your brain screaming at you.",
+    sub:"You're always moving. Always building. But you never feel like you can stop.",
     means:[
-      "You fill every gap in your schedule on purpose. Free time feels like failure.",
-      "You stay busy so you don't have to feel what's underneath. Productivity is your painkiller.",
-      "You've accomplished a lot. But you can't enjoy any of it. There's always the next thing."
+      "You fill every gap in your schedule. Free time feels wrong.",
+      "You stay busy to avoid feeling something deeper.",
+      "You've built a lot, but you can't enjoy any of it."
     ],
-    practice:"Set a timer for 5 minutes. Sit. No phone. No music. Just sit. When your body says 'get up' — that's the pattern talking. Then try this breathwork.",
-    doThis:"Sit somewhere quiet. Close your eyes. Breathe in for 6 seconds. Out for 8. That's it. The longer exhale tells your nervous system 'you're safe.' Your body will fight it. Let it."
+    practice:"This practice helps you sit still without your body treating it like danger. Just 20 minutes."
   },
   ghost: {
     name:'The Quiet One',
@@ -469,14 +457,13 @@ const patternData = {
     icon:'<svg width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="16" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="18" r="4" stroke="currentColor" stroke-width="2"/></svg>',
     iconBg:'rgba(90,127,165,.12)',
     iconColor:'var(--gho)',
-    sub:"People think you're calm. You're not calm. You're gone. There's a difference.",
+    sub:"You're the calm one. Steady when everyone else is falling apart. But inside, you feel far away.",
     means:[
-      "You feel tired even when you haven't done anything. Your body is protecting you by shutting down.",
-      "You zone out during big moments. Arguments, decisions, emotional conversations — you leave without leaving the room.",
-      "You have goals and dreams. But you can't seem to start them. It's not laziness. It's freeze."
+      "You feel tired even when you haven't done anything.",
+      "You zone out or check out during big moments.",
+      "You have goals but can't seem to start them."
     ],
-    practice:"Run cold water on your wrists for 30 seconds. That jolt? That's your nervous system coming back online. Then try this 6-minute breathwork to stay present.",
-    doThis:"Splash cold water on your face or hold ice in your hands for 30 seconds. This activates your vagus nerve and pulls you back into your body. Simple. Instant."
+    practice:"This practice helps your body feel safe enough to come back online. Gentle. 20 minutes."
   },
   chameleon: {
     name:'The People Pleaser',
@@ -484,14 +471,13 @@ const patternData = {
     icon:'<svg width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="16" stroke="currentColor" stroke-width="2"/><path d="M12 22c2-4 4-6 6-6s4 2 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
     iconBg:'rgba(90,165,127,.12)',
     iconColor:'var(--cha)',
-    sub:"Everyone comes to you with their problems. Nobody asks how you're doing. And you never bring it up.",
+    sub:"You make everyone feel seen. But when you look in the mirror, you're not sure who's looking back.",
     means:[
-      "You say yes when you mean no. Not because you're weak. Because saying no feels physically wrong — like you're hurting someone.",
-      "You change who you are based on who's in the room. You're so good at it, you're not sure which one is the real you.",
-      "You absorb everyone's emotions. Walk into a tense room and it becomes YOUR tension. That's not empathy. That's a survival pattern."
+      "You say yes when you mean no. Saying no feels wrong.",
+      "You change who you are based on who's in the room.",
+      "Everyone brings you their problems. Nobody asks about yours."
     ],
-    practice:"Next time someone asks what you want for dinner — answer. Don't say 'I don't care.' Pick something. Start small. Then try this breathwork to reconnect with yourself.",
-    doThis:"Put your hand on your chest. Breathe in for 4 seconds. Say (in your head): 'What do I need right now?' Breathe out for 6 seconds. Don't answer. Just listen. Repeat 5 times."
+    practice:"This practice helps you find where you end and other people begin. 20 minutes. Start today."
   }
 };
 
@@ -727,9 +713,10 @@ function showResults(primary){
   let chartHTML = '<h3>Your Full Score</h3>';
   chartData.forEach(c=>{
     const pct = Math.round((c.score/total)*100);
+    const barId = c.label.toLowerCase().replace(/\s+/g,'-');
     chartHTML += `<div class="chart-row">
       <div class="chart-label" style="color:${c.color}">${c.label}</div>
-      <div class="chart-bar-wrap"><div class="chart-bar ${c.cls}" id="bar-${c.label.toLowerCase()}"></div></div>
+      <div class="chart-bar-wrap"><div class="chart-bar ${c.cls}" id="bar-${barId}"></div></div>
       <div class="chart-pct">${pct}%</div>
     </div>`;
   });
@@ -738,13 +725,13 @@ function showResults(primary){
   setTimeout(()=>{
     chartData.forEach(c=>{
       const width = Math.max(Math.round((c.score/maxScore)*100),4);
-      document.getElementById('bar-'+c.label.toLowerCase()).style.width = width+'%';
+      const barId = c.label.toLowerCase().replace(/\s+/g,'-');
+      document.getElementById('bar-'+barId).style.width = width+'%';
     });
   },200);
 
-  // Free practice description + Do This Today
+  // Free practice description
   document.getElementById('r-practice-desc').textContent = d.practice;
-  document.getElementById('r-do-this').textContent = d.doThis;
 }
 
 function copyShareLink(){
