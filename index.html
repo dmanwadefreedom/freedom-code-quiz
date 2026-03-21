@@ -1,22 +1,1231 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Quiz — Why Do You Stay Stuck?</title>
-<meta name="description" content="3-minute quiz. There are 4 reasons people stay stuck. Find out which one is yours — and what to do about it.">
-<style>body{background:#1a1714;}</style>
-<script>
-// A/B Split — 50/50 random redirect, sticky per visitor
-(function(){
-  var v = localStorage.getItem('quiz_version');
-  if (!v) {
-    v = Math.random() < 0.5 ? 'a' : 'b';
-    localStorage.setItem('quiz_version', v);
-  }
-  window.location.replace('/' + v + '/');
-})();
-</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dylan Ewing — Break The Pattern</title>
+  <meta name="description" content="Near-death survivor. Pattern breaker. Retreat leader. Creator of Freedom Code — the 30-day system that rewires the cycles keeping you stuck.">
+  <meta property="og:title" content="Dylan Ewing — Break The Pattern">
+  <meta property="og:description" content="I shouldn't be here. But I am. And everything is different now.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0a0908;
+      --bg-2: #12100e;
+      --bg-3: #1a1714;
+      --glass: rgba(255,255,255,0.025);
+      --glass-border: rgba(200, 164, 92, 0.07);
+      --glass-hover: rgba(200, 164, 92, 0.15);
+      --gold: #c8a45c;
+      --gold-l: #d9c07a;
+      --gold-glow: rgba(200, 164, 92, 0.12);
+      --gold-dim: rgba(200, 164, 92, 0.06);
+      --text: #e8e0d4;
+      --text-d: #9a9590;
+      --text-m: #5a5550;
+      --white: #fff;
+      --red: #d4644a;
+      --amber: #d4a74a;
+      --blue: #6a8fb5;
+      --green: #6ab58f;
+      --max: 1200px;
+      --r: 20px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      -webkit-font-smoothing: antialiased; overflow-x: hidden;
+    }
+    h1, h2, h3, h4 { font-family: 'DM Serif Display', serif; font-weight: 400; line-height: 1.15; }
+    a { color: var(--gold); text-decoration: none; }
+    .ct { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+    .ct-sm { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+    /* ═══════ LIVING SACRED GEOMETRY BACKGROUND ═══════ */
+    #sacred-bg {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 0; overflow: hidden;
+    }
+
+    /* Canvas for the living geometry */
+    #geo-canvas {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 0;
+    }
+
+    /* SVG layers on top of canvas */
+    .sg-layer {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      will-change: transform; transition: transform 0.15s ease-out;
+    }
+    .sg-layer svg { opacity: 0.12; filter: drop-shadow(0 0 60px rgba(200,164,92,0.1)); }
+    .sg-layer.l1 svg { opacity: 0.1; }
+    .sg-layer.l2 svg { opacity: 0.09; }
+    .sg-layer.l3 svg { opacity: 0.07; }
+
+    .sg-flower { animation: sgRotate 90s linear infinite; }
+    .sg-meta { animation: sgRotate 140s linear infinite reverse; }
+    .sg-sri { animation: sgBreath 12s ease-in-out infinite; }
+
+    @keyframes sgRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes sgBreath {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 20px rgba(200,164,92,0.05)); }
+      50% { transform: scale(1.08); filter: drop-shadow(0 0 60px rgba(200,164,92,0.12)); }
+    }
+
+    /* Color-shifting glow orbs */
+    .glow-orb {
+      position: fixed; border-radius: 50%; pointer-events: none;
+      filter: blur(80px); mix-blend-mode: screen; z-index: 0;
+      animation: orbDrift linear infinite;
+    }
+    .glow-orb.o1 {
+      width: 600px; height: 600px; top: -150px; right: -100px;
+      background: radial-gradient(circle, rgba(200,164,92,0.18), rgba(160,100,60,0.06), transparent);
+      animation-duration: 25s;
+    }
+    .glow-orb.o2 {
+      width: 500px; height: 500px; bottom: -100px; left: -80px;
+      background: radial-gradient(circle, rgba(106,143,181,0.1), rgba(200,164,92,0.06), transparent);
+      animation-duration: 30s; animation-delay: -12s;
+    }
+    .glow-orb.o3 {
+      width: 450px; height: 450px; top: 40%; left: 30%;
+      background: radial-gradient(circle, rgba(200,164,92,0.1), rgba(106,181,143,0.05), transparent);
+      animation-duration: 35s; animation-delay: -20s;
+    }
+    .glow-orb.o4 {
+      width: 350px; height: 350px; top: 20%; right: 25%;
+      background: radial-gradient(circle, rgba(160,80,200,0.05), rgba(200,164,92,0.06), transparent);
+      animation-duration: 40s; animation-delay: -8s;
+      filter: blur(100px);
+    }
+    @keyframes orbDrift {
+      0% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(40px, -30px) scale(1.1); }
+      50% { transform: translate(-20px, 20px) scale(0.95); }
+      75% { transform: translate(30px, 40px) scale(1.05); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+
+    /* Floating particles — bigger and more visible */
+    .particle {
+      position: fixed; border-radius: 50%;
+      pointer-events: none; z-index: 1;
+      animation: particleFloat linear infinite;
+    }
+    @keyframes particleFloat {
+      0% { opacity: 0; transform: translateY(100vh) scale(0) rotate(0deg); }
+      10% { opacity: 0.6; }
+      50% { opacity: 0.4; }
+      90% { opacity: 0.5; }
+      100% { opacity: 0; transform: translateY(-10vh) scale(1) rotate(180deg); }
+    }
+
+    /* Grain overlay */
+    body::after {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9998; opacity: 0.35;
+    }
+
+    /* Content sits above background */
+    main, nav, footer { position: relative; z-index: 10; }
+
+    /* ═══════ UTILITY ═══════ */
+    .label {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--gold);
+    }
+    .label::before { content: ''; width: 24px; height: 1px; background: var(--gold); opacity: 0.5; }
+    .gtext {
+      background: linear-gradient(135deg, var(--gold-l), var(--gold), #a08040);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 18px 40px; border-radius: 100px; font-weight: 600;
+      font-size: 0.9375rem; letter-spacing: 0.02em;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer; border: none; text-decoration: none;
+      position: relative; overflow: hidden;
+    }
+    .btn-g {
+      background: linear-gradient(135deg, var(--gold), #b8943c);
+      color: var(--bg); box-shadow: 0 4px 24px rgba(200, 164, 92, 0.2);
+    }
+    .btn-g:hover {
+      transform: translateY(-3px); color: var(--bg);
+      box-shadow: 0 20px 60px rgba(200, 164, 92, 0.35);
+    }
+    .btn-g::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, transparent, rgba(255,255,255,0.2), transparent);
+      transform: translateX(-100%); transition: transform 0.7s;
+    }
+    .btn-g:hover::after { transform: translateX(100%); }
+    .btn svg { transition: transform 0.3s; }
+    .btn:hover svg { transform: translateX(5px); }
+    .btn-o {
+      background: transparent; color: var(--gold);
+      border: 1px solid rgba(200, 164, 92, 0.25);
+    }
+    .btn-o:hover { background: var(--gold-dim); border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+    .arrow { width: 18px; height: 18px; }
+
+    /* ═══════ NAV ═══════ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0 24px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    nav.scrolled {
+      background: rgba(10, 9, 8, 0.92);
+      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--glass-border);
+    }
+    nav .inner { max-width: var(--max); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .nlogo { font-family: 'DM Serif Display', serif; font-size: 1.25rem; color: var(--white); }
+    .nlinks { display: flex; gap: 36px; align-items: center; }
+    .nlinks a { color: var(--text-d); font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.03em; transition: color 0.25s; position: relative; }
+    .nlinks a:not(.ncta)::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width 0.3s; }
+    .nlinks a:not(.ncta):hover { color: var(--white); }
+    .nlinks a:not(.ncta):hover::after { width: 100%; }
+    .ncta {
+      background: rgba(200,164,92,0.1) !important; color: var(--gold) !important;
+      padding: 9px 22px !important; border-radius: 100px; font-weight: 600 !important;
+      font-size: 0.75rem !important; letter-spacing: 0.06em; text-transform: uppercase;
+      border: 1px solid rgba(200,164,92,0.2); transition: all 0.3s !important;
+    }
+    .ncta:hover { background: var(--gold) !important; color: var(--bg) !important; border-color: var(--gold) !important; }
+    .ncta::after { display: none !important; }
+    .mtog { display: none; background: none; border: none; color: var(--text); cursor: pointer; padding: 8px; }
+
+    /* ═══════ HERO ═══════ */
+    .hero { min-height: 100vh; display: flex; align-items: center; padding: 100px 0 80px; }
+    .hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 80px; align-items: center; }
+    .hero-content { position: relative; }
+    .hero h1 { font-size: clamp(2.75rem, 5.5vw, 4.5rem); color: var(--white); margin-bottom: 28px; }
+    .hero h1 .line { display: block; }
+    .hero h1 .dim { color: var(--text-d); }
+    .hero-body { font-size: 1.0625rem; color: var(--text-d); line-height: 1.8; max-width: 520px; margin-bottom: 44px; }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 56px; }
+    .hero-stats { display: flex; gap: 48px; padding-top: 40px; border-top: 1px solid var(--glass-border); }
+    .hero-stat .val { font-family: 'DM Serif Display', serif; font-size: 1.75rem; color: var(--white); }
+    .hero-stat .desc { font-size: 0.6875rem; color: var(--text-m); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
+
+    .hero-visual { position: relative; }
+    .hero-card {
+      width: 100%; aspect-ratio: 3/4; border-radius: 24px; overflow: hidden;
+      border: 1px solid var(--glass-border); background: var(--bg-2); position: relative;
+    }
+    .hero-card-ph {
+      width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(160deg, var(--bg-2), var(--bg-3));
+      color: var(--text-m); font-size: 0.875rem; flex-direction: column; gap: 8px;
+    }
+    .hero-card-ph svg { opacity: 0.3; }
+    .hfc {
+      position: absolute; padding: 16px 20px;
+      background: rgba(10,9,8,0.88); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border); border-radius: 16px;
+      font-size: 0.8125rem; z-index: 3; animation: hfloat 6s ease-in-out infinite;
+    }
+    .hfc.top { top: 40px; right: -40px; }
+    .hfc.bot { bottom: 60px; left: -40px; animation-delay: -3s; }
+    .hfc-l { color: var(--text-m); font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+    .hfc-v { color: var(--white); font-weight: 600; }
+    .hfc-v .g { color: var(--gold); }
+    @keyframes hfloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+    /* ═══════ STORY ═══════ */
+    .story { padding: 160px 0; overflow: hidden; }
+    .story-hd { text-align: center; margin-bottom: 80px; }
+    .story-hd h2 { font-size: clamp(2.25rem, 4.5vw, 3.5rem); color: var(--white); margin-bottom: 16px; }
+    .story-hd p { font-size: 1.0625rem; color: var(--text-d); max-width: 500px; margin: 0 auto; }
+
+    .tl { position: relative; max-width: 880px; margin: 0 auto; }
+    .tl::before {
+      content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(200,164,92,0.1), rgba(200,164,92,0.1), transparent);
+      transform: translateX(-50%);
+    }
+    .tl-item { display: flex; margin-bottom: 72px; position: relative; }
+    .tl-item:last-child { margin-bottom: 0; }
+    .tl-item.left { flex-direction: row; }
+    .tl-item.right { flex-direction: row-reverse; }
+    .tl-box {
+      width: calc(50% - 40px); padding: 32px;
+      background: var(--glass); border: 1px solid var(--glass-border);
+      border-radius: var(--r); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      transition: all 0.4s;
+    }
+    .tl-box:hover { border-color: var(--glass-hover); transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+    .tl-item.left .tl-box { text-align: right; margin-right: 40px; }
+    .tl-item.right .tl-box { text-align: left; margin-left: 40px; }
+    .tl-dot-wrap {
+      position: absolute; left: 50%; top: 32px; transform: translateX(-50%);
+      width: 18px; height: 18px; display: flex; align-items: center; justify-content: center;
+    }
+    .tl-dot {
+      width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--gold);
+      background: var(--bg); box-shadow: 0 0 24px var(--gold-glow), 0 0 48px rgba(200,164,92,0.06);
+    }
+    .tl-tag {
+      display: inline-block; font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; padding: 4px 14px; border-radius: 100px; margin-bottom: 14px;
+    }
+    .tl-tag.dark { background: rgba(212,100,74,0.1); color: var(--red); }
+    .tl-tag.build { background: rgba(212,167,74,0.1); color: var(--amber); }
+    .tl-tag.turn { background: var(--gold-dim); color: var(--gold); }
+    .tl-tag.light { background: rgba(106,181,143,0.1); color: var(--green); }
+    .tl-tag.spirit { background: rgba(106,143,181,0.1); color: var(--blue); }
+    .tl-box h3 { font-size: 1.25rem; color: var(--white); margin-bottom: 10px; }
+    .tl-box p { font-size: 0.9rem; color: var(--text-d); line-height: 1.7; }
+
+    .story-quote {
+      text-align: center; padding: 80px 0 0;
+    }
+    .story-quote blockquote {
+      font-family: 'DM Serif Display', serif; font-style: italic;
+      font-size: clamp(1.375rem, 2.8vw, 2rem); max-width: 640px;
+      margin: 0 auto; line-height: 1.45;
+    }
+    .story-quote blockquote .gtext { -webkit-text-fill-color: transparent; }
+    .story-quote cite {
+      display: block; margin-top: 20px; font-family: 'DM Sans', sans-serif;
+      font-style: normal; font-size: 0.8125rem; color: var(--text-m); letter-spacing: 0.06em;
+    }
+
+    /* ═══════ CREDENTIALS ═══════ */
+    .creds { padding: 120px 0; }
+    .creds-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .creds-text .label { margin-bottom: 28px; }
+    .creds-text h2 { font-size: clamp(2rem, 4vw, 3rem); color: var(--white); margin-bottom: 20px; }
+    .creds-text > p { font-size: 1.0625rem; color: var(--text-d); line-height: 1.8; margin-bottom: 40px; }
+    .cred-list { list-style: none; display: flex; flex-direction: column; gap: 20px; }
+    .cred-list li {
+      display: flex; align-items: flex-start; gap: 16px;
+      font-size: 0.9375rem; color: var(--text-d); line-height: 1.6;
+    }
+    .cred-icon {
+      width: 40px; height: 40px; border-radius: 12px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--gold-dim); color: var(--gold);
+    }
+
+    .creds-cards { display: flex; flex-direction: column; gap: 16px; }
+    .cred-card {
+      padding: 28px; border-radius: var(--r);
+      background: var(--glass); border: 1px solid var(--glass-border);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      transition: all 0.3s;
+    }
+    .cred-card:hover { border-color: var(--glass-hover); transform: translateX(4px); }
+    .cred-card .num {
+      font-family: 'DM Serif Display', serif; font-size: 2.5rem; line-height: 1;
+    }
+    .cred-card .num.gold { color: var(--gold); }
+    .cred-card .num.blue { color: var(--blue); }
+    .cred-card .num.green { color: var(--green); }
+    .cred-card .txt { font-size: 0.875rem; color: var(--text-d); margin-top: 6px; }
+
+    /* ═══════ PROGRAM ═══════ */
+    .program { padding: 160px 0; }
+    .program::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 30%, var(--bg-2) 70%, var(--bg) 100%);
+      pointer-events: none;
+    }
+    .program { position: relative; }
+    .program-hd { text-align: center; margin-bottom: 80px; position: relative; }
+    .program-hd h2 { font-size: clamp(2.25rem, 4.5vw, 3.5rem); color: var(--white); margin-bottom: 16px; }
+    .program-hd p { font-size: 1.0625rem; color: var(--text-d); max-width: 520px; margin: 0 auto; }
+
+    .p-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 80px; position: relative; }
+    .pc {
+      background: var(--glass); border: 1px solid var(--glass-border);
+      border-radius: var(--r); padding: 44px 32px;
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative; overflow: hidden;
+    }
+    .pc::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+      opacity: 0; transition: opacity 0.4s;
+    }
+    .pc:hover { border-color: var(--glass-hover); transform: translateY(-8px); box-shadow: 0 24px 64px rgba(0,0,0,0.4); }
+    .pc:hover::before { opacity: 1; }
+    .pc-step { font-family: 'DM Serif Display', serif; font-size: 3.5rem; color: rgba(200,164,92,0.05); line-height: 1; margin-bottom: 24px; }
+    .pc-icon {
+      width: 52px; height: 52px; border-radius: 14px; background: var(--gold-dim);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 28px; color: var(--gold); transition: all 0.3s;
+    }
+    .pc:hover .pc-icon { background: var(--gold); color: var(--bg); box-shadow: 0 8px 24px var(--gold-glow); }
+    .pc h3 { font-size: 1.375rem; color: var(--white); margin-bottom: 14px; }
+    .pc p { font-size: 0.9375rem; color: var(--text-d); line-height: 1.7; }
+
+    .offer {
+      text-align: center; padding: 64px; border-radius: 24px; position: relative;
+      background: linear-gradient(135deg, rgba(200,164,92,0.05), rgba(200,164,92,0.015));
+      border: 1px solid var(--glass-border);
+    }
+    .offer-price { display: flex; align-items: baseline; justify-content: center; gap: 16px; margin-bottom: 8px; }
+    .offer-price .amt { font-family: 'DM Serif Display', serif; font-size: 3.5rem; color: var(--white); }
+    .offer-price .cmp { font-size: 0.9375rem; color: var(--text-m); text-decoration: line-through; }
+    .offer-note { font-size: 0.9375rem; color: var(--text-d); margin-bottom: 36px; }
+    .offer-feats { display: flex; justify-content: center; gap: 32px; margin-bottom: 40px; flex-wrap: wrap; }
+    .of { display: flex; align-items: center; gap: 8px; font-size: 0.8125rem; color: var(--text-d); }
+    .of svg { color: var(--gold); flex-shrink: 0; }
+
+    /* ═══════ PATTERNS ═══════ */
+    .patterns { padding: 160px 0; }
+    .pat-hd { text-align: center; margin-bottom: 80px; }
+    .pat-hd h2 { font-size: clamp(2.25rem, 4.5vw, 3.5rem); color: var(--white); margin-bottom: 16px; }
+    .pat-hd p { font-size: 1.0625rem; color: var(--text-d); max-width: 500px; margin: 0 auto; }
+
+    .pat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 64px; }
+    .patc {
+      background: var(--glass); border: 1px solid var(--glass-border);
+      border-radius: var(--r); padding: 36px 24px; text-align: center;
+      transition: all 0.4s; position: relative; overflow: hidden;
+    }
+    .patc::after {
+      content: ''; position: absolute; bottom: 0; left: 15%; right: 15%; height: 2px;
+      border-radius: 2px; opacity: 0; transition: all 0.3s;
+    }
+    .patc:hover { transform: translateY(-8px); border-color: var(--glass-hover); box-shadow: 0 20px 48px rgba(0,0,0,0.3); }
+    .patc:hover::after { opacity: 1; left: 10%; right: 10%; }
+    .patc.fixer::after { background: var(--red); }
+    .patc.busy::after { background: var(--amber); }
+    .patc.quiet::after { background: var(--blue); }
+    .patc.pleaser::after { background: var(--green); }
+    .pati {
+      width: 72px; height: 72px; border-radius: 20px;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px; transition: all 0.3s;
+    }
+    .pati.fixer { background: rgba(212,100,74,0.08); color: var(--red); }
+    .pati.busy { background: rgba(212,167,74,0.08); color: var(--amber); }
+    .pati.quiet { background: rgba(106,143,181,0.08); color: var(--blue); }
+    .pati.pleaser { background: rgba(106,181,143,0.08); color: var(--green); }
+    .patc:hover .pati { transform: scale(1.1); }
+    .patc h3 { font-size: 1.25rem; color: var(--white); margin-bottom: 10px; }
+    .patc p { font-size: 0.8125rem; color: var(--text-d); line-height: 1.6; }
+    .pat-cta { text-align: center; }
+
+    /* ═══════ PROOF ═══════ */
+    .proof { padding: 120px 0; }
+    .proof-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .proofc {
+      text-align: center; padding: 48px 24px; border-radius: var(--r);
+      border: 1px solid var(--glass-border); background: var(--glass);
+      transition: all 0.3s; cursor: pointer;
+    }
+    .proofc:hover { border-color: var(--glass-hover); transform: translateY(-4px); }
+    .proofn { font-family: 'DM Serif Display', serif; font-size: 2.75rem; line-height: 1; color: var(--gold); }
+    .proofp { font-size: 0.6875rem; color: var(--text-m); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 10px; }
+
+    /* ═══════ FINAL CTA ═══════ */
+    .final { padding: 160px 0; text-align: center; position: relative; }
+    .final-glow {
+      position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse at center 40%, rgba(200,164,92,0.07) 0%, transparent 55%);
+    }
+    .final h2 { font-size: clamp(2.5rem, 5vw, 4rem); color: var(--white); margin-bottom: 20px; position: relative; }
+    .final p { font-size: 1.0625rem; color: var(--text-d); max-width: 520px; margin: 0 auto 48px; position: relative; line-height: 1.7; }
+    .final .btn { position: relative; }
+    .final-n { font-size: 0.75rem; color: var(--text-m); margin-top: 20px; position: relative; }
+
+    /* ═══════ FOOTER ═══════ */
+    footer { padding: 48px 0; border-top: 1px solid var(--glass-border); }
+    footer .ct { display: flex; justify-content: space-between; align-items: center; }
+    .fcopy { font-size: 0.75rem; color: var(--text-m); }
+    .flinks { display: flex; gap: 28px; }
+    .flinks a { font-size: 0.75rem; color: var(--text-m); transition: color 0.2s; }
+    .flinks a:hover { color: var(--text); }
+
+    /* ═══════ REVEAL ═══════ */
+    .r { opacity: 0; transform: translateY(40px); transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1); }
+    .r.v { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: .1s; } .d2 { transition-delay: .2s; } .d3 { transition-delay: .3s; }
+    .d4 { transition-delay: .4s; } .d5 { transition-delay: .5s; }
+
+    /* ═══════ RESPONSIVE ═══════ */
+    @media (max-width: 1024px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+      .hero-visual { max-width: 380px; margin: 0 auto; order: -1; }
+      .hero-content { text-align: center; }
+      .hero-body { margin: 0 auto 44px; }
+      .hero-actions { justify-content: center; }
+      .hero-stats { justify-content: center; }
+      .hfc { display: none; }
+      .p-cards { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto 80px; }
+      .pat-grid { grid-template-columns: repeat(2, 1fr); }
+      .proof-grid { grid-template-columns: repeat(2, 1fr); }
+      .creds-grid { grid-template-columns: 1fr; gap: 48px; }
+      .tl::before { left: 20px; }
+      .tl-dot-wrap { left: 20px; transform: translateX(-50%); }
+      .tl-item, .tl-item.left, .tl-item.right { flex-direction: row; }
+      .tl-item .tl-box, .tl-item.left .tl-box, .tl-item.right .tl-box {
+        width: 100%; margin-left: 50px; margin-right: 0; text-align: left;
+      }
+    }
+    @media (max-width: 768px) {
+      .nlinks { display: none; }
+      .nlinks.open {
+        display: flex; flex-direction: column; position: absolute;
+        top: 72px; left: 0; right: 0; background: rgba(10,9,8,0.97);
+        backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+        padding: 24px; gap: 20px; border-bottom: 1px solid var(--glass-border);
+      }
+      .nlinks.open a::after { display: none; }
+      .mtog { display: block; }
+      .hero { min-height: auto; padding: 100px 0 60px; }
+      .hero h1 { font-size: 2.5rem; }
+      .hero-stats { flex-wrap: wrap; gap: 28px; }
+      .hero-card { max-width: 300px; margin: 0 auto; }
+      .pat-grid { grid-template-columns: 1fr 1fr; }
+      .proof-grid { grid-template-columns: 1fr 1fr; }
+      .offer { padding: 40px 24px; }
+      .offer-feats { flex-direction: column; align-items: center; gap: 16px; }
+      .story, .creds, .program, .patterns, .final { padding: 100px 0; }
+      footer .ct { flex-direction: column; gap: 20px; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 2rem; }
+      .pat-grid { grid-template-columns: 1fr; max-width: 340px; margin: 0 auto 64px; }
+      .proof-grid { grid-template-columns: 1fr; max-width: 340px; margin: 0 auto; }
+      .hero-stats { flex-direction: column; align-items: center; }
+      .btn { padding: 16px 32px; font-size: 0.875rem; }
+      .cred-card .num { font-size: 2rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition-duration: 0s !important; }
+      .r { opacity: 1; transform: none; }
+      html { scroll-behavior: auto; }
+      .particle { display: none; }
+    }
+  </style>
 </head>
-<body></body>
+<body>
+
+  <!-- ═══ LIVING SACRED GEOMETRY ═══ -->
+  <canvas id="geo-canvas"></canvas>
+  <div class="glow-orb o1"></div>
+  <div class="glow-orb o2"></div>
+  <div class="glow-orb o3"></div>
+  <div class="glow-orb o4"></div>
+  <div id="sacred-bg">
+    <!-- Layer 1: Flower of Life -->
+    <div class="sg-layer l1" data-depth="0.03">
+      <svg class="sg-flower" width="1200" height="1200" viewBox="0 0 600 600" fill="none" stroke="rgba(200,164,92,1)" stroke-width="0.5">
+        <circle cx="300" cy="300" r="100"/>
+        <circle cx="300" cy="200" r="100"/>
+        <circle cx="386.6" cy="250" r="100"/>
+        <circle cx="386.6" cy="350" r="100"/>
+        <circle cx="300" cy="400" r="100"/>
+        <circle cx="213.4" cy="350" r="100"/>
+        <circle cx="213.4" cy="250" r="100"/>
+        <circle cx="300" cy="100" r="100"/>
+        <circle cx="386.6" cy="150" r="100"/>
+        <circle cx="473.2" cy="200" r="100"/>
+        <circle cx="473.2" cy="300" r="100"/>
+        <circle cx="473.2" cy="400" r="100"/>
+        <circle cx="386.6" cy="450" r="100"/>
+        <circle cx="300" cy="500" r="100"/>
+        <circle cx="213.4" cy="450" r="100"/>
+        <circle cx="126.8" cy="400" r="100"/>
+        <circle cx="126.8" cy="300" r="100"/>
+        <circle cx="126.8" cy="200" r="100"/>
+        <circle cx="213.4" cy="150" r="100"/>
+      </svg>
+    </div>
+    <!-- Layer 2: Metatron's Cube -->
+    <div class="sg-layer l2" data-depth="0.06">
+      <svg class="sg-meta" width="900" height="900" viewBox="0 0 500 500" fill="none" stroke="rgba(200,164,92,1)" stroke-width="0.4">
+        <!-- Outer hexagon -->
+        <polygon points="250,50 433,144 433,356 250,450 67,356 67,144"/>
+        <!-- Inner hexagon -->
+        <polygon points="250,144 347,194 347,306 250,356 153,306 153,194"/>
+        <!-- Center to vertices -->
+        <line x1="250" y1="250" x2="250" y2="50"/>
+        <line x1="250" y1="250" x2="433" y2="144"/>
+        <line x1="250" y1="250" x2="433" y2="356"/>
+        <line x1="250" y1="250" x2="250" y2="450"/>
+        <line x1="250" y1="250" x2="67" y2="356"/>
+        <line x1="250" y1="250" x2="67" y2="144"/>
+        <!-- Cross connections -->
+        <line x1="250" y1="50" x2="433" y2="356"/>
+        <line x1="433" y1="144" x2="250" y2="450"/>
+        <line x1="433" y1="356" x2="67" y2="144"/>
+        <line x1="250" y1="450" x2="67" y2="144"/>
+        <line x1="67" y1="356" x2="250" y2="50"/>
+        <line x1="67" y1="144" x2="433" y2="356"/>
+        <line x1="250" y1="50" x2="250" y2="450"/>
+        <line x1="67" y1="144" x2="433" y2="144"/>
+        <line x1="67" y1="356" x2="433" y2="356"/>
+        <!-- Circles on vertices -->
+        <circle cx="250" cy="50" r="20"/>
+        <circle cx="433" cy="144" r="20"/>
+        <circle cx="433" cy="356" r="20"/>
+        <circle cx="250" cy="450" r="20"/>
+        <circle cx="67" cy="356" r="20"/>
+        <circle cx="67" cy="144" r="20"/>
+        <circle cx="250" cy="250" r="20"/>
+        <circle cx="250" cy="144" r="15"/>
+        <circle cx="347" cy="194" r="15"/>
+        <circle cx="347" cy="306" r="15"/>
+        <circle cx="250" cy="356" r="15"/>
+        <circle cx="153" cy="306" r="15"/>
+        <circle cx="153" cy="194" r="15"/>
+      </svg>
+    </div>
+    <!-- Layer 3: Sri Yantra simplified -->
+    <div class="sg-layer l3" data-depth="0.09">
+      <svg class="sg-sri" width="700" height="700" viewBox="0 0 400 400" fill="none" stroke="rgba(200,164,92,1)" stroke-width="0.35">
+        <!-- Upward triangles -->
+        <polygon points="200,60 340,310 60,310"/>
+        <polygon points="200,100 310,290 90,290"/>
+        <polygon points="200,140 280,270 120,270"/>
+        <polygon points="200,170 260,255 140,255"/>
+        <!-- Downward triangles -->
+        <polygon points="200,340 60,90 340,90"/>
+        <polygon points="200,310 85,115 315,115"/>
+        <polygon points="200,280 110,140 290,140"/>
+        <polygon points="200,255 135,165 265,165"/>
+        <!-- Center circle -->
+        <circle cx="200" cy="200" r="8"/>
+        <!-- Outer circles -->
+        <circle cx="200" cy="200" r="170"/>
+        <circle cx="200" cy="200" r="175"/>
+      </svg>
+    </div>
+  </div>
+
+  <main>
+
+  <!-- ═══ NAV ═══ -->
+  <nav id="nav">
+    <div class="inner">
+      <a href="#" class="nlogo">Dylan Ewing</a>
+      <div class="nlinks" id="navLinks">
+        <a href="#story">Story</a>
+        <a href="#creds">Training</a>
+        <a href="#program">Freedom Code</a>
+        <a href="#patterns">The Quiz</a>
+        <a href="/a/" class="ncta">Take The Quiz</a>
+      </div>
+      <button class="mtog" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <div class="ct">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="label r">I shouldn't be here. But I am.</div>
+          <h1 class="r d1">
+            <span class="line">Break the pattern</span>
+            <span class="line dim">keeping you stuck.</span>
+          </h1>
+          <p class="hero-body r d2">I left my body during a near-death experience. Came back. Built a 30-day system that rewires the survival patterns running your life. Find yours in 3 minutes.</p>
+          <div class="hero-actions r d3">
+            <a href="/a/" class="btn btn-g">
+              Find Your Pattern — Free Quiz
+              <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </div>
+          <div class="hero-stats r d4">
+            <div class="hero-stat"><div class="val">45K+</div><div class="desc">Community</div></div>
+            <div class="hero-stat"><div class="val">100+</div><div class="desc">Awakenings</div></div>
+            <div class="hero-stat"><div class="val">50+</div><div class="desc">Breathwork Sessions</div></div>
+          </div>
+        </div>
+        <div class="hero-visual r d2">
+          <div class="hfc top">
+            <div class="hfc-l">Sober</div>
+            <div class="hfc-v">Years clean. <span class="g">Zero desire.</span></div>
+          </div>
+          <div class="hero-card">
+            <img class="hero-card-img" src="img/dylan-breathwork.jpg" alt="Dylan Ewing leading a breathwork session" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="hfc bot">
+            <div class="hfc-l">Based in</div>
+            <div class="hfc-v">Philippines <span class="g">5 years</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ STORY ═══ -->
+  <section class="story" id="story">
+    <div class="ct-sm">
+      <div class="story-hd r">
+        <div class="label" style="justify-content:center;">The Real Story</div>
+        <h2>This isn't a highlight reel.</h2>
+        <p>This is what actually happened. All of it.</p>
+      </div>
+    </div>
+    <div class="ct">
+      <div class="tl">
+        <div class="tl-item left r">
+          <div class="tl-box">
+            <span class="tl-tag dark">The Beginning</span>
+            <h3>Iraq. An unborn child. Homelessness.</h3>
+            <p>Served in Iraq. Lost an unborn child overseas. Came home and fell apart. Ended up homeless in Pittsburgh. The pattern was already running — I just didn't have a name for it yet.</p>
+          </div>
+          <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+        </div>
+
+        <div class="tl-item right r d1">
+          <div class="tl-box">
+            <span class="tl-tag dark">The Wreck</span>
+            <h3>70mph crash. Walked away untouched.</h3>
+            <p>Should have been dead on impact. Walked away without a scratch. That was the first sign something bigger was happening. I ignored it.</p>
+          </div>
+          <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+        </div>
+
+        <div class="tl-item left r d2">
+          <div class="tl-box">
+            <span class="tl-tag dark">The Spiral</span>
+            <h3>4 overdoses. 4 months.</h3>
+            <p>Found purple and stiff in a bathtub. My wife did CPR over the phone with 911. Hand-bagged with oxygen for 8 hours. Life-flighted for ECMO — full body life support. Week-long coma. Woke up. One month later, it happened again.</p>
+          </div>
+          <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+        </div>
+
+        <div class="tl-item right r d3">
+          <div class="tl-box">
+            <span class="tl-tag turn">November 4, 2016</span>
+            <h3>I left my body.</h3>
+            <p>The 4th time. I went somewhere else. My body was made of tiny connected pieces of light. A being said, "Come on Dylan, let me show you your life." I saw it stretched out like a giant record. I felt a love I can't describe — pure electric energy. I was given a choice. I chose to come back.</p>
+          </div>
+          <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+        </div>
+
+        <div class="tl-item left r d4">
+          <div class="tl-box">
+            <span class="tl-tag build">The Rise</span>
+            <h3>$100K months. Built a company. Walked away.</h3>
+            <p>Got clean. Got hungry. Built a company to six figures a month. From the outside it looked like the comeback story. But the pattern was still running underneath — just wearing a nicer suit.</p>
+          </div>
+          <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+        </div>
+
+        <div class="tl-item right r d5">
+          <div class="tl-box">
+            <span class="tl-tag dark">The Bottom</span>
+            <h3>$0.28. Another country. Alone.</h3>
+            <p>Dropped everything. Left the country. Bank account hit twenty-eight cents. Rebuilt from absolute zero in a foreign country — no team, no safety net, no one to call. Just me and the work.</p>
+          </div>
+          <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+        </div>
+
+        <div class="tl-item left r">
+          <div class="tl-box">
+            <span class="tl-tag spirit">The Training</span>
+            <h3>Every modality. Every medicine. Every master.</h3>
+            <p>Breathwork. Meditation. Shadow work. Plant medicines. Nervous system resets. The Gateway Experience. 12-step work applied to life, not just substances. I studied under every tradition I could find. Not to collect certificates — to find the thing that actually works.</p>
+          </div>
+          <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+        </div>
+
+        <div class="tl-item right r d1">
+          <div class="tl-box">
+            <span class="tl-tag light">The Break</span>
+            <h3>7 generations of addiction. I'm the last.</h3>
+            <p>My family carried this gene for 7 generations. I broke the chain. Sober for years — zero desire remaining. Not white-knuckling it. The thing just disappeared. Married Shane. Built a life in the Philippines. Started helping others see the pattern.</p>
+          </div>
+          <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+        </div>
+      </div>
+
+      <div class="story-quote r" style="max-width:700px;margin:0 auto;">
+        <blockquote>"If someone had taught me how to handle the <span class="gtext">internal</span>, my external wouldn't have been self-sabotaging."</blockquote>
+        <cite>— Dylan Ewing</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CREDENTIALS ═══ -->
+  <section class="creds" id="creds">
+    <div class="ct">
+      <div class="creds-grid">
+        <div class="creds-text r">
+          <div class="label">The Training</div>
+          <h2>I didn't read about healing. I <em class="gtext">lived</em> it.</h2>
+          <p>Trained in dozens of modalities. Led retreats across countries. Held space for over 100 people through spiritual awakening. This isn't theory — it's thousands of hours in the room.</p>
+          <ul class="cred-list">
+            <li>
+              <div class="cred-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2"/><path d="m8 12 3 3 5-5"/></svg>
+              </div>
+              Breathwork, meditation, shadow work, nervous system regulation, inner child work
+            </li>
+            <li>
+              <div class="cred-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 6v6l4 2"/></svg>
+              </div>
+              Plant medicine journeys, Gateway Experience, 12-step applied to life
+            </li>
+            <li>
+              <div class="cred-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              Currently on a mission to help families and men release trauma, addiction, and fill the hole with real connection — from God, not substances
+            </li>
+          </ul>
+        </div>
+        <div class="creds-cards r d2">
+          <div class="cred-card">
+            <div class="num gold">50+</div>
+            <div class="txt">Group breathwork sessions led</div>
+          </div>
+          <div class="cred-card">
+            <div class="num blue">100+</div>
+            <div class="txt">People guided through spiritual awakening</div>
+          </div>
+          <div class="cred-card">
+            <div class="num green">Dozens</div>
+            <div class="txt">Healing modalities trained in</div>
+          </div>
+          <div class="cred-card">
+            <div class="num gold">Retreats</div>
+            <div class="txt">Led transformational retreats, held space for deep healing</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FREEDOM CODE ═══ -->
+  <section class="program" id="program">
+    <div class="ct">
+      <div class="program-hd r">
+        <div class="label" style="justify-content:center;">The System</div>
+        <h2>Freedom Code</h2>
+        <p>30 days. Morning breathwork. Daily protocols. Evening reflection. The system I wish someone had given me 10 years earlier.</p>
+      </div>
+      <div class="p-cards">
+        <div class="pc r d1">
+          <div class="pc-step">01</div>
+          <div class="pc-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <h3>See The Pattern</h3>
+          <p>Take the quiz. Find out which of the 4 survival patterns has been running your decisions since childhood. Most people have never had a name for it.</p>
+        </div>
+        <div class="pc r d2">
+          <div class="pc-step">02</div>
+          <div class="pc-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/><path d="M12 7v5l3 3"/></svg>
+          </div>
+          <h3>Rewire The Loop</h3>
+          <p>30 days of protocols built for your pattern. Breathwork. Meditation. Shadow work. Nervous system resets. Not generic advice — specific to how your brain works.</p>
+        </div>
+        <div class="pc r d3">
+          <div class="pc-step">03</div>
+          <div class="pc-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 7 17l-5-5"/><path d="m22 10-7.5 7.5L13 16"/></svg>
+          </div>
+          <h3>Break Free</h3>
+          <p>By Day 30, the cycle stops. Not because you forced it. Because you outgrew it. The pattern loses its grip when you can finally see it.</p>
+        </div>
+      </div>
+      <!-- Journey Map -->
+      <div class="r" style="margin-bottom:48px;text-align:center;">
+        <img src="img/freedom-code-map.png" alt="Freedom Code 30-Day Journey — 4 Phases" style="max-width:100%;border-radius:16px;border:1px solid var(--glass-border);">
+      </div>
+
+      <div class="offer r">
+        <p style="font-size:1.0625rem;color:var(--text-d);line-height:1.8;max-width:560px;margin:0 auto 12px;">I spent over <strong style="color:var(--gold);">$40,000</strong> and <strong style="color:var(--gold);">10 years</strong> on courses, masterminds, plant medicines, and healing sessions to build what's inside Freedom Code. But first — find your pattern.</p>
+        <p style="font-size:0.9375rem;color:var(--text-m);margin-bottom:36px;">Take the free quiz. Get your result. The rest follows.</p>
+        <a href="/a/" class="btn btn-g">
+          Take The Free Quiz
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 4 PATTERNS ═══ -->
+  <section class="patterns" id="patterns">
+    <div class="ct">
+      <div class="pat-hd r">
+        <div class="label" style="justify-content:center;">Free Quiz</div>
+        <h2>Which Pattern Runs Your Life?</h2>
+        <p>3 minutes. Free. No sign-up to start.</p>
+      </div>
+      <div class="pat-grid">
+        <div class="patc fixer r d1">
+          <div class="pati fixer"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          <h3>The Fixer</h3>
+          <p>You hold it all together. They call you when things fall apart. But you're tired in a way you don't show anyone.</p>
+        </div>
+        <div class="patc busy r d2">
+          <div class="pati busy"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m7 17 5-5 5 5"/><path d="m7 11 5-5 5 5"/></svg></div>
+          <h3>The Busy One</h3>
+          <p>Always moving. Free time feels wrong. You stay busy to avoid feeling something deeper.</p>
+        </div>
+        <div class="patc quiet r d3">
+          <div class="pati quiet"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="10"/></svg></div>
+          <h3>The Quiet One</h3>
+          <p>Steady when everyone else is falling apart. But inside, you feel far away from everything.</p>
+        </div>
+        <div class="patc pleaser r d4">
+          <div class="pati pleaser"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 14s1.5 2 4 2 4-2 4-2"/><circle cx="12" cy="12" r="10"/></svg></div>
+          <h3>The People Pleaser</h3>
+          <p>You make everyone feel seen. But you're not sure who's looking back in the mirror.</p>
+        </div>
+      </div>
+      <div class="pat-cta r">
+        <a href="/a/" class="btn btn-g">
+          Find Your Pattern — Free
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PROOF ═══ -->
+  <section class="proof">
+    <div class="ct">
+      <div class="proof-grid">
+        <a href="https://instagram.com/dylan_ewing13" target="_blank" rel="noopener" class="proofc r d1" style="text-decoration:none;">
+          <div class="proofn">27.2K</div><div class="proofp">Instagram</div>
+        </a>
+        <a href="https://tiktok.com/@dylan_in_philippines" target="_blank" rel="noopener" class="proofc r d2" style="text-decoration:none;">
+          <div class="proofn">18.1K</div><div class="proofp">TikTok</div>
+        </a>
+        <a href="https://facebook.com/dylan.ewing.79" target="_blank" rel="noopener" class="proofc r d3" style="text-decoration:none;">
+          <div class="proofn">5.6K</div><div class="proofp">Facebook</div>
+        </a>
+        <a href="https://linkedin.com/in/dylan-ewing" target="_blank" rel="noopener" class="proofc r d4" style="text-decoration:none;">
+          <div class="proofn">500+</div><div class="proofp">LinkedIn</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FINAL CTA ═══ -->
+  <section class="final">
+    <div class="final-glow"></div>
+    <div class="ct">
+      <h2 class="r">Ready to See Your Pattern?</h2>
+      <p class="r d1">3 minutes. Free. No sign-up. You'll get your result, what it means, and a free 20-minute practice built for your type.</p>
+      <a href="/a/" class="btn btn-g r d2">
+        Take The Quiz Now
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+      <p class="final-n r d3">No credit card. No sign-up. Just your result.</p>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <div class="ct">
+      <p class="fcopy">&copy; 2026 Dylan Ewing &middot; thedylanewing.com</p>
+      <div class="flinks">
+        <a href="https://instagram.com/dylan_ewing13" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://tiktok.com/@dylan_in_philippines" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://linkedin.com/in/dylan-ewing" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="/privacy.html">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ═══ LIVING GEOMETRY CANVAS ═══
+    const canvas = document.getElementById('geo-canvas');
+    const ctx = canvas.getContext('2d');
+    let W, H, mx = 0.5, my = 0.5, cmx = 0.5, cmy = 0.5, t = 0;
+
+    function resize() {
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    document.addEventListener('mousemove', (e) => {
+      mx = e.clientX / W;
+      my = e.clientY / H;
+    });
+
+    // Draw a single Flower of Life ring
+    function flowerRing(cx, cy, r, alpha) {
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(200,164,92,${alpha})`;
+      ctx.stroke();
+    }
+
+    // Full Flower of Life at position
+    function drawFlower(cx, cy, r, alpha) {
+      ctx.lineWidth = 0.6;
+      flowerRing(cx, cy, r, alpha);
+      for (let i = 0; i < 6; i++) {
+        const angle = (Math.PI / 3) * i;
+        flowerRing(cx + r * Math.cos(angle), cy + r * Math.sin(angle), r, alpha * 0.8);
+      }
+      for (let i = 0; i < 6; i++) {
+        const angle = (Math.PI / 3) * i + Math.PI / 6;
+        flowerRing(cx + r * 1.73 * Math.cos(angle), cy + r * 1.73 * Math.sin(angle), r, alpha * 0.5);
+      }
+    }
+
+    // Draw connecting sacred lines
+    function drawSacredLines(cx, cy, r, alpha, rotation) {
+      ctx.lineWidth = 0.4;
+      ctx.strokeStyle = `rgba(200,164,92,${alpha})`;
+      // Hexagram
+      ctx.beginPath();
+      for (let i = 0; i < 7; i++) {
+        const a = rotation + (Math.PI / 3) * i;
+        const x = cx + r * Math.cos(a);
+        const y = cy + r * Math.sin(a);
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+      // Inverted hexagram
+      ctx.beginPath();
+      for (let i = 0; i < 7; i++) {
+        const a = rotation + Math.PI / 6 + (Math.PI / 3) * i;
+        const x = cx + r * Math.cos(a);
+        const y = cy + r * Math.sin(a);
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+    }
+
+    // Mouse-reactive energy tendrils
+    function drawTendrils(cx, cy, mouseInfluence) {
+      const numTendrils = 18;
+      ctx.lineWidth = 0.6;
+      for (let i = 0; i < numTendrils; i++) {
+        const baseAngle = (Math.PI * 2 / numTendrils) * i + t * 0.3;
+        const wobble = Math.sin(t * 2 + i * 0.7) * 0.4;
+        const len = 120 + mouseInfluence * 220 + Math.sin(t + i) * 50;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        const cp1x = cx + Math.cos(baseAngle + wobble) * len * 0.4;
+        const cp1y = cy + Math.sin(baseAngle + wobble) * len * 0.4;
+        const cp2x = cx + Math.cos(baseAngle - wobble * 0.5) * len * 0.7;
+        const cp2y = cy + Math.sin(baseAngle - wobble * 0.5) * len * 0.7;
+        const ex = cx + Math.cos(baseAngle) * len;
+        const ey = cy + Math.sin(baseAngle) * len;
+        ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, ex, ey);
+        const alpha = 0.06 + mouseInfluence * 0.08;
+        ctx.strokeStyle = `rgba(200,164,92,${alpha})`;
+        ctx.stroke();
+      }
+    }
+
+    // Pulsing sacred rings
+    let rings = [];
+    function spawnRing(x, y) {
+      rings.push({ x, y, r: 0, maxR: 200 + Math.random() * 150, alpha: 0.12, speed: 0.8 + Math.random() * 0.5 });
+    }
+    setInterval(() => {
+      const cx = W * 0.5 + (cmx - 0.5) * 80;
+      const cy = H * 0.5 + (cmy - 0.5) * 80;
+      spawnRing(cx + (Math.random() - 0.5) * 200, cy + (Math.random() - 0.5) * 200);
+    }, 3000);
+
+    function drawRings() {
+      rings = rings.filter(r => r.alpha > 0.001);
+      rings.forEach(r => {
+        r.r += r.speed;
+        r.alpha *= 0.985;
+        ctx.beginPath();
+        ctx.arc(r.x, r.y, r.r, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(200,164,92,${r.alpha})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      });
+    }
+
+    // Constellation dots connected by lines near mouse
+    function drawConstellation() {
+      const glowX = mx * W;
+      const glowY = my * H;
+      const numDots = 8;
+      ctx.lineWidth = 0.3;
+      for (let i = 0; i < numDots; i++) {
+        const angle = (Math.PI * 2 / numDots) * i + t * 0.5;
+        const dist = 80 + Math.sin(t * 2 + i) * 30;
+        const dx = glowX + Math.cos(angle) * dist;
+        const dy = glowY + Math.sin(angle) * dist;
+        // Dot
+        ctx.beginPath();
+        ctx.arc(dx, dy, 1.5, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(200,164,92,0.15)';
+        ctx.fill();
+        // Line to next
+        const nextAngle = (Math.PI * 2 / numDots) * ((i + 1) % numDots) + t * 0.5;
+        const nextDist = 80 + Math.sin(t * 2 + (i + 1)) * 30;
+        const nx = glowX + Math.cos(nextAngle) * nextDist;
+        const ny = glowY + Math.sin(nextAngle) * nextDist;
+        ctx.beginPath();
+        ctx.moveTo(dx, dy);
+        ctx.lineTo(nx, ny);
+        ctx.strokeStyle = 'rgba(200,164,92,0.06)';
+        ctx.stroke();
+        // Line to center
+        ctx.beginPath();
+        ctx.moveTo(dx, dy);
+        ctx.lineTo(glowX, glowY);
+        ctx.strokeStyle = 'rgba(200,164,92,0.03)';
+        ctx.stroke();
+      }
+    }
+
+    function drawFrame() {
+      t += 0.005;
+      cmx += (mx - cmx) * 0.03;
+      cmy += (my - cmy) * 0.03;
+      ctx.clearRect(0, 0, W, H);
+
+      const centerX = W * 0.5 + (cmx - 0.5) * 100;
+      const centerY = H * 0.5 + (cmy - 0.5) * 100;
+      const mouseDist = Math.sqrt((cmx - 0.5) ** 2 + (cmy - 0.5) ** 2) * 2;
+
+      // Breathing base radius
+      const breathe = Math.sin(t * 1.5) * 0.1 + 1;
+      const baseR = Math.min(W, H) * 0.2 * breathe;
+
+      // Layer 1: Big outer flower
+      drawFlower(centerX - 60, centerY - 40, baseR * 1.8, 0.035 + mouseDist * 0.02);
+
+      // Layer 2: Sacred lines / hexagram
+      drawSacredLines(centerX, centerY, baseR * 1.4, 0.06 + mouseDist * 0.03, t * 0.2);
+
+      // Layer 3: Core flower
+      drawFlower(centerX + 30, centerY + 20, baseR, 0.07 + mouseDist * 0.04);
+
+      // Layer 4: Inner sacred lines (faster rotation)
+      drawSacredLines(centerX, centerY, baseR * 0.6, 0.04 + mouseDist * 0.02, -t * 0.4);
+
+      // Layer 5: Energy tendrils
+      drawTendrils(centerX, centerY, mouseDist);
+
+      // Layer 6: Pulsing rings
+      drawRings();
+
+      // Layer 7: Constellation around mouse
+      drawConstellation();
+
+      // Mouse cursor glow (bigger + brighter)
+      const glowX = mx * W;
+      const glowY = my * H;
+      const grad = ctx.createRadialGradient(glowX, glowY, 0, glowX, glowY, 350);
+      grad.addColorStop(0, 'rgba(200,164,92,0.1)');
+      grad.addColorStop(0.3, 'rgba(200,164,92,0.04)');
+      grad.addColorStop(0.7, 'rgba(200,164,92,0.01)');
+      grad.addColorStop(1, 'transparent');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, W, H);
+
+      requestAnimationFrame(drawFrame);
+    }
+    drawFrame();
+
+    // ═══ SVG LAYER PARALLAX ═══
+    const layers = document.querySelectorAll('.sg-layer');
+    function animateParallax() {
+      layers.forEach(layer => {
+        const depth = parseFloat(layer.dataset.depth) || 0.03;
+        const moveX = (cmx - 0.5) * depth * 1200;
+        const moveY = (cmy - 0.5) * depth * 1200;
+        layer.style.transform = `translate(calc(-50% + ${moveX}px), calc(-50% + ${moveY}px))`;
+      });
+      requestAnimationFrame(animateParallax);
+    }
+    animateParallax();
+
+    // ═══ FLOATING PARTICLES (sacred) ═══
+    function createParticles() {
+      const container = document.getElementById('sacred-bg');
+      for (let i = 0; i < 50; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.animationDuration = (12 + Math.random() * 20) + 's';
+        p.style.animationDelay = -(Math.random() * 25) + 's';
+        const size = 1 + Math.random() * 3;
+        p.style.width = size + 'px';
+        p.style.height = size + 'px';
+        // Mix of gold and subtle blue/green
+        const colors = ['rgba(200,164,92,0.5)', 'rgba(200,164,92,0.3)', 'rgba(106,143,181,0.2)', 'rgba(106,181,143,0.15)'];
+        p.style.background = colors[Math.floor(Math.random() * colors.length)];
+        p.style.boxShadow = `0 0 ${4 + Math.random() * 8}px ${p.style.background}`;
+        container.appendChild(p);
+      }
+    }
+    createParticles();
+
+    // ═══ SCROLL REVEAL ═══
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('v'); });
+    }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.r').forEach(el => io.observe(el));
+
+    // ═══ NAV ═══
+    const nav = document.getElementById('nav');
+    let lastY = 0;
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      nav.classList.toggle('scrolled', y > 50);
+      if (y > lastY && y > 120) nav.style.transform = 'translateY(-100%)';
+      else nav.style.transform = 'translateY(0)';
+      lastY = y;
+    }, { passive: true });
+
+    document.querySelectorAll('#navLinks a').forEach(a => {
+      a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+    });
+
+    // ═══ COUNTER ANIMATION ═══
+    const counters = document.querySelectorAll('.proofn');
+    const cio = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const text = el.textContent;
+        const match = text.match(/[\d.]+/);
+        if (!match) return;
+        const target = parseFloat(match[0]);
+        const suffix = text.replace(match[0], '');
+        const isDecimal = text.includes('.');
+        let current = 0;
+        const step = target / 45;
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) { el.textContent = text; clearInterval(timer); }
+          else el.textContent = (isDecimal ? current.toFixed(1) : Math.floor(current)) + suffix;
+        }, 25);
+        cio.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(c => cio.observe(c));
+  </script>
+
+</body>
 </html>
