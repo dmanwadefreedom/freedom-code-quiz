@@ -270,7 +270,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   <div class="free-practice anim d5" id="r-free-practice">
     <h3>Your Free 20-Minute Practice</h3>
     <p id="r-practice-desc">We're sending it to your email right now. It's built for your pattern. Do it today.</p>
-    <a class="btn-secondary" id="r-practice-link" href="#" style="display:none">Listen Now &rarr;</a>
+    <p id="r-practice-desc" style="font-size:14px;color:var(--mute);margin-top:12px;"></p>
   </div>
 
   <!-- Paid CTA — direct to checkout -->
@@ -396,7 +396,7 @@ const questions = [
 const TOTAL = 22;
 const SCALED = 12;
 const scaleLabels = ['Strongly Agree','Agree','In The Middle','Disagree','Strongly Disagree'];
-const scalePoints = [4,3,1,0,0];
+const scalePoints = [4,3,1,1,0]; // Fixed: Disagree (1) vs Strongly Disagree (0)
 const letters = ['A','B','C','D','E'];
 
 // Results — 5th grade reading level, short and punchy
@@ -408,12 +408,20 @@ const patternData = {
     iconBg:'rgba(212,100,74,.15)',
     iconColor:'var(--ctrl)',
     sub:"You're the one who holds it all together. When things fall apart, people call you.",
+    origin:"This pattern usually starts before age 7. Something felt chaotic or unsafe growing up. Maybe a parent was absent, unpredictable, or overwhelmed. You learned that if YOU didn\u0027t hold it together, nobody would. That instinct saved you then. It\u0027s exhausting you now.",
     means:[
       "You can't relax because your brain is always solving something.",
       "You feel like if you stop, everything falls apart.",
       "You're tired in a way you don't show anyone."
     ],
-    practice:"This practice helps you feel safe without being in charge. Just 20 minutes. No pressure."
+    cost:[
+      "Burnout that no vacation fixes because your brain won\u0027t stop.",
+      "Relationships where people depend on you but don\u0027t really know you.",
+      "Health issues from carrying stress your body was never designed to hold.",
+      "An inability to delegate that caps your income and freedom."
+    ],
+    bridge:"Freedom Code Day 4 has an inner child letter exercise built specifically for Fixers. It targets the exact moment this pattern was installed. Day 10 goes deeper with a forgiveness protocol. 30 days to break a pattern that\u0027s been running for decades.",
+    practice:"We\u0027ll send a free 20-minute practice to your email. It helps you feel safe without being in charge."
   },
   runner: {
     name:'The Busy One',
@@ -422,12 +430,20 @@ const patternData = {
     iconBg:'rgba(212,167,74,.15)',
     iconColor:'var(--run)',
     sub:"You're always moving. Always building. But you never feel like you can stop.",
+    origin:"Before age 7, something made you feel like you weren\u0027t enough just being still. Maybe love was conditional on achievement. Maybe you saw a parent who only felt valuable when producing. Your nervous system learned: movement = safety. Stillness = danger. So you never stop.",
     means:[
       "You fill every gap in your schedule. Free time feels wrong.",
       "You stay busy to avoid feeling something deeper.",
       "You've built a lot, but you can't enjoy any of it."
     ],
-    practice:"This practice helps you sit still without your body treating it like danger. Just 20 minutes."
+    cost:[
+      "Years of motion disguised as progress \u2014 busy but not fulfilled.",
+      "Relationships you left before they could leave you.",
+      "Money earned but never enjoyed because you\u0027re already chasing the next thing.",
+      "A body that\u0027s been in fight-or-flight so long it forgot what calm feels like."
+    ],
+    bridge:"Freedom Code Day 12 is a full dopamine fast designed for Busy Ones. You\u0027ll sit with the discomfort your pattern has been running from. Day 15 rebuilds your morning with intention instead of reaction. 30 days to stop running.",
+    practice:"We\u0027ll send a free 20-minute practice to your email. It helps you sit still without your body treating it like danger."
   },
   ghost: {
     name:'The Quiet One',
@@ -436,12 +452,20 @@ const patternData = {
     iconBg:'rgba(106,143,181,.15)',
     iconColor:'var(--gho)',
     sub:"You're the calm one. Steady when everyone else is falling apart. But inside, you feel far away.",
+    origin:"Before age 7, showing emotion wasn\u0027t safe. Maybe feelings were mocked, ignored, or met with anger. Your nervous system learned to disconnect. Go quiet. Retreat inward. You became the calm one \u2014 not because you\u0027re at peace, but because your body learned to shut down instead of show up.",
     means:[
       "You feel tired even when you haven't done anything.",
       "You zone out or check out during big moments.",
       "You have goals but can't seem to start them."
     ],
-    practice:"This practice helps your body feel safe enough to come back online. Gentle. 20 minutes."
+    cost:[
+      "Opportunities that passed while you were \"thinking about it.\"",
+      "Relationships where people gave up trying to reach you.",
+      "A persistent emptiness that no amount of alone time fixes.",
+      "Dreams you\u0027ve had for years that never move past the idea stage."
+    ],
+    bridge:"Freedom Code Day 3 introduces shadow awareness \u2014 specifically for Quiet Ones who\u0027ve been hiding from their own emotions. Day 6 uses somatic release to bring your body back online. 30 days to come back to life.",
+    practice:"We\u0027ll send a free 20-minute practice to your email. Gentle. Helps your body feel safe enough to come back online."
   },
   chameleon: {
     name:'The People Pleaser',
@@ -450,12 +474,20 @@ const patternData = {
     iconBg:'rgba(106,181,143,.15)',
     iconColor:'var(--cha)',
     sub:"You make everyone feel seen. But when you look in the mirror, you're not sure who's looking back.",
+    origin:"Before age 7, love had conditions. You learned that being yourself wasn\u0027t enough \u2014 you had to become what other people needed. You shapeshifted to survive. The teacher\u0027s favorite. The easy kid. The one who never made waves. You got so good at reading rooms that you forgot what your own voice sounds like.",
     means:[
       "You say yes when you mean no. Saying no feels wrong.",
       "You change who you are based on who's in the room.",
       "Everyone brings you their problems. Nobody asks about yours."
     ],
-    practice:"This practice helps you find where you end and other people begin. 20 minutes. Start today."
+    cost:[
+      "Resentment that builds silently because you never say what you actually need.",
+      "Relationships where you\u0027re loved for a version of you that isn\u0027t real.",
+      "Decision paralysis because you\u0027ve been outsourcing your choices for so long.",
+      "A deep loneliness that doesn\u0027t make sense \u2014 you\u0027re surrounded by people but nobody knows you."
+    ],
+    bridge:"Freedom Code Day 5 exposes the defense mechanisms Pleasers use to hide. Day 11 teaches boundary-setting from the nervous system level \u2014 not just scripts. 30 days to find out who you actually are.",
+    practice:"We\u0027ll send a free 20-minute practice to your email. It helps you find where you end and other people begin."
   }
 };
 
@@ -650,8 +682,27 @@ function calculateScores(){
 
 function getPrimary(){
   let max=0, primary='controller';
+  const tied = [];
   for(const [k,v] of Object.entries(scores)){
-    if(v>max){max=v;primary=k;}
+    if(v>max){max=v;primary=k;tied.length=0;tied.push(k);}
+    else if(v===max){tied.push(k);}
+  }
+  // Tiebreaker: count scenario answers per pattern, then use balanced fallback
+  if(tied.length>1){
+    const scenarioCounts={controller:0,runner:0,ghost:0,chameleon:0};
+    for(let i=SCALED;i<TOTAL;i++){
+      if(answers[i]!==null){
+        const q=questions[i];
+        if(q.opts[answers[i]]&&q.opts[answers[i]].p){scenarioCounts[q.opts[answers[i]].p]++;}
+      }
+    }
+    let bestTie=tied[0],bestCount=0;
+    const fallbackOrder=['ghost','chameleon','runner','controller'];
+    for(const t of tied){
+      if(scenarioCounts[t]>bestCount){bestCount=scenarioCounts[t];bestTie=t;}
+      else if(scenarioCounts[t]===bestCount&&fallbackOrder.indexOf(t)<fallbackOrder.indexOf(bestTie)){bestTie=t;}
+    }
+    primary=bestTie;
   }
   return primary;
 }
@@ -676,6 +727,31 @@ function showResults(primary){
   let meansHTML = '<h3>Here\'s What This Means For You</h3><ul>';
   d.means.forEach(m => { meansHTML += `<li>${m}</li>`; });
   meansHTML += '</ul>';
+
+  // Origin story — WHERE this pattern came from
+  if(d.origin){
+    meansHTML += `<div style="margin-top:24px;padding:20px 24px;background:rgba(${d.color==='var(--ctrl)'?'212,100,74':d.color==='var(--run)'?'212,167,74':d.color==='var(--gho)'?'106,143,181':'106,181,143'},.06);border-left:3px solid ${d.color};border-radius:0 12px 12px 0;">
+      <h3 style="font-size:16px;margin-bottom:8px;">Where This Pattern Started</h3>
+      <p style="font-size:15px;line-height:1.8;color:var(--dim);margin:0;">${d.origin}</p>
+    </div>`;
+  }
+
+  // Cost — what this pattern is costing them
+  if(d.cost){
+    meansHTML += `<div style="margin-top:20px;">
+      <h3 style="font-size:16px;margin-bottom:12px;">What This Pattern Is Costing You</h3>
+      <ul style="list-style:none;padding:0;">`;
+    d.cost.forEach(c => { meansHTML += `<li style="padding:8px 0;border-bottom:1px solid rgba(0,0,0,.06);font-size:15px;color:var(--dim);line-height:1.7;">${c}</li>`; });
+    meansHTML += '</ul></div>';
+  }
+
+  // Bridge — specific course connection
+  if(d.bridge){
+    meansHTML += `<div style="margin-top:20px;padding:20px;background:var(--goldg);border:1.5px solid var(--goldb);border-radius:12px;">
+      <p style="font-size:15px;line-height:1.8;color:var(--txt);margin:0;font-weight:500;">${d.bridge}</p>
+    </div>`;
+  }
+
   document.getElementById('r-means').innerHTML = meansHTML;
 
   // Score chart
