@@ -129,6 +129,12 @@ h3{font-family:'DM Serif Display',serif;font-size:clamp(20px,4vw,26px);line-heig
   .hero{padding:48px 0 28px}
   .story{padding:28px 20px}
 }
+
+.sticky-cta{position:fixed;bottom:0;left:0;right:0;background:rgba(10,9,8,0.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:12px 24px;z-index:100;transform:translateY(100%);transition:transform .4s;border-top:1px solid rgba(184,148,60,.15);display:flex;align-items:center;justify-content:center;gap:16px}
+.sticky-cta.show{transform:translateY(0)}
+.sticky-cta .btn{padding:14px 32px;font-size:15px;width:auto;max-width:none}
+.sticky-cta .price{color:#fff;font-family:'DM Serif Display',serif;font-size:24px}
+@media(min-width:769px){.sticky-cta{display:none}}
 </style>
 </head>
 <body>
@@ -142,7 +148,7 @@ h3{font-family:'DM Serif Display',serif;font-size:clamp(20px,4vw,26px);line-heig
   <p class="hero-sub2">Freedom Code is the 30-day protocol that rewires it. Built by a guy who literally died, left his body, came back, and figured out what everybody else is missing.</p>
   <div class="hero-price">$47</div>
   <div class="hero-price-note">One payment. Lifetime access. Start tomorrow morning.</div>
-  <div class="cta-wrap">
+  <div class="cta-wrap" id="checkout">
     <a href="https://buy.stripe.com/cNieVe7Ws1qZbEE7aUeQM1H" class="btn">Start Freedom Code &mdash; $47 &rarr;</a>
     <span class="btn-note">30-day money-back guarantee. You either feel different or you get your money back.</span>
   </div>
@@ -372,7 +378,7 @@ h3{font-family:'DM Serif Display',serif;font-size:clamp(20px,4vw,26px);line-heig
     <div class="stack-item"><span class="name">The Morning Anchor System<span class="sub">Breathwork + meditation sequences</span></span><span class="val">$97</span></div>
     <div class="stack-item"><span class="name">The Gateway Integration Guide<span class="sub">CIA-studied consciousness tech, made simple</span></span><span class="val">$97</span></div>
     <div class="stack-item"><span class="name">YOUR Day 1 Reset<span class="sub">Pattern-specific PDF for immediate relief</span></span><span class="val">$47</span></div>
-    <div class="stack-item"><span class="name">The Shadow Work Library<span class="sub">30 guided video lessons</span></span><span class="val">$97</span></div>
+    <div class="stack-item"><span class="name">The Shadow Work Library<span class="sub">30 guided audio sessions</span></span><span class="val">$97</span></div>
     <div class="stack-item"><span class="name">Lifetime Access + All Future Updates<span class="sub">Including video walkthroughs when they drop</span></span><span class="val" style="text-decoration:none;color:var(--gold)">Priceless</span></div>
   </div>
   <div class="stack-total">
@@ -419,6 +425,7 @@ h3{font-family:'DM Serif Display',serif;font-size:clamp(20px,4vw,26px);line-heig
   <p class="p">If you want a magic pill — this isn't it. There's no hack. No shortcut. No "manifest while you sleep" nonsense.</p>
   <p class="p">This is 20-30 minutes of daily work. Breathwork. Journaling. Facing things you've been running from. It's simple, but it's not easy.</p>
   <p class="p-bold">This IS for people who are done talking about changing and ready to actually do it. One morning at a time. For 30 days.</p>
+  <p class="p" style="margin-top:20px;">You've spent your whole life making sure everyone else is OK. This is 20 minutes a day that's just for you. Nobody else. Just you.</p>
 </div>
 
 <div class="divider"></div>
@@ -472,6 +479,10 @@ h3{font-family:'DM Serif Display',serif;font-size:clamp(20px,4vw,26px);line-heig
     <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Is there a guarantee?</div>
     <div class="faq-a">30 days. Do the work. If you don't feel different, email me. Full refund. No questions. I didn't build this to take your $47. I built it because I almost died and this is what I came back with.</div>
   </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What if I fall behind or miss a day?</div>
+    <div class="faq-a">There's no behind. If you miss a day, open the next email. The course waits for you. Lifetime access. No deadlines. No guilt. The pattern wants you to quit over one missed day. Don't let it win.</div>
+  </div>
 </div>
 
 <!-- ═══ FOOTER ═══ -->
@@ -483,12 +494,27 @@ h3{font-family:'DM Serif Display',serif;font-size:clamp(20px,4vw,26px);line-heig
 
 </div>
 
+<div class="sticky-cta" id="stickyCta">
+  <span class="price">$47</span>
+  <a href="https://buy.stripe.com/cNieVe7Ws1qZbEE7aUeQM1H" class="btn" style="background:var(--gold);color:#fff;font-weight:700;">Get Freedom Code</a>
+</div>
+
 <script>
 // Quiz counter (pulls from localStorage or shows nothing)
 (function(){
   // This could be wired to a real counter via Apps Script later
   var c = document.getElementById('counter');
   if(c) c.textContent = '';
+})();
+
+// Sticky CTA — show after scrolling past hero
+(function(){
+  var sticky = document.getElementById('stickyCta');
+  var shown = false;
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > 600 && !shown){shown=true;sticky.classList.add('show');}
+    if(window.scrollY < 300 && shown){shown=false;sticky.classList.remove('show');}
+  }, {passive:true});
 })();
 </script>
 </body>
