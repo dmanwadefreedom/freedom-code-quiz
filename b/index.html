@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Free Quiz — Why Can't You Just Do It?</title>
-<meta name="description" content="3-minute quiz. You already know what to do — so why can't you do it? There are 4 reasons. Find yours.">
+<title>Free Quiz - Why Can't You Just Do It?</title>
+<meta name="description" content="3-minute quiz. You already know what to do - so why can't you do it? There are 4 reasons. Find yours.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -101,7 +101,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);min-
 .load-dot:nth-child(3){animation-delay:.4s}
 .load-text{font-size:15px;color:var(--dim)}
 
-/* RESULTS — Love Languages style */
+/* RESULTS - Love Languages style */
 .results-screen{padding:60px 0 80px}
 
 /* Pattern icon */
@@ -171,7 +171,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);min-
 <body>
 
 <!-- ================================================ -->
-<!-- SCREEN 1: LANDING — VERSION B (Light Theme)      -->
+<!-- SCREEN 1: LANDING - VERSION B (Light Theme)      -->
 <!-- ================================================ -->
 <div class="screen active" id="screen-landing">
 <div class="landing">
@@ -268,7 +268,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);min-
 </div>
 
 <!-- ================================================ -->
-<!-- SCREEN 5: RESULTS — Redesigned Love Languages    -->
+<!-- SCREEN 5: RESULTS - Redesigned Love Languages    -->
 <!-- ================================================ -->
 <div class="screen" id="screen-results">
 <div class="results-screen">
@@ -280,10 +280,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);min-
   <h2 class="anim d2">You're <span class="pattern-name" id="r-name"></span></h2>
   <p class="results-sub anim d3" id="r-sub"></p>
 
-  <!-- What this means for you — 2-3 bullets -->
+  <!-- What this means for you - 2-3 bullets -->
   <div class="means-for-you anim d4" id="r-means"></div>
 
-  <!-- Score chart — compare all 4 like Love Languages -->
+  <!-- Score chart - compare all 4 like Love Languages -->
   <div class="chart anim d4" id="r-chart">
     <h3>Your Full Score</h3>
   </div>
@@ -295,7 +295,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);min-
     <p id="r-practice-desc" style="font-size:14px;color:var(--mute);margin-top:12px;"></p>
   </div>
 
-  <!-- Paid CTA — direct to checkout -->
+  <!-- Paid CTA - direct to checkout -->
   <div class="paid-cta anim d6">
     <h3>Ready to Break The Pattern?</h3>
     <p>The free practice cracked the door. Freedom Code walks you through 30 days of real change. Morning breathwork. Daily protocols. Evening reflection. Everything shifts.</p>
@@ -306,7 +306,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);min-
   <p style="font-size:14px;color:#888;margin:0;">If you feel different after 60 seconds, imagine 30 days.</p>
 </div>
 
-<a href="/freedom-code/" class="btn">Start Freedom Code &mdash; $47 <span>&rarr;</span></a>
+<a href="/freedom-code/" class="btn">Start Freedom Code - $47 <span>&rarr;</span></a>
     <p style="font-size:13px;color:#888;margin-top:12px;text-align:center;">20 minutes a day. Self-paced. Your schedule.</p>
     <span class="btn-note">30-day money-back guarantee. Most people feel different by Day 3.</span>
   </div>
@@ -331,11 +331,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);min-
 
 <script>
 // ================================================
-// QUESTIONS — 22 total: 12 scaled + 10 scenarios
+// QUESTIONS - 22 total: 12 scaled + 10 scenarios
 // 5th grade reading level throughout
 // ================================================
 const questions = [
-  // PART 1: SCALED (Q1-12) — 3 per pattern
+  // PART 1: SCALED (Q1-12) - 3 per pattern
   {type:'scale',pattern:'controller',text:"When things feel out of control, my first move is to take charge."},
   {type:'scale',pattern:'runner',text:"I feel weird when I have nothing to do. Sitting still makes me restless."},
   {type:'scale',pattern:'ghost',text:"When things get too much, I shut down and go quiet."},
@@ -428,7 +428,7 @@ const scaleLabels = ['Strongly Agree','Agree','In The Middle','Disagree','Strong
 const scalePoints = [4,3,1,1,0]; // Fixed: Disagree (1) vs Strongly Disagree (0);
 const letters = ['A','B','C','D','E'];
 
-// Results — 5th grade reading level, short and punchy
+// Results - 5th grade reading level, short and punchy
 const patternData = {
   controller: {
     name:'The Fixer',
@@ -721,7 +721,7 @@ function getPrimary(){
   d.means.forEach(m => { meansHTML += `<li>${m}</li>`; });
   meansHTML += '</ul>';
 
-  // Origin story — WHERE this pattern came from
+  // Origin story - WHERE this pattern came from
   if(d.origin){
     meansHTML += `<div style="margin-top:24px;padding:20px 24px;background:rgba(${d.color==='var(--ctrl)'?'212,100,74':d.color==='var(--run)'?'212,167,74':d.color==='var(--gho)'?'106,143,181':'106,181,143'},.06);border-left:3px solid ${d.color};border-radius:0 12px 12px 0;">
       <h3 style="font-size:16px;margin-bottom:8px;">Where This Pattern Started</h3>
@@ -729,7 +729,7 @@ function getPrimary(){
     </div>`;
   }
 
-  // Cost — what this pattern is costing them
+  // Cost - what this pattern is costing them
   if(d.cost){
     meansHTML += `<div style="margin-top:20px;">
       <h3 style="font-size:16px;margin-bottom:12px;">What This Pattern Is Costing You</h3>
@@ -738,7 +738,7 @@ function getPrimary(){
     meansHTML += '</ul></div>';
   }
 
-  // Bridge — specific course connection
+  // Bridge - specific course connection
   if(d.bridge){
     meansHTML += `<div style="margin-top:20px;padding:20px;background:var(--goldg);border:1.5px solid var(--goldb);border-radius:12px;">
       <p style="font-size:15px;line-height:1.8;color:var(--txt);margin:0;font-weight:500;">${d.bridge}</p>
