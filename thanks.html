@@ -216,7 +216,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);min-hei
   const courseParams = new URLSearchParams();
   if(pattern) courseParams.set('pattern', pattern);
   if(name) courseParams.set('name', name);
-  const courseUrl = 'course.html' + (courseParams.toString() ? '?' + courseParams.toString() : '');
+  const courseUrl = 'https://course.thedylanewing.com' + (courseParams.toString() ? '?' + courseParams.toString() : '');
   document.getElementById('course-link').href = courseUrl;
 
   // Show pattern badge
