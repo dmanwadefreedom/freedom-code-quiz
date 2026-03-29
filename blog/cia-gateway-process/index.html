@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The CIA Studied Consciousness. Here's What They Found.</title>
+  <meta name="description" content="In 1983, a classified CIA report concluded consciousness can leave the body. Page 25 was hidden for 38 years. Here's exactly what it said.">
+  <link rel="canonical" href="https://thedylanewing.com/blog/cia-gateway-process/">
+  <meta property="og:title" content="The CIA Studied Consciousness. Here's What They Found.">
+  <meta property="og:description" content="In 1983, a classified CIA report concluded consciousness can leave the body. Page 25 was hidden for 38 years. Here's exactly what it said.">
+  <meta property="og:url" content="https://thedylanewing.com/blog/cia-gateway-process/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Dylan Ewing">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The CIA Studied Consciousness. Here's What They Found.">
+  <meta name="twitter:description" content="In 1983, a classified CIA report concluded consciousness can leave the body. Page 25 was hidden for 38 years.">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0a0908; --bg-2: #12100e; --bg-3: #1a1714;
+      --glass: rgba(255,255,255,0.025); --glass-border: rgba(200,164,92,0.07);
+      --glass-hover: rgba(200,164,92,0.15);
+      --gold: #c8a45c; --gold-l: #d9c07a; --gold-glow: rgba(200,164,92,0.12); --gold-dim: rgba(200,164,92,0.06);
+      --text: #e8e0d4; --text-d: #9a9590; --text-m: #5a5550; --white: #fff;
+      --red: #d4644a; --blue: #6a8fb5; --green: #6ab58f;
+      --max: 1200px; --r: 20px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      -webkit-font-smoothing: antialiased; overflow-x: hidden;
+    }
+    h1, h2, h3 { font-family: 'DM Serif Display', serif; font-weight: 400; line-height: 1.15; }
+    a { color: var(--gold); text-decoration: none; }
+    .ct { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+    /* Glow orbs */
+    .glow-orb {
+      position: fixed; border-radius: 50%; pointer-events: none;
+      filter: blur(80px); mix-blend-mode: screen; z-index: 0;
+      animation: orbDrift 25s linear infinite;
+    }
+    .glow-orb.o1 {
+      width: 600px; height: 600px; top: -150px; right: -100px;
+      background: radial-gradient(circle, rgba(200,164,92,0.12), transparent);
+    }
+    .glow-orb.o2 {
+      width: 500px; height: 500px; bottom: -100px; left: -80px;
+      background: radial-gradient(circle, rgba(106,143,181,0.07), transparent);
+      animation-duration: 30s;
+    }
+    @keyframes orbDrift {
+      0% { transform: translate(0,0) scale(1); }
+      50% { transform: translate(-20px,20px) scale(0.95); }
+      100% { transform: translate(0,0) scale(1); }
+    }
+
+    /* Grain overlay */
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9998; opacity: 0.35;
+    }
+    main, nav, footer { position: relative; z-index: 10; }
+
+    /* Nav */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0 24px;
+      background: rgba(10,9,8,0.92);
+      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--glass-border);
+    }
+    nav .inner {
+      max-width: var(--max); margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between; height: 72px;
+    }
+    .nlogo { font-family: 'DM Serif Display', serif; font-size: 1.25rem; color: var(--white); }
+    .nlinks { display: flex; gap: 36px; align-items: center; }
+    .nlinks a {
+      color: var(--text-d); font-size: 0.975rem; font-weight: 500;
+      letter-spacing: 0.03em; transition: color 0.25s; position: relative;
+    }
+    .nlinks a:not(.ncta)::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 1px; background: var(--gold); transition: width 0.3s;
+    }
+    .nlinks a:not(.ncta):hover { color: var(--white); }
+    .nlinks a:not(.ncta):hover::after { width: 100%; }
+    .nlinks a.active { color: var(--gold); }
+    .ncta {
+      background: rgba(200,164,92,0.1); color: var(--gold) !important;
+      padding: 9px 22px; border-radius: 100px; font-weight: 600;
+      font-size: 0.75rem !important; letter-spacing: 0.06em; text-transform: uppercase;
+      border: 1px solid rgba(200,164,92,0.2); transition: all 0.3s; cursor: pointer;
+    }
+    .ncta:hover { background: var(--gold); color: var(--bg) !important; border-color: var(--gold); }
+    .ncta::after { display: none !important; }
+    .mtog {
+      display: none; background: none; border: none;
+      color: var(--text); cursor: pointer; padding: 8px;
+    }
+
+    /* Article layout */
+    .article-wrap { padding: 130px 24px 80px; }
+    .article-inner { max-width: 760px; margin: 0 auto; }
+
+    /* Category pill */
+    .cat {
+      display: inline-block; font-size: 0.6875rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 4px 14px; border-radius: 100px; margin-bottom: 20px; width: fit-content;
+    }
+    .cat-truth { background: rgba(212,100,74,0.1); color: var(--red); }
+
+    /* Article header */
+    .article-title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--white); margin-bottom: 20px; line-height: 1.15;
+    }
+    .article-meta {
+      display: flex; align-items: center; gap: 16px;
+      font-size: 0.875rem; color: var(--text-m);
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--glass-border);
+      margin-bottom: 40px;
+    }
+    .article-meta .author { color: var(--text-d); font-weight: 500; }
+    .article-meta .dot { color: var(--text-m); }
+
+    /* Body text */
+    .article-body p {
+      font-size: 1.0625rem;
+      color: var(--text-d);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .article-body p strong { color: var(--text); font-weight: 600; }
+
+    /* Subheadings */
+    .article-body h2 {
+      font-size: 1.6rem;
+      color: var(--white);
+      margin: 48px 0 18px;
+      line-height: 1.2;
+    }
+
+    /* Blockquotes */
+    .article-body blockquote {
+      border-left: 3px solid var(--gold);
+      padding: 4px 0 4px 24px;
+      margin: 32px 0;
+      font-style: italic;
+      color: var(--text);
+      font-size: 1.0625rem;
+      line-height: 1.75;
+    }
+    .article-body blockquote cite {
+      display: block;
+      margin-top: 10px;
+      font-style: normal;
+      font-size: 0.875rem;
+      color: var(--text-m);
+      letter-spacing: 0.04em;
+    }
+
+    /* Doc reference box */
+    .doc-ref {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 32px 0;
+      font-size: 0.9375rem;
+      color: var(--text-d);
+    }
+    .doc-ref strong { color: var(--gold); }
+    .doc-ref a { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }
+
+    /* CTA section */
+    .quiz-cta {
+      margin-top: 64px;
+      padding: 48px 40px;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--r);
+      text-align: center;
+    }
+    .quiz-cta h2 { font-size: 1.75rem; color: var(--white); margin-bottom: 16px; }
+    .quiz-cta p {
+      font-size: 1.0625rem; color: var(--text-d);
+      max-width: 520px; margin: 0 auto 28px; line-height: 1.7;
+    }
+    .btn-g {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 18px 40px; border-radius: 100px;
+      font-weight: 600; font-size: 1.0625rem;
+      background: linear-gradient(135deg, var(--gold), #b8943c);
+      color: var(--bg);
+      box-shadow: 0 4px 24px rgba(200,164,92,0.2);
+      transition: all 0.4s; cursor: pointer; border: none; text-decoration: none;
+    }
+    .btn-g:hover {
+      transform: translateY(-3px); color: var(--bg);
+      box-shadow: 0 20px 60px rgba(200,164,92,0.35);
+    }
+    .arrow { width: 18px; height: 18px; }
+
+    /* Back to blog */
+    .back-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.875rem; color: var(--text-m);
+      margin-bottom: 40px; transition: color 0.2s; cursor: pointer;
+    }
+    .back-link:hover { color: var(--gold); }
+
+    /* Footer */
+    footer { padding: 48px 0; border-top: 1px solid var(--glass-border); }
+    footer .ct { display: flex; justify-content: space-between; align-items: center; }
+    .fcopy { font-size: 0.9rem; color: var(--text-m); }
+    .flinks { display: flex; gap: 28px; }
+    .flinks a { font-size: 0.9rem; color: var(--text-m); transition: color 0.2s; }
+    .flinks a:hover { color: var(--text); }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .nlinks {
+        display: none; position: fixed; top: 72px; left: 0; right: 0;
+        background: rgba(10,9,8,0.97); backdrop-filter: blur(24px);
+        flex-direction: column; padding: 24px; gap: 20px;
+        border-bottom: 1px solid var(--glass-border);
+      }
+      .nlinks.open { display: flex; }
+      .mtog { display: block; }
+      .article-wrap { padding: 110px 20px 60px; }
+      .quiz-cta { padding: 32px 20px; }
+      footer .ct { flex-direction: column; gap: 20px; text-align: center; }
+      .flinks { flex-wrap: wrap; justify-content: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition-duration: 0s !important; }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "The CIA Studied Consciousness for 20 Years. Here's What They Found.",
+    "description": "In 1983, a classified CIA report concluded human consciousness can leave the body. Page 25 was hidden for 38 years. Here's exactly what it said.",
+    "url": "https://thedylanewing.com/blog/cia-gateway-process/",
+    "datePublished": "2026-03-29",
+    "dateModified": "2026-03-29",
+    "author": {
+      "@type": "Person",
+      "name": "Dylan Ewing",
+      "url": "https://thedylanewing.com"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Dylan Ewing",
+      "url": "https://thedylanewing.com"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://thedylanewing.com/blog/cia-gateway-process/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div class="glow-orb o1"></div>
+  <div class="glow-orb o2"></div>
+
+  <nav id="nav">
+    <div class="inner">
+      <a href="/" class="nlogo">Dylan Ewing</a>
+      <div class="nlinks" id="navLinks">
+        <a href="/#story">Story</a>
+        <a href="/blog/" class="active">Blog</a>
+        <a href="/#program">Freedom Code</a>
+        <a href="/a/" class="ncta">Take The Quiz</a>
+      </div>
+      <button class="mtog" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+    <div class="article-wrap">
+      <div class="article-inner">
+
+        <a href="/blog/" class="back-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Back to Blog
+        </a>
+
+        <span class="cat cat-truth">Truth</span>
+
+        <h1 class="article-title">The CIA Studied Consciousness for 20 Years. Here's What They Found.</h1>
+
+        <div class="article-meta">
+          <span class="author">Dylan Ewing</span>
+          <span class="dot">&middot;</span>
+          <span>March 29, 2026</span>
+          <span class="dot">&middot;</span>
+          <span>6 min read</span>
+        </div>
+
+        <div class="article-body">
+
+          <p>The document is real. You can read it yourself on the CIA's own website.</p>
+
+          <p>Document number CIA-RDP96-00788R001700210016-5. It's a 29-page report commissioned by the US Army. Written by Lt. Col. Wayne McDonnell in 1983. Titled: "Analysis and Assessment of Gateway Process."</p>
+
+          <p>And for 38 years, page 25 was missing.</p>
+
+          <p>Not redacted. Not blacked out. Just gone. A blank space in the middle of a government report about whether human consciousness can leave the physical body.</p>
+
+          <p>That page wasn't recovered until 2003, when a researcher filed a Freedom of Information Act request and got back what the CIA had accidentally omitted for four decades.</p>
+
+          <p>What's on page 25? We'll get to that. But first — you need to understand why the Army was studying this at all.</p>
+
+          <h2>The Monroe Institute and the Sound That Changes Your Brain</h2>
+
+          <p>In the early 1970s, a radio executive named Robert Monroe started having involuntary out-of-body experiences. He thought he was losing his mind. He wasn't.</p>
+
+          <p>Monroe started documenting his experiences. Then he started researching them. He discovered that specific sound frequencies — played separately into each ear — could synchronize the left and right hemispheres of the brain. He called the technique Hemi-Sync. Binaural beats.</p>
+
+          <p>By 1974, Monroe had founded the Monroe Institute in Faber, Virginia. He was training people to have controlled out-of-body experiences using sound. Not drugs. Not meditation retreats. Sound.</p>
+
+          <p>The Army heard about it.</p>
+
+          <p>The US military was already deep into consciousness research at the time. Project MKULTRA had wound down a decade earlier. Remote viewing programs were active. The cold war had made anything related to the limits of human perception a national security interest.</p>
+
+          <p>So in 1983, the Army commissioned Lt. Col. Wayne McDonnell to go to the Monroe Institute, complete the Gateway training program, and write a formal assessment. Not a personal journal. A military analysis.</p>
+
+          <div class="doc-ref">
+            <strong>Source document:</strong> CIA-RDP96-00788R001700210016-5 — "Analysis and Assessment of Gateway Process," Lt. Col. Wayne McDonnell, 1983. Available publicly at <a href="https://www.cia.gov/readingroom/document/cia-rdp96-00788r001700210016-5" target="_blank" rel="noopener">cia.gov/readingroom</a>.
+          </div>
+
+          <h2>What the Gateway Process Actually Is</h2>
+
+          <p>The Gateway program isn't meditation in the way most people think of it. It's a structured progression through what Monroe called "Focus Levels" — distinct states of consciousness accessed through the Hemi-Sync audio technology.</p>
+
+          <p>Focus 10: mind awake, body asleep. Most people never reach this intentionally.</p>
+
+          <p>Focus 12: expanded awareness. The noise of normal thought gets quieter.</p>
+
+          <p>Focus 15: no time. The sense of past and future dissolves.</p>
+
+          <p>Focus 21: the bridge. The boundary between physical and non-physical reality.</p>
+
+          <p>Participants at the Monroe Institute spent days working through these levels. And what they reported — consistently, across backgrounds and belief systems — was that something left their body. They could perceive their physical form from outside it. They could move through space. Some reported contact with other forms of intelligence.</p>
+
+          <p>McDonnell's job was to evaluate this. Not to believe it. To assess it.</p>
+
+          <h2>What the Army Concluded</h2>
+
+          <p>McDonnell didn't dismiss it.</p>
+
+          <p>His report laid out a theoretical framework — drawing on quantum physics, holographic theory, and the work of physicist Itzhak Bentov — to explain how consciousness might exist independently of the physical brain.</p>
+
+          <blockquote>
+            "The universe is holographic in nature. Consciousness is not produced by the brain. The brain is more like a receiver."
+            <cite>— Paraphrased from the theoretical model in the Gateway Process report, CIA-RDP96-00788R001700210016-5</cite>
+          </blockquote>
+
+          <p>He used the model of a hologram to describe how individual human consciousness might be a localized expression of a larger, unified field of consciousness. Not mysticism. Physics.</p>
+
+          <p>The report referenced Bentov's work on the resonance between the human cardiovascular system and the electromagnetic field of the Earth. It described how the Hemi-Sync technology creates a standing wave in the brain — a condition that might allow consciousness to decouple from the body's sensory noise.</p>
+
+          <p>And then McDonnell concluded, in a formal military document: the out-of-body experiences reported by Gateway participants are real phenomena. Consciousness is not limited to the physical body.</p>
+
+          <p>That's page 25.</p>
+
+          <p>That's the page that was missing for 38 years.</p>
+
+          <h2>Why This Was Classified</h2>
+
+          <p>The report itself was classified "For Official Use Only" — a relatively low classification. But the program it was connected to was not low-profile.</p>
+
+          <p>The CIA's remote viewing program, Stargate, ran from 1972 to 1995. It spent over $20 million investigating whether trained individuals could perceive locations, objects, and events at a distance using only their consciousness. The program was officially ended after a 1995 review concluded the intelligence value wasn't high enough.</p>
+
+          <p>But the research continued in other forms. And what the Gateway report shows is that the US military wasn't just interested in espionage applications. They were genuinely investigating whether consciousness was something more than biology.</p>
+
+          <p>The declassification of this document didn't happen because the government decided to be transparent. It happened because someone asked. FOIA request. Bureaucratic accident. Missing page included.</p>
+
+          <p>The question worth sitting with: if this is what they published, what didn't they publish?</p>
+
+          <h2>What This Means for You</h2>
+
+          <p>I'm not asking you to believe in out-of-body experiences. I've had experiences I can't explain — four times I came close to not making it back. What happens at the edge of death is something I've had to make sense of personally.</p>
+
+          <p>But you don't need my story. You have a 29-page Army report.</p>
+
+          <p>What the Gateway document establishes — in formal military language, with a theoretical physics framework attached — is that consciousness isn't a byproduct of the brain. The brain is a receiver. Something is broadcasting.</p>
+
+          <p>That changes what's possible. Not in a vague, inspirational way. Literally. If consciousness isn't locked inside the skull, then the limits you've been operating within aren't limits. They're habits. Trained responses. Code written into your nervous system before you were old enough to evaluate it.</p>
+
+          <p>The CIA didn't study consciousness to sell you self-help. They studied it because it was a strategic asset. They concluded it was real. Then they filed it away.</p>
+
+          <p>You can read the whole thing yourself. Forty-three pages, available at cia.gov. No paywall. No subscription. Just a declassified military document confirming what mystics have said for thousands of years.</p>
+
+          <p>Consciousness goes beyond the body.</p>
+
+          <p>The Army confirmed it in 1983.</p>
+
+        </div>
+
+        <!-- Quiz CTA -->
+        <div class="quiz-cta">
+          <h2>They Proved Consciousness Goes Beyond the Body</h2>
+          <p>But here's what the CIA didn't study: the patterns your brain built before you turned 7 that still run your life today. Every reaction. Every self-sabotage. Every reason you can't change. A 3-minute quiz reveals yours.</p>
+          <a href="/a/" class="btn-g">
+            Find Your Pattern
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="ct">
+      <p class="fcopy">&copy; 2026 Dylan Ewing &middot; thedylanewing.com</p>
+      <div class="flinks">
+        <a href="https://instagram.com/thedylanewing" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://tiktok.com/@dylan_in_philippines" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://linkedin.com/in/dylan-ewing" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="/blog/">Blog</a>
+        <a href="/privacy.html">Privacy</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

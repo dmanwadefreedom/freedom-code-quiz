@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>They Flatlined. They All Saw the Same Thing.</title>
+  <meta name="description" content="Thousands of people from every culture come back from clinical death with the same story. Controlled studies are proving it's real.">
+  <link rel="canonical" href="https://thedylanewing.com/blog/near-death-experience-research/">
+  <meta property="og:title" content="They Flatlined. They All Saw the Same Thing.">
+  <meta property="og:description" content="Thousands of people from every culture come back from clinical death with the same story. Controlled studies are proving it's real.">
+  <meta property="og:url" content="https://thedylanewing.com/blog/near-death-experience-research/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Dylan Ewing">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0a0908; --bg-2: #12100e; --bg-3: #1a1714;
+      --glass: rgba(255,255,255,0.025); --glass-border: rgba(200,164,92,0.07);
+      --glass-hover: rgba(200,164,92,0.15);
+      --gold: #c8a45c; --gold-l: #d9c07a; --gold-glow: rgba(200,164,92,0.12); --gold-dim: rgba(200,164,92,0.06);
+      --text: #e8e0d4; --text-d: #9a9590; --text-m: #5a5550; --white: #fff;
+      --red: #d4644a; --amber: #d4a74a; --blue: #6a8fb5; --green: #6ab58f;
+      --max: 1200px; --r: 20px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    h1, h2, h3 { font-family: 'DM Serif Display', serif; font-weight: 400; line-height: 1.15; }
+    a { color: var(--gold); text-decoration: none; }
+    .ct { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+    .glow-orb { position: fixed; border-radius: 50%; pointer-events: none; filter: blur(80px); mix-blend-mode: screen; z-index: 0; animation: orbDrift 25s linear infinite; }
+    .glow-orb.o1 { width: 600px; height: 600px; top: -150px; right: -100px; background: radial-gradient(circle, rgba(106,143,181,0.1), transparent); }
+    .glow-orb.o2 { width: 500px; height: 500px; bottom: -100px; left: -80px; background: radial-gradient(circle, rgba(200,164,92,0.07), transparent); animation-duration: 30s; }
+    @keyframes orbDrift { 0% { transform: translate(0,0) scale(1); } 50% { transform: translate(-20px,20px) scale(0.95); } 100% { transform: translate(0,0) scale(1); } }
+
+    body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9998; opacity: 0.35; }
+    main, nav, footer { position: relative; z-index: 10; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 24px; background: rgba(10,9,8,0.92); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--glass-border); }
+    nav .inner { max-width: var(--max); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .nlogo { font-family: 'DM Serif Display', serif; font-size: 1.25rem; color: var(--white); }
+    .nlinks { display: flex; gap: 36px; align-items: center; }
+    .nlinks a { color: var(--text-d); font-size: 0.975rem; font-weight: 500; letter-spacing: 0.03em; transition: color 0.25s; position: relative; }
+    .nlinks a:not(.ncta)::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width 0.3s; }
+    .nlinks a:not(.ncta):hover { color: var(--white); }
+    .nlinks a:not(.ncta):hover::after { width: 100%; }
+    .nlinks a.active { color: var(--gold); }
+    .ncta { background: rgba(200,164,92,0.1); color: var(--gold) !important; padding: 9px 22px; border-radius: 100px; font-weight: 600; font-size: 0.75rem !important; letter-spacing: 0.06em; text-transform: uppercase; border: 1px solid rgba(200,164,92,0.2); transition: all 0.3s; cursor: pointer; }
+    .ncta:hover { background: var(--gold); color: var(--bg) !important; border-color: var(--gold); }
+    .ncta::after { display: none !important; }
+    .mtog { display: none; background: none; border: none; color: var(--text); cursor: pointer; padding: 8px; }
+
+    .article-wrap { padding: 120px 0 80px; }
+    .article-inner { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+    .article-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; flex-wrap: wrap; }
+    .cat { display: inline-block; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 14px; border-radius: 100px; }
+    .cat-consciousness { background: rgba(106,143,181,0.1); color: var(--blue); }
+    .article-date { font-size: 0.875rem; color: var(--text-m); }
+    .article-read { font-size: 0.875rem; color: var(--text-m); }
+
+    .article-title { font-size: clamp(2rem, 5vw, 3rem); color: var(--white); margin-bottom: 24px; line-height: 1.15; }
+    .article-lead { font-size: 1.2rem; color: var(--text-d); line-height: 1.75; margin-bottom: 48px; border-left: 2px solid var(--blue); padding-left: 20px; }
+
+    .article-body { font-size: 1.0625rem; line-height: 1.8; color: var(--text); }
+    .article-body p { margin-bottom: 24px; }
+    .article-body h2 { font-size: 1.625rem; color: var(--white); margin: 48px 0 20px; }
+    .article-body h3 { font-size: 1.25rem; color: var(--white); margin: 36px 0 16px; }
+    .article-body strong { color: var(--white); font-weight: 600; }
+    .article-body a { color: var(--gold); border-bottom: 1px solid rgba(200,164,92,0.2); transition: border-color 0.2s; }
+    .article-body a:hover { border-color: var(--gold); }
+
+    .stat-block { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 12px; padding: 24px 28px; margin: 36px 0; }
+    .stat-block .stat-num { font-family: 'DM Serif Display', serif; font-size: 2.5rem; color: var(--blue); line-height: 1; margin-bottom: 8px; }
+    .stat-block .stat-label { font-size: 0.9375rem; color: var(--text-d); line-height: 1.5; }
+
+    .pull-quote { margin: 40px 0; padding: 28px 32px; border-left: 3px solid var(--blue); background: rgba(106,143,181,0.05); border-radius: 0 12px 12px 0; }
+    .pull-quote p { font-family: 'DM Serif Display', serif; font-size: 1.375rem; color: var(--white); line-height: 1.5; margin: 0; font-style: italic; }
+    .pull-quote cite { display: block; margin-top: 12px; font-size: 0.875rem; color: var(--text-m); font-style: normal; }
+
+    .cta-box { margin: 60px 0 0; padding: 48px 40px; background: var(--glass); border: 1px solid var(--glass-border); border-radius: var(--r); text-align: center; }
+    .cta-box h2 { font-size: 1.875rem; color: var(--white); margin-bottom: 16px; }
+    .cta-box p { font-size: 1.0625rem; color: var(--text-d); max-width: 520px; margin: 0 auto 28px; line-height: 1.7; }
+    .btn-g { display: inline-flex; align-items: center; gap: 12px; padding: 18px 40px; border-radius: 100px; font-weight: 600; font-size: 1.125rem; background: linear-gradient(135deg, var(--gold), #b8943c); color: var(--bg); box-shadow: 0 4px 24px rgba(200,164,92,0.2); transition: all 0.4s; cursor: pointer; border: none; text-decoration: none; }
+    .btn-g:hover { transform: translateY(-3px); color: var(--bg); box-shadow: 0 20px 60px rgba(200,164,92,0.35); border-bottom: none; }
+    .arrow { width: 18px; height: 18px; }
+
+    .back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 0.9375rem; color: var(--text-d); margin-bottom: 48px; transition: color 0.2s; cursor: pointer; }
+    .back-link:hover { color: var(--gold); }
+    .back-link svg { width: 16px; height: 16px; }
+
+    footer { padding: 48px 0; border-top: 1px solid var(--glass-border); margin-top: 80px; }
+    footer .ct { display: flex; justify-content: space-between; align-items: center; }
+    .fcopy { font-size: 0.9rem; color: var(--text-m); }
+    .flinks { display: flex; gap: 28px; }
+    .flinks a { font-size: 0.9rem; color: var(--text-m); transition: color 0.2s; }
+    .flinks a:hover { color: var(--text); }
+
+    @media (max-width: 768px) {
+      .nlinks { display: none; position: fixed; top: 72px; left: 0; right: 0; background: rgba(10,9,8,0.97); backdrop-filter: blur(24px); flex-direction: column; padding: 24px; gap: 20px; border-bottom: 1px solid var(--glass-border); }
+      .nlinks.open { display: flex; }
+      .mtog { display: block; }
+      .article-title { font-size: 1.875rem; }
+      .article-lead { font-size: 1.0625rem; }
+      .cta-box { padding: 32px 20px; }
+      .pull-quote { padding: 20px 24px; }
+      footer .ct { flex-direction: column; gap: 20px; text-align: center; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition-duration: 0s !important; } }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "They Flatlined. They All Saw the Same Thing.",
+    "description": "Thousands of people from every culture come back from clinical death with the same story. Controlled studies are proving it's real.",
+    "url": "https://thedylanewing.com/blog/near-death-experience-research/",
+    "datePublished": "2026-03-29",
+    "author": {
+      "@type": "Person",
+      "name": "Dylan Ewing",
+      "url": "https://thedylanewing.com"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Dylan Ewing",
+      "url": "https://thedylanewing.com"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://thedylanewing.com/blog/near-death-experience-research/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div class="glow-orb o1"></div>
+  <div class="glow-orb o2"></div>
+
+  <nav id="nav">
+    <div class="inner">
+      <a href="/" class="nlogo">Dylan Ewing</a>
+      <div class="nlinks" id="navLinks">
+        <a href="/#story">Story</a>
+        <a href="/blog/" class="active">Blog</a>
+        <a href="/#program">Freedom Code</a>
+        <a href="/a/" class="ncta">Take The Quiz</a>
+      </div>
+      <button class="mtog" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+    <div class="article-wrap">
+      <div class="article-inner">
+
+        <a href="/blog/" class="back-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Back to Blog
+        </a>
+
+        <div class="article-meta">
+          <span class="cat cat-consciousness">Consciousness</span>
+          <span class="article-date">March 29, 2026</span>
+          <span class="article-read">7 min read</span>
+        </div>
+
+        <h1 class="article-title">They Flatlined. They All Saw the Same Thing.</h1>
+
+        <p class="article-lead">A Hindu man in India. A Catholic woman in Ohio. A five-year-old in Seattle who'd never heard the word "soul." They each came back from clinical death with the same story. Science has been quietly studying this for 40 years. Here's what they found.</p>
+
+        <div class="article-body">
+
+          <p>I've almost died four times.</p>
+
+          <p>Coma. ECMO machine. A 70-mph crash. Four times my body was at the edge. And what I came back with wasn't just survival. It was a question that wouldn't let go.</p>
+
+          <p>What actually happens when consciousness leaves the body?</p>
+
+          <p>That question led me down a research rabbit hole that took months. What I found wasn't fringe. It wasn't wishful thinking. It was controlled studies, published in peer-reviewed journals, showing a pattern so consistent it's almost impossible to explain away.</p>
+
+          <h2>The Same Six Elements. Every Time. Everywhere.</h2>
+
+          <p>Near-death experiences — NDEs — have been documented across every culture on earth. Ancient Egyptian texts describe them. Medieval Christian manuscripts describe them. Modern hospital records from Tokyo, Mumbai, São Paulo, and Detroit describe them.</p>
+
+          <p>The details change. The core doesn't.</p>
+
+          <p>Six elements show up again and again regardless of religion, culture, age, or how the person nearly died:</p>
+
+          <p><strong>The tunnel.</strong> A sense of moving through a dark passage toward light.</p>
+
+          <p><strong>The light.</strong> Described as warm, intelligent, non-blinding — and somehow communicating unconditional love.</p>
+
+          <p><strong>The life review.</strong> Not just watching events play back, but re-experiencing them from everyone else's perspective too.</p>
+
+          <p><strong>Deceased relatives.</strong> People report being met by family members who'd died — often relatives they'd never known in life, later verified through old photos.</p>
+
+          <p><strong>The boundary.</strong> A point where continuing forward means not coming back. A decision, or a command, to return.</p>
+
+          <p><strong>The return.</strong> Coming back into the body, often with reluctance.</p>
+
+          <p>This isn't anecdote collecting. Researchers have been trying to break this pattern for decades. They can't.</p>
+
+          <h2>Dr. Morse's Controlled Study — Seattle Children's Hospital, 1986</h2>
+
+          <p>Dr. Melvin Morse is a pediatrician. In 1986, he published a landmark study in the <em>American Journal of Diseases of Children</em> that's still one of the most important pieces of NDE research ever conducted.</p>
+
+          <p>His methodology was tight. He studied two groups of children at Seattle Children's Hospital.</p>
+
+          <div class="stat-block">
+            <div class="stat-num">100%</div>
+            <div class="stat-label">of children who came close to clinical death reported near-death experiences in Dr. Morse's 1986 controlled study at Seattle Children's Hospital.</div>
+          </div>
+
+          <p>The first group: children who had actually come close to clinical death — cardiac arrests, near-drowning, severe trauma. The second group: children who were seriously ill and hospitalized, receiving powerful drugs including opioids and sedatives, but were NOT near death.</p>
+
+          <p>The results were stark. Children in the near-death group reported NDEs at a rate of <strong>100%</strong>. Children in the sick-but-not-dying group reported NDEs at a rate of <strong>0%</strong>.</p>
+
+          <p>That's important. It rules out the drug explanation. It rules out the "just a dream" explanation. It rules out the trauma explanation. The variable that predicted the NDE was one thing: proximity to actual death.</p>
+
+          <p>Morse went on to study NDEs in children for two more decades. His book <em>Closer to the Light</em> documented dozens of cases where children accurately described what was happening in operating rooms while they were flatlined — locations, conversations, instruments. Things a sedated child with closed eyes shouldn't be able to know.</p>
+
+          <h2>Why Children Are the Most Important Data Point</h2>
+
+          <p>Here's what makes NDE research in children so compelling.</p>
+
+          <p>Adults who have NDEs could theoretically be drawing on cultural conditioning. They've seen movies. They've read books. They grew up in a religious tradition that told them what death looks like.</p>
+
+          <p>Children haven't.</p>
+
+          <p>PMH Atwater spent 30 years studying children who survived NDEs. Her research found that children as young as three reported the same core elements adults report: the light, deceased relatives, the life review. Kids who had no framework for any of it.</p>
+
+          <div class="stat-block">
+            <div class="stat-num">85%</div>
+            <div class="stat-label">NDE reporting rate in children who've come close to death, compared to roughly 20% in adults — suggesting cultural conditioning may actually suppress the experience rather than create it.</div>
+          </div>
+
+          <p>The higher rate in children points to something important. Cultural conditioning doesn't create NDEs. It may actually suppress the memory or reporting of them. Children who have no framework for "what you're supposed to see" report them more freely and more consistently.</p>
+
+          <p>Atwater also documented structural changes. Children who survived NDEs showed measurable differences afterward: increased empathy, heightened intuition, and altered brain activity that persisted for years. Whatever happened to them, it wasn't nothing.</p>
+
+          <h2>The UVA Division of Perceptual Studies</h2>
+
+          <div class="pull-quote">
+            <p>"The question is no longer whether NDEs happen. The question is what they mean."</p>
+            <cite>Dr. Bruce Greyson, University of Virginia</cite>
+          </div>
+
+          <p>The University of Virginia's Division of Perceptual Studies has been running consciousness research since the 1960s. Dr. Ian Stevenson built it. Dr. Bruce Greyson, one of the world's most cited NDE researchers, spent decades there.</p>
+
+          <p>Greyson developed the Greyson NDE Scale — a standardized tool now used globally to measure the depth and type of NDEs. He's analyzed over a thousand cases. His conclusion: NDEs are real, they're consistent, and they can't be explained by hallucination, oxygen deprivation, or wishful thinking alone.</p>
+
+          <p>One of the most compelling findings from UVA: people who were blind from birth reported visual experiences during NDEs. Not vague light. Accurate visual descriptions of the room, the people present, and events that occurred while they were clinically unresponsive.</p>
+
+          <p>That's not a brain making things up. That's something else entirely.</p>
+
+          <h2>$1.8 Million Says This Is Worth Taking Seriously</h2>
+
+          <p>In 2021, the Bigelow Institute for Consciousness Studies ran a competition. They offered <strong>$1.8 million in prizes</strong> for the best evidence that human consciousness survives physical death.</p>
+
+          <p>They received 1,300 submissions from researchers, physicians, and scientists around the world. The top prize went to a compilation of NDE research, veridical accounts — experiences where people accurately reported things they had no physical way of knowing — and electronic voice phenomenon studies.</p>
+
+          <p>These weren't amateurs. They were researchers who'd spent careers building the case. The Bigelow prize was one of the first major institutional signals that this field deserves serious scientific attention.</p>
+
+          <h2>What It Means if They're Right</h2>
+
+          <p>The pattern is this: consciousness doesn't appear to be a product of the brain. It appears to use the brain. When the brain shuts down, something persists.</p>
+
+          <p>And that something has awareness. Perception. Even love.</p>
+
+          <p>Every major NDE account includes one thing that almost never makes it into the headlines. The people who come back don't come back afraid. They come back with a specific certainty that two things matter above everything else: love, and knowledge.</p>
+
+          <p>Not money. Not status. Love. And learning.</p>
+
+          <p>That's not what a hallucinating brain produces. Hallucinating brains produce chaos, fear, confusion. NDEs produce clarity, peace, and a consistent message that has held across every culture for thousands of years.</p>
+
+          <p>The research is there. Morse, Greyson, Atwater, UVA, Bigelow. The studies are published. The data is consistent. The pattern is undeniable.</p>
+
+          <p>But most people never hear about any of it.</p>
+
+          <p>And I think that's worth asking why.</p>
+
+          <div class="cta-box">
+            <h2>Science Is Proving Consciousness Goes Deeper Than We Thought</h2>
+            <p>But most people are running on autopilot — patterns installed before age 7 that still control every decision you make today. Find out which pattern is running you.</p>
+            <a href="/a/" class="btn-g">Take The Quiz
+              <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="ct">
+      <p class="fcopy">&copy; 2026 Dylan Ewing &middot; thedylanewing.com</p>
+      <div class="flinks">
+        <a href="https://instagram.com/thedylanewing" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://tiktok.com/@dylan_in_philippines" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://linkedin.com/in/dylan-ewing" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="/blog/">Blog</a>
+        <a href="/privacy.html">Privacy</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — Dylan Ewing</title>
+  <meta name="description" content="Declassified documents, consciousness research, and the patterns running your life. Truth they don't teach in school.">
+  <link rel="canonical" href="https://thedylanewing.com/blog/">
+  <meta property="og:title" content="Blog — Dylan Ewing">
+  <meta property="og:description" content="Declassified documents, consciousness research, and the patterns running your life.">
+  <meta property="og:url" content="https://thedylanewing.com/blog/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Dylan Ewing">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0a0908; --bg-2: #12100e; --bg-3: #1a1714;
+      --glass: rgba(255,255,255,0.025); --glass-border: rgba(200,164,92,0.07);
+      --glass-hover: rgba(200,164,92,0.15);
+      --gold: #c8a45c; --gold-l: #d9c07a; --gold-glow: rgba(200,164,92,0.12); --gold-dim: rgba(200,164,92,0.06);
+      --text: #e8e0d4; --text-d: #9a9590; --text-m: #5a5550; --white: #fff;
+      --red: #d4644a; --amber: #d4a74a; --blue: #6a8fb5; --green: #6ab58f;
+      --max: 1200px; --r: 20px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    h1, h2, h3 { font-family: 'DM Serif Display', serif; font-weight: 400; line-height: 1.15; }
+    a { color: var(--gold); text-decoration: none; }
+    .ct { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+    .glow-orb { position: fixed; border-radius: 50%; pointer-events: none; filter: blur(80px); mix-blend-mode: screen; z-index: 0; animation: orbDrift 25s linear infinite; }
+    .glow-orb.o1 { width: 600px; height: 600px; top: -150px; right: -100px; background: radial-gradient(circle, rgba(200,164,92,0.12), transparent); }
+    .glow-orb.o2 { width: 500px; height: 500px; bottom: -100px; left: -80px; background: radial-gradient(circle, rgba(106,143,181,0.07), transparent); animation-duration: 30s; }
+    @keyframes orbDrift { 0% { transform: translate(0,0) scale(1); } 50% { transform: translate(-20px,20px) scale(0.95); } 100% { transform: translate(0,0) scale(1); } }
+
+    body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9998; opacity: 0.35; }
+    main, nav, footer { position: relative; z-index: 10; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 24px; background: rgba(10,9,8,0.92); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--glass-border); }
+    nav .inner { max-width: var(--max); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .nlogo { font-family: 'DM Serif Display', serif; font-size: 1.25rem; color: var(--white); }
+    .nlinks { display: flex; gap: 36px; align-items: center; }
+    .nlinks a { color: var(--text-d); font-size: 0.975rem; font-weight: 500; letter-spacing: 0.03em; transition: color 0.25s; position: relative; }
+    .nlinks a:not(.ncta)::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width 0.3s; }
+    .nlinks a:not(.ncta):hover { color: var(--white); }
+    .nlinks a:not(.ncta):hover::after { width: 100%; }
+    .nlinks a.active { color: var(--gold); }
+    .ncta { background: rgba(200,164,92,0.1); color: var(--gold) !important; padding: 9px 22px; border-radius: 100px; font-weight: 600; font-size: 0.75rem !important; letter-spacing: 0.06em; text-transform: uppercase; border: 1px solid rgba(200,164,92,0.2); transition: all 0.3s; cursor: pointer; }
+    .ncta:hover { background: var(--gold); color: var(--bg) !important; border-color: var(--gold); }
+    .ncta::after { display: none !important; }
+    .mtog { display: none; background: none; border: none; color: var(--text); cursor: pointer; padding: 8px; }
+
+    .page-hd { padding: 140px 0 60px; text-align: center; }
+    .page-hd h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); color: var(--white); margin-bottom: 16px; }
+    .page-hd p { font-size: 1.125rem; color: var(--text-d); max-width: 560px; margin: 0 auto; line-height: 1.7; }
+    .label { display: inline-flex; align-items: center; gap: 10px; font-size: 0.825rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .label::before { content: ''; width: 24px; height: 1px; background: var(--gold); opacity: 0.5; }
+
+    .posts { padding: 0 0 120px; }
+    .posts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; }
+    .post-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: var(--r); padding: 32px; transition: all 0.4s; display: flex; flex-direction: column; }
+    .post-card:hover { border-color: var(--glass-hover); transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+    .cat { display: inline-block; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 14px; border-radius: 100px; margin-bottom: 16px; width: fit-content; }
+    .cat-truth { background: rgba(212,100,74,0.1); color: var(--red); }
+    .cat-consciousness { background: rgba(106,143,181,0.1); color: var(--blue); }
+    .cat-healing { background: rgba(106,181,143,0.1); color: var(--green); }
+    .cat-freedom { background: rgba(200,164,92,0.08); color: var(--gold); }
+    .post-card h2 { font-size: 1.375rem; color: var(--white); margin-bottom: 12px; line-height: 1.3; }
+    .post-card h2 a { color: var(--white); transition: color 0.2s; }
+    .post-card h2 a:hover { color: var(--gold); }
+    .post-card .excerpt { font-size: 1rem; color: var(--text-d); line-height: 1.7; margin-bottom: 20px; flex: 1; }
+    .post-meta { display: flex; justify-content: space-between; align-items: center; padding-top: 16px; border-top: 1px solid var(--glass-border); }
+    .post-meta .date { font-size: 0.8125rem; color: var(--text-m); }
+    .post-meta .read-link { font-size: 0.875rem; color: var(--gold); font-weight: 600; transition: all 0.2s; cursor: pointer; }
+    .post-meta .read-link:hover { color: var(--gold-l); }
+
+    .cta-banner { margin: 0 0 80px; padding: 48px; background: var(--glass); border: 1px solid var(--glass-border); border-radius: var(--r); text-align: center; }
+    .cta-banner h2 { font-size: 1.75rem; color: var(--white); margin-bottom: 12px; }
+    .cta-banner p { font-size: 1.0625rem; color: var(--text-d); max-width: 480px; margin: 0 auto 24px; line-height: 1.7; }
+    .btn-g { display: inline-flex; align-items: center; gap: 12px; padding: 18px 40px; border-radius: 100px; font-weight: 600; font-size: 1.125rem; background: linear-gradient(135deg, var(--gold), #b8943c); color: var(--bg); box-shadow: 0 4px 24px rgba(200,164,92,0.2); transition: all 0.4s; cursor: pointer; border: none; text-decoration: none; }
+    .btn-g:hover { transform: translateY(-3px); color: var(--bg); box-shadow: 0 20px 60px rgba(200,164,92,0.35); }
+    .arrow { width: 18px; height: 18px; }
+
+    footer { padding: 48px 0; border-top: 1px solid var(--glass-border); }
+    footer .ct { display: flex; justify-content: space-between; align-items: center; }
+    .fcopy { font-size: 0.9rem; color: var(--text-m); }
+    .flinks { display: flex; gap: 28px; }
+    .flinks a { font-size: 0.9rem; color: var(--text-m); transition: color 0.2s; }
+    .flinks a:hover { color: var(--text); }
+
+    @media (max-width: 768px) {
+      .nlinks { display: none; position: fixed; top: 72px; left: 0; right: 0; background: rgba(10,9,8,0.97); backdrop-filter: blur(24px); flex-direction: column; padding: 24px; gap: 20px; border-bottom: 1px solid var(--glass-border); }
+      .nlinks.open { display: flex; }
+      .mtog { display: block; }
+      .posts-grid { grid-template-columns: 1fr; }
+      footer .ct { flex-direction: column; gap: 20px; text-align: center; }
+      .cta-banner { padding: 32px 20px; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition-duration: 0s !important; } }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Dylan Ewing Blog",
+    "description": "Declassified documents, consciousness research, and the patterns running your life.",
+    "url": "https://thedylanewing.com/blog/",
+    "author": {
+      "@type": "Person",
+      "name": "Dylan Ewing",
+      "url": "https://thedylanewing.com"
+    },
+    "blogPost": [
+      {
+        "@type": "BlogPosting",
+        "headline": "The CIA Studied Consciousness for 20 Years. Here's What They Found.",
+        "url": "https://thedylanewing.com/blog/cia-gateway-process/",
+        "datePublished": "2026-03-29"
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "Operation Mockingbird: When the CIA Controlled the News",
+        "url": "https://thedylanewing.com/blog/operation-mockingbird/",
+        "datePublished": "2026-03-29"
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "They Flatlined. They All Saw the Same Thing.",
+        "url": "https://thedylanewing.com/blog/near-death-experience-research/",
+        "datePublished": "2026-03-29"
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "What Happens When Schools Teach Meditation Instead of Medication",
+        "url": "https://thedylanewing.com/blog/meditation-in-schools/",
+        "datePublished": "2026-03-29"
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "You're Not Choosing. Your Childhood Is.",
+        "url": "https://thedylanewing.com/blog/childhood-patterns/",
+        "datePublished": "2026-03-29"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div class="glow-orb o1"></div>
+  <div class="glow-orb o2"></div>
+
+  <nav id="nav">
+    <div class="inner">
+      <a href="/" class="nlogo">Dylan Ewing</a>
+      <div class="nlinks" id="navLinks">
+        <a href="/#story">Story</a>
+        <a href="/blog/" class="active">Blog</a>
+        <a href="/#program">Freedom Code</a>
+        <a href="/a/" class="ncta">Take The Quiz</a>
+      </div>
+      <button class="mtog" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+    <section class="page-hd">
+      <div class="ct">
+        <div class="label">The Rabbit Hole</div>
+        <h1>Blog</h1>
+        <p>Declassified documents. Consciousness research. The patterns running your life. Truth they don't teach in school.</p>
+      </div>
+    </section>
+
+    <section class="posts">
+      <div class="ct">
+        <div class="posts-grid">
+
+          <article class="post-card">
+            <span class="cat cat-truth">Truth</span>
+            <h2><a href="/blog/cia-gateway-process/">The CIA Studied Consciousness for 20 Years. Here's What They Found.</a></h2>
+            <p class="excerpt">In 1983, the CIA classified a report that concluded human consciousness can leave the body. Page 25 was hidden for 38 years. Here's what it said.</p>
+            <div class="post-meta">
+              <span class="date">March 29, 2026</span>
+              <a href="/blog/cia-gateway-process/" class="read-link">Read more</a>
+            </div>
+          </article>
+
+          <article class="post-card">
+            <span class="cat cat-truth">Truth</span>
+            <h2><a href="/blog/operation-mockingbird/">Operation Mockingbird: When the CIA Controlled the News</a></h2>
+            <p class="excerpt">The Church Committee confirmed it. The CIA had 50+ journalists on payroll and relationships with 25 newspapers. Carl Bernstein blew it open in 1977.</p>
+            <div class="post-meta">
+              <span class="date">March 29, 2026</span>
+              <a href="/blog/operation-mockingbird/" class="read-link">Read more</a>
+            </div>
+          </article>
+
+          <article class="post-card">
+            <span class="cat cat-consciousness">Consciousness</span>
+            <h2><a href="/blog/near-death-experience-research/">They Flatlined. They All Saw the Same Thing.</a></h2>
+            <p class="excerpt">Across countries, cultures, and religions, people who come back from clinical death report the same experience. Science is starting to listen.</p>
+            <div class="post-meta">
+              <span class="date">March 29, 2026</span>
+              <a href="/blog/near-death-experience-research/" class="read-link">Read more</a>
+            </div>
+          </article>
+
+          <article class="post-card">
+            <span class="cat cat-healing">Healing</span>
+            <h2><a href="/blog/meditation-in-schools/">What Happens When Schools Teach Meditation Instead of Medication</a></h2>
+            <p class="excerpt">Maharishi School in Iowa: students meditate twice daily. Results? Top 1% nationally. 10x the national average for National Merit Scholars.</p>
+            <div class="post-meta">
+              <span class="date">March 29, 2026</span>
+              <a href="/blog/meditation-in-schools/" class="read-link">Read more</a>
+            </div>
+          </article>
+
+          <article class="post-card">
+            <span class="cat cat-freedom">Freedom</span>
+            <h2><a href="/blog/childhood-patterns/">You're Not Choosing. Your Childhood Is.</a></h2>
+            <p class="excerpt">Most of your decisions were made before you turned 7. That's not a metaphor. Willpower fails because you're fighting code you can't see.</p>
+            <div class="post-meta">
+              <span class="date">March 29, 2026</span>
+              <a href="/blog/childhood-patterns/" class="read-link">Read more</a>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="cta-banner">
+          <h2>What Pattern Is Running You?</h2>
+          <p>A 3-minute quiz reveals the survival pattern your brain built in childhood. It's still running. Find out which one.</p>
+          <a href="/a/" class="btn-g">Take The Quiz
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="ct">
+      <p class="fcopy">&copy; 2026 Dylan Ewing &middot; thedylanewing.com</p>
+      <div class="flinks">
+        <a href="https://instagram.com/thedylanewing" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://tiktok.com/@dylan_in_philippines" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://linkedin.com/in/dylan-ewing" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="/blog/">Blog</a>
+        <a href="/privacy.html">Privacy</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

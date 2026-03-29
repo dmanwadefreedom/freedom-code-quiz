@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Happens When Schools Teach Meditation</title>
+  <meta name="description" content="Maharishi School students meditate twice daily and score top 1% nationally. Here's what happens when you teach kids consciousness instead of just cramming information.">
+  <link rel="canonical" href="https://thedylanewing.com/blog/meditation-in-schools/">
+  <meta property="og:title" content="What Happens When Schools Teach Meditation Instead of Medication">
+  <meta property="og:description" content="Maharishi School students meditate twice daily and score top 1% nationally. Here's what happens when you teach kids consciousness.">
+  <meta property="og:url" content="https://thedylanewing.com/blog/meditation-in-schools/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Dylan Ewing">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0a0908; --bg-2: #12100e; --bg-3: #1a1714;
+      --glass: rgba(255,255,255,0.025); --glass-border: rgba(200,164,92,0.07);
+      --glass-hover: rgba(200,164,92,0.15);
+      --gold: #c8a45c; --gold-l: #d9c07a; --gold-glow: rgba(200,164,92,0.12); --gold-dim: rgba(200,164,92,0.06);
+      --text: #e8e0d4; --text-d: #9a9590; --text-m: #5a5550; --white: #fff;
+      --red: #d4644a; --amber: #d4a74a; --blue: #6a8fb5; --green: #6ab58f;
+      --max: 1200px; --r: 20px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    h1, h2, h3 { font-family: 'DM Serif Display', serif; font-weight: 400; line-height: 1.2; }
+    a { color: var(--gold); text-decoration: none; }
+    .ct { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+    .glow-orb { position: fixed; border-radius: 50%; pointer-events: none; filter: blur(80px); mix-blend-mode: screen; z-index: 0; animation: orbDrift 25s linear infinite; }
+    .glow-orb.o1 { width: 600px; height: 600px; top: -150px; right: -100px; background: radial-gradient(circle, rgba(106,181,143,0.10), transparent); }
+    .glow-orb.o2 { width: 500px; height: 500px; bottom: -100px; left: -80px; background: radial-gradient(circle, rgba(200,164,92,0.07), transparent); animation-duration: 30s; }
+    @keyframes orbDrift { 0% { transform: translate(0,0) scale(1); } 50% { transform: translate(-20px,20px) scale(0.95); } 100% { transform: translate(0,0) scale(1); } }
+
+    body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9998; opacity: 0.35; }
+    main, nav, footer { position: relative; z-index: 10; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 24px; background: rgba(10,9,8,0.92); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--glass-border); }
+    nav .inner { max-width: var(--max); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .nlogo { font-family: 'DM Serif Display', serif; font-size: 1.25rem; color: var(--white); }
+    .nlinks { display: flex; gap: 36px; align-items: center; }
+    .nlinks a { color: var(--text-d); font-size: 0.975rem; font-weight: 500; letter-spacing: 0.03em; transition: color 0.25s; position: relative; }
+    .nlinks a:not(.ncta)::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width 0.3s; }
+    .nlinks a:not(.ncta):hover { color: var(--white); }
+    .nlinks a:not(.ncta):hover::after { width: 100%; }
+    .nlinks a.active { color: var(--gold); }
+    .ncta { background: rgba(200,164,92,0.1); color: var(--gold) !important; padding: 9px 22px; border-radius: 100px; font-weight: 600; font-size: 0.75rem !important; letter-spacing: 0.06em; text-transform: uppercase; border: 1px solid rgba(200,164,92,0.2); transition: all 0.3s; cursor: pointer; }
+    .ncta:hover { background: var(--gold); color: var(--bg) !important; border-color: var(--gold); }
+    .ncta::after { display: none !important; }
+    .mtog { display: none; background: none; border: none; color: var(--text); cursor: pointer; padding: 8px; }
+
+    /* ARTICLE HERO */
+    .article-hero { padding: 140px 0 60px; }
+    .article-hero .ct { max-width: 760px; }
+    .cat-pill { display: inline-block; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 5px 16px; border-radius: 100px; margin-bottom: 24px; background: rgba(106,181,143,0.1); color: var(--green); border: 1px solid rgba(106,181,143,0.2); }
+    .article-hero h1 { font-size: clamp(2rem, 4.5vw, 3rem); color: var(--white); margin-bottom: 20px; line-height: 1.15; }
+    .article-meta { display: flex; align-items: center; gap: 20px; font-size: 0.875rem; color: var(--text-m); padding-bottom: 32px; border-bottom: 1px solid var(--glass-border); }
+    .article-meta .author { color: var(--text-d); font-weight: 500; }
+    .article-meta .dot { opacity: 0.4; }
+
+    /* ARTICLE BODY */
+    .article-body { padding: 48px 0 80px; }
+    .article-body .ct { max-width: 760px; }
+    .prose { font-size: 1.125rem; line-height: 1.8; color: var(--text); }
+    .prose p { margin-bottom: 1.5rem; }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose h2 { font-size: clamp(1.4rem, 3vw, 1.75rem); color: var(--white); margin: 2.5rem 0 1rem; line-height: 1.2; }
+    .prose strong { color: var(--white); font-weight: 600; }
+    .prose a { color: var(--gold); border-bottom: 1px solid rgba(200,164,92,0.3); transition: border-color 0.2s; }
+    .prose a:hover { border-color: var(--gold); }
+
+    /* STAT CALLOUT */
+    .stat-block { background: var(--glass); border: 1px solid var(--glass-border); border-left: 3px solid var(--green); border-radius: 12px; padding: 24px 28px; margin: 2rem 0; }
+    .stat-block .stat-num { font-family: 'DM Serif Display', serif; font-size: 2.5rem; color: var(--green); line-height: 1; margin-bottom: 6px; }
+    .stat-block .stat-label { font-size: 0.9375rem; color: var(--text-d); line-height: 1.5; }
+
+    /* QUOTE PULL */
+    .pull-quote { border-left: 2px solid var(--green); padding: 4px 0 4px 24px; margin: 2rem 0; }
+    .pull-quote p { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--white); font-style: italic; line-height: 1.5; margin-bottom: 0; }
+
+    /* CTA BOX */
+    .cta-box { background: var(--glass); border: 1px solid var(--glass-border); border-radius: var(--r); padding: 48px 40px; text-align: center; margin-top: 60px; }
+    .cta-box h2 { font-size: 1.75rem; color: var(--white); margin-bottom: 14px; }
+    .cta-box p { font-size: 1.0625rem; color: var(--text-d); max-width: 480px; margin: 0 auto 28px; line-height: 1.7; }
+    .btn-g { display: inline-flex; align-items: center; gap: 12px; padding: 18px 40px; border-radius: 100px; font-weight: 600; font-size: 1.0625rem; background: linear-gradient(135deg, var(--gold), #b8943c); color: var(--bg); box-shadow: 0 4px 24px rgba(200,164,92,0.2); transition: all 0.4s; cursor: pointer; border: none; text-decoration: none; border-bottom: none !important; }
+    .btn-g:hover { transform: translateY(-3px); color: var(--bg) !important; box-shadow: 0 20px 60px rgba(200,164,92,0.35); }
+    .btn-g svg { flex-shrink: 0; }
+
+    /* FOOTER */
+    footer { padding: 48px 0; border-top: 1px solid var(--glass-border); }
+    footer .ct { display: flex; justify-content: space-between; align-items: center; }
+    .fcopy { font-size: 0.9rem; color: var(--text-m); }
+    .flinks { display: flex; gap: 28px; }
+    .flinks a { font-size: 0.9rem; color: var(--text-m); transition: color 0.2s; }
+    .flinks a:hover { color: var(--text); }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .nlinks { display: none; position: fixed; top: 72px; left: 0; right: 0; background: rgba(10,9,8,0.97); backdrop-filter: blur(24px); flex-direction: column; padding: 24px; gap: 20px; border-bottom: 1px solid var(--glass-border); }
+      .nlinks.open { display: flex; }
+      .mtog { display: block; }
+      .article-hero { padding: 110px 0 40px; }
+      .prose { font-size: 1.0625rem; }
+      .cta-box { padding: 32px 20px; }
+      .stat-block .stat-num { font-size: 2rem; }
+      footer .ct { flex-direction: column; gap: 20px; text-align: center; }
+      .flinks { flex-wrap: wrap; justify-content: center; gap: 16px; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition-duration: 0s !important; } }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "What Happens When Schools Teach Meditation Instead of Medication",
+    "description": "Maharishi School students meditate twice daily and score top 1% nationally. Here's what happens when you teach kids consciousness instead of just cramming information.",
+    "url": "https://thedylanewing.com/blog/meditation-in-schools/",
+    "datePublished": "2026-03-29",
+    "dateModified": "2026-03-29",
+    "author": {
+      "@type": "Person",
+      "name": "Dylan Ewing",
+      "url": "https://thedylanewing.com"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Dylan Ewing",
+      "url": "https://thedylanewing.com"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://thedylanewing.com/blog/meditation-in-schools/"
+    },
+    "keywords": "meditation in schools, transcendental meditation children, mindfulness education, Maharishi School, MindUP program, conscious education"
+  }
+  </script>
+</head>
+<body>
+  <div class="glow-orb o1"></div>
+  <div class="glow-orb o2"></div>
+
+  <nav id="nav">
+    <div class="inner">
+      <a href="/" class="nlogo">Dylan Ewing</a>
+      <div class="nlinks" id="navLinks">
+        <a href="/#story">Story</a>
+        <a href="/blog/" class="active">Blog</a>
+        <a href="/#program">Freedom Code</a>
+        <a href="/a/" class="ncta">Take The Quiz</a>
+      </div>
+      <button class="mtog" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+    <section class="article-hero">
+      <div class="ct">
+        <span class="cat-pill">Healing</span>
+        <h1>What Happens When Schools Teach Meditation Instead of Medication</h1>
+        <div class="article-meta">
+          <span class="author">Dylan Ewing</span>
+          <span class="dot">&middot;</span>
+          <span>March 29, 2026</span>
+          <span class="dot">&middot;</span>
+          <span>6 min read</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="article-body">
+      <div class="ct">
+        <div class="prose">
+
+          <p>There's a small school in Fairfield, Iowa. Population 10,000. Nothing special about it from the outside.</p>
+
+          <p>But Maharishi School consistently produces National Merit Scholars at <strong>10 times the national average</strong>. Their students score in the top 1% nationally on standardized tests. And 95% of graduates go on to college.</p>
+
+          <p>What's their secret? Twice a day, students stop everything and meditate.</p>
+
+          <p>That's it. That's the edge.</p>
+
+          <h2>The Iowa Experiment</h2>
+
+          <p>Maharishi School has been running Transcendental Meditation as part of the school day since the 1970s. Two 10-to-15-minute sessions. Morning and afternoon. Every student. Every day.</p>
+
+          <p>They don't call it religious. They don't call it spiritual. They call it a brain tool. And the data backs them up.</p>
+
+          <div class="stat-block">
+            <div class="stat-num">10x</div>
+            <div class="stat-label">National Merit Scholars per capita compared to the US national average. Maharishi School, Fairfield, Iowa.</div>
+          </div>
+
+          <p>Test scores went up. Anxiety went down. Teacher burnout dropped. Kids stopped getting into fights at the same rate.</p>
+
+          <p>The school didn't get a bigger budget. They didn't hire better teachers. They just gave kids 20 minutes of silence every day and taught them how to use it.</p>
+
+          <h2>Goldie Hawn Got Serious About This</h2>
+
+          <p>In 2003, actress Goldie Hawn didn't make another movie. She launched a program called MindUP.</p>
+
+          <p>She'd spent years looking into the neuroscience of learning. She wanted to know why smart kids were still failing. Why anxiety was spiking in elementary schools. Why kids couldn't focus.</p>
+
+          <p>The answer she kept finding: kids don't know how their own brains work.</p>
+
+          <p>MindUP teaches children about the amygdala. About stress responses. About how to calm their own nervous system in real time. It's now used in schools across the US, UK, Canada, and Australia.</p>
+
+          <p>A peer-reviewed meta-analysis of MindUP and similar programs like Inner Explorer showed a <strong>15% improvement in math scores</strong>. Dramatic reductions in bullying. Measurable drops in self-reported anxiety.</p>
+
+          <div class="stat-block">
+            <div class="stat-num">15%</div>
+            <div class="stat-label">Average math improvement from mindfulness-based school programs. Meta-analysis across MindUP and Inner Explorer implementations.</div>
+          </div>
+
+          <p>Not from a new curriculum. Not from tutoring. From teaching kids to understand what's happening in their own heads.</p>
+
+          <h2>A School Built From Bamboo</h2>
+
+          <p>In 2008, a family in Bali, Indonesia built a school out of bamboo. No concrete. No steel. Just bamboo and intention.</p>
+
+          <p>Green School Bali didn't just look different on the outside. The whole philosophy was different. Mindfulness wasn't a class you took once a week. It was woven into the architecture, the daily schedule, the way teachers talked to kids.</p>
+
+          <p>Students learn math by building things. They learn ecology by farming. And they start each day with a practice that connects them to their environment instead of disconnecting them from it.</p>
+
+          <p>It's expanded. There are now Green School campuses in New Zealand and South Africa. The original in Bali has waitlists.</p>
+
+          <div class="pull-quote">
+            <p>"What if school didn't feel like a prison? What if it felt like waking up?"</p>
+          </div>
+
+          <p>The Bali campus became proof that you can build something entirely different. And kids will thrive in it.</p>
+
+          <h2>Thailand Has Already Made a National Decision</h2>
+
+          <p>Most people don't know this. Thailand's Ministry of Education runs over 20,000 Buddhist-oriented schools across the country. Not as an experiment. As standard policy.</p>
+
+          <p>The framework is called Trisikkha. It integrates three things: ethics, meditation, and wisdom. These aren't taught as separate subjects. They run through every class, every interaction, every moment of the school day.</p>
+
+          <p>In Chiang Mai, there's Panyaden International School. It follows a British and IB curriculum. But it's built on 12 guiding values called the Wise Habits, developed by Buddhist monk Phra Ajahn Jayasaro.</p>
+
+          <p>These aren't religion. They're a framework for how to be a human. Things like perseverance, respect, and self-awareness. Kids who graduate Panyaden don't just know how to pass tests. They know who they are.</p>
+
+          <p>That's the goal, right? Isn't that what education is supposed to do?</p>
+
+          <h2>What This Actually Proves</h2>
+
+          <p>None of these schools are fringe experiments anymore.</p>
+
+          <p>They have data. They have peer review. They have decades of graduates who are doing well in the world.</p>
+
+          <p>And the thread connecting all of them is simple. When you teach kids to understand their own inner world, they perform better in the outer one.</p>
+
+          <p>Maharishi School doesn't produce National Merit Scholars because of a better math curriculum. They produce them because the kids can sit with themselves for 15 minutes without falling apart.</p>
+
+          <p>MindUP doesn't improve math scores because it teaches math. It improves them because anxious kids can't learn. And now they're less anxious.</p>
+
+          <p>Green School Bali doesn't produce engaged students because of bamboo. It produces them because the whole environment asks kids to be present.</p>
+
+          <p>But here's the part that hits harder.</p>
+
+          <p>These kids are learning to recognize their own patterns at age 7, 8, 10. They're building the skill of self-awareness early. Before the patterns get buried. Before the coping mechanisms harden into personality.</p>
+
+          <p>Most adults never got that. Most adults are still running patterns they built before they could read. They've never stopped to look at them.</p>
+
+          <p>The schools that are getting results aren't just teaching kids smarter. They're teaching kids to know themselves.</p>
+
+          <p>And if you didn't get that growing up, you can still learn it now. It just takes a different kind of starting point.</p>
+
+          <div class="cta-box">
+            <h2>What Pattern Is Running You?</h2>
+            <p>These schools are teaching kids to understand their own patterns early. Most adults are still running patterns they've never identified. A 3-minute quiz reveals which one is running you.</p>
+            <a href="/a/" class="btn-g">
+              Take The Quiz
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="ct">
+      <p class="fcopy">&copy; 2026 Dylan Ewing &middot; thedylanewing.com</p>
+      <div class="flinks">
+        <a href="https://instagram.com/thedylanewing" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://tiktok.com/@dylan_in_philippines" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://linkedin.com/in/dylan-ewing" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="/blog/">Blog</a>
+        <a href="/privacy.html">Privacy</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
