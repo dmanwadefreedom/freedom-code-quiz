@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Day 2: See It | 3-Day Shift</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#ffffff;--bg2:#f7f5f2;--bg3:#eeeae4;--txt:#1a1714;--dim:#6b6560;--mute:#9a9590;--gold:#b8943c;--goldg:rgba(184,148,60,.08);--goldh:#a67d30;--goldb:rgba(184,148,60,.2);--fixer:#c4543a;--busy:#c49a3a;--quiet:#5a7fa5;--pleaser:#5aa57f}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:620px;margin:0 auto;padding:0 24px}
+
+/* BRAND */
+.brand{text-align:center;padding:32px 0 0;font-size:13px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--mute)}
+
+/* DAY HEADER */
+.day-header{text-align:center;padding:40px 0 32px}
+.day-label{display:inline-block;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);background:var(--goldg);border:1.5px solid var(--goldb);border-radius:40px;padding:6px 20px;margin-bottom:20px}
+.day-header h1{font-family:'DM Serif Display',serif;font-size:clamp(28px,6vw,40px);line-height:1.15;margin-bottom:16px}
+.day-header h1 em{font-style:italic;color:var(--gold)}
+.day-intro{font-size:16px;color:var(--dim);line-height:1.85;max-width:500px;margin:0 auto}
+
+/* DIVIDER */
+.divider{width:48px;height:2px;background:var(--gold);opacity:.35;margin:36px auto}
+
+/* EXERCISE */
+.exercise{background:var(--bg2);border-radius:16px;padding:32px 28px;margin:0 0 32px}
+.exercise h2{font-family:'DM Serif Display',serif;font-size:clamp(20px,4vw,26px);line-height:1.25;margin-bottom:20px}
+.step{display:flex;gap:16px;align-items:flex-start;margin-bottom:20px}
+.step:last-child{margin-bottom:0}
+.step-num{width:32px;height:32px;border-radius:50%;background:var(--gold);color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.step-text{font-size:16px;color:var(--txt);line-height:1.75}
+.step-note{font-size:14px;color:var(--mute);margin-top:4px;line-height:1.6}
+
+/* TYPES */
+.types-section{margin:0 0 32px}
+.types-section h3{font-family:'DM Serif Display',serif;font-size:22px;margin-bottom:8px;text-align:center}
+.types-intro{font-size:15px;color:var(--dim);text-align:center;margin-bottom:20px;line-height:1.7}
+.types{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 12px}
+.type-card{border-radius:12px;padding:20px;border:1.5px solid}
+.type-card h4{font-size:15px;font-weight:700;margin-bottom:6px}
+.type-card p{font-size:13px;line-height:1.6}
+.t-fixer{background:rgba(196,84,58,.06);border-color:rgba(196,84,58,.2);color:var(--fixer)}.t-fixer p{color:var(--dim)}
+.t-busy{background:rgba(196,154,58,.06);border-color:rgba(196,154,58,.2);color:var(--busy)}.t-busy p{color:var(--dim)}
+.t-quiet{background:rgba(90,127,165,.06);border-color:rgba(90,127,165,.2);color:var(--quiet)}.t-quiet p{color:var(--dim)}
+.t-pleaser{background:rgba(90,165,127,.06);border-color:rgba(90,165,127,.2);color:var(--pleaser)}.t-pleaser p{color:var(--dim)}
+.types-footer{font-size:14px;color:var(--mute);text-align:center;line-height:1.7}
+
+/* AUDIO */
+.audio-section{margin:0 0 32px}
+.audio-section h3{font-family:'DM Serif Display',serif;font-size:20px;margin-bottom:12px;text-align:center}
+.audio-wrap{background:var(--bg2);border-radius:12px;padding:20px;text-align:center}
+.audio-wrap audio{width:100%;max-width:480px;margin:0 auto;display:block}
+.audio-note{font-size:13px;color:var(--mute);margin-top:10px}
+
+/* CTA */
+.reply-cta{text-align:center;padding:32px 0 48px}
+.reply-cta p{font-size:17px;color:var(--dim);line-height:1.8;margin-bottom:8px}
+.reply-cta .bold{font-size:18px;font-weight:700;color:var(--txt)}
+
+/* FOOTER */
+.footer{text-align:center;padding:24px 0 36px;font-size:12px;color:var(--mute);border-top:1px solid var(--bg3)}
+
+@media(max-width:640px){
+  .types{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="brand">Dylan Ewing</div>
+
+<div class="day-header">
+  <div class="day-label">Day 2 of 3</div>
+  <h1><em>See It.</em></h1>
+  <p class="day-intro">Yesterday you sat still. Today you're going to look at something most people avoid their whole life. What you actually do when things get hard.</p>
+</div>
+
+<div class="divider"></div>
+
+<div class="exercise">
+  <h2>Part 1: Breathe first.</h2>
+  <p style="font-size:15px;color:var(--dim);margin-bottom:20px;line-height:1.75">Same thing as yesterday. This takes 90 seconds.</p>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div>
+      <div class="step-text">3 deep breaths through your nose. As deep as you can.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <div>
+      <div class="step-text">Last exhale: hum until your lungs are completely empty.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3</div>
+    <div>
+      <div class="step-text">Sit for 60 seconds. Just like yesterday.</div>
+    </div>
+  </div>
+</div>
+
+<div class="exercise">
+  <h2>Part 2: Write it out.</h2>
+  <p style="font-size:15px;color:var(--dim);margin-bottom:20px;line-height:1.75">Grab a pen and paper. Set a timer for 5 minutes. One question. Don't think. Just write whatever comes out.</p>
+
+  <div style="background:var(--goldg);border:1.5px solid var(--goldb);border-radius:12px;padding:24px;text-align:center;margin-bottom:16px">
+    <p style="font-family:'DM Serif Display',serif;font-size:clamp(20px,4vw,26px);color:var(--txt);line-height:1.3">"What do I do when I'm stressed?"</p>
+  </div>
+
+  <p style="font-size:14px;color:var(--mute);line-height:1.7">Not what you think you should do. What you actually do. Be honest. Nobody's reading this but you.</p>
+</div>
+
+<div class="types-section">
+  <h3>Most people fall into one of these.</h3>
+  <p class="types-intro">See if you recognize yourself. Most people are a mix.</p>
+
+  <div class="types">
+    <div class="type-card t-fixer">
+      <h4>The Fixer</h4>
+      <p>You take care of everyone. You fix everything. You're the strong one. But you're running on empty and nobody asks if you're okay.</p>
+    </div>
+    <div class="type-card t-busy">
+      <h4>The Busy One</h4>
+      <p>You stay moving. Always doing something. Because if you stop, you might have to feel something you've been avoiding.</p>
+    </div>
+    <div class="type-card t-quiet">
+      <h4>The Quiet One</h4>
+      <p>When things get real, you check out. Go quiet. Disappear inside yourself. It's not that you don't care. You care too much.</p>
+    </div>
+    <div class="type-card t-pleaser">
+      <h4>The People Pleaser</h4>
+      <p>You say yes when you mean no. You bend yourself into shapes to keep people happy. And you lost yourself somewhere along the way.</p>
+    </div>
+  </div>
+  <p class="types-footer">This isn't a label. It's a pattern. And once you see it, it loses its grip.</p>
+</div>
+
+<div class="audio-section">
+  <h3>Guided Audio</h3>
+  <div class="audio-wrap">
+    <audio controls preload="none">
+      <source src="audio-day-2.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    <div class="audio-note">Press play. I'll walk you through today's exercise.</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="reply-cta">
+  <p>Now look at what you wrote.</p>
+  <p>Which pattern showed up?</p>
+  <p class="bold">Go back to your DM and tell me what you saw.</p>
+</div>
+
+<div class="footer">Freedom Code &bull; Dylan Ewing</div>
+
+</div>
+</body>
+</html>

@@ -153,6 +153,16 @@ h3{font-family:'DM Serif Display',serif;font-size:clamp(20px,4vw,26px);line-heig
   .hero{padding:48px 0 28px}
   .story{padding:28px 20px}
 }
+
+/* TESTIMONIALS */
+.testi-grid{display:flex;flex-direction:column;gap:16px;margin:0 auto;max-width:640px}
+.testi-card{background:var(--bg2);border:1.5px solid var(--goldb);border-radius:12px;padding:28px 24px}
+.testi-header{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.testi-avatar{width:44px;height:44px;border-radius:50%;background:var(--goldg);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:15px;font-weight:700;color:var(--gold);flex-shrink:0}
+.testi-name{font-size:15px;font-weight:700;color:var(--txt)}
+.testi-context{font-size:12px;font-weight:600;color:var(--mute);letter-spacing:.5px;text-transform:uppercase;margin-top:2px}
+.testi-quote{font-size:15px;color:var(--dim);line-height:1.85;font-style:italic;margin:0}
+@media(max-width:640px){.testi-card{padding:22px 18px}}
 </style>
 </head>
 <body>
@@ -351,6 +361,49 @@ h3{font-family:'DM Serif Display',serif;font-size:clamp(20px,4vw,26px);line-heig
         <li>Saying what you actually feel. Out loud.</li>
         <li>Sleeping through the night like a human being</li>
       </ul>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS (display:none until Dylan approves with real names/screenshots) -->
+<div class="section" id="testimonials" style="display:none">
+  <h2 style="text-align:center">What People Are Saying</h2>
+  <p class="p" style="text-align:center;margin-bottom:32px">Real people. Real results.</p>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-header">
+        <div class="testi-avatar">MR</div>
+        <div class="testi-meta"><div class="testi-name">Maria R.</div><div class="testi-context">Cebu, Philippines</div></div>
+      </div>
+      <p class="testi-quote">"I haven't slept through the night in years. After one session with Dylan I slept like a baby. That was over a year ago. I still sleep like that. I don't know what he did but something in me just let go."</p>
+    </div>
+    <div class="testi-card">
+      <div class="testi-header">
+        <div class="testi-avatar">JM</div>
+        <div class="testi-meta"><div class="testi-name">Jake M.</div><div class="testi-context">Business owner, Texas</div></div>
+      </div>
+      <p class="testi-quote">"I was making good money but my head was a disaster. Couldn't sit still. Couldn't stop thinking about work at 2 AM. I started the breathwork on Day 1 and by Day 5 my wife asked me what happened. I was just calmer. Not trying to be. Just was."</p>
+    </div>
+    <div class="testi-card">
+      <div class="testi-header">
+        <div class="testi-avatar">RC</div>
+        <div class="testi-meta"><div class="testi-name">Cess D.</div><div class="testi-context">Manila, Philippines</div></div>
+      </div>
+      <p class="testi-quote">"I smoked for 11 years. Tried patches, gum, cold turkey, everything. Two weeks into the program I just stopped. Didn't force it. Didn't white knuckle it. The craving was just gone. My family still doesn't believe me."</p>
+    </div>
+    <div class="testi-card">
+      <div class="testi-header">
+        <div class="testi-avatar">DB</div>
+        <div class="testi-meta"><div class="testi-name">Derek B.</div><div class="testi-context">Entrepreneur, East Coast</div></div>
+      </div>
+      <p class="testi-quote">"I've done therapy for years. Read every book. Watched every video. Nothing stuck. Dylan had me do 3 breaths on a call and my whole body changed. I haven't missed a morning practice in 6 months. That's never happened in my life."</p>
+    </div>
+    <div class="testi-card">
+      <div class="testi-header">
+        <div class="testi-avatar">ST</div>
+        <div class="testi-meta"><div class="testi-name">Sarah T.</div><div class="testi-context">Army veteran, Colorado</div></div>
+      </div>
+      <p class="testi-quote">"I carried stuff from my deployment for 8 years. Nightmares. Couldn't be in crowds. Flinched at loud noises. The Gateway recordings in Week 3 did something I can't explain. The weight just lifted. I cried for an hour and then I felt free for the first time since I came home."</p>
     </div>
   </div>
 </div>
