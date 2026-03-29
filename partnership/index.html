@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Partnership Proposal — Dylan Ewing x Resonance.ph</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0614;
+  --card: rgba(24, 14, 42, 0.65);
+  --border: rgba(138, 107, 191, 0.1);
+  --cream: #f5f0e8;
+  --dim: #a89eb8;
+  --muted: #7a6e90;
+  --gold: #d4a574;
+  --gold-lt: #e8c49a;
+  --purple: #8a6bbf;
+  --teal: #5ec4b6;
+  --r: 14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--cream);-webkit-font-smoothing:antialiased;line-height:1.65;overflow-x:hidden}
+
+/* subtle bg */
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 50% 40% at 30% 20%,rgba(138,107,191,0.06) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 75% 70%,rgba(212,165,116,0.04) 0%,transparent 70%);pointer-events:none;z-index:0}
+
+.wrap{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:0 24px}
+
+/* conf bar */
+.conf{text-align:center;padding:10px;border-bottom:1px solid rgba(212,165,116,0.08)}
+.conf span{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);opacity:0.7}
+
+/* header */
+.hdr{display:flex;justify-content:space-between;align-items:center;padding:20px 0;border-bottom:1px solid var(--border)}
+.hdr-brand{font-size:13px;font-weight:600;color:var(--dim)}
+.hdr-date{font-size:12px;color:var(--muted)}
+
+/* hero */
+.hero{padding:72px 0 48px;text-align:center}
+.hero-label{display:inline-block;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;padding:6px 16px;border:1px solid rgba(212,165,116,0.15);border-radius:100px}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(32px,7vw,48px);font-weight:700;line-height:1.15;margin-bottom:12px}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero p{font-size:16px;color:var(--dim);max-width:500px;margin:0 auto}
+
+.sep{width:40px;height:1px;margin:0 auto;background:var(--gold);opacity:0.25}
+
+/* sections */
+section{padding:48px 0}
+.label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+h2{font-family:'Playfair Display',serif;font-size:clamp(22px,4vw,30px);font-weight:700;line-height:1.25;margin-bottom:14px}
+.sub{font-size:15px;color:var(--dim);line-height:1.7}
+
+/* text blocks */
+.prose{font-size:15px;line-height:1.8;color:var(--dim)}
+.prose p{margin-bottom:14px}
+.prose strong{color:var(--cream);font-weight:600}
+.prose em{color:var(--gold);font-style:normal;font-weight:600}
+
+/* quote */
+.quote{border-left:2px solid var(--gold);padding-left:20px;margin:24px 0;font-family:'Playfair Display',serif;font-size:18px;font-style:italic;line-height:1.5;color:var(--cream)}
+
+/* stats row */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:32px 0}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:20px 12px;text-align:center;backdrop-filter:blur(12px)}
+.stat-n{font-size:28px;font-weight:800;color:var(--gold);line-height:1}
+.stat-l{font-size:11px;color:var(--dim);margin-top:4px}
+
+/* product table */
+.products{width:100%;border-collapse:collapse;margin:24px 0}
+.products th{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);text-align:left;padding:12px 16px;border-bottom:1px solid rgba(212,165,116,0.15)}
+.products td{font-size:14px;color:var(--dim);padding:14px 16px;border-bottom:1px solid var(--border)}
+.products tr:hover td{color:var(--cream);background:rgba(138,107,191,0.04)}
+.products .name{color:var(--cream);font-weight:600}
+.products .price{color:var(--gold);font-weight:700;font-size:16px}
+
+/* proposal box */
+.proposal-box{background:var(--card);border:1px solid rgba(212,165,116,0.15);border-radius:var(--r);padding:32px;margin:32px 0;backdrop-filter:blur(12px);position:relative;overflow:hidden}
+.proposal-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--purple),var(--teal))}
+
+.prop-item{display:flex;gap:14px;align-items:flex-start;margin-bottom:20px}
+.prop-item:last-child{margin-bottom:0}
+.prop-num{flex-shrink:0;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:var(--bg);background:var(--gold);border-radius:50%}
+.prop-text h4{font-size:15px;font-weight:700;color:var(--cream);margin-bottom:2px}
+.prop-text p{font-size:13px;color:var(--dim);line-height:1.6}
+
+/* geo row */
+.geo{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0}
+.geo-item{text-align:center;padding:16px 12px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);backdrop-filter:blur(12px)}
+.geo-item h4{font-size:13px;font-weight:700;color:var(--cream);margin-bottom:4px}
+.geo-item p{font-size:11px;color:var(--dim);line-height:1.5}
+
+/* cta */
+.cta{text-align:center;padding:56px 0 72px}
+.cta h2{margin-bottom:12px}
+.cta p{font-size:15px;color:var(--dim);margin-bottom:28px}
+.cta-btn{display:inline-block;padding:14px 36px;background:linear-gradient(135deg,var(--gold),var(--gold-lt));color:var(--bg);font-family:'Inter',sans-serif;font-size:15px;font-weight:700;border:none;border-radius:100px;text-decoration:none;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(212,165,116,0.25)}
+.cta-info{margin-top:20px;font-size:13px;color:var(--dim);line-height:1.8}
+.cta-info a{color:var(--gold);text-decoration:none}
+.cta-info a:hover{text-decoration:underline}
+
+/* footer */
+.foot{text-align:center;padding:20px 0;border-top:1px solid var(--border)}
+.foot p{font-size:11px;color:var(--muted)}
+
+@media(max-width:600px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .geo{grid-template-columns:1fr}
+  .stat-n{font-size:22px}
+  section{padding:36px 0}
+}
+</style>
+</head>
+<body>
+
+<div class="conf"><span>Confidential Proposal</span></div>
+
+<div class="wrap">
+
+<div class="hdr">
+  <span class="hdr-brand">Dylan Ewing &times; Resonance.ph</span>
+  <span class="hdr-date">March 2026</span>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-label">Partnership Proposal</div>
+  <h1>Your Products.<br><em>My Audience.</em></h1>
+  <p>80,000+ people in the healing and transformation space. Ready to buy the exact tools you're building.</p>
+</div>
+
+<div class="sep"></div>
+
+<!-- Who I Am -->
+<section>
+  <div class="label">Who I Am</div>
+  <h2>Dylan Ewing</h2>
+  <div class="prose">
+    <p>I run <strong>Freedom Code</strong> — a personal transformation brand built around frequency, energy work, and breaking survival patterns that keep people stuck.</p>
+    <div class="quote">"I survived 4 overdoses, a week-long coma, and a 70 mph crash I walked away from without a scratch. That experience cracked something open."</div>
+    <p>Now I teach people how to shift their frequency and reconnect with who they actually are. Not theory. Real tools. Real practice.</p>
+    <p>My wife Shane has been following you on Instagram for months. She keeps showing me your posts, your pendants, the science behind what you're building. Every time, the same thought — <em>these products belong in front of my audience.</em></p>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- Audience -->
+<section>
+  <div class="label">My Reach</div>
+  <h2>80,000+ People Doing the Inner Work</h2>
+  <p class="sub">These aren't casual browsers. They invest in courses, tools, supplements, and retreats. They trust my recommendations because I only point them toward things I personally use.</p>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-n">32K</div><div class="stat-l">Instagram</div></div>
+    <div class="stat"><div class="stat-n">30K</div><div class="stat-l">FB Group</div></div>
+    <div class="stat"><div class="stat-n">16K</div><div class="stat-l">TikTok</div></div>
+    <div class="stat"><div class="stat-n">5K+</div><div class="stat-l">Email List</div></div>
+  </div>
+
+  <div class="prose">
+    <p>I also run an <strong>AI-powered content engine</strong> that produces daily content across platforms — consistent, high-volume promotion without burnout. Your products would get ongoing, authentic exposure to an audience that's actively spending on healing tools.</p>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- Products -->
+<section>
+  <div class="label">Your Catalog</div>
+  <h2>What I Want to Promote</h2>
+  <p class="sub">Three products to start from <a href="https://resonanceph.com" target="_blank" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(212,165,116,0.3)">resonanceph.com</a> — all at your current pricing. I drive the traffic, you get the sales.</p>
+
+  <table class="products">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Category</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="name"><a href="https://resonanceph.com/product/resonator-pendant/" target="_blank" style="color:var(--cream);text-decoration:none;border-bottom:1px solid rgba(212,165,116,0.3)">Resonator Pendant</a></td>
+        <td class="price">$175.00</td>
+        <td>Resonators</td>
+      </tr>
+      <tr>
+        <td class="name"><a href="https://resonanceph.com/product/custom-resonator-pendant/" target="_blank" style="color:var(--cream);text-decoration:none;border-bottom:1px solid rgba(212,165,116,0.3)">Custom Resonator Pendant</a><br><span style="font-size:12px;color:var(--muted);font-weight:400">Choose up to 7 crystals</span></td>
+        <td class="price">$200.00</td>
+        <td>Resonators</td>
+      </tr>
+      <tr>
+        <td class="name"><a href="https://resonanceph.com/product/clear-quartz-resonator-with-external-amplifier-precision-energy-alignment/" target="_blank" style="color:var(--cream);text-decoration:none;border-bottom:1px solid rgba(212,165,116,0.3)">Clear Quartz Resonator + External Amplifier</a><br><span style="font-size:12px;color:var(--muted);font-weight:400">Rechargeable, 79mm x 32mm</span></td>
+        <td class="price">Contact</td>
+        <td>Amplifiers</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="prose">
+    <p>Crystal options: Clear Quartz, Rose Quartz, Amethyst, Citrine, Peridot, Aventurine, Tourmaline, Garnet, Shungite, Black Tourmaline, Tiger's Eye, Lapis Lazuli.</p>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- The Proposal -->
+<section>
+  <div class="label">The Proposal</div>
+  <h2>Simple. Clean. Win-Win.</h2>
+
+  <div class="proposal-box">
+    <div class="prop-item">
+      <div class="prop-num">1</div>
+      <div class="prop-text">
+        <h4>Partner Discount — 25-30% Off Retail</h4>
+        <p>I'm proposing a <strong style="color:var(--cream)">25-30% wholesale discount</strong> on your retail prices. This covers my marketing and customer acquisition costs — content creation, ads, email campaigns — while you still keep strong margins on every unit sold.</p>
+        <div style="margin-top:12px;padding:14px 16px;background:rgba(212,165,116,0.06);border:1px solid rgba(212,165,116,0.12);border-radius:8px;font-size:12px;line-height:1.7;color:var(--dim)">
+          <strong style="color:var(--cream)">Example at 25%:</strong><br>
+          Resonator Pendant — you receive <strong style="color:var(--gold)">$131.25</strong> per sale (retail $175)<br>
+          Custom Pendant — you receive <strong style="color:var(--gold)">$150.00</strong> per sale (retail $200)<br>
+          <span style="color:var(--muted);font-size:11px">Your margin stays healthy. My marketing costs are covered. Volume grows.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="prop-item">
+      <div class="prop-num">2</div>
+      <div class="prop-text">
+        <h4>I Drive All the Sales</h4>
+        <p>I create all the content, run the marketing, and send customers your way. Social posts, email sequences, video content, course integrations — all me. Zero marketing cost for you.</p>
+      </div>
+    </div>
+
+    <div class="prop-item">
+      <div class="prop-num">3</div>
+      <div class="prop-text">
+        <h4>You Handle Fulfillment</h4>
+        <p>When an order comes in, you get the customer's name, shipping address, and product details. You ship direct from Calamba. You do what you do best — craft and deliver beautiful products.</p>
+      </div>
+    </div>
+
+    <div class="prop-item">
+      <div class="prop-num">4</div>
+      <div class="prop-text">
+        <h4>Scale Together</h4>
+        <p>We start with these 3 products. Track results for 30-60 days. If it works — and I'm confident it will — we expand the lineup, explore co-branded bundles, and grow this into a real revenue channel for both of us.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="prose">
+    <p><strong>Why this works for you:</strong> You reach a brand-new international market — US, Europe, Southeast Asia — without spending a dollar on marketing. I bring the audience. You bring the product. The discount is your only investment.</p>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- Geographic Advantage -->
+<section>
+  <div class="label">Why This Is Practical</div>
+  <h2>We're Neighbors</h2>
+
+  <div class="geo">
+    <div class="geo-item">
+      <h4>Same Timezone</h4>
+      <p>Thailand + Philippines. Real-time comms. No 12-hour delays.</p>
+    </div>
+    <div class="geo-item">
+      <h4>Fast Shipping</h4>
+      <p>SE Asian routes. Faster and cheaper than cross-Pacific.</p>
+    </div>
+    <div class="geo-item">
+      <h4>Easy to Meet</h4>
+      <p>A short flight apart. Face-to-face whenever we want.</p>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- CTA -->
+<div class="cta">
+  <h2>Let's Talk</h2>
+  <p>Shane's been a fan of your work before I ever reached out. I'm not interested in a one-time deal — I'm looking for a partnership that grows. Let's hop on a call and see if the vibe is right.</p>
+  <a href="mailto:admin@resonanceph.com?subject=Partnership%20Inquiry%20%E2%80%94%20Dylan%20Ewing%20x%20Resonance.ph" class="cta-btn">Start the Conversation</a>
+  <div class="cta-info">
+    <strong style="color:var(--cream)">Dylan Ewing</strong> — Founder, Freedom Code<br>
+    dylan@thedylanewing.com<br>
+    IG: <a href="https://instagram.com/thedylanewing" target="_blank">@thedylanewing</a>
+  </div>
+</div>
+
+<div class="foot">
+  <p>This proposal is confidential and intended for the Resonance.ph team only.</p>
+</div>
+
+</div><!-- /wrap -->
+</body>
+</html>
