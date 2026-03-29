@@ -55,6 +55,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://thedylanewing.com/newsletter/</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://thedylanewing.com/thanks.html</loc>
     <lastmod>2026-03-28</lastmod>
     <changefreq>monthly</changefreq>

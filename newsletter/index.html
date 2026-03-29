@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deeper Wisdom — Free Newsletter by Dylan Ewing</title>
+  <meta name="description" content="Weekly email. Declassified documents, consciousness research, suppressed science, and the patterns running your life. The stuff that gets taken down. Free.">
+  <link rel="canonical" href="https://thedylanewing.com/newsletter/">
+  <meta property="og:title" content="Deeper Wisdom — Free Newsletter">
+  <meta property="og:description" content="Weekly email. Declassified docs, consciousness research, suppressed science. The stuff that gets taken down. Free.">
+  <meta property="og:url" content="https://thedylanewing.com/newsletter/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Dylan Ewing">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0a0908; --bg-2: #12100e; --bg-3: #1a1714;
+      --glass: rgba(255,255,255,0.025); --glass-border: rgba(200,164,92,0.07);
+      --glass-hover: rgba(200,164,92,0.15);
+      --gold: #c8a45c; --gold-l: #d9c07a; --gold-glow: rgba(200,164,92,0.12); --gold-dim: rgba(200,164,92,0.06);
+      --text: #e8e0d4; --text-d: #9a9590; --text-m: #5a5550; --white: #fff;
+      --red: #d4644a; --blue: #6a8fb5; --green: #6ab58f;
+      --max: 1200px; --r: 20px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    h1, h2, h3 { font-family: 'DM Serif Display', serif; font-weight: 400; line-height: 1.15; }
+    a { color: var(--gold); text-decoration: none; }
+
+    .glow-orb { position: fixed; border-radius: 50%; pointer-events: none; filter: blur(80px); mix-blend-mode: screen; z-index: 0; animation: orbDrift 25s linear infinite; }
+    .glow-orb.o1 { width: 600px; height: 600px; top: -150px; right: -100px; background: radial-gradient(circle, rgba(200,164,92,0.12), transparent); }
+    .glow-orb.o2 { width: 500px; height: 500px; bottom: -100px; left: -80px; background: radial-gradient(circle, rgba(106,143,181,0.07), transparent); animation-duration: 30s; }
+    @keyframes orbDrift { 0% { transform: translate(0,0) scale(1); } 50% { transform: translate(-20px,20px) scale(0.95); } 100% { transform: translate(0,0) scale(1); } }
+
+    body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9998; opacity: 0.35; }
+    main, nav, footer { position: relative; z-index: 10; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 24px; background: rgba(10,9,8,0.92); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--glass-border); }
+    nav .inner { max-width: var(--max); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .nlogo { font-family: 'DM Serif Display', serif; font-size: 1.25rem; color: var(--white); }
+    .nlinks { display: flex; gap: 36px; align-items: center; }
+    .nlinks a { color: var(--text-d); font-size: 0.975rem; font-weight: 500; letter-spacing: 0.03em; transition: color 0.25s; }
+    .nlinks a:hover { color: var(--white); }
+    .ncta { background: rgba(200,164,92,0.1); color: var(--gold) !important; padding: 9px 22px; border-radius: 100px; font-weight: 600; font-size: 0.75rem !important; letter-spacing: 0.06em; text-transform: uppercase; border: 1px solid rgba(200,164,92,0.2); transition: all 0.3s; cursor: pointer; }
+    .ncta:hover { background: var(--gold); color: var(--bg) !important; border-color: var(--gold); }
+    .mtog { display: none; background: none; border: none; color: var(--text); cursor: pointer; padding: 8px; }
+
+    .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 100px 24px 80px; }
+    .hero-inner { max-width: 600px; text-align: center; }
+    .label { display: inline-flex; align-items: center; gap: 10px; font-size: 0.825rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+    .label::before { content: ''; width: 24px; height: 1px; background: var(--gold); opacity: 0.5; }
+    .hero h1 { font-size: clamp(2.25rem, 5vw, 3.25rem); color: var(--white); margin-bottom: 20px; }
+    .hero p { font-size: 1.125rem; color: var(--text-d); line-height: 1.8; margin-bottom: 32px; }
+    .hero p strong { color: var(--text); }
+
+    .form-wrap { background: var(--glass); border: 1px solid var(--glass-border); border-radius: var(--r); padding: 32px; margin-bottom: 32px; }
+    .form-row { display: flex; gap: 12px; margin-bottom: 12px; }
+    .form-row input { flex: 1; padding: 16px 20px; border-radius: 12px; border: 1px solid var(--glass-border); background: var(--bg-2); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 1rem; outline: none; transition: border-color 0.3s; }
+    .form-row input::placeholder { color: var(--text-m); }
+    .form-row input:focus { border-color: var(--gold); }
+    .btn-g { display: block; width: 100%; padding: 18px; border-radius: 12px; font-weight: 700; font-size: 1.0625rem; background: linear-gradient(135deg, var(--gold), #b8943c); color: var(--bg); box-shadow: 0 4px 24px rgba(200,164,92,0.2); transition: all 0.4s; cursor: pointer; border: none; text-align: center; font-family: 'DM Sans', sans-serif; letter-spacing: 0.02em; }
+    .btn-g:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(200,164,92,0.35); }
+    .form-note { font-size: 0.8125rem; color: var(--text-m); text-align: center; margin-top: 12px; }
+
+    .success { display: none; text-align: center; padding: 32px; }
+    .success h2 { font-size: 1.75rem; color: var(--white); margin-bottom: 12px; }
+    .success p { font-size: 1.0625rem; color: var(--text-d); line-height: 1.7; }
+    .success .check { width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), #b8943c); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+
+    .topics { max-width: 600px; margin: 0 auto; padding: 0 24px 80px; }
+    .topics h3 { font-size: 1.125rem; color: var(--text-m); text-align: center; margin-bottom: 24px; letter-spacing: 0.06em; text-transform: uppercase; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.75rem; }
+    .topic-list { display: flex; flex-direction: column; gap: 12px; }
+    .topic-item { display: flex; align-items: center; gap: 16px; padding: 16px 20px; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 12px; transition: all 0.3s; }
+    .topic-item:hover { border-color: var(--glass-hover); }
+    .topic-item .cat { font-size: 0.625rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 100px; white-space: nowrap; }
+    .cat-truth { background: rgba(212,100,74,0.1); color: var(--red); }
+    .cat-consciousness { background: rgba(106,143,181,0.1); color: var(--blue); }
+    .cat-healing { background: rgba(106,181,143,0.1); color: var(--green); }
+    .cat-freedom { background: rgba(200,164,92,0.08); color: var(--gold); }
+    .topic-item .title { font-size: 0.9375rem; color: var(--text-d); }
+    .topic-item .title a { color: var(--text-d); transition: color 0.2s; }
+    .topic-item .title a:hover { color: var(--white); }
+
+    footer { padding: 48px 0; border-top: 1px solid var(--glass-border); }
+    footer .ct { max-width: var(--max); margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; }
+    .fcopy { font-size: 0.9rem; color: var(--text-m); }
+    .flinks { display: flex; gap: 28px; }
+    .flinks a { font-size: 0.9rem; color: var(--text-m); transition: color 0.2s; }
+    .flinks a:hover { color: var(--text); }
+
+    @media (max-width: 768px) {
+      .nlinks { display: none; position: fixed; top: 72px; left: 0; right: 0; background: rgba(10,9,8,0.97); backdrop-filter: blur(24px); flex-direction: column; padding: 24px; gap: 20px; border-bottom: 1px solid var(--glass-border); }
+      .nlinks.open { display: flex; }
+      .mtog { display: block; }
+      .form-row { flex-direction: column; }
+      footer .ct { flex-direction: column; gap: 20px; text-align: center; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition-duration: 0s !important; } }
+  </style>
+</head>
+<body>
+  <div class="glow-orb o1"></div>
+  <div class="glow-orb o2"></div>
+
+  <nav id="nav">
+    <div class="inner">
+      <a href="/" class="nlogo">Dylan Ewing</a>
+      <div class="nlinks" id="navLinks">
+        <a href="/#story">Story</a>
+        <a href="/blog/">Blog</a>
+        <a href="/#program">Freedom Code</a>
+        <a href="/a/" class="ncta">Take The Quiz</a>
+      </div>
+      <button class="mtog" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="label">Free Weekly Email</div>
+        <h1>Deeper Wisdom</h1>
+        <p>Declassified documents. Consciousness research. Suppressed science. The stuff that gets taken down. One email a week. <strong>No fluff. No sales pitch. Just truth.</strong></p>
+
+        <div class="form-wrap" id="form-wrap">
+          <form id="newsletter-form" onsubmit="return submitNewsletter(event)">
+            <div class="form-row">
+              <input type="text" name="firstName" placeholder="First name" required autocomplete="given-name" aria-label="First name">
+              <input type="email" name="email" placeholder="Email address" required autocomplete="email" aria-label="Email address">
+            </div>
+            <button type="submit" class="btn-g" id="submit-btn">Subscribe — It's Free</button>
+          </form>
+          <p class="form-note">Unsubscribe anytime. No spam. Just one email a week with the research they don't want you to see.</p>
+        </div>
+
+        <div class="success" id="success">
+          <div class="check">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0a0908" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h2>You're in.</h2>
+          <p>Check your inbox. Your first Deeper Wisdom email is on its way. While you wait — <a href="/blog/">read the blog</a> or <a href="/a/">take the free quiz</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="topics">
+      <h3>Recent from the blog</h3>
+      <div class="topic-list">
+        <a href="/blog/cia-gateway-process/" class="topic-item">
+          <span class="cat cat-truth">Truth</span>
+          <span class="title">The CIA Studied Consciousness for 20 Years. Here's What They Found.</span>
+        </a>
+        <a href="/blog/operation-mockingbird/" class="topic-item">
+          <span class="cat cat-truth">Truth</span>
+          <span class="title">Operation Mockingbird: When the CIA Controlled the News</span>
+        </a>
+        <a href="/blog/near-death-experience-research/" class="topic-item">
+          <span class="cat cat-consciousness">Consciousness</span>
+          <span class="title">They Flatlined. They All Saw the Same Thing.</span>
+        </a>
+        <a href="/blog/meditation-in-schools/" class="topic-item">
+          <span class="cat cat-healing">Healing</span>
+          <span class="title">What Happens When Schools Teach Meditation Instead of Medication</span>
+        </a>
+        <a href="/blog/childhood-patterns/" class="topic-item">
+          <span class="cat cat-freedom">Freedom</span>
+          <span class="title">You're Not Choosing. Your Childhood Is.</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="ct">
+      <p class="fcopy">&copy; 2026 Dylan Ewing &middot; thedylanewing.com</p>
+      <div class="flinks">
+        <a href="https://instagram.com/thedylanewing" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://tiktok.com/@dylan_in_philippines" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://linkedin.com/in/dylan-ewing" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="/blog/">Blog</a>
+        <a href="/privacy.html">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  function submitNewsletter(e) {
+    e.preventDefault();
+    var form = document.getElementById('newsletter-form');
+    var btn = document.getElementById('submit-btn');
+    var firstName = form.firstName.value.trim();
+    var email = form.email.value.trim();
+
+    if (!firstName || !email) return false;
+
+    btn.textContent = 'Subscribing...';
+    btn.disabled = true;
+
+    var webhookUrl = 'https://services.leadconnectorhq.com/hooks/0rTH6E3MWkHn5cjPmzLt/webhook-trigger/33f7662f';
+
+    fetch(webhookUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        firstName: firstName,
+        email: email,
+        tags: ['deeper-wisdom-subscriber'],
+        source: 'newsletter-page'
+      })
+    })
+    .then(function() {
+      document.getElementById('form-wrap').style.display = 'none';
+      document.getElementById('success').style.display = 'block';
+    })
+    .catch(function() {
+      document.getElementById('form-wrap').style.display = 'none';
+      document.getElementById('success').style.display = 'block';
+    });
+
+    return false;
+  }
+  </script>
+</body>
+</html>
