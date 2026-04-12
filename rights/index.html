@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Know Your Rights — Medical Freedom | Dylan Ewing</title>
+<meta name="description" content="Unlimited legal advice for under $40/mo. Vaccine mandates, forced medical procedures, employer health requirements — know your rights.">
+<meta property="og:title" content="Know Your Rights — Medical Freedom">
+<meta property="og:description" content="They can't force you. But they're counting on you not knowing that. Unlimited attorney access for under $40/mo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0c0614;
+  --card: rgba(25, 14, 42, 0.85);
+  --card-border: rgba(212, 165, 116, 0.12);
+  --cream: #f5f0e8;
+  --cream-dim: #c8c0b4;
+  --gold: #d4a574;
+  --gold-light: #e8c49a;
+  --text-dim: #a89cb8;
+  --text-muted: #6b5f80;
+  --green: #4ade80;
+  --radius: 14px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--cream);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(138, 107, 191, 0.1) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 100%, rgba(212, 165, 116, 0.06) 0%, transparent 50%);
+  pointer-events: none;
+}
+.wrap { position: relative; max-width: 640px; margin: 0 auto; padding: 48px 20px 80px; }
+
+/* HERO */
+.hero { text-align: center; margin-bottom: 48px; }
+.hero .badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(212, 165, 116, 0.3);
+  border-radius: 20px;
+  padding: 6px 16px;
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.25;
+  margin-bottom: 16px;
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--gold);
+}
+.hero .sub {
+  font-size: 15px;
+  color: var(--text-dim);
+  line-height: 1.6;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* CTA BUTTON */
+.cta {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto 8px;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: var(--bg);
+  font-size: 17px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.3s;
+  min-height: 56px;
+}
+.cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px rgba(212, 165, 116, 0.25);
+}
+.cta-note {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 48px;
+}
+
+/* SECTIONS */
+.section { margin-bottom: 40px; }
+.section h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.section p {
+  font-size: 15px;
+  color: var(--cream-dim);
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+
+/* CHECK LIST */
+.checks { list-style: none; margin-bottom: 24px; }
+.checks li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 0;
+  font-size: 15px;
+  color: var(--cream-dim);
+  line-height: 1.5;
+  border-bottom: 1px solid rgba(212, 165, 116, 0.06);
+}
+.checks li::before {
+  content: '\2713';
+  color: var(--green);
+  font-weight: 700;
+  font-size: 16px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* PRICING CARD */
+.price-card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  text-align: center;
+  margin-bottom: 32px;
+}
+.price-card .plan { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+.price-card .amount { font-size: 42px; font-weight: 800; margin-bottom: 4px; }
+.price-card .amount span { font-size: 16px; font-weight: 400; color: var(--text-dim); }
+.price-card .covers { font-size: 14px; color: var(--text-dim); margin-bottom: 16px; }
+.price-card .includes { font-size: 13px; color: var(--text-muted); line-height: 1.8; text-align: left; }
+
+/* QUOTE */
+.quote {
+  border-left: 3px solid var(--gold);
+  padding: 16px 20px;
+  margin: 32px 0;
+  font-size: 15px;
+  color: var(--cream-dim);
+  line-height: 1.6;
+  font-style: italic;
+}
+.quote .attr {
+  font-style: normal;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+/* FOOTER */
+.foot { text-align: center; font-size: 11px; color: var(--text-muted); opacity: 0.6; margin-top: 48px; }
+.foot a { color: var(--gold); text-decoration: none; }
+
+@media (max-width: 480px) {
+  .hero h1 { font-size: 24px; }
+  .price-card .amount { font-size: 36px; }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="badge">Medical Freedom</div>
+    <h1>They Can't Force You.<br>But They're Counting On You <em>Not Knowing That.</em></h1>
+    <p class="sub">Vaccine mandates. Employer health requirements. Forced medical procedures. You have rights. Most people just don't have a lawyer on speed dial to enforce them.</p>
+  </div>
+
+  <!-- TOP CTA -->
+  <a href="https://dewing.legalshieldassociate.com/legal" class="cta">Get Protected Now</a>
+  <div class="cta-note">Preferred Family Plan. Under $38/mo. Cancel anytime.</div>
+
+  <!-- WHAT'S COVERED -->
+  <div class="section">
+    <h2>What You Get</h2>
+    <p>One plan. Unlimited access to a dedicated law firm in your state. Here's what they handle:</p>
+    <ul class="checks">
+      <li>Vaccine mandate pushback — employer, school, military</li>
+      <li>Religious and medical exemption letters drafted by your attorney</li>
+      <li>Forced medical procedure refusal — your attorney sends the letter</li>
+      <li>Employer retaliation protection — wrongful termination, demotion</li>
+      <li>School enrollment disputes — your kids, your choice</li>
+      <li>Government overreach — quarantine orders, travel restrictions</li>
+      <li>HIPAA violations — someone sharing your medical info without consent</li>
+      <li>Attorney phone calls made on your behalf — they call, not you</li>
+      <li>Document review — contracts, waivers, consent forms before you sign</li>
+      <li>24/7 emergency legal access — nights, weekends, holidays</li>
+    </ul>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="section">
+    <h2>How It Works</h2>
+    <p>No retainers. No hourly fees. No waiting weeks for a callback.</p>
+    <p>You enroll. You get the app. When something comes up, you open the app and request a consultation. Your dedicated law firm calls you back — usually the same day. They handle it.</p>
+    <p>Your employer says "get the shot or get fired"? Your attorney sends them a letter. Most of the time, that letter is all it takes.</p>
+  </div>
+
+  <!-- QUOTE -->
+  <div class="quote">
+    "The people making these mandates are counting on you not having a lawyer. The moment you do, the conversation changes."
+    <div class="attr">— Dylan Ewing</div>
+  </div>
+
+  <!-- PRICING -->
+  <div class="price-card">
+    <div class="plan">Preferred Family Plan</div>
+    <div class="amount">$37<span>.95/mo</span></div>
+    <div class="covers">Covers you + spouse + kids under 26</div>
+    <div class="includes">
+      Unlimited consultations. Dedicated law firm in your state. Attorney letters and calls on your behalf. 25-page document review. Religious/medical exemption drafting. Will preparation. 24/7 emergency access. 20% preferred member discount on extended services. No waiting period. Pre-existing matters covered.
+    </div>
+  </div>
+
+  <!-- BOTTOM CTA -->
+  <a href="https://dewing.legalshieldassociate.com/legal" class="cta">Get Protected — $37.95/mo</a>
+  <div class="cta-note">2 minutes to enroll. No contracts. Cancel anytime. LegalShield has been around since 1972.</div>
+
+  <!-- BOTTOM SECTION -->
+  <div class="section" style="margin-top: 40px;">
+    <h2>Why I Use It</h2>
+    <p>I almost died 4 times. When you come that close, you stop trusting systems that don't have your back.</p>
+    <p>LegalShield isn't some startup. 50+ years. Over 4 million members. A dedicated law firm assigned to YOU in your state. Not a chatbot. Not a referral. Your attorneys.</p>
+    <p>For less than a dinner out, your whole family has a legal team ready to go when someone tries to force something on you that violates your rights.</p>
+    <p>That's not a luxury. That's a necessity.</p>
+  </div>
+
+  <!-- FINAL CTA -->
+  <a href="https://dewing.legalshieldassociate.com/legal" class="cta" style="margin-top: 32px;">Enroll Now</a>
+  <div class="cta-note">Questions? Email <a href="mailto:dylan@thedylanewing.com" style="color: var(--gold); text-decoration: none;">dylan@thedylanewing.com</a></div>
+
+  <div class="foot">
+    <a href="/links/">Back to all links</a> &middot; thedylanewing.com
+  </div>
+
+</div>
+
+</body>
+</html>
