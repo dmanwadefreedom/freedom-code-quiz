@@ -35,8 +35,15 @@
   .divider { height: 1px; background: #1e3a22; margin: 8px 20px 0; }
   .footer { text-align: center; padding: 32px 20px 0; font-size: 13px; color: var(--gray); line-height: 1.8; }
   .footer a { color: var(--accent); text-decoration: none; }
-  .signup-btn { display: block; margin: 24px 16px 0; background: var(--green); color: var(--cream); text-align: center; padding: 15px; border-radius: 12px; font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; text-decoration: none; transition: background 0.2s; }
+  .signup-btn { display: block; margin: 24px 16px 0; background: var(--green); color: var(--cream); text-align: center; padding: 15px; border-radius: 12px; font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; text-decoration: none; transition: background 0.2s; border: none; cursor: pointer; width: calc(100% - 32px); }
   .signup-btn:hover { background: var(--green-light); }
+  .lead-form { margin: 0 16px; }
+  .lead-form input { width: 100%; padding: 14px 16px; border-radius: 10px; border: 1px solid #1e3a22; background: #111e13; color: var(--cream); font-family: 'DM Sans', sans-serif; font-size: 16px; margin-bottom: 10px; outline: none; transition: border-color 0.2s; }
+  .lead-form input::placeholder { color: var(--gray); }
+  .lead-form input:focus { border-color: var(--green-light); }
+  .form-msg { text-align: center; padding: 8px; font-size: 14px; border-radius: 8px; margin-top: 8px; display: none; }
+  .form-msg.success { display: block; background: #1b4332; color: var(--accent); }
+  .form-msg.error { display: block; background: #3a1111; color: #f5a0a0; }
   .story-section { padding: 32px 20px 24px; }
   .story-card { background: #111e13; border: 1px solid #1e3a22; border-radius: 14px; padding: 28px 22px; max-width: 540px; margin: 0 auto; }
   .story-card h2 { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 2px; color: var(--accent); margin-bottom: 16px; }
@@ -139,11 +146,16 @@
 <div class="story-card" style="margin: 0 16px 12px; text-align: center;">
   <h2 style="font-size: 24px;">UNFILTERED SH*T SOCIAL MEDIA DOESN'T WANT YOU TO KNOW</h2>
   <p style="font-size: 15px; color: var(--gray);">The chemicals in your body are just the beginning. I have been researching this for 8 years. The deeper stuff gets deleted off social media within hours.</p>
-  <p style="font-size: 15px; color: var(--gray);">I am building a private community with the content they do not want you to see. Pre-sign up below to get in first.</p>
-  <a href="https://instagram.com/thedylanewing" target="_blank" class="signup-btn" style="margin: 16px 0 0;">🔓 PRE-SIGN UP — GET IN EARLY</a>
+  <p style="font-size: 15px; color: var(--gray);">I am building a private community with the content they do not want you to see. Drop your email to get in first.</p>
+  <form id="detox-form" class="lead-form" style="margin-top: 16px;" onsubmit="return submitLead(event)">
+    <input type="text" name="firstName" placeholder="First name (optional)" autocomplete="given-name">
+    <input type="email" name="email" placeholder="Your best email" required autocomplete="email">
+    <button type="submit" class="signup-btn" style="margin: 0; width: 100%;" id="form-btn">GET EARLY ACCESS</button>
+    <div id="form-msg" class="form-msg"></div>
+  </form>
 </div>
 
-<a href="https://www.amazon.com/shop/thedylanewing" target="_blank" class="signup-btn">🛒 Shop My Full Amazon Stack</a>
+<a href="https://www.amazon.com/shop/thedylanewing?tag=thedylanewing-20" target="_blank" class="signup-btn">🛒 Shop My Full Amazon Stack</a>
 
 <a href="https://instagram.com/thedylanewing" target="_blank" class="signup-btn" style="background: var(--green-light);">💬 Follow Me On Instagram</a>
 
@@ -154,5 +166,44 @@
   This is not medical advice. Always consult your doctor.
 </div>
 
+<script>
+const WORKER_URL = 'https://detox-lead.dylanewing.workers.dev';
+
+async function submitLead(e) {
+  e.preventDefault();
+  const form = document.getElementById('detox-form');
+  const btn = document.getElementById('form-btn');
+  const msg = document.getElementById('form-msg');
+  const email = form.email.value.trim();
+  const firstName = form.firstName.value.trim();
+
+  btn.textContent = 'SENDING...';
+  btn.disabled = true;
+  msg.className = 'form-msg';
+  msg.style.display = 'none';
+
+  try {
+    const res = await fetch(WORKER_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, firstName }),
+    });
+
+    if (res.ok) {
+      msg.textContent = "You're in. Check your DMs and email.";
+      msg.className = 'form-msg success';
+      form.reset();
+      btn.textContent = "YOU'RE IN";
+    } else {
+      throw new Error('fail');
+    }
+  } catch {
+    msg.textContent = 'Something went wrong. Try again.';
+    msg.className = 'form-msg error';
+    btn.textContent = 'GET EARLY ACCESS';
+    btn.disabled = false;
+  }
+}
+</script>
 </body>
 </html>
