@@ -192,6 +192,7 @@ async function submitLead(e) {
     if (res.ok) {
       msg.textContent = "You're in. Check your DMs and email.";
       msg.className = 'form-msg success';
+      msg.style.display = 'block';
       form.reset();
       btn.textContent = "YOU'RE IN";
     } else {
@@ -200,6 +201,7 @@ async function submitLead(e) {
   } catch {
     msg.textContent = 'Something went wrong. Try again.';
     msg.className = 'form-msg error';
+    msg.style.display = 'block';
     btn.textContent = 'GET EARLY ACCESS';
     btn.disabled = false;
   }
