@@ -19,24 +19,29 @@
   body { background: var(--dark); color: var(--cream); font-family: 'DM Sans', sans-serif; min-height: 100vh; padding: 0 0 60px; }
   .hero { background: linear-gradient(160deg, #0d1b0f 0%, #1b4332 60%, #0d1b0f 100%); padding: 52px 24px 40px; text-align: center; position: relative; overflow: hidden; }
   .hero::before { content: ''; position: absolute; top: -60px; left: 50%; transform: translateX(-50%); width: 300px; height: 300px; background: radial-gradient(circle, rgba(149,213,178,0.15) 0%, transparent 70%); pointer-events: none; }
-  .avatar { width: 72px; height: 72px; border-radius: 50%; background: var(--green); display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--accent); margin: 0 auto 16px; border: 2px solid var(--green-light); }
-  .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: 38px; letter-spacing: 2px; color: var(--cream); line-height: 1.1; margin-bottom: 8px; }
-  .hero p { font-size: 14px; color: var(--accent); font-weight: 300; letter-spacing: 0.04em; max-width: 280px; margin: 0 auto 6px; line-height: 1.6; }
-  .disclaimer { font-size: 11px; color: var(--gray); margin-top: 10px; }
-  .section-label { font-family: 'Bebas Neue', sans-serif; font-size: 13px; letter-spacing: 3px; color: var(--green-light); padding: 28px 20px 10px; text-transform: uppercase; }
+  .avatar { width: 72px; height: 72px; border-radius: 50%; background: var(--green); display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 34px; color: var(--accent); margin: 0 auto 16px; border: 2px solid var(--green-light); }
+  .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: 46px; letter-spacing: 2px; color: var(--cream); line-height: 1.1; margin-bottom: 8px; }
+  .hero p { font-size: 17px; color: var(--accent); font-weight: 300; letter-spacing: 0.04em; max-width: 280px; margin: 0 auto 6px; line-height: 1.6; }
+  .disclaimer { font-size: 13px; color: var(--gray); margin-top: 10px; }
+  .section-label { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 3px; color: var(--green-light); padding: 28px 20px 10px; text-transform: uppercase; }
   .card { background: #111e13; border: 1px solid #1e3a22; border-radius: 14px; margin: 0 16px 12px; padding: 18px; display: flex; align-items: center; gap: 14px; text-decoration: none; color: inherit; transition: border-color 0.2s, background 0.2s; position: relative; overflow: hidden; }
   .card:hover { border-color: var(--green-light); background: #152418; }
-  .card::after { content: '→'; position: absolute; right: 18px; top: 50%; transform: translateY(-50%); color: var(--green-light); font-size: 18px; opacity: 0.6; }
-  .card-icon { width: 46px; height: 46px; border-radius: 10px; background: var(--green); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+  .card::after { content: '→'; position: absolute; right: 18px; top: 50%; transform: translateY(-50%); color: var(--green-light); font-size: 22px; opacity: 0.6; }
+  .card-icon { width: 46px; height: 46px; border-radius: 10px; background: var(--green); display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; }
   .card-body { flex: 1; padding-right: 20px; }
-  .card-title { font-size: 15px; font-weight: 500; color: var(--cream); margin-bottom: 3px; }
-  .card-sub { font-size: 12px; color: var(--gray); line-height: 1.4; }
-  .badge { display: inline-block; font-size: 10px; font-weight: 500; background: var(--green-pale); color: var(--green); border-radius: 20px; padding: 2px 8px; margin-top: 4px; letter-spacing: 0.03em; }
+  .card-title { font-size: 18px; font-weight: 500; color: var(--cream); margin-bottom: 3px; }
+  .card-sub { font-size: 14px; color: var(--gray); line-height: 1.4; }
+  .badge { display: inline-block; font-size: 12px; font-weight: 500; background: var(--green-pale); color: var(--green); border-radius: 20px; padding: 2px 8px; margin-top: 4px; letter-spacing: 0.03em; }
   .divider { height: 1px; background: #1e3a22; margin: 8px 20px 0; }
-  .footer { text-align: center; padding: 32px 20px 0; font-size: 11px; color: var(--gray); line-height: 1.8; }
+  .footer { text-align: center; padding: 32px 20px 0; font-size: 13px; color: var(--gray); line-height: 1.8; }
   .footer a { color: var(--accent); text-decoration: none; }
-  .signup-btn { display: block; margin: 24px 16px 0; background: var(--green); color: var(--cream); text-align: center; padding: 15px; border-radius: 12px; font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 2px; text-decoration: none; transition: background 0.2s; }
+  .signup-btn { display: block; margin: 24px 16px 0; background: var(--green); color: var(--cream); text-align: center; padding: 15px; border-radius: 12px; font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; text-decoration: none; transition: background 0.2s; }
   .signup-btn:hover { background: var(--green-light); }
+  .story-section { padding: 32px 20px 24px; }
+  .story-card { background: #111e13; border: 1px solid #1e3a22; border-radius: 14px; padding: 28px 22px; max-width: 540px; margin: 0 auto; }
+  .story-card h2 { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 2px; color: var(--accent); margin-bottom: 16px; }
+  .story-card p { font-size: 17px; color: var(--cream); line-height: 1.7; margin-bottom: 14px; font-weight: 300; }
+  .story-card p:last-child { margin-bottom: 0; }
 </style>
 </head>
 <body>
@@ -46,6 +51,16 @@
   <h1>Dylan's<br>Detox Stack</h1>
   <p>Everything I personally recommend to clean out your body and take back control.</p>
   <div class="disclaimer">* Affiliate links — I only share what I believe in.</div>
+</div>
+
+<div class="story-section">
+  <div class="story-card">
+    <h2>WHY I DETOX</h2>
+    <p>I almost died. Four times. Coma. ECMO. 70mph crash. My body was full of toxins I didn't even know about.</p>
+    <p>When I finally tested my levels, I found aluminum, arsenic, barium, and heavy metals in my system. Most people have them too. They just don't test.</p>
+    <p>I started with chlorophyll drops. Then zeolite. Then spirulina and chlorella. Within weeks I had more clarity than I'd had in years. Brain fog lifted. Energy came back. Sleep got deeper.</p>
+    <p>Now I test regularly and detox daily. These are the exact products I use. Nothing fancy. Just what works.</p>
+  </div>
 </div>
 
 <div class="section-label">🌿 Pull Out The Metals</div>
