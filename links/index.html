@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dylan Ewing - Links</title>
-<meta name="description" content="Dylan Ewing - NDE survivor, pattern breaker, breathwork guide. Take the free quiz. Join the Deeper Wisdom Newsletter.">
+<meta name="description" content="Dylan Ewing — NDE survivor, truth researcher. Detox the body. Wake the mind. All my tools, protocols, and research in one place.">
 <meta property="og:title" content="Dylan Ewing - Links">
-<meta property="og:description" content="Almost died 4 times. Came back with a system. Find your pattern.">
+<meta property="og:description" content="NDE survivor. Truth researcher. Decoding what they don't want you to see.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -18,6 +18,7 @@
   --cream-dim: #c8c0b4;
   --gold: #d4a574;
   --gold-light: #e8c49a;
+  --green: #95d5b2;
   --text-dim: #a89cb8;
   --text-muted: #6b5f80;
   --radius: 14px;
@@ -47,10 +48,10 @@ body::before {
   pointer-events: none;
 }
 
-.page { position: relative; width: 100%; max-width: 400px; }
+.page { position: relative; width: 100%; max-width: 420px; }
 
 /* PROFILE */
-.profile { text-align: center; margin-bottom: 32px; }
+.profile { text-align: center; margin-bottom: 24px; }
 
 .avatar {
   width: 88px; height: 88px; border-radius: 50%;
@@ -61,36 +62,52 @@ body::before {
   box-shadow: 0 0 48px rgba(212, 165, 116, 0.12);
 }
 
-.profile h1 { font-size: 20px; font-weight: 700; margin-bottom: 2px; }
-.profile .handle { font-size: 13px; color: var(--text-dim); margin-bottom: 10px; }
-.profile .bio { font-size: 13px; color: var(--text-muted); line-height: 1.5; max-width: 300px; margin: 0 auto; }
+.profile h1 { font-size: 22px; font-weight: 700; margin-bottom: 2px; }
+.profile .handle { font-size: 13px; color: var(--text-dim); margin-bottom: 12px; }
+.profile .bio { font-size: 13.5px; color: var(--cream-dim); line-height: 1.55; max-width: 340px; margin: 0 auto; }
+.profile .bio strong { color: var(--gold-light); font-weight: 600; }
 
-/* PRIMARY CTA - THE ONE PATH */
+/* SOCIAL PROOF BAR */
+.proof {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin: 18px auto 28px;
+  padding: 10px 16px;
+  font-size: 11px;
+  color: var(--text-dim);
+  border-top: 1px solid var(--card-border);
+  border-bottom: 1px solid var(--card-border);
+}
+.proof strong { color: var(--gold); font-weight: 700; font-size: 12px; }
+.proof-item { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+
+/* PRIMARY CTA - HIGHEST VOLUME */
 .primary {
   display: block;
   width: 100%;
   padding: 20px 24px;
-  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  background: linear-gradient(135deg, var(--green), #6aa888);
   color: var(--bg);
   font-size: 17px;
   font-weight: 700;
   text-align: center;
   text-decoration: none;
   border-radius: var(--radius);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.3s;
   min-height: 56px;
 }
 .primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 36px rgba(212, 165, 116, 0.25);
+  box-shadow: 0 12px 36px rgba(149, 213, 178, 0.3);
 }
 .primary-note {
   text-align: center;
   font-size: 12px;
   color: var(--text-muted);
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
 
 /* SECONDARY LINKS */
@@ -100,7 +117,7 @@ body::before {
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--gold);
-  opacity: 0.5;
+  opacity: 0.55;
   margin-bottom: 12px;
   padding-left: 4px;
 }
@@ -110,42 +127,58 @@ body::before {
 .link {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   padding: 14px 18px;
   background: var(--card);
   border: 1px solid var(--card-border);
   border-radius: var(--radius);
   color: var(--cream);
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 14.5px;
+  font-weight: 600;
   text-decoration: none;
   cursor: pointer;
   transition: border-color 0.3s, transform 0.2s;
+  position: relative;
 }
 .link:hover {
   border-color: rgba(212, 165, 116, 0.35);
   transform: translateY(-1px);
 }
 .link .icon {
-  width: 20px; height: 20px;
+  width: 22px; height: 22px;
   color: var(--gold);
   flex-shrink: 0;
-  opacity: 0.7;
+  opacity: 0.85;
 }
+.link .body { flex: 1; min-width: 0; }
 .link .sub {
   display: block;
-  font-size: 11px;
+  font-size: 11.5px;
   color: var(--text-muted);
   font-weight: 400;
   margin-top: 2px;
 }
+.link .badge {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(212, 165, 116, 0.12);
+  padding: 3px 8px;
+  border-radius: 100px;
+  margin-left: 8px;
+  white-space: nowrap;
+}
+.link.soon { opacity: 0.88; }
+.link.soon:hover { opacity: 1; }
 
 /* SOCIAL ROW */
 .socials {
   display: flex;
   justify-content: center;
   gap: 16px;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
 .social-link {
   width: 40px; height: 40px;
@@ -184,55 +217,77 @@ a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
     <div class="avatar" aria-hidden="true">DE</div>
     <h1>Dylan Ewing</h1>
     <div class="handle">@thedylanewing</div>
-    <div class="bio">Almost died 4 times. Left my body. Came back with a system that breaks the pattern keeping you stuck.</div>
+    <div class="bio">
+      <strong>NDE survivor. Truth researcher.</strong><br>
+      Decoding what they don't want you to see.<br>
+      Detox the body. Wake the mind.
+    </div>
   </div>
 
-  <!-- THE ONE PATH -->
-  <a href="https://thedylanewing.com/a/" class="primary">Take the Free Quiz</a>
-  <div class="primary-note">3 minutes. Find your pattern. Get a free 20-min practice.</div>
+  <!-- SOCIAL PROOF -->
+  <div class="proof">
+    <div class="proof-item"><strong>80K+</strong>followers</div>
+    <div class="proof-item"><strong>2,300+</strong>detoxing</div>
+    <div class="proof-item"><strong>4x</strong>came back</div>
+  </div>
+
+  <!-- PRIMARY CTA — HIGHEST VOLUME / LOWEST FRICTION -->
+  <a href="https://thedylanewing.com/detox" class="primary">🌿 Get My Detox Stack</a>
+  <div class="primary-note">The exact brands I use. Heavy metals out. Clean body, clear mind.</div>
 
   <!-- EVERYTHING ELSE -->
   <div class="section-label">Go deeper</div>
   <div class="links">
 
+    <!-- TRUTH PILLAR — Vault waitlist -->
+    <a href="https://thedylanewing.com/vault/" class="link soon">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 7h10M7 12h10M7 17h6"/></svg>
+      <div class="body">The Vault<span class="sub">Source docs. The stuff they scrub.</span></div>
+      <span class="badge">Waitlist</span>
+    </a>
+
+    <!-- FREEDOM PILLAR — quiz -->
     <a href="https://thedylanewing.com/a/" class="link">
-      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-      <div>Deeper Wisdom Newsletter<span class="sub">Free. The stuff IG won't let me post.</span></div>
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/><circle cx="12" cy="12" r="10"/></svg>
+      <div class="body">Take the Free Quiz<span class="sub">Find your survival pattern. 3 minutes.</span></div>
     </a>
 
     <a href="https://thedylanewing.com/freedom-code/" class="link">
-      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-      <div>Freedom Code - $47<span class="sub">30-day protocol. Break the pattern.</span></div>
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg>
+      <div class="body">Freedom Code — $47<span class="sub">30-day protocol. Break the pattern.</span></div>
     </a>
 
+    <!-- LEGAL / MEDICAL FREEDOM -->
     <a href="https://thedylanewing.com/rights/" class="link">
-      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="14"/><line x1="9" y1="11" x2="15" y2="11"/></svg>
-      <div>Know Your Rights — Medical Freedom<span class="sub">Unlimited legal advice. Under $38/mo.</span></div>
-    </a>
-
-    <a href="https://thedylanewing.com/detox" class="link">
       <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      <div>My Detox Stack 🌿<span class="sub">Clean body. Clear mind.</span></div>
+      <div class="body">Medical Freedom Rights<span class="sub">Unlimited legal advice. Under $38/mo.</span></div>
     </a>
 
+    <!-- CONSCIOUSNESS PILLAR -->
     <a href="https://thedylanewing.com/healing-tools/" class="link">
       <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-      <div>Healing Tools<span class="sub">Frequency pendants. Sacred geometry.</span></div>
+      <div class="body">Healing Tools<span class="sub">Frequency pendants. Sacred geometry.</span></div>
+    </a>
+
+    <!-- NEWSLETTER — now correctly points to /newsletter/ -->
+    <a href="https://thedylanewing.com/newsletter/" class="link">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      <div class="body">Deeper Wisdom Newsletter<span class="sub">Free. The stuff IG won't let me post.</span></div>
     </a>
 
     <a href="https://course.thedylanewing.com" class="link">
       <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
-      <div>Course Portal<span class="sub">Already enrolled? Log in here.</span></div>
+      <div class="body">Course Portal<span class="sub">Already enrolled? Log in here.</span></div>
     </a>
 
     <a href="https://instagram.com/shane_ewing21/" target="_blank" rel="noopener" class="link">
       <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-      <div>Follow Shane<span class="sub">My wife. Our journey together.</span></div>
+      <div class="body">Follow Shane<span class="sub">My wife. Our journey together.</span></div>
     </a>
 
     <a href="mailto:dylan@thedylanewing.com?subject=Work%20With%20Me" class="link">
       <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-      <div>Work With Me<span class="sub">1:1 breathwork. Coaching. Consulting.</span></div>
+      <div class="body">Work With Me<span class="sub">1:1 breathwork. Coaching. Consulting.</span></div>
     </a>
 
   </div>
@@ -258,7 +313,7 @@ a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 
   <!-- FOOTER -->
   <div class="foot">
-    <span>FREEDOM CODE</span> - thedylanewing.com
+    <span>thedylanewing.com</span>
   </div>
 
 </div>
