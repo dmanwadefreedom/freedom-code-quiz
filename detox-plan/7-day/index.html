@@ -246,6 +246,31 @@
     border-radius: 18px;
     position: relative;
     overflow: hidden;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .day.locked .day-body { display: none; }
+  .day.locked {
+    background: linear-gradient(180deg, rgba(17,30,19,0.5) 0%, rgba(12,24,16,0.5) 100%);
+    border-color: rgba(30,58,34,0.6);
+    padding: 20px 22px;
+  }
+  .day.locked .day-head { opacity: 0.55; margin-bottom: 0; }
+  .day.locked .lock-hint {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px dashed #1e3a22;
+    font-size: 13px;
+    color: var(--gray-light);
+  }
+  .day.locked .lock-hint svg { flex-shrink: 0; opacity: 0.7; }
+  .day:not(.locked) .lock-hint { display: none; }
+  .day.unlocking { animation: unlockFade 0.6s ease; }
+  @keyframes unlockFade {
+    0%   { opacity: 0.4; transform: scale(0.98); }
+    100% { opacity: 1;   transform: scale(1); }
   }
   .day::before {
     content: '';
@@ -752,21 +777,59 @@ gateForm.addEventListener('submit', async (e) => {
   }
 });
 
-// === Checkboxes + progress ===
+// === Checkboxes + progress + day lock ===
 function loadChecks() {
   try { return JSON.parse(localStorage.getItem(CHECKS_KEY) || '{}'); }
   catch { return {}; }
 }
 function saveChecks(c) { localStorage.setItem(CHECKS_KEY, JSON.stringify(c)); }
 
+// Wrap each day's body content (everything after h2) in .day-body and add lock hint
+document.querySelectorAll('.day').forEach(day => {
+  const h2 = day.querySelector('h2');
+  if (!h2) return;
+  const body = document.createElement('div');
+  body.className = 'day-body';
+  let sib = h2.nextSibling;
+  while (sib) {
+    const current = sib;
+    sib = sib.nextSibling;
+    body.appendChild(current);
+  }
+  day.appendChild(body);
+
+  const n = parseInt((day.id || '').replace('day', ''), 10);
+  if (n > 1) {
+    const hint = document.createElement('div');
+    hint.className = 'lock-hint';
+    hint.innerHTML = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 7V5a4 4 0 018 0v2h1v7H3V7h1zm2 0h4V5a2 2 0 00-4 0v2z" fill="#9ca58b"/></svg><span>Check off Day ' + (n - 1) + ' to open this</span>';
+    day.appendChild(hint);
+  }
+});
+
 function updateProgress() {
   const checks = loadChecks();
+
   document.querySelectorAll('.progress-dot').forEach(dot => {
-    const day = dot.dataset.day;
-    dot.classList.toggle('done', !!checks[day]);
+    dot.classList.toggle('done', !!checks[dot.dataset.day]);
   });
   document.querySelectorAll('.day-check').forEach(chk => {
     chk.classList.toggle('done', !!checks[chk.dataset.day]);
+  });
+
+  document.querySelectorAll('.day').forEach(day => {
+    const n = parseInt((day.id || '').replace('day', ''), 10);
+    const wasLocked = day.classList.contains('locked');
+    if (n === 1) {
+      day.classList.remove('locked');
+    } else {
+      const prevDone = !!checks[n - 1];
+      day.classList.toggle('locked', !prevDone);
+      if (wasLocked && prevDone) {
+        day.classList.add('unlocking');
+        setTimeout(() => day.classList.remove('unlocking'), 700);
+      }
+    }
   });
 }
 
@@ -777,6 +840,10 @@ document.querySelectorAll('.day-check').forEach(chk => {
     checks[day] = !checks[day];
     saveChecks(checks);
     updateProgress();
+    if (checks[day]) {
+      const nextDay = document.getElementById('day' + (parseInt(day, 10) + 1));
+      if (nextDay) setTimeout(() => nextDay.scrollIntoView({ behavior: 'smooth', block: 'start' }), 350);
+    }
   });
 });
 
