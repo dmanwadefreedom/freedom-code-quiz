@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Choose Your Path | Dylan Ewing</title>
+<meta name="description" content="Material. Awareness. Energy. Pick the door. The other two stay open.">
+<meta property="og:title" content="Choose Your Path. Dylan Ewing">
+<meta property="og:description" content="Three doors. One you. Material. Awareness. Energy.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #ff3a2d;
+    --red-glow: #ff5a4a;
+    --gold: #d4a574;
+    --gold-glow: #ffcf80;
+    --blue: #3a8dff;
+    --blue-glow: #6aaaff;
+    --bg: #05070a;
+    --cream: #f5f0e8;
+    --text-dim: #8a8a8a;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:100%; height:100%; overflow:hidden; }
+  body {
+    background: radial-gradient(ellipse at 50% 50%, #0a0d15 0%, #02030500 60%, #000 100%), #000;
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    min-height:100vh;
+    position:relative;
+  }
+
+  /* MATRIX CODE RAIN (canvas behind scene) */
+  #matrix {
+    position:fixed; inset:0;
+    z-index: 0;
+    opacity: 0.22;
+    mix-blend-mode: screen;
+  }
+
+  /* THREE.JS CANVAS */
+  #three {
+    position:fixed; inset:0;
+    z-index: 1;
+    display:block;
+  }
+
+  /* UI OVERLAY */
+  .overlay {
+    position:fixed; inset:0;
+    z-index: 3;
+    pointer-events:none;
+    display:flex; flex-direction:column; justify-content:space-between;
+    padding: 28px 20px 24px;
+  }
+
+  .top {
+    text-align:center;
+    pointer-events:auto;
+  }
+  .top .kicker {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+  .top h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 8vw, 72px);
+    letter-spacing: 4px;
+    line-height: 1;
+    color: var(--cream);
+    text-shadow: 0 0 30px rgba(245, 240, 232, 0.15);
+  }
+  .top h1 em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--red), var(--gold), var(--blue));
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+  }
+  .top p {
+    font-size: 13px;
+    color: var(--text-dim);
+    max-width: 400px;
+    margin: 12px auto 0;
+    line-height: 1.5;
+  }
+
+  .labels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    max-width: 680px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .label {
+    pointer-events: auto;
+    cursor: pointer;
+    text-align: center;
+    padding: 16px 12px;
+    border-radius: 14px;
+    background: rgba(10, 12, 18, 0.55);
+    border: 1px solid rgba(255,255,255,0.06);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.35s ease;
+    display: flex; flex-direction: column; align-items:center; gap:4px;
+    text-decoration: none;
+    color: inherit;
+  }
+  .label:hover { transform: translateY(-4px); }
+  .label .title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(22px, 5vw, 32px);
+    letter-spacing: 3px;
+  }
+  .label .sub {
+    font-size: 11.5px;
+    color: var(--text-dim);
+    line-height: 1.4;
+    max-width: 220px;
+  }
+  .label .cta {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-top: 4px;
+  }
+  .label.red .title { color: var(--red-glow); }
+  .label.red:hover { border-color: var(--red); box-shadow: 0 0 40px -10px var(--red); }
+  .label.blue .title { color: var(--blue-glow); }
+  .label.blue:hover { border-color: var(--blue); box-shadow: 0 0 40px -10px var(--blue); }
+
+  /* CORNER BRAND */
+  .corner {
+    position: fixed;
+    bottom: 14px; left: 14px;
+    z-index: 5;
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    pointer-events:auto;
+  }
+  .corner a { color: var(--text-dim); text-decoration: none; }
+  .corner a:hover { color: var(--gold-glow); }
+  .corner-r {
+    position: fixed;
+    bottom: 14px; right: 14px;
+    z-index: 5;
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 2px;
+    pointer-events:auto;
+  }
+
+  /* MOBILE */
+  @media (max-width: 720px) {
+    .labels {
+      grid-template-columns: 1fr;
+      max-width: 360px;
+      gap: 10px;
+    }
+    .label { padding: 14px 12px; }
+    .top h1 { letter-spacing: 2.5px; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="matrix"></canvas>
+<canvas id="three"></canvas>
+
+<div class="overlay">
+  <div class="top">
+    <div class="kicker">Dylan Ewing</div>
+    <h1>Choose <em>Your Path</em></h1>
+    <p>Two doors. One you. The other stays open when you come back.</p>
+  </div>
+
+  <div class="labels">
+    <a class="label red" href="https://thedylanewing.com/detox" data-pill="red">
+      <span class="title">Material</span>
+      <span class="sub">Clean the body. Detox. Heavy metals. The receipts.</span>
+      <span class="cta">Red Pill →</span>
+    </a>
+    <a class="label blue" href="https://thedylanewing.com/vault/" data-pill="blue">
+      <span class="title">Energy</span>
+      <span class="sub">Wake the mind. Breathwork, awareness, the Vault.</span>
+      <span class="cta">Blue Pill →</span>
+    </a>
+  </div>
+</div>
+
+<div class="corner">
+  <a href="https://thedylanewing.com">← thedylanewing.com</a>
+</div>
+<div class="corner-r">
+  <a href="https://thedylanewing.com/links">all links →</a>
+</div>
+
+<!-- MATRIX CODE RAIN -->
+<script>
+(function(){
+  const c = document.getElementById('matrix');
+  const ctx = c.getContext('2d');
+  let W, H, cols, drops;
+  const chars = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン0123456789ABCDEFΩΨ∞◇◆';
+  function resize(){
+    W = c.width = window.innerWidth;
+    H = c.height = window.innerHeight;
+    cols = Math.floor(W / 16);
+    drops = new Array(cols).fill(0).map(()=>Math.random()*-100);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+  function draw(){
+    ctx.fillStyle = 'rgba(0, 2, 4, 0.09)';
+    ctx.fillRect(0,0,W,H);
+    ctx.font = '14px monospace';
+    for (let i = 0; i < cols; i++){
+      const ch = chars[Math.floor(Math.random()*chars.length)];
+      const x = i * 16;
+      const y = drops[i] * 16;
+      // color shift based on column position: red left → blue right
+      const seg = (i / cols);
+      let color;
+      if (seg < 0.5) color = `rgba(255, 90, 74, ${0.6 + Math.random()*0.4})`;
+      else           color = `rgba(106, 170, 255, ${0.6 + Math.random()*0.4})`;
+      ctx.fillStyle = color;
+      ctx.fillText(ch, x, y);
+      if (y > H && Math.random() > 0.975) drops[i] = 0;
+      drops[i]++;
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+
+<!-- THREE.JS 3D SCENE -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+
+const canvas = document.getElementById('three');
+const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference:'high-performance' });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setClearColor(0x000000, 0);
+
+const scene = new THREE.Scene();
+
+const camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 100);
+camera.position.set(0, 0, 10);
+camera.lookAt(0, 0, 0);
+
+// Ambient dim fill
+scene.add(new THREE.AmbientLight(0xffffff, 0.15));
+
+// === Pills ===
+const pillConfig = [
+  { key:'red',  color: 0xff3a2d, glow: 0xff6a5a, x: -3.2, href:'https://thedylanewing.com/detox' },
+  { key:'blue', color: 0x3a8dff, glow: 0x6aaaff, x:  3.2, href:'https://thedylanewing.com/vault/' }
+];
+
+const pills = [];
+
+function makePill({ color, glow, x, key, href }){
+  const group = new THREE.Group();
+  group.position.x = x;
+  group.userData = { key, href, baseY: 0 };
+
+  // Capsule geometry (pill shape)
+  const capsuleGeo = new THREE.CapsuleGeometry(0.55, 1.0, 16, 32);
+  const mat = new THREE.MeshPhysicalMaterial({
+    color: color,
+    emissive: glow,
+    emissiveIntensity: 0.85,
+    roughness: 0.25,
+    metalness: 0.1,
+    clearcoat: 0.8,
+    clearcoatRoughness: 0.2,
+    transmission: 0.0,
+    thickness: 0.5,
+  });
+  const pill = new THREE.Mesh(capsuleGeo, mat);
+  pill.rotation.z = Math.PI / 2.6;
+  group.add(pill);
+
+  // Glow shell (slightly bigger translucent)
+  const shellGeo = new THREE.CapsuleGeometry(0.75, 1.15, 12, 24);
+  const shellMat = new THREE.MeshBasicMaterial({
+    color: glow,
+    transparent: true,
+    opacity: 0.14,
+    side: THREE.BackSide,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false
+  });
+  const shell = new THREE.Mesh(shellGeo, shellMat);
+  shell.rotation.z = Math.PI / 2.6;
+  group.add(shell);
+
+  // Point light for illumination
+  const light = new THREE.PointLight(glow, 3.2, 8);
+  light.position.set(0, 0, 0.5);
+  group.add(light);
+
+  scene.add(group);
+  pills.push({ group, pill, shell, light, href, key });
+  return group;
+}
+
+pillConfig.forEach(makePill);
+
+// === Particle stars ===
+const starGeo = new THREE.BufferGeometry();
+const starCount = 500;
+const starPositions = new Float32Array(starCount * 3);
+for (let i = 0; i < starCount; i++){
+  starPositions[i*3]   = (Math.random() - 0.5) * 40;
+  starPositions[i*3+1] = (Math.random() - 0.5) * 20;
+  starPositions[i*3+2] = (Math.random() - 0.5) * 20 - 5;
+}
+starGeo.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+const starMat = new THREE.PointsMaterial({
+  color: 0xffffff,
+  size: 0.03,
+  transparent: true,
+  opacity: 0.6,
+  blending: THREE.AdditiveBlending,
+  depthWrite: false
+});
+const stars = new THREE.Points(starGeo, starMat);
+scene.add(stars);
+
+// === Post-processing bloom ===
+const composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene, camera));
+const bloom = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 0.95, 0.6, 0.2);
+composer.addPass(bloom);
+composer.addPass(new OutputPass());
+
+// === Interaction ===
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2(-2, -2);
+let hovered = null;
+
+canvas.addEventListener('pointermove', (e) => {
+  mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+  mouse.y = -((e.clientY / window.innerHeight) * 2 - 1);
+});
+canvas.addEventListener('pointerleave', () => { mouse.x = mouse.y = -2; });
+
+canvas.addEventListener('click', () => {
+  if (hovered) window.location.href = hovered.href;
+});
+
+// === Animate ===
+let t = 0;
+function animate(){
+  t += 0.01;
+
+  pills.forEach((p, i) => {
+    p.group.position.y = Math.sin(t * 0.9 + i * 1.2) * 0.35;
+    p.pill.rotation.y = t * 0.6 + i;
+    p.shell.rotation.y = -t * 0.3 + i;
+  });
+
+  stars.rotation.y = t * 0.02;
+  stars.rotation.x = Math.sin(t * 0.05) * 0.05;
+
+  // raycast
+  raycaster.setFromCamera(mouse, camera);
+  const meshes = pills.map(p => p.pill);
+  const hits = raycaster.intersectObjects(meshes);
+  const newHover = hits.length ? pills.find(p => p.pill === hits[0].object) : null;
+  if (newHover !== hovered){
+    if (hovered) { hovered.light.intensity = 3.2; hovered.shell.scale.set(1,1,1); }
+    hovered = newHover;
+    if (hovered){
+      hovered.light.intensity = 6.5;
+      hovered.shell.scale.set(1.18, 1.18, 1.18);
+      canvas.style.cursor = 'pointer';
+    } else {
+      canvas.style.cursor = 'default';
+    }
+  }
+
+  composer.render();
+  requestAnimationFrame(animate);
+}
+animate();
+
+window.addEventListener('resize', () => {
+  const w = window.innerWidth, h = window.innerHeight;
+  camera.aspect = w/h;
+  camera.updateProjectionMatrix();
+  renderer.setSize(w, h);
+  composer.setSize(w, h);
+  // On mobile, bring pills closer together
+  if (w < 720){
+    pills[0].group.position.x = -1.8;
+    pills[1].group.position.x = 1.8;
+    camera.position.z = 10;
+  } else {
+    pills[0].group.position.x = -3.2;
+    pills[1].group.position.x = 3.2;
+    camera.position.z = 10;
+  }
+});
+window.dispatchEvent(new Event('resize'));
+</script>
+
+</body>
+</html>
