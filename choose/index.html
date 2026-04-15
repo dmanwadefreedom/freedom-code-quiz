@@ -179,64 +179,32 @@
   .hand-wrap:hover { transform: translateY(-6px); }
 
   .hand {
-    width: clamp(180px, 28vw, 280px);
-    height: clamp(220px, 34vw, 340px);
+    width: clamp(220px, 32vw, 340px);
+    height: clamp(290px, 42vw, 440px);
     position: relative;
     filter: drop-shadow(0 0 30px rgba(255, 185, 106, 0.15));
     transition: filter 0.6s ease;
   }
-  .hand svg {
-    width: 100%;
-    height: 100%;
-    overflow: visible;
-  }
 
-  /* Two stacked states, crossfade on hover */
+  /* Two stacked photo states, crossfade on hover */
   .hand .state {
     position: absolute;
     inset: 0;
-    transition: opacity 1.1s cubic-bezier(0.25, 0.8, 0.25, 1), transform 1.1s cubic-bezier(0.25, 0.8, 0.25, 1);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 14px;
+    transition: opacity 1.2s cubic-bezier(0.25, 0.8, 0.25, 1), transform 1.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+    mix-blend-mode: screen;
   }
   .hand .old    { opacity: 1; transform: scale(1); }
-  .hand .young  { opacity: 0; transform: scale(0.94) rotate(-1deg); }
+  .hand .young  { opacity: 0; transform: scale(0.96) rotate(-0.5deg); }
 
   .hand-wrap:hover .hand .old   { opacity: 0; transform: scale(1.04); }
   .hand-wrap:hover .hand .young { opacity: 1; transform: scale(1) rotate(0); }
 
   .hand-wrap:hover .hand {
-    filter: drop-shadow(0 0 50px rgba(255, 185, 106, 0.4));
-  }
-
-  /* Pill floats above the open palm */
-  .pill {
-    position: absolute;
-    top: 36%;
-    left: 50%;
-    width: 44px;
-    height: 20px;
-    border-radius: 20px;
-    transform: translate(-50%, -50%) scale(0.6);
-    opacity: 0;
-    transition: opacity 1.2s ease 0.3s, transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s;
-    pointer-events: none;
-  }
-  .red-pill {
-    background: linear-gradient(135deg, var(--red-warm), var(--red) 60%, #701a12);
-    box-shadow:
-      0 0 18px rgba(217, 83, 63, 0.9),
-      0 0 40px rgba(217, 83, 63, 0.5),
-      inset 1px 1px 4px rgba(255, 200, 180, 0.5);
-  }
-  .blue-pill {
-    background: linear-gradient(135deg, var(--blue-warm), var(--blue) 60%, #14244a);
-    box-shadow:
-      0 0 18px rgba(75, 126, 194, 0.9),
-      0 0 40px rgba(75, 126, 194, 0.5),
-      inset 1px 1px 4px rgba(180, 210, 255, 0.5);
-  }
-  .hand-wrap:hover .pill {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+    filter: drop-shadow(0 0 60px rgba(255, 185, 106, 0.45));
   }
 
   /* ===== LABELS ===== */
@@ -338,83 +306,11 @@
 <div class="stage">
   <div class="hands">
 
-    <!-- LEFT HAND — RED / MATERIAL / BODY -->
+    <!-- LEFT HAND — RED CRYSTAL / MATERIAL / BODY -->
     <a class="hand-wrap left" href="https://thedylanewing.com/detox">
       <div class="hand">
-        <!-- OLD / CLOSED state (default) -->
-        <svg class="state old" viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="oldSkinL" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%"  stop-color="#6a5848"/>
-              <stop offset="55%" stop-color="#4a3d34"/>
-              <stop offset="100%" stop-color="#2a221c"/>
-            </linearGradient>
-          </defs>
-          <!-- closed fist outline, weathered -->
-          <path d="M 60 220
-                   C 52 190, 50 165, 54 140
-                   C 48 135, 46 125, 52 118
-                   C 50 108, 56 98, 66 96
-                   C 70 86, 80 82, 90 88
-                   C 95 80, 108 78, 116 86
-                   C 126 84, 136 92, 134 104
-                   C 142 108, 144 120, 138 130
-                   C 146 150, 150 180, 144 215
-                   C 140 228, 130 234, 118 232
-                   L 78 232
-                   C 68 232, 60 228, 60 220 Z"
-                fill="url(#oldSkinL)" stroke="#1a120d" stroke-width="1.5"/>
-          <!-- wrinkle / tendon lines -->
-          <g stroke="#2a1f18" stroke-width="1" fill="none" opacity="0.6">
-            <path d="M 65 150 Q 80 155 95 150"/>
-            <path d="M 70 170 Q 90 175 110 170"/>
-            <path d="M 75 190 Q 95 195 120 190"/>
-            <path d="M 90 100 L 88 130"/>
-            <path d="M 105 98 L 108 128"/>
-            <path d="M 120 100 L 124 128"/>
-          </g>
-        </svg>
-
-        <!-- YOUNG / OPEN state (on hover) -->
-        <svg class="state young" viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="youngSkinL" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%"  stop-color="#e8c49a"/>
-              <stop offset="50%" stop-color="#d4a574"/>
-              <stop offset="100%" stop-color="#9d7a52"/>
-            </linearGradient>
-            <radialGradient id="palmGlowL" cx="50%" cy="50%" r="40%">
-              <stop offset="0%"  stop-color="#fff2d8" stop-opacity="0.6"/>
-              <stop offset="100%" stop-color="#fff2d8" stop-opacity="0"/>
-            </radialGradient>
-          </defs>
-          <!-- open palm, fingers spread -->
-          <path d="M 40 220
-                   C 36 195, 35 170, 40 150
-                   L 34 125
-                   C 32 115, 36 105, 44 104
-                   L 52 60  C 54 52, 62 48, 70 52 L 70 108
-                   L 82 40  C 84 32, 92 28, 100 32 L 98 112
-                   L 114 36 C 116 28, 124 24, 132 30 L 128 115
-                   L 146 52 C 150 44, 158 44, 164 52 L 154 122
-                   L 168 90 C 172 82, 180 82, 184 92 L 170 140
-                   C 168 170, 162 200, 150 220
-                   C 142 232, 128 236, 110 236
-                   L 70 236
-                   C 52 236, 44 230, 40 220 Z"
-                fill="url(#youngSkinL)" stroke="#6a4a2e" stroke-width="1.3"/>
-          <!-- palm lines -->
-          <g stroke="#8a5f3a" stroke-width="1" fill="none" opacity="0.45">
-            <path d="M 70 140 Q 95 150 125 148"/>
-            <path d="M 65 165 Q 100 175 140 170"/>
-            <path d="M 75 195 Q 100 205 135 200"/>
-          </g>
-          <!-- palm light glow -->
-          <ellipse cx="100" cy="150" rx="50" ry="40" fill="url(#palmGlowL)"/>
-        </svg>
-
-        <!-- RED PILL (floats over palm center on hover) -->
-        <div class="pill red-pill"></div>
+        <img class="state old"   src="img/left_old.jpg"     alt="Closed weathered left hand" loading="eager">
+        <img class="state young" src="img/left_crystal.jpg" alt="Open left hand holding red crystal" loading="eager">
       </div>
 
       <div class="label left">
@@ -424,76 +320,11 @@
       </div>
     </a>
 
-    <!-- RIGHT HAND — BLUE / ENERGY / MIND -->
+    <!-- RIGHT HAND — BLUE CRYSTAL / ENERGY / MIND -->
     <a class="hand-wrap right" href="https://thedylanewing.com/vault/">
       <div class="hand">
-        <!-- OLD / CLOSED state (mirrored) -->
-        <svg class="state old" viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg" style="transform: scaleX(-1);">
-          <defs>
-            <linearGradient id="oldSkinR" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%"  stop-color="#6a5848"/>
-              <stop offset="55%" stop-color="#4a3d34"/>
-              <stop offset="100%" stop-color="#2a221c"/>
-            </linearGradient>
-          </defs>
-          <path d="M 60 220
-                   C 52 190, 50 165, 54 140
-                   C 48 135, 46 125, 52 118
-                   C 50 108, 56 98, 66 96
-                   C 70 86, 80 82, 90 88
-                   C 95 80, 108 78, 116 86
-                   C 126 84, 136 92, 134 104
-                   C 142 108, 144 120, 138 130
-                   C 146 150, 150 180, 144 215
-                   C 140 228, 130 234, 118 232
-                   L 78 232
-                   C 68 232, 60 228, 60 220 Z"
-                fill="url(#oldSkinR)" stroke="#1a120d" stroke-width="1.5"/>
-          <g stroke="#2a1f18" stroke-width="1" fill="none" opacity="0.6">
-            <path d="M 65 150 Q 80 155 95 150"/>
-            <path d="M 70 170 Q 90 175 110 170"/>
-            <path d="M 75 190 Q 95 195 120 190"/>
-            <path d="M 90 100 L 88 130"/>
-            <path d="M 105 98 L 108 128"/>
-            <path d="M 120 100 L 124 128"/>
-          </g>
-        </svg>
-
-        <svg class="state young" viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg" style="transform: scaleX(-1);">
-          <defs>
-            <linearGradient id="youngSkinR" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%"  stop-color="#e8c49a"/>
-              <stop offset="50%" stop-color="#d4a574"/>
-              <stop offset="100%" stop-color="#9d7a52"/>
-            </linearGradient>
-            <radialGradient id="palmGlowR" cx="50%" cy="50%" r="40%">
-              <stop offset="0%"  stop-color="#fff2d8" stop-opacity="0.6"/>
-              <stop offset="100%" stop-color="#fff2d8" stop-opacity="0"/>
-            </radialGradient>
-          </defs>
-          <path d="M 40 220
-                   C 36 195, 35 170, 40 150
-                   L 34 125
-                   C 32 115, 36 105, 44 104
-                   L 52 60  C 54 52, 62 48, 70 52 L 70 108
-                   L 82 40  C 84 32, 92 28, 100 32 L 98 112
-                   L 114 36 C 116 28, 124 24, 132 30 L 128 115
-                   L 146 52 C 150 44, 158 44, 164 52 L 154 122
-                   L 168 90 C 172 82, 180 82, 184 92 L 170 140
-                   C 168 170, 162 200, 150 220
-                   C 142 232, 128 236, 110 236
-                   L 70 236
-                   C 52 236, 44 230, 40 220 Z"
-                fill="url(#youngSkinR)" stroke="#6a4a2e" stroke-width="1.3"/>
-          <g stroke="#8a5f3a" stroke-width="1" fill="none" opacity="0.45">
-            <path d="M 70 140 Q 95 150 125 148"/>
-            <path d="M 65 165 Q 100 175 140 170"/>
-            <path d="M 75 195 Q 100 205 135 200"/>
-          </g>
-          <ellipse cx="100" cy="150" rx="50" ry="40" fill="url(#palmGlowR)"/>
-        </svg>
-
-        <div class="pill blue-pill"></div>
+        <img class="state old"   src="img/right_old.jpg"     alt="Closed weathered right hand" loading="eager">
+        <img class="state young" src="img/right_crystal.jpg" alt="Open right hand holding blue crystal" loading="eager">
       </div>
 
       <div class="label right">
