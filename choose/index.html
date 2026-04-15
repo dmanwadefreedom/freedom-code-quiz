@@ -358,29 +358,69 @@
 <script type="module">
 import * as THREE from 'three';
 
-// ===================== FLAME (GLSL shader) =====================
+// ===================== 3D CANDLE SCENE =====================
+// Real perspective scene: tapered wax candle + wick + billboarded GLSL flame
+// + drifting smoke particles + warm point-light bathing the wax
 (function(){
   const canvas = document.getElementById('flame');
-  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference:'high-performance' });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
   const scene = new THREE.Scene();
-  const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+  const camera = new THREE.PerspectiveCamera(35, window.innerWidth/window.innerHeight, 0.1, 100);
+  camera.position.set(0, 0.3, 6);
+  camera.lookAt(0, 0.6, 0);
 
-  // Simplex noise GLSL (Ashima) + procedural flame
-  const vertex = `
+  // Soft ambient
+  scene.add(new THREE.AmbientLight(0x1a0e08, 0.35));
+
+  // ---------- CANDLE BODY (tapered cylinder of wax) ----------
+  const wax = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.20, 0.24, 1.4, 32, 1, false),
+    new THREE.MeshPhysicalMaterial({
+      color: 0xead0a0,
+      roughness: 0.55,
+      metalness: 0.0,
+      transmission: 0.18,
+      thickness: 0.6,
+      ior: 1.45,
+      sheen: 0.4,
+      sheenColor: 0xffd9a0,
+    })
+  );
+  wax.position.set(0, -0.4, 0);
+  scene.add(wax);
+
+  // soft melted lip on top of the candle (smaller, slightly drippy)
+  const lip = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.18, 0.22, 0.06, 32),
+    wax.material.clone()
+  );
+  lip.material.color.set(0xf2dcae);
+  lip.position.set(0, 0.33, 0);
+  scene.add(lip);
+
+  // ---------- WICK (thin dark cylinder above the wax) ----------
+  const wick = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.012, 0.018, 0.16, 8),
+    new THREE.MeshStandardMaterial({ color: 0x1a0a05, roughness: 0.95 })
+  );
+  wick.position.set(0, 0.44, 0);
+  scene.add(wick);
+
+  // ---------- FLAME (billboarded plane with GLSL fire shader) ----------
+  const flameVert = `
     varying vec2 vUv;
-    void main(){ vUv = uv; gl_Position = vec4(position, 1.0); }
+    void main(){
+      vUv = uv;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }
   `;
-  const fragment = `
+  const flameFrag = `
     precision highp float;
     varying vec2 vUv;
     uniform float uTime;
-    uniform vec2  uResolution;
-    uniform vec2  uCandlePos;   // normalized screen coords 0-1
-    uniform float uFlameHeight; // 0-1
 
-    // ---- simplex noise (Ashima) ----
     vec3 mod289(vec3 x){ return x - floor(x * (1.0/289.0)) * 289.0; }
     vec2 mod289(vec2 x){ return x - floor(x * (1.0/289.0)) * 289.0; }
     vec3 permute(vec3 x){ return mod289(((x*34.0)+1.0)*x); }
@@ -389,8 +429,7 @@ import * as THREE from 'three';
       vec2 i = floor(v + dot(v, C.yy));
       vec2 x0 = v - i + dot(i, C.xx);
       vec2 i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
-      vec4 x12 = x0.xyxy + C.xxzz;
-      x12.xy -= i1;
+      vec4 x12 = x0.xyxy + C.xxzz; x12.xy -= i1;
       i = mod289(i);
       vec3 p = permute(permute(i.y + vec3(0.0, i1.y, 1.0)) + i.x + vec3(0.0, i1.x, 1.0));
       vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);
@@ -405,108 +444,156 @@ import * as THREE from 'three';
       g.yz = a0.yz * x12.xz + h.yz * x12.yw;
       return 130.0 * dot(m, g);
     }
-
-    // fbm
     float fbm(vec2 p){
       float v = 0.0, a = 0.5;
-      for (int i = 0; i < 5; i++){
-        v += a * snoise(p);
-        p *= 2.0;
-        a *= 0.5;
-      }
+      for (int i = 0; i < 5; i++){ v += a * snoise(p); p *= 2.0; a *= 0.5; }
       return v;
     }
 
     void main(){
-      // Work in screen space, anchored at candle position
-      vec2 uv = vUv;
-      vec2 aspect = vec2(uResolution.x / uResolution.y, 1.0);
+      // UV centered: x in [-1, 1], y in [0, 1] (0=base, 1=tip)
+      vec2 p = vec2((vUv.x - 0.5) * 2.0, vUv.y);
 
-      // offset relative to candle
-      vec2 p = (uv - uCandlePos) * aspect;
-      // normalize flame coord: y rises from 0 at candle to 1 above
-      float y = -p.y / uFlameHeight;   // invert so up is positive
-      float x = p.x / (uFlameHeight * 0.55);
+      // base shape: tear drop, thicker at base
+      float widthFalloff = mix(0.65, 0.20, p.y);     // narrows at top
+      float baseShape = 1.0 - smoothstep(0.0, 1.0, abs(p.x) / widthFalloff);
 
-      // shape mask: tear-drop
-      float shape = 1.0 - smoothstep(0.0, 1.0, abs(x) * (1.0 + y*0.9) + max(0.0, -y*0.3));
-      shape *= smoothstep(-0.2, 0.15, y);
-      shape *= smoothstep(1.3, 0.85, y);
+      // turbulence — flicker increases with height
+      vec2 np = vec2(p.x * 3.0, p.y * 4.0 - uTime * 2.8);
+      float n  = fbm(np);
+      float n2 = fbm(np * 2.0 + 7.3);
+      float sway = n * 0.32 * smoothstep(0.0, 0.7, p.y);
 
-      // noise displacement for flame dance
-      vec2 np = vec2(x * 2.5, y * 3.0 - uTime * 2.6);
-      float n = fbm(np);
-      float n2 = fbm(np * 2.0 + 10.0);
+      float distorted = 1.0 - smoothstep(0.0, 1.0, abs(p.x + sway) / widthFalloff);
+      distorted *= smoothstep(-0.05, 0.15, p.y);          // fade in at base
+      distorted *= smoothstep(1.05, 0.7, p.y + n2 * 0.18); // fade out at top
 
-      // horizontal turbulence scales with height
-      float sway = n * 0.28 * smoothstep(0.0, 0.6, y);
-      float distortedShape = 1.0 - smoothstep(0.0, 1.0, abs(x + sway) * (1.0 + y*0.9) + max(0.0, -y*0.3));
-      distortedShape *= smoothstep(-0.2, 0.15, y);
-      distortedShape *= smoothstep(1.4, 0.85, y + n2*0.1);
+      float flame = pow(distorted, 1.15);
 
-      float flame = distortedShape;
-      flame = pow(flame, 1.2);
-
-      // gradient: blue core → white → yellow → orange → red → dark
+      // gradient — blue base, white core, yellow body, orange edge, red tip
       vec3 col;
-      float h01 = clamp(y + n2 * 0.08, 0.0, 1.0);
-      vec3 coreBlue = vec3(0.3, 0.6, 1.0);
-      vec3 white    = vec3(1.0, 0.95, 0.85);
-      vec3 yellow   = vec3(1.0, 0.82, 0.35);
-      vec3 orange   = vec3(1.0, 0.45, 0.12);
-      vec3 red      = vec3(0.85, 0.13, 0.05);
+      float h01 = clamp(p.y + n2 * 0.06, 0.0, 1.0);
+      vec3 cBlue   = vec3(0.4, 0.7, 1.0);
+      vec3 cWhite  = vec3(1.0, 0.95, 0.85);
+      vec3 cYellow = vec3(1.0, 0.85, 0.4);
+      vec3 cOrange = vec3(1.0, 0.5, 0.15);
+      vec3 cRed    = vec3(0.85, 0.15, 0.06);
 
-      if      (h01 < 0.08) col = mix(coreBlue, white, h01 / 0.08);
-      else if (h01 < 0.30) col = mix(white, yellow, (h01 - 0.08) / 0.22);
-      else if (h01 < 0.60) col = mix(yellow, orange, (h01 - 0.30) / 0.30);
-      else                 col = mix(orange, red,    (h01 - 0.60) / 0.40);
+      if      (h01 < 0.07) col = mix(cBlue,   cWhite,  h01 / 0.07);
+      else if (h01 < 0.28) col = mix(cWhite,  cYellow, (h01 - 0.07) / 0.21);
+      else if (h01 < 0.58) col = mix(cYellow, cOrange, (h01 - 0.28) / 0.30);
+      else                 col = mix(cOrange, cRed,    (h01 - 0.58) / 0.42);
 
-      float alpha = flame;
-      alpha *= (0.9 + 0.1 * sin(uTime * 7.0 + n2 * 8.0));   // flicker
+      // gentle flicker
+      float flick = 0.92 + 0.08 * sin(uTime * 9.0 + n2 * 7.0);
+      float alpha = flame * flick;
 
-      // glow halo around flame
-      float halo = exp(-length(vec2(x * 0.4, y * 0.35)) * 3.0) * 0.35 * (0.85 + 0.15*sin(uTime*5.0));
-      col += vec3(1.0, 0.55, 0.2) * halo;
-      alpha = clamp(alpha + halo * 0.4, 0.0, 1.0);
+      // bright halo around flame edges
+      float halo = exp(-length(vec2(p.x * 1.2, (p.y - 0.4) * 0.9)) * 2.5) * 0.35 * flick;
+      col += vec3(1.0, 0.6, 0.25) * halo;
+      alpha = clamp(alpha + halo * 0.35, 0.0, 1.0);
 
-      if (alpha < 0.002) discard;
+      if (alpha < 0.005) discard;
       gl_FragColor = vec4(col, alpha);
     }
   `;
+  const flameUniforms = { uTime: { value: 0 } };
+  const flameMat = new THREE.ShaderMaterial({
+    uniforms: flameUniforms,
+    vertexShader: flameVert,
+    fragmentShader: flameFrag,
+    transparent: true,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false,
+    side: THREE.DoubleSide,
+  });
+  const flameMesh = new THREE.Mesh(new THREE.PlaneGeometry(0.55, 0.85), flameMat);
+  flameMesh.position.set(0, 0.92, 0);
+  scene.add(flameMesh);
 
-  const uniforms = {
-    uTime:        { value: 0 },
-    uResolution:  { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
-    uCandlePos:   { value: new THREE.Vector2(0.5, 0.5) },   // center
-    uFlameHeight: { value: 0.09 },                           // % of screen height
-  };
+  // ---------- POINT LIGHT at flame ----------
+  const flameLight = new THREE.PointLight(0xff9a4a, 4.0, 8, 1.4);
+  flameLight.position.set(0, 0.92, 0.05);
+  scene.add(flameLight);
 
-  const quad = new THREE.Mesh(
-    new THREE.PlaneGeometry(2, 2),
-    new THREE.ShaderMaterial({
-      uniforms,
-      vertexShader: vertex,
-      fragmentShader: fragment,
-      transparent: true,
-      blending: THREE.AdditiveBlending,
-      depthWrite: false,
-    })
-  );
-  scene.add(quad);
+  // ---------- SMOKE PARTICLES (small, drifting up from flame tip) ----------
+  const smokeCount = 60;
+  const smokeGeo = new THREE.BufferGeometry();
+  const sPos  = new Float32Array(smokeCount * 3);
+  const sVel  = new Float32Array(smokeCount * 3);
+  const sLife = new Float32Array(smokeCount);
+  function respawnSmoke(i){
+    sPos[i*3]   = (Math.random() - 0.5) * 0.15;
+    sPos[i*3+1] = 1.25 + Math.random() * 0.2;
+    sPos[i*3+2] = (Math.random() - 0.5) * 0.1;
+    sVel[i*3]   = (Math.random() - 0.5) * 0.0015;
+    sVel[i*3+1] = 0.004 + Math.random() * 0.005;
+    sVel[i*3+2] = (Math.random() - 0.5) * 0.001;
+    sLife[i] = Math.random() * 2.0;
+  }
+  for (let i = 0; i < smokeCount; i++) respawnSmoke(i);
+  smokeGeo.setAttribute('position', new THREE.BufferAttribute(sPos, 3));
+
+  const smokeTex = (() => {
+    const c = document.createElement('canvas'); c.width = c.height = 64;
+    const ctx = c.getContext('2d');
+    const g = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+    g.addColorStop(0,   'rgba(180, 170, 160, 0.45)');
+    g.addColorStop(0.4, 'rgba(120, 110, 100, 0.18)');
+    g.addColorStop(1,   'rgba(0, 0, 0, 0)');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, 64, 64);
+    return new THREE.CanvasTexture(c);
+  })();
+  const smokeMat = new THREE.PointsMaterial({
+    map: smokeTex,
+    size: 0.35,
+    transparent: true,
+    blending: THREE.NormalBlending,
+    depthWrite: false,
+    sizeAttenuation: true,
+    opacity: 0.25,
+  });
+  const smoke = new THREE.Points(smokeGeo, smokeMat);
+  scene.add(smoke);
 
   function resize(){
     const w = window.innerWidth, h = window.innerHeight;
     renderer.setSize(w, h);
-    uniforms.uResolution.value.set(w, h);
-    // flame height scales smaller on mobile
-    uniforms.uFlameHeight.value = (w < 720) ? 0.075 : 0.09;
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    // candle scales down on small screens
+    const s = (w < 720) ? 0.7 : 1.0;
+    wax.scale.setScalar(s);
+    lip.scale.setScalar(s);
+    wick.scale.setScalar(s);
+    flameMesh.scale.setScalar(s);
+    smoke.scale.setScalar(s);
   }
   window.addEventListener('resize', resize);
   resize();
 
   const start = performance.now();
   function animate(){
-    uniforms.uTime.value = (performance.now() - start) * 0.001;
+    const t = (performance.now() - start) * 0.001;
+    flameUniforms.uTime.value = t;
+
+    // Billboard the flame to face camera
+    flameMesh.lookAt(camera.position);
+
+    // Light intensity flickers with the flame
+    flameLight.intensity = 3.6 + Math.sin(t * 9.0) * 0.4 + Math.sin(t * 17.0) * 0.2;
+
+    // Animate smoke
+    const p = smokeGeo.attributes.position.array;
+    for (let i = 0; i < smokeCount; i++){
+      p[i*3]   += sVel[i*3]   + Math.sin(t * 1.8 + i) * 0.0006;
+      p[i*3+1] += sVel[i*3+1];
+      p[i*3+2] += sVel[i*3+2];
+      sLife[i] += 0.016;
+      if (p[i*3+1] > 3.5 || sLife[i] > 6) respawnSmoke(i);
+    }
+    smokeGeo.attributes.position.needsUpdate = true;
+
     renderer.render(scene, camera);
     requestAnimationFrame(animate);
   }
