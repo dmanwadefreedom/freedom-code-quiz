@@ -395,7 +395,7 @@
     <a class="hand-wrap left" href="https://thedylanewing.com/detox">
       <div class="hand">
         <img class="poster" src="img/left_old.jpg" alt="Elderly closed left hand clutching hidden crystal" loading="eager">
-        <video class="reveal" src="img/left_reveal.mp4" poster="img/left_crystal.jpg" muted loop playsinline preload="metadata" data-side="left"></video>
+        <video class="reveal" src="img/left_reveal.mp4" poster="img/left_crystal.jpg" muted playsinline preload="auto" data-side="left"></video>
       </div>
 
       <div class="label left">
@@ -409,7 +409,7 @@
     <a class="hand-wrap right" href="https://thedylanewing.com/vault/">
       <div class="hand">
         <img class="poster" src="img/right_old.jpg" alt="Elderly closed right hand clutching hidden crystal" loading="eager">
-        <video class="reveal" src="img/right_reveal.mp4" poster="img/right_crystal.jpg" muted loop playsinline preload="metadata" data-side="right"></video>
+        <video class="reveal" src="img/right_reveal.mp4" poster="img/right_crystal.jpg" muted playsinline preload="auto" data-side="right"></video>
       </div>
 
       <div class="label right">
@@ -557,16 +557,50 @@ animate();
   }
   loop();
 
-  // Play the DoP reveal video on hover, reset to start on leave
+  // Cinematic yoyo playback: play forward to end, then reverse to start,
+  // loop. Slowed to 0.55x for meditative pacing. On leave, gently walk
+  // back to frame 0 and pause (never hard-cut back to closed state).
   hands.forEach(h => {
     const video = h.querySelector('video.reveal');
     if (!video) return;
+
+    let hovering = false;
+    let rafId = null;
+    const SPEED = 0.55;    // playback rate
+    const STEP = SPEED / 60; // approx per-frame advance at 60fps
+    let direction = 1;
+
+    function tick(){
+      if (!video.duration) { rafId = requestAnimationFrame(tick); return; }
+      video.currentTime += direction * STEP;
+      if (video.currentTime >= video.duration - 0.05) {
+        direction = -1;
+        video.currentTime = video.duration - 0.05;
+      } else if (video.currentTime <= 0.02) {
+        if (!hovering) {
+          video.currentTime = 0;
+          cancelAnimationFrame(rafId); rafId = null;
+          return;
+        }
+        direction = 1;
+        video.currentTime = 0.02;
+      }
+      rafId = requestAnimationFrame(tick);
+    }
+
     h.addEventListener('pointerenter', () => {
-      try { video.currentTime = 0; video.play(); } catch(e) {}
+      hovering = true;
+      direction = 1;
+      if (!rafId) { rafId = requestAnimationFrame(tick); }
     });
     h.addEventListener('pointerleave', () => {
-      try { video.pause(); video.currentTime = 0; } catch(e) {}
+      hovering = false;
+      // force gentle retreat back to start rather than hard cut
+      direction = -1;
     });
+    // ensure the video stays paused (we're scrubbing manually)
+    video.pause();
+    video.addEventListener('loadedmetadata', () => { video.pause(); });
   });
 
   // Tunnel zoom on click
