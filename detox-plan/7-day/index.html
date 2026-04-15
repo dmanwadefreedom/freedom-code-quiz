@@ -99,16 +99,19 @@
   .gate-card .nde { font-size: 12px; color: var(--warn); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; font-weight: 600; }
   .gate-form input {
     width: 100%;
-    padding: 15px 16px;
-    border-radius: 12px;
-    border: 1px solid #1e3a22;
+    padding: 20px 20px;
+    border-radius: 14px;
+    border: 1.5px solid #1e3a22;
     background: rgba(13,27,15,0.9);
     color: var(--cream);
     font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-    margin-bottom: 10px;
+    font-size: 17px;
+    margin-bottom: 12px;
     outline: none;
+    -webkit-appearance: none;
+    appearance: none;
   }
+  .gate-form input::placeholder { color: var(--gray); }
   .gate-form input:focus { border-color: var(--green-light); }
   .gate-btn {
     width: 100%;
@@ -487,7 +490,6 @@
 <!-- ========== EMAIL GATE ========== -->
 <div class="gate" id="gate">
   <div class="gate-card">
-    <div class="nde">Almost died 4 times. Came back asking better questions.</div>
     <span class="gate-tag">Free 7-Day Protocol</span>
     <h1>The 7-Day<br><span class="hl">Heavy Metal Reset</span></h1>
     <p>The exact day-by-day protocol I use. What to take, when, and what to expect. Drop your email and I will send it over right now.</p>
@@ -833,6 +835,13 @@ const gate = document.getElementById('gate');
 const gateForm = document.getElementById('gateForm');
 const gateBtn = document.getElementById('gateBtn');
 const gateMsg = document.getElementById('gateMsg');
+
+// Auto-fill from URL params (GHL links, email blasts, etc.)
+const urlParams = new URLSearchParams(location.search);
+const preFname = urlParams.get('firstName') || urlParams.get('first_name') || urlParams.get('fname') || urlParams.get('name');
+const preEmail = urlParams.get('email');
+if (preFname) gateForm.firstName.value = preFname;
+if (preEmail) gateForm.email.value = preEmail;
 
 if (localStorage.getItem(GATE_KEY) === '1') gate.classList.add('hidden');
 
