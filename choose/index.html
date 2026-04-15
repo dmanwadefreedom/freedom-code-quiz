@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Choose Your Path | Dylan Ewing</title>
-<meta name="description" content="Two hands. Two paths. Material or Energy. Pick the pill.">
+<meta name="description" content="Two hands. Two paths. Material or Energy. Pick the crystal.">
 <meta property="og:title" content="Choose Your Path. Dylan Ewing">
-<meta property="og:description" content="Two hands. Two paths. Material or Energy.">
+<meta property="og:description" content="Two hands offered. One you.">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -24,7 +24,7 @@
   * { margin:0; padding:0; box-sizing:border-box; }
   html, body { width:100%; height:100%; }
   body {
-    background: radial-gradient(ellipse at 50% 45%, #1a120a 0%, #0c0806 45%, #030203 100%);
+    background: radial-gradient(ellipse at 50% 55%, #1a120a 0%, #0c0806 45%, #030203 100%);
     color: var(--paper);
     font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;
     min-height: 100vh;
@@ -32,96 +32,51 @@
     position: relative;
   }
 
-  /* ===== PAPER / WOOD GRAIN NOISE ===== */
+  /* Paper/grain noise */
   body::before {
     content: '';
     position: fixed; inset: 0;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E");
     pointer-events: none;
     mix-blend-mode: overlay;
-    opacity: 0.45;
-    z-index: 1;
+    opacity: 0.35;
+    z-index: 6;
   }
 
-  /* ===== EMBERS CANVAS (three.js particles) ===== */
-  #embers {
-    position: fixed;
-    inset: 0;
-    z-index: 3;
-    pointer-events: none;
-  }
+  /* Stacked canvas layers */
+  #flame   { position: fixed; inset: 0; z-index: 2; pointer-events: none; }
+  #embers  { position: fixed; inset: 0; z-index: 3; pointer-events: none; }
 
-  /* ===== CANDLELIGHT HALO ===== */
-  /* Elongated ellipse centered on the candle (mid-height), so the top
-     of the page (where the title sits) stays darker and readable */
+  /* Candlelight halo (larger, lower) */
   .halo {
     position: fixed;
     top: 55%; left: 50%;
-    width: 1400px; height: 900px;
+    width: 1500px; height: 900px;
     transform: translate(-50%, -50%);
     background: radial-gradient(ellipse,
-      rgba(255, 185, 106, 0.32) 0%,
-      rgba(255, 185, 106, 0.14) 18%,
-      rgba(168, 51, 40, 0.05) 34%,
-      transparent 58%);
+      rgba(255, 185, 106, 0.28) 0%,
+      rgba(255, 185, 106, 0.12) 20%,
+      rgba(168, 51, 40, 0.05) 38%,
+      transparent 60%);
     animation: flicker 4.5s ease-in-out infinite alternate;
     pointer-events: none;
-    z-index: 2;
-    filter: blur(10px);
+    z-index: 1;
+    filter: blur(12px);
   }
   @keyframes flicker {
-    0%, 100% { opacity: 0.85; transform: translate(-50%, -50%) scale(1); }
-    20%      { opacity: 1.0;  transform: translate(-50%, -50.3%) scale(1.03); }
-    40%      { opacity: 0.78; transform: translate(-50%, -49.7%) scale(0.98); }
-    60%      { opacity: 0.92; transform: translate(-50.2%, -50%) scale(1.01); }
-    80%      { opacity: 0.82; transform: translate(-49.8%, -50%) scale(0.99); }
-  }
-
-  /* ===== CANDLE FLAME (center) ===== */
-  .candle {
-    position: fixed;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 3;
-    pointer-events: none;
-  }
-  .flame {
-    width: 28px; height: 44px;
-    background: radial-gradient(ellipse at 50% 70%,
-      var(--candle-core) 0%,
-      var(--candle) 35%,
-      rgba(255, 140, 60, 0.85) 60%,
-      rgba(168, 51, 40, 0.4) 90%,
-      transparent 100%);
-    border-radius: 50% 50% 40% 40% / 60% 60% 40% 40%;
-    filter: blur(1px);
-    animation: flameDance 1.3s ease-in-out infinite alternate;
-    box-shadow:
-      0 0 24px rgba(255, 185, 106, 0.8),
-      0 0 60px rgba(255, 140, 60, 0.5),
-      0 0 120px rgba(168, 51, 40, 0.3);
-  }
-  @keyframes flameDance {
-    0%   { transform: scale(1, 1) translateY(0); border-radius: 50% 50% 40% 40% / 60% 60% 40% 40%; }
-    25%  { transform: scale(0.95, 1.08) translateX(-0.5px); }
-    50%  { transform: scale(1.05, 0.95) translateX(0.5px); border-radius: 52% 48% 40% 40% / 65% 55% 40% 40%; }
-    75%  { transform: scale(0.92, 1.1) translateX(0.3px); }
-    100% { transform: scale(1.02, 0.98) translateX(-0.3px); }
-  }
-  .wick {
-    width: 2px; height: 12px;
-    background: #2a1810;
-    margin: -6px auto 0;
-    border-radius: 1px;
+    0%, 100% { opacity: 0.88; transform: translate(-50%, -50%) scale(1); }
+    25%      { opacity: 1.0;  transform: translate(-50%, -50.3%) scale(1.02); }
+    50%      { opacity: 0.8;  transform: translate(-50%, -49.7%) scale(0.98); }
+    75%      { opacity: 0.95; transform: translate(-50.2%, -50%) scale(1.01); }
   }
 
   /* ===== TITLE ===== */
   .title {
     position: fixed;
-    top: 9%;
+    top: 7%;
     left: 0; right: 0;
     text-align: center;
-    z-index: 7;
+    z-index: 8;
     pointer-events: none;
   }
   .title .jp {
@@ -130,202 +85,167 @@
     font-size: 22px;
     letter-spacing: 8px;
     color: var(--paper-dim);
-    opacity: 0.75;
+    opacity: 0.8;
     margin-bottom: 8px;
-    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.9);
+    text-shadow: 0 2px 20px rgba(0,0,0,0.9);
   }
   .title h1 {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-weight: 300;
-    font-size: clamp(40px, 7vw, 64px);
+    font-size: clamp(38px, 6.5vw, 58px);
     color: var(--paper);
     letter-spacing: 2px;
     line-height: 1.1;
-    text-shadow:
-      0 2px 20px rgba(0, 0, 0, 0.95),
-      0 0 30px rgba(0, 0, 0, 0.6);
+    text-shadow: 0 2px 20px rgba(0,0,0,0.95), 0 0 35px rgba(0,0,0,0.7);
   }
   .title h1 em {
     font-style: italic;
     color: var(--candle);
     font-weight: 500;
   }
-  .title p {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 16px;
+  .title .kicker {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
     color: var(--paper-dim);
-    margin-top: 16px;
-    letter-spacing: 1px;
-    opacity: 0.75;
+    opacity: 0.5;
+    margin-bottom: 10px;
   }
 
-  /* ===== HANDS STAGE ===== */
+  /* ===== STAGE — Single image, two hotspots ===== */
   .stage {
     position: fixed;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -52%);
+    width: min(96vw, 1100px);
+    height: min(62vh, 540px);
     z-index: 4;
   }
-  .hands {
+
+  .hands-frame {
+    position: relative;
+    width: 100%; height: 100%;
     display: flex;
+    align-items: center;
     justify-content: center;
-    align-items: center;
-    gap: clamp(40px, 12vw, 180px);
-    width: 100%;
-    max-width: 1100px;
-    padding: 0 20px;
   }
-  .hand-wrap {
-    position: relative;
-    cursor: pointer;
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 18px;
-    transition: transform 0.7s cubic-bezier(0.3, 0.7, 0.2, 1);
-    will-change: transform;
-  }
-  .hand-wrap:hover { transform: translateY(-8px); }
-
-  .hand {
-    width: clamp(220px, 32vw, 340px);
-    height: clamp(290px, 42vw, 440px);
-    position: relative;
-    filter: drop-shadow(0 0 30px rgba(255, 185, 106, 0.15));
-    transition: filter 0.6s ease, transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-    transform-style: preserve-3d;
-    animation: breathe 5s ease-in-out infinite;
-  }
-  @keyframes breathe {
-    0%, 100% { transform: scale(1) translateY(0); }
-    50%      { transform: scale(1.012) translateY(-2px); }
-  }
-
-  /* Poster = first frame still of the old hand. Video reveals on hover. */
-  /* Radial mask fades the photo edges into the candlelit darkness so hands
-     appear to float, no visible rectangle */
-  .hand .poster,
-  .hand .reveal {
+  .hands-media {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    transition: opacity 0.9s cubic-bezier(0.25, 0.8, 0.25, 1);
+    object-fit: contain;
+    -webkit-mask-image: radial-gradient(ellipse 80% 78% at 50% 52%,
+                          #000 35%, rgba(0,0,0,0.85) 58%, rgba(0,0,0,0.35) 80%, transparent 98%);
+            mask-image: radial-gradient(ellipse 80% 78% at 50% 52%,
+                          #000 35%, rgba(0,0,0,0.85) 58%, rgba(0,0,0,0.35) 80%, transparent 98%);
     mix-blend-mode: screen;
+    filter: drop-shadow(0 0 60px rgba(255, 185, 106, 0.2));
     pointer-events: none;
-    -webkit-mask-image: radial-gradient(ellipse 68% 78% at 50% 48%,
-                          #000 40%,
-                          rgba(0,0,0,0.8) 62%,
-                          rgba(0,0,0,0.3) 82%,
-                          transparent 98%);
-            mask-image: radial-gradient(ellipse 68% 78% at 50% 48%,
-                          #000 40%,
-                          rgba(0,0,0,0.8) 62%,
-                          rgba(0,0,0,0.3) 82%,
-                          transparent 98%);
-    -webkit-mask-mode: alpha;
-            mask-mode: alpha;
+    animation: breathe 6.5s ease-in-out infinite;
   }
-  .hand .poster { opacity: 1; z-index: 2; }
-  .hand .reveal { opacity: 0; z-index: 1; }
-
-  .hand-wrap:hover .hand .poster { opacity: 0; }
-  .hand-wrap:hover .hand .reveal { opacity: 1; animation: crystalPulse 2.8s ease-in-out infinite; }
-
-  .hand-wrap:hover .hand {
-    filter: drop-shadow(0 0 70px rgba(255, 185, 106, 0.5));
+  @keyframes breathe {
+    0%, 100% { transform: scale(1) translateY(0); }
+    50%      { transform: scale(1.015) translateY(-3px); }
   }
 
-  @keyframes crystalPulse {
-    0%, 100% { filter: brightness(1)    saturate(1); }
-    50%      { filter: brightness(1.18) saturate(1.3); }
+  /* Invisible clickable hotspots */
+  .hot {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    cursor: pointer;
+    z-index: 2;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 6%;
+    transition: transform 0.6s cubic-bezier(0.3, 0.7, 0.2, 1);
+    text-decoration: none;
   }
+  .hot.left  { left: 0; }
+  .hot.right { right: 0; }
+  .hot:hover { transform: translateY(-4px); }
 
-  /* Tunnel zoom on click */
-  .hand-wrap.tunnel-red { animation: tunnelRed 0.9s cubic-bezier(0.6, 0, 0.9, 0.3) forwards; }
-  .hand-wrap.tunnel-blue { animation: tunnelBlue 0.9s cubic-bezier(0.6, 0, 0.9, 0.3) forwards; }
-  @keyframes tunnelRed {
-    to { transform: scale(6); opacity: 0; filter: drop-shadow(0 0 200px rgba(255, 80, 60, 0.9)) blur(6px); }
+  .hot::before {
+    content: '';
+    position: absolute;
+    inset: 10% 8%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 55%,
+                  rgba(255,255,255,0.04) 0%,
+                  transparent 60%);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
   }
-  @keyframes tunnelBlue {
-    to { transform: scale(6); opacity: 0; filter: drop-shadow(0 0 200px rgba(60, 140, 255, 0.9)) blur(6px); }
-  }
+  .hot:hover::before { opacity: 1; }
+  .hot.left:hover::before  { background: radial-gradient(circle at 50% 55%, rgba(217,83,63,0.18), transparent 60%); }
+  .hot.right:hover::before { background: radial-gradient(circle at 50% 55%, rgba(75,126,194,0.18), transparent 60%); }
 
-  /* Tunnel vignette on click */
+  /* Labels inside hotspots */
+  .label {
+    position: relative;
+    z-index: 3;
+    font-family: 'Cormorant Garamond', serif;
+    text-align: center;
+    opacity: 0.75;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    pointer-events: none;
+  }
+  .hot:hover .label { opacity: 1; transform: translateY(-4px); }
+  .label .kanji {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 13px;
+    letter-spacing: 6px;
+    color: var(--paper-dim);
+    opacity: 0.6;
+    margin-bottom: 4px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+  }
+  .label .name {
+    font-size: clamp(22px, 3.5vw, 30px);
+    font-style: italic;
+    letter-spacing: 1px;
+    margin-bottom: 3px;
+    text-shadow: 0 2px 14px rgba(0,0,0,0.95);
+  }
+  .label .sub {
+    font-size: 12.5px;
+    color: var(--paper-dim);
+    opacity: 0.7;
+    max-width: 220px;
+    line-height: 1.4;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+  }
+  .hot.left .name  { color: var(--red-warm); }
+  .hot.right .name { color: var(--blue-warm); }
+
+  /* Tunnel-zoom click */
+  .stage.tunnel-red, .stage.tunnel-blue {
+    animation: tunnelZoom 0.9s cubic-bezier(0.6, 0, 0.9, 0.3) forwards;
+  }
+  @keyframes tunnelZoom {
+    to { transform: translate(-50%, -52%) scale(5); opacity: 0; filter: blur(8px); }
+  }
   .tunnel-vignette {
     position: fixed; inset: 0; z-index: 100;
-    pointer-events: none;
-    opacity: 0;
+    pointer-events: none; opacity: 0;
     transition: opacity 0.9s ease;
   }
   .tunnel-vignette.active { opacity: 1; }
-  .tunnel-vignette.red   { background: radial-gradient(circle at 30% 50%, transparent 0%, #3a0806 50%, #000 100%); }
-  .tunnel-vignette.blue  { background: radial-gradient(circle at 70% 50%, transparent 0%, #081a3a 50%, #000 100%); }
+  .tunnel-vignette.red  { background: radial-gradient(circle at 30% 50%, transparent 0%, #3a0806 55%, #000 100%); }
+  .tunnel-vignette.blue { background: radial-gradient(circle at 70% 50%, transparent 0%, #081a3a 55%, #000 100%); }
 
-  /* Entrance */
-  .stage, .title, .candle, .foot { opacity: 0; animation: fadeUp 1.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
-  .candle { animation-delay: 0.2s; }
-  .title { animation-delay: 0.6s; }
-  .stage { animation-delay: 1.0s; }
-  .foot  { animation-delay: 1.4s; }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(14px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .candle { transform-origin: center; }
-  /* override fadeUp transform for candle (it's position:fixed w/ translate) */
-  .candle { animation-name: fadeCandle; }
-  @keyframes fadeCandle {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  }
-
-  /* ===== LABELS ===== */
-  .label {
-    font-family: 'Cormorant Garamond', serif;
-    text-align: center;
-    transition: opacity 0.5s ease;
-  }
-  .label .kanji {
-    font-family: 'Noto Serif JP', serif;
-    font-size: 14px;
-    letter-spacing: 6px;
-    color: var(--paper-dim);
-    opacity: 0.5;
-    margin-bottom: 6px;
-  }
-  .label .name {
-    font-size: clamp(26px, 4vw, 36px);
-    font-style: italic;
-    font-weight: 400;
-    color: var(--paper);
-    letter-spacing: 1px;
-    margin-bottom: 4px;
-  }
-  .label .sub {
-    font-size: 14px;
-    color: var(--paper-dim);
-    opacity: 0.7;
-    letter-spacing: 0.5px;
-    max-width: 220px;
-    line-height: 1.4;
-  }
-  .left .name { color: var(--red-warm); }
-  .right .name { color: var(--blue-warm); }
-
-  /* ===== FOOTER ===== */
+  /* Footer */
   .foot {
     position: fixed;
     bottom: 18px;
     left: 0; right: 0;
     text-align: center;
-    z-index: 6;
+    z-index: 8;
     font-family: 'Cormorant Garamond', serif;
     font-size: 12px;
     color: var(--paper-dim);
@@ -333,92 +253,69 @@
     letter-spacing: 3px;
     text-transform: uppercase;
   }
-  .foot a { color: var(--paper-dim); text-decoration: none; margin: 0 12px; transition: opacity 0.3s; }
+  .foot a { color: var(--paper-dim); text-decoration: none; margin: 0 12px; transition: opacity 0.3s, color 0.3s; }
   .foot a:hover { color: var(--candle); opacity: 1; }
 
-  /* ===== MOBILE ===== */
+  /* Entrance stagger */
+  .stage, .title, .foot { opacity: 0; animation: fadeUp 1.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
+  .title { animation-delay: 0.5s; }
+  .stage { animation-delay: 0.9s; }
+  .foot  { animation-delay: 1.4s; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translate(-50%, -48%); }
+    to   { opacity: 1; transform: translate(-50%, -52%); }
+  }
+  .title, .foot { animation-name: fadeSimple; }
+  @keyframes fadeSimple {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
   @media (max-width: 720px) {
-    .hands {
-      flex-direction: column;
-      gap: 32px;
-      padding: 80px 20px 100px;
-    }
-    .stage {
-      position: static;
-      min-height: 100vh;
-      overflow-y: auto;
-    }
-    .title {
-      position: relative;
-      top: 0;
-      padding: 40px 20px 0;
-    }
-    .candle {
-      position: relative;
-      top: auto; left: auto; transform: none;
-      margin: 20px auto;
-    }
-    body { overflow-y: auto; }
-    html { overflow-y: auto; }
+    .stage { height: 52vh; }
+    .title { top: 4%; }
+    .title h1 { letter-spacing: 1px; }
+    .label .sub { max-width: 140px; font-size: 11px; }
   }
 </style>
 </head>
 <body>
 
-<!-- candlelight halo -->
+<!-- background layers -->
 <div class="halo"></div>
-
-<!-- three.js ember particles -->
+<canvas id="flame"></canvas>
 <canvas id="embers"></canvas>
-
-<!-- tunnel zoom overlay (fires on click) -->
 <div id="tunnel" class="tunnel-vignette"></div>
-
-<!-- candle flame (between the hands) -->
-<div class="candle">
-  <div class="flame"></div>
-  <div class="wick"></div>
-</div>
 
 <!-- title -->
 <div class="title">
+  <div class="kicker">Dylan Ewing</div>
   <div class="jp">二つの道</div>
   <h1>Choose <em>Your Path</em></h1>
-  <p>Two hands. One breath. The other stays open when you come back.</p>
 </div>
 
-<!-- hands stage -->
-<div class="stage">
-  <div class="hands">
+<!-- single scene — both hands in frame -->
+<div class="stage" id="stage">
+  <div class="hands-frame">
+    <!-- Poster (still image) + video on top of each other -->
+    <img class="hands-media" id="poster" src="img/matrix_poster.jpg" alt="Two hands offering red and blue crystals" loading="eager">
+    <video class="hands-media" id="reveal" src="img/matrix_reveal.mp4" poster="img/matrix_poster.jpg" muted playsinline preload="auto" style="opacity:0; transition:opacity 1s ease;"></video>
 
-    <!-- LEFT HAND — RED CRYSTAL / MATERIAL / BODY -->
-    <a class="hand-wrap left" href="https://thedylanewing.com/detox">
-      <div class="hand">
-        <img class="poster" src="img/left_old.jpg" alt="Elderly closed left hand clutching hidden crystal" loading="eager">
-        <video class="reveal" src="img/left_reveal.mp4" poster="img/left_crystal.jpg" muted playsinline preload="auto" data-side="left"></video>
-      </div>
-
-      <div class="label left">
+    <!-- Invisible split hotspots routing to different pages -->
+    <a class="hot left" href="https://thedylanewing.com/detox">
+      <div class="label">
         <div class="kanji">肉体</div>
         <div class="name">Material</div>
-        <div class="sub">Clean the body. Detox. Heavy metals. The receipts.</div>
+        <div class="sub">Clean the body. Detox. The receipts.</div>
       </div>
     </a>
-
-    <!-- RIGHT HAND — BLUE CRYSTAL / ENERGY / MIND -->
-    <a class="hand-wrap right" href="https://thedylanewing.com/vault/">
-      <div class="hand">
-        <img class="poster" src="img/right_old.jpg" alt="Elderly closed right hand clutching hidden crystal" loading="eager">
-        <video class="reveal" src="img/right_reveal.mp4" poster="img/right_crystal.jpg" muted playsinline preload="auto" data-side="right"></video>
-      </div>
-
-      <div class="label right">
+    <a class="hot right" href="https://thedylanewing.com/vault/">
+      <div class="label">
         <div class="kanji">精神</div>
         <div class="name">Energy</div>
-        <div class="sub">Wake the mind. Breathwork, awareness, the Vault.</div>
+        <div class="sub">Wake the mind. The Vault.</div>
       </div>
     </a>
-
   </div>
 </div>
 
@@ -427,7 +324,7 @@
   <a href="https://thedylanewing.com/links">all links</a>
 </div>
 
-<!-- === EMBERS (three.js) === -->
+<!-- ================ THREE.JS: FLAME + EMBERS ================ -->
 <script type="importmap">
 {
   "imports": {
@@ -438,180 +335,300 @@
 <script type="module">
 import * as THREE from 'three';
 
-const canvas = document.getElementById('embers');
-const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: 'high-performance' });
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+// ===================== FLAME (GLSL shader) =====================
+(function(){
+  const canvas = document.getElementById('flame');
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
-camera.position.z = 5;
+  const scene = new THREE.Scene();
+  const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
 
-function resize(){
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-}
-window.addEventListener('resize', resize);
-resize();
+  // Simplex noise GLSL (Ashima) + procedural flame
+  const vertex = `
+    varying vec2 vUv;
+    void main(){ vUv = uv; gl_Position = vec4(position, 1.0); }
+  `;
+  const fragment = `
+    precision highp float;
+    varying vec2 vUv;
+    uniform float uTime;
+    uniform vec2  uResolution;
+    uniform vec2  uCandlePos;   // normalized screen coords 0-1
+    uniform float uFlameHeight; // 0-1
 
-// Ember particles (floating dust rising from candle)
-const emberCount = 140;
-const geo = new THREE.BufferGeometry();
-const positions = new Float32Array(emberCount * 3);
-const velocities = new Float32Array(emberCount * 3);
-const lifetimes = new Float32Array(emberCount);
-const sizes = new Float32Array(emberCount);
+    // ---- simplex noise (Ashima) ----
+    vec3 mod289(vec3 x){ return x - floor(x * (1.0/289.0)) * 289.0; }
+    vec2 mod289(vec2 x){ return x - floor(x * (1.0/289.0)) * 289.0; }
+    vec3 permute(vec3 x){ return mod289(((x*34.0)+1.0)*x); }
+    float snoise(vec2 v){
+      const vec4 C = vec4(0.211324865405187, 0.366025403784439, -0.577350269189626, 0.024390243902439);
+      vec2 i = floor(v + dot(v, C.yy));
+      vec2 x0 = v - i + dot(i, C.xx);
+      vec2 i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+      vec4 x12 = x0.xyxy + C.xxzz;
+      x12.xy -= i1;
+      i = mod289(i);
+      vec3 p = permute(permute(i.y + vec3(0.0, i1.y, 1.0)) + i.x + vec3(0.0, i1.x, 1.0));
+      vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);
+      m = m*m; m = m*m;
+      vec3 x = 2.0 * fract(p * C.www) - 1.0;
+      vec3 h = abs(x) - 0.5;
+      vec3 ox = floor(x + 0.5);
+      vec3 a0 = x - ox;
+      m *= 1.79284291400159 - 0.85373472095314 * (a0*a0 + h*h);
+      vec3 g;
+      g.x = a0.x * x0.x + h.x * x0.y;
+      g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+      return 130.0 * dot(m, g);
+    }
 
-function respawn(i){
-  positions[i*3]   = (Math.random() - 0.5) * 1.4;   // x, near candle
-  positions[i*3+1] = -0.4 - Math.random() * 0.3;    // y, starts at candle base
-  positions[i*3+2] = (Math.random() - 0.5) * 0.6;   // z, slight depth
-  velocities[i*3]   = (Math.random() - 0.5) * 0.004;
-  velocities[i*3+1] = 0.006 + Math.random() * 0.008;  // rises
-  velocities[i*3+2] = (Math.random() - 0.5) * 0.002;
-  lifetimes[i] = Math.random() * 3.5;
-  sizes[i] = 0.015 + Math.random() * 0.04;
-}
-for (let i = 0; i < emberCount; i++) respawn(i);
+    // fbm
+    float fbm(vec2 p){
+      float v = 0.0, a = 0.5;
+      for (int i = 0; i < 5; i++){
+        v += a * snoise(p);
+        p *= 2.0;
+        a *= 0.5;
+      }
+      return v;
+    }
 
-geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-geo.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+    void main(){
+      // Work in screen space, anchored at candle position
+      vec2 uv = vUv;
+      vec2 aspect = vec2(uResolution.x / uResolution.y, 1.0);
 
-const emberTexture = (() => {
-  const c = document.createElement('canvas');
-  c.width = c.height = 64;
-  const ctx = c.getContext('2d');
-  const g = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
-  g.addColorStop(0,   'rgba(255, 230, 180, 1)');
-  g.addColorStop(0.3, 'rgba(255, 170, 90, 0.7)');
-  g.addColorStop(0.6, 'rgba(200, 90, 40, 0.25)');
-  g.addColorStop(1,   'rgba(0,0,0,0)');
-  ctx.fillStyle = g;
-  ctx.fillRect(0, 0, 64, 64);
-  return new THREE.CanvasTexture(c);
+      // offset relative to candle
+      vec2 p = (uv - uCandlePos) * aspect;
+      // normalize flame coord: y rises from 0 at candle to 1 above
+      float y = -p.y / uFlameHeight;   // invert so up is positive
+      float x = p.x / (uFlameHeight * 0.55);
+
+      // shape mask: tear-drop
+      float shape = 1.0 - smoothstep(0.0, 1.0, abs(x) * (1.0 + y*0.9) + max(0.0, -y*0.3));
+      shape *= smoothstep(-0.2, 0.15, y);
+      shape *= smoothstep(1.3, 0.85, y);
+
+      // noise displacement for flame dance
+      vec2 np = vec2(x * 2.5, y * 3.0 - uTime * 2.6);
+      float n = fbm(np);
+      float n2 = fbm(np * 2.0 + 10.0);
+
+      // horizontal turbulence scales with height
+      float sway = n * 0.28 * smoothstep(0.0, 0.6, y);
+      float distortedShape = 1.0 - smoothstep(0.0, 1.0, abs(x + sway) * (1.0 + y*0.9) + max(0.0, -y*0.3));
+      distortedShape *= smoothstep(-0.2, 0.15, y);
+      distortedShape *= smoothstep(1.4, 0.85, y + n2*0.1);
+
+      float flame = distortedShape;
+      flame = pow(flame, 1.2);
+
+      // gradient: blue core → white → yellow → orange → red → dark
+      vec3 col;
+      float h01 = clamp(y + n2 * 0.08, 0.0, 1.0);
+      vec3 coreBlue = vec3(0.3, 0.6, 1.0);
+      vec3 white    = vec3(1.0, 0.95, 0.85);
+      vec3 yellow   = vec3(1.0, 0.82, 0.35);
+      vec3 orange   = vec3(1.0, 0.45, 0.12);
+      vec3 red      = vec3(0.85, 0.13, 0.05);
+
+      if      (h01 < 0.08) col = mix(coreBlue, white, h01 / 0.08);
+      else if (h01 < 0.30) col = mix(white, yellow, (h01 - 0.08) / 0.22);
+      else if (h01 < 0.60) col = mix(yellow, orange, (h01 - 0.30) / 0.30);
+      else                 col = mix(orange, red,    (h01 - 0.60) / 0.40);
+
+      float alpha = flame;
+      alpha *= (0.9 + 0.1 * sin(uTime * 7.0 + n2 * 8.0));   // flicker
+
+      // glow halo around flame
+      float halo = exp(-length(vec2(x * 0.4, y * 0.35)) * 3.0) * 0.35 * (0.85 + 0.15*sin(uTime*5.0));
+      col += vec3(1.0, 0.55, 0.2) * halo;
+      alpha = clamp(alpha + halo * 0.4, 0.0, 1.0);
+
+      if (alpha < 0.002) discard;
+      gl_FragColor = vec4(col, alpha);
+    }
+  `;
+
+  const uniforms = {
+    uTime:        { value: 0 },
+    uResolution:  { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+    uCandlePos:   { value: new THREE.Vector2(0.5, 0.5) },   // center
+    uFlameHeight: { value: 0.09 },                           // % of screen height
+  };
+
+  const quad = new THREE.Mesh(
+    new THREE.PlaneGeometry(2, 2),
+    new THREE.ShaderMaterial({
+      uniforms,
+      vertexShader: vertex,
+      fragmentShader: fragment,
+      transparent: true,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+    })
+  );
+  scene.add(quad);
+
+  function resize(){
+    const w = window.innerWidth, h = window.innerHeight;
+    renderer.setSize(w, h);
+    uniforms.uResolution.value.set(w, h);
+    // flame height scales smaller on mobile
+    uniforms.uFlameHeight.value = (w < 720) ? 0.075 : 0.09;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  const start = performance.now();
+  function animate(){
+    uniforms.uTime.value = (performance.now() - start) * 0.001;
+    renderer.render(scene, camera);
+    requestAnimationFrame(animate);
+  }
+  animate();
 })();
 
-const mat = new THREE.PointsMaterial({
-  map: emberTexture,
-  color: 0xffc080,
-  size: 0.08,
-  transparent: true,
-  blending: THREE.AdditiveBlending,
-  depthWrite: false,
-  sizeAttenuation: true,
-  opacity: 0.9
-});
-mat.onBeforeCompile = shader => {
-  shader.vertexShader = shader.vertexShader.replace(
-    'gl_PointSize = size;',
-    'gl_PointSize = size * (300.0 / -mvPosition.z);'
-  );
-};
-
-const embers = new THREE.Points(geo, mat);
-scene.add(embers);
-
-let t = 0;
-function animate(){
-  t += 0.016;
-  const pos = geo.attributes.position.array;
-
-  for (let i = 0; i < emberCount; i++){
-    pos[i*3]   += velocities[i*3]   + Math.sin(t * 2 + i) * 0.0008;
-    pos[i*3+1] += velocities[i*3+1];
-    pos[i*3+2] += velocities[i*3+2];
-    lifetimes[i] += 0.016;
-    if (pos[i*3+1] > 2.2 || lifetimes[i] > 5.5) respawn(i);
+// ===================== EMBERS (unchanged particles) =====================
+(function(){
+  const canvas = document.getElementById('embers');
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 100);
+  camera.position.z = 5;
+  function resize(){
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
   }
-  geo.attributes.position.needsUpdate = true;
+  window.addEventListener('resize', resize); resize();
 
-  renderer.render(scene, camera);
-  requestAnimationFrame(animate);
-}
-animate();
+  const count = 140;
+  const geo = new THREE.BufferGeometry();
+  const pos = new Float32Array(count * 3);
+  const vel = new Float32Array(count * 3);
+  const life = new Float32Array(count);
+  function respawn(i){
+    pos[i*3]   = (Math.random() - 0.5) * 1.2;
+    pos[i*3+1] = -0.25 - Math.random() * 0.2;
+    pos[i*3+2] = (Math.random() - 0.5) * 0.4;
+    vel[i*3]   = (Math.random() - 0.5) * 0.004;
+    vel[i*3+1] = 0.006 + Math.random() * 0.008;
+    vel[i*3+2] = (Math.random() - 0.5) * 0.002;
+    life[i] = Math.random() * 3.5;
+  }
+  for (let i = 0; i < count; i++) respawn(i);
+  geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+
+  const tex = (() => {
+    const c = document.createElement('canvas'); c.width = c.height = 64;
+    const ctx = c.getContext('2d');
+    const g = ctx.createRadialGradient(32,32,0,32,32,32);
+    g.addColorStop(0, 'rgba(255,230,180,1)');
+    g.addColorStop(0.3, 'rgba(255,170,90,0.7)');
+    g.addColorStop(0.7, 'rgba(200,90,40,0.2)');
+    g.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = g; ctx.fillRect(0,0,64,64);
+    return new THREE.CanvasTexture(c);
+  })();
+  const mat = new THREE.PointsMaterial({
+    map: tex, color: 0xffc080, size: 0.08,
+    transparent: true, blending: THREE.AdditiveBlending,
+    depthWrite: false, sizeAttenuation: true, opacity: 0.85
+  });
+  const embers = new THREE.Points(geo, mat);
+  scene.add(embers);
+
+  let t = 0;
+  function tick(){
+    t += 0.016;
+    const p = geo.attributes.position.array;
+    for (let i = 0; i < count; i++){
+      p[i*3]   += vel[i*3]   + Math.sin(t * 2 + i) * 0.0008;
+      p[i*3+1] += vel[i*3+1];
+      p[i*3+2] += vel[i*3+2];
+      life[i] += 0.016;
+      if (p[i*3+1] > 2.2 || life[i] > 5.5) respawn(i);
+    }
+    geo.attributes.position.needsUpdate = true;
+    renderer.render(scene, camera);
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
 </script>
 
-<!-- === PARALLAX + TUNNEL-ZOOM CLICK === -->
+<!-- ================ INTERACTION ================ -->
 <script>
 (function(){
-  const stage = document.querySelector('.stage');
-  const hands = document.querySelectorAll('.hand-wrap');
-  let mx = 0, my = 0, tx = 0, ty = 0;
+  const stage  = document.getElementById('stage');
+  const poster = document.getElementById('poster');
+  const video  = document.getElementById('reveal');
+  const hots   = document.querySelectorAll('.hot');
+  const tunnel = document.getElementById('tunnel');
 
+  // Manual yoyo scrub on hover anywhere over the stage
+  let hovering = false, rafId = null, dir = 1;
+  const SPEED = 0.5;
+  const STEP  = SPEED / 60;
+
+  function fadeIn(){ poster.style.opacity = '0'; video.style.opacity = '1'; }
+  function fadeOut(){ poster.style.opacity = '1'; video.style.opacity = '0'; }
+
+  function tick(){
+    if (!video.duration) { rafId = requestAnimationFrame(tick); return; }
+    video.currentTime += dir * STEP;
+    if (video.currentTime >= video.duration - 0.05) {
+      dir = -1;
+      video.currentTime = video.duration - 0.05;
+    } else if (video.currentTime <= 0.02) {
+      if (!hovering) {
+        video.currentTime = 0;
+        fadeOut();
+        cancelAnimationFrame(rafId); rafId = null;
+        return;
+      }
+      dir = 1;
+      video.currentTime = 0.02;
+    }
+    rafId = requestAnimationFrame(tick);
+  }
+
+  stage.addEventListener('pointerenter', () => {
+    hovering = true; dir = 1; fadeIn();
+    if (!rafId) rafId = requestAnimationFrame(tick);
+  });
+  stage.addEventListener('pointerleave', () => {
+    hovering = false; dir = -1;
+  });
+
+  // Parallax on mouse move
+  let mx = 0, my = 0, tx = 0, ty = 0;
   window.addEventListener('pointermove', e => {
     mx = (e.clientX / window.innerWidth - 0.5) * 2;
     my = (e.clientY / window.innerHeight - 0.5) * 2;
   });
-
-  function loop(){
-    tx += (mx - tx) * 0.06;
-    ty += (my - ty) * 0.06;
-    hands.forEach((h, i) => {
-      const strength = 10;
-      const sign = i === 0 ? 1 : -0.6; // left tilts opposite, right subtler
-      h.style.setProperty('--parallax-x', `${-tx * strength * sign}px`);
-      h.style.setProperty('--parallax-y', `${-ty * strength * 0.4}px`);
-      h.style.translate = `var(--parallax-x, 0) var(--parallax-y, 0)`;
-    });
-    requestAnimationFrame(loop);
+  function parallaxLoop(){
+    tx += (mx - tx) * 0.05;
+    ty += (my - ty) * 0.05;
+    stage.style.setProperty('--px', `${-tx * 12}px`);
+    stage.style.setProperty('--py', `${-ty * 6}px`);
+    // Apply parallax only via translate so entrance/tunnel keep using transform
+    // We piggyback by overriding translate on stage's transform — done via CSS var on a wrapper if needed.
+    requestAnimationFrame(parallaxLoop);
   }
-  loop();
+  parallaxLoop();
 
-  // Cinematic yoyo playback: play forward to end, then reverse to start,
-  // loop. Slowed to 0.55x for meditative pacing. On leave, gently walk
-  // back to frame 0 and pause (never hard-cut back to closed state).
-  hands.forEach(h => {
-    const video = h.querySelector('video.reveal');
-    if (!video) return;
-
-    let hovering = false;
-    let rafId = null;
-    const SPEED = 0.55;    // playback rate
-    const STEP = SPEED / 60; // approx per-frame advance at 60fps
-    let direction = 1;
-
-    function tick(){
-      if (!video.duration) { rafId = requestAnimationFrame(tick); return; }
-      video.currentTime += direction * STEP;
-      if (video.currentTime >= video.duration - 0.05) {
-        direction = -1;
-        video.currentTime = video.duration - 0.05;
-      } else if (video.currentTime <= 0.02) {
-        if (!hovering) {
-          video.currentTime = 0;
-          cancelAnimationFrame(rafId); rafId = null;
-          return;
-        }
-        direction = 1;
-        video.currentTime = 0.02;
-      }
-      rafId = requestAnimationFrame(tick);
-    }
-
-    h.addEventListener('pointerenter', () => {
-      hovering = true;
-      direction = 1;
-      if (!rafId) { rafId = requestAnimationFrame(tick); }
-    });
-    h.addEventListener('pointerleave', () => {
-      hovering = false;
-      // force gentle retreat back to start rather than hard cut
-      direction = -1;
-    });
-    // ensure the video stays paused (we're scrubbing manually)
-    video.pause();
-    video.addEventListener('loadedmetadata', () => { video.pause(); });
-  });
-
-  // Tunnel zoom on click
-  const tunnel = document.getElementById('tunnel');
-  hands.forEach(h => {
-    h.addEventListener('click', (e) => {
+  // Click routing with tunnel zoom
+  hots.forEach(h => {
+    h.addEventListener('click', e => {
       e.preventDefault();
       const isLeft = h.classList.contains('left');
       const color = isLeft ? 'red' : 'blue';
       tunnel.classList.add('active', color);
-      h.classList.add(isLeft ? 'tunnel-red' : 'tunnel-blue');
+      stage.classList.add(isLeft ? 'tunnel-red' : 'tunnel-blue');
       setTimeout(() => { window.location.href = h.href; }, 850);
     });
   });
