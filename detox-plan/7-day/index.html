@@ -522,6 +522,47 @@
   <div class="progress-dot" data-day="7">7</div>
 </div>
 
+<!-- ========== DAY 0 · PREP ========== -->
+<div class="day reveal" id="day0">
+  <div class="day-head">
+    <span class="day-num">Day 00</span>
+    <span class="day-phase">Prep · Do This First</span>
+  </div>
+  <h2>Filter Your Water</h2>
+  <p class="why">Before you pull a single metal out of your body, stop pouring new ones in. Municipal water carries fluoride, lead, aluminum sulfate, chlorine, and trace pharmaceuticals. Detoxing while drinking tap water is like bailing out a boat with a hole in the bottom.</p>
+
+  <div class="day-mission"><strong>Mission:</strong> get a proper filter set up before Day 1. Reverse osmosis is best. A good pitcher works if you are on a budget. Zero filter = skip this whole plan, you are wasting your time.</div>
+
+  <a class="day-product" href="https://www.amazon.com/s?k=aquatru+countertop+reverse+osmosis&tag=thedylanewing-20" target="_blank" rel="noopener">
+    <div class="day-product-head">
+      <div class="day-product-icon">💧</div>
+      <div>
+        <div class="day-product-title">AquaTru Countertop Reverse Osmosis</div>
+        <div class="day-product-meta">Amazon · ~$450 · removes fluoride, lead, arsenic, PFAS</div>
+      </div>
+    </div>
+    <span class="day-product-cta">Get it on Amazon</span>
+  </a>
+
+  <a class="day-product" href="https://www.amazon.com/s?k=clearly+filtered+pitcher&tag=thedylanewing-20" target="_blank" rel="noopener">
+    <div class="day-product-head">
+      <div class="day-product-icon">🫙</div>
+      <div>
+        <div class="day-product-title">Clearly Filtered Pitcher (budget option)</div>
+        <div class="day-product-meta">Amazon · ~$90 · removes fluoride + 270 contaminants</div>
+      </div>
+    </div>
+    <span class="day-product-cta">Get it on Amazon</span>
+  </a>
+
+  <div class="day-expect"><strong>Bonus:</strong> if you cook with tap water, filter that too. Boiling does not remove metals, fluoride, or microplastics. It concentrates them.</div>
+
+  <div class="day-check" data-day="0">
+    <div class="check-box"><svg width="14" height="11" viewBox="0 0 14 11" fill="none"><path d="M1 5l4 4 8-8" stroke="#0d1b0f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <span class="check-label">Filter set up. Ready for Day 1.</span>
+  </div>
+</div>
+
 <!-- ========== DAY 1 ========== -->
 <div class="day reveal" id="day1">
   <div class="day-head">
@@ -657,6 +698,52 @@
     </ul>
     <div class="smoothie-note">Blend hard. Drink fast (chlorella oxidizes in air). Empty stomach if you can.</div>
   </div>
+
+  <div style="margin:16px 0 6px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray-light);font-weight:600;">Shop the ingredients</div>
+
+  <a class="day-product" href="https://www.amazon.com/s?k=celtic+sea+salt+light+grey&tag=thedylanewing-20" target="_blank" rel="noopener">
+    <div class="day-product-head">
+      <div class="day-product-icon">🧂</div>
+      <div>
+        <div class="day-product-title">Celtic Sea Salt (Light Grey)</div>
+        <div class="day-product-meta">Amazon · ~$15 · 80+ trace minerals</div>
+      </div>
+    </div>
+    <span class="day-product-cta">Get on Amazon</span>
+  </a>
+
+  <a class="day-product" href="https://www.amazon.com/s?k=spirulina+powder+organic&tag=thedylanewing-20" target="_blank" rel="noopener">
+    <div class="day-product-head">
+      <div class="day-product-icon">🟢</div>
+      <div>
+        <div class="day-product-title">Organic Spirulina Powder</div>
+        <div class="day-product-meta">Amazon · ~$25 · look for blue-green algae, third-party tested</div>
+      </div>
+    </div>
+    <span class="day-product-cta">Get on Amazon</span>
+  </a>
+
+  <a class="day-product" href="https://www.amazon.com/s?k=chlorella+powder+broken+cell+wall&tag=thedylanewing-20" target="_blank" rel="noopener">
+    <div class="day-product-head">
+      <div class="day-product-icon">🌿</div>
+      <div>
+        <div class="day-product-title">Chlorella Powder (Broken Cell Wall)</div>
+        <div class="day-product-meta">Amazon · ~$30 · broken cell wall absorbs 10x better</div>
+      </div>
+    </div>
+    <span class="day-product-cta">Get on Amazon</span>
+  </a>
+
+  <a class="day-product" href="https://www.amazon.com/s?k=herb+pharm+cilantro+tincture&tag=thedylanewing-20" target="_blank" rel="noopener">
+    <div class="day-product-head">
+      <div class="day-product-icon">🌱</div>
+      <div>
+        <div class="day-product-title">Cilantro Tincture (if fresh is hard to find)</div>
+        <div class="day-product-meta">Amazon · ~$15 · Herb Pharm or similar</div>
+      </div>
+    </div>
+    <span class="day-product-cta">Get on Amazon</span>
+  </a>
 
   <div class="day-mission" style="border-left-color:var(--accent);background:rgba(149,213,178,0.08);"><strong style="color:var(--accent);">Pro move:</strong> drink the smoothie 30 minutes before your sauna. Minerals and binders go in, metals sweat out 30 minutes later. Whole loop in one morning.</div>
 
@@ -820,7 +907,7 @@ function updateProgress() {
   document.querySelectorAll('.day').forEach(day => {
     const n = parseInt((day.id || '').replace('day', ''), 10);
     const wasLocked = day.classList.contains('locked');
-    if (n === 1) {
+    if (n <= 1) {
       day.classList.remove('locked');
     } else {
       const prevDone = !!checks[n - 1];
