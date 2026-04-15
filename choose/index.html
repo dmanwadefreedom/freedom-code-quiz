@@ -52,20 +52,22 @@
   }
 
   /* ===== CANDLELIGHT HALO ===== */
+  /* Elongated ellipse centered on the candle (mid-height), so the top
+     of the page (where the title sits) stays darker and readable */
   .halo {
     position: fixed;
-    top: 50%; left: 50%;
-    width: 1200px; height: 1200px;
+    top: 55%; left: 50%;
+    width: 1400px; height: 900px;
     transform: translate(-50%, -50%);
-    background: radial-gradient(circle,
-      rgba(255, 185, 106, 0.35) 0%,
-      rgba(255, 185, 106, 0.15) 14%,
-      rgba(168, 51, 40, 0.06) 30%,
-      transparent 55%);
+    background: radial-gradient(ellipse,
+      rgba(255, 185, 106, 0.32) 0%,
+      rgba(255, 185, 106, 0.14) 18%,
+      rgba(168, 51, 40, 0.05) 34%,
+      transparent 58%);
     animation: flicker 4.5s ease-in-out infinite alternate;
     pointer-events: none;
     z-index: 2;
-    filter: blur(8px);
+    filter: blur(10px);
   }
   @keyframes flicker {
     0%, 100% { opacity: 0.85; transform: translate(-50%, -50%) scale(1); }
@@ -116,10 +118,10 @@
   /* ===== TITLE ===== */
   .title {
     position: fixed;
-    top: 12%;
+    top: 9%;
     left: 0; right: 0;
     text-align: center;
-    z-index: 5;
+    z-index: 7;
     pointer-events: none;
   }
   .title .jp {
@@ -128,8 +130,9 @@
     font-size: 22px;
     letter-spacing: 8px;
     color: var(--paper-dim);
-    opacity: 0.7;
+    opacity: 0.75;
     margin-bottom: 8px;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.9);
   }
   .title h1 {
     font-family: 'Cormorant Garamond', serif;
@@ -139,7 +142,9 @@
     color: var(--paper);
     letter-spacing: 2px;
     line-height: 1.1;
-    text-shadow: 0 0 40px rgba(255, 185, 106, 0.25);
+    text-shadow:
+      0 2px 20px rgba(0, 0, 0, 0.95),
+      0 0 30px rgba(0, 0, 0, 0.6);
   }
   .title h1 em {
     font-style: italic;
@@ -202,6 +207,8 @@
   }
 
   /* Poster = first frame still of the old hand. Video reveals on hover. */
+  /* Radial mask fades the photo edges into the candlelit darkness so hands
+     appear to float, no visible rectangle */
   .hand .poster,
   .hand .reveal {
     position: absolute;
@@ -209,10 +216,21 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 14px;
-    transition: opacity 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: opacity 0.9s cubic-bezier(0.25, 0.8, 0.25, 1);
     mix-blend-mode: screen;
     pointer-events: none;
+    -webkit-mask-image: radial-gradient(ellipse 68% 78% at 50% 48%,
+                          #000 40%,
+                          rgba(0,0,0,0.8) 62%,
+                          rgba(0,0,0,0.3) 82%,
+                          transparent 98%);
+            mask-image: radial-gradient(ellipse 68% 78% at 50% 48%,
+                          #000 40%,
+                          rgba(0,0,0,0.8) 62%,
+                          rgba(0,0,0,0.3) 82%,
+                          transparent 98%);
+    -webkit-mask-mode: alpha;
+            mask-mode: alpha;
   }
   .hand .poster { opacity: 1; z-index: 2; }
   .hand .reveal { opacity: 0; z-index: 1; }
