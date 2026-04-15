@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The 7-Day Heavy Metal Reset by Dylan Ewing</title>
+<meta name="description" content="The exact 7-day protocol I use to pull heavy metals, microplastics, and brain fog out of the body. Day by day.">
+<meta name="robots" content="noindex,follow">
+<meta property="og:title" content="The 7-Day Heavy Metal Reset">
+<meta property="og:description" content="Day by day. Products, doses, what to expect. Built by Dylan Ewing.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #2d6a4f;
+    --green-light: #40916c;
+    --green-pale: #d8f3dc;
+    --cream: #fefae0;
+    --dark: #0d1b0f;
+    --darker: #081208;
+    --gray: #6b705c;
+    --gray-light: #9ca58b;
+    --accent: #95d5b2;
+    --warn: #f4a261;
+    --danger: #e76f51;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--darker);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  .scroll-bar {
+    position: fixed; top: 0; left: 0;
+    height: 3px; width: 0%;
+    background: linear-gradient(90deg, var(--accent), var(--warn));
+    z-index: 100;
+    transition: width 0.1s linear;
+    box-shadow: 0 0 10px rgba(149,213,178,0.5);
+  }
+
+  /* ========== EMAIL GATE ========== */
+  .gate {
+    position: fixed; inset: 0;
+    background: radial-gradient(ellipse at top, #1b4332 0%, #0d1b0f 50%, #081208 100%);
+    z-index: 1000;
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+    overflow-y: auto;
+  }
+  .gate::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+    opacity: 0.06;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+  .gate-card {
+    max-width: 520px;
+    width: 100%;
+    background: rgba(17,30,19,0.85);
+    border: 1px solid #1e3a22;
+    border-radius: 20px;
+    padding: 36px 28px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 2;
+  }
+  .gate-tag {
+    display: inline-block;
+    font-size: 11px; letter-spacing: 3px; font-weight: 600;
+    color: var(--warn); text-transform: uppercase;
+    padding: 5px 14px;
+    border: 1px solid var(--warn);
+    border-radius: 20px;
+    margin-bottom: 18px;
+  }
+  .gate-card h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 38px;
+    letter-spacing: 2px;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .gate-card h1 .hl {
+    background: linear-gradient(120deg, var(--accent), var(--warn));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .gate-card p { font-size: 15px; color: var(--cream); opacity: 0.9; margin-bottom: 18px; }
+  .gate-card .nde { font-size: 12px; color: var(--warn); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; font-weight: 600; }
+  .gate-form input {
+    width: 100%;
+    padding: 15px 16px;
+    border-radius: 12px;
+    border: 1px solid #1e3a22;
+    background: rgba(13,27,15,0.9);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    margin-bottom: 10px;
+    outline: none;
+  }
+  .gate-form input:focus { border-color: var(--green-light); }
+  .gate-btn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--green-light), var(--green));
+    color: var(--cream);
+    border: none;
+    border-radius: 12px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 19px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px -8px rgba(64,145,108,0.5);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .gate-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -8px rgba(64,145,108,0.7); }
+  .gate-small { font-size: 12px; color: var(--gray-light); margin-top: 14px; }
+  .gate-msg { padding: 10px; font-size: 13px; border-radius: 8px; margin-top: 10px; display: none; }
+  .gate-msg.error { display: block; background: rgba(58,17,17,0.8); color: #f5a0a0; }
+
+  .gate.hidden { display: none; }
+
+  /* ========== HERO ========== */
+  .hero {
+    position: relative;
+    padding: 56px 24px 40px;
+    text-align: center;
+    overflow: hidden;
+    background: radial-gradient(ellipse at top, #1b4332 0%, #0d1b0f 50%, #081208 100%);
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(64,145,108,0.25) 0%, transparent 40%),
+      radial-gradient(circle at 80% 40%, rgba(244,162,97,0.12) 0%, transparent 45%),
+      radial-gradient(circle at 50% 80%, rgba(149,213,178,0.18) 0%, transparent 50%);
+    animation: liquidFlow 18s ease-in-out infinite alternate;
+    pointer-events: none;
+  }
+  @keyframes liquidFlow {
+    0%   { transform: scale(1) rotate(0deg); }
+    50%  { transform: scale(1.15) rotate(8deg); }
+    100% { transform: scale(1.05) rotate(-5deg); }
+  }
+  .hero-inner { position: relative; z-index: 2; }
+  .avatar {
+    width: 76px; height: 76px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--green-light), var(--green));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: var(--cream);
+    margin: 0 auto 16px;
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 0 0 rgba(149,213,178,0.6);
+    animation: pulse 2.8s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(149,213,178,0.6); transform: scale(1); }
+    50%      { box-shadow: 0 0 0 18px rgba(149,213,178,0);   transform: scale(1.04); }
+  }
+  .hero .tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 600; letter-spacing: 3px;
+    color: var(--warn); text-transform: uppercase;
+    margin-bottom: 14px;
+    padding: 5px 14px;
+    border: 1px solid var(--warn);
+    border-radius: 20px;
+    background: rgba(244,162,97,0.08);
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 46px;
+    letter-spacing: 2px;
+    color: var(--cream);
+    line-height: 0.95;
+    margin-bottom: 14px;
+  }
+  .hero h1 .hl {
+    background: linear-gradient(120deg, var(--accent), var(--warn));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero p {
+    font-size: 16px;
+    color: var(--cream);
+    font-weight: 300;
+    max-width: 380px;
+    margin: 0 auto;
+    opacity: 0.9;
+  }
+
+  /* ========== PROGRESS ========== */
+  .progress-bar {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 24px 20px 0;
+    flex-wrap: wrap;
+  }
+  .progress-dot {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(17,30,19,0.8);
+    border: 1.5px solid #1e3a22;
+    color: var(--gray-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .progress-dot.done {
+    background: linear-gradient(135deg, var(--green-light), var(--green));
+    color: var(--cream);
+    border-color: var(--accent);
+  }
+  .progress-dot.active {
+    border-color: var(--warn);
+    color: var(--warn);
+    box-shadow: 0 0 0 3px rgba(244,162,97,0.15);
+  }
+
+  /* ========== DAY CARDS ========== */
+  .day {
+    margin: 20px 16px 14px;
+    padding: 26px 22px;
+    background: linear-gradient(180deg, #111e13 0%, #0c1810 100%);
+    border: 1px solid #1e3a22;
+    border-radius: 18px;
+    position: relative;
+    overflow: hidden;
+  }
+  .day::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--green-light), transparent);
+    opacity: 0.6;
+  }
+  .day-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 14px; flex-wrap: wrap; }
+  .day-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: var(--warn);
+    font-weight: 600;
+  }
+  .day-phase {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gray-light);
+    padding: 3px 10px;
+    border: 1px solid #1e3a22;
+    border-radius: 20px;
+  }
+  .day h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    line-height: 1.15;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  .day p { font-size: 15px; color: var(--cream); margin-bottom: 10px; }
+  .day p.why { font-size: 14px; color: var(--gray-light); font-style: italic; }
+  .day strong { color: var(--green-light); font-weight: 600; }
+  .day ul { margin: 10px 0 12px 18px; }
+  .day li { font-size: 15px; color: var(--cream); margin-bottom: 6px; }
+
+  .day-mission {
+    background: rgba(244,162,97,0.08);
+    border-left: 3px solid var(--warn);
+    padding: 14px 16px;
+    margin: 14px 0;
+    border-radius: 0 10px 10px 0;
+    font-size: 15px;
+    color: var(--cream);
+  }
+  .day-mission strong { color: var(--warn); }
+
+  .day-product {
+    display: block;
+    margin: 16px 0;
+    padding: 16px;
+    background: rgba(13,27,15,0.85);
+    border: 1px solid #1e3a22;
+    border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .day-product:hover { border-color: var(--green-light); transform: translateY(-1px); }
+  .day-product-head { display: flex; align-items: center; gap: 12px; }
+  .day-product-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--green-light), var(--green));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .day-product-title { font-size: 15px; font-weight: 600; color: var(--cream); }
+  .day-product-meta { font-size: 11px; color: var(--gray-light); margin-top: 2px; }
+  .day-product-cta { font-size: 12px; color: var(--accent); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-top: 10px; display: inline-block; }
+  .day-product-cta::after { content: ' →'; }
+
+  .day-expect {
+    margin-top: 14px;
+    padding: 12px 14px;
+    background: rgba(27,67,50,0.25);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    font-size: 13px;
+    color: var(--cream);
+  }
+  .day-expect strong { color: var(--accent); }
+
+  .day-check {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 18px;
+    padding: 14px 16px;
+    background: rgba(13,27,15,0.5);
+    border: 1px solid #1e3a22;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    user-select: none;
+  }
+  .day-check:hover { background: rgba(13,27,15,0.8); border-color: var(--green-light); }
+  .day-check.done { background: rgba(27,67,50,0.4); border-color: var(--accent); }
+  .check-box {
+    width: 24px; height: 24px;
+    border-radius: 6px;
+    border: 2px solid var(--gray-light);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .day-check.done .check-box {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .check-box svg { opacity: 0; transition: opacity 0.2s; }
+  .day-check.done .check-box svg { opacity: 1; }
+  .check-label { font-size: 14px; color: var(--cream); font-weight: 500; }
+  .day-check.done .check-label { color: var(--accent); }
+
+  /* ========== SMOOTHIE ========== */
+  .smoothie {
+    margin: 24px 16px 14px;
+    padding: 26px 22px;
+    background: linear-gradient(180deg, rgba(149,213,178,0.08) 0%, rgba(45,106,79,0.1) 100%);
+    border: 1px solid rgba(149,213,178,0.3);
+    border-radius: 18px;
+  }
+  .smoothie h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    color: var(--accent);
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+  }
+  .smoothie ul { margin: 10px 0 12px 18px; }
+  .smoothie li { font-size: 14px; color: var(--cream); margin-bottom: 5px; }
+  .smoothie-note { font-size: 13px; color: var(--gray-light); font-style: italic; margin-top: 10px; }
+
+  /* ========== COMPLETE / UPSELL ========== */
+  .complete {
+    margin: 36px 16px 24px;
+    padding: 36px 26px;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(27,67,50,0.6), rgba(13,27,15,0.9));
+    border: 1px solid var(--green-light);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .complete h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 34px;
+    color: var(--cream);
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+    line-height: 1;
+  }
+  .complete p { font-size: 15px; color: var(--cream); margin-bottom: 14px; opacity: 0.9; }
+  .complete-cta {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 16px 28px;
+    background: linear-gradient(135deg, var(--accent), var(--green-light));
+    color: var(--darker);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 2px;
+    text-decoration: none;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px -8px rgba(149,213,178,0.5);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .complete-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -8px rgba(149,213,178,0.7); }
+  .complete-cta.outline {
+    background: transparent;
+    border: 1.5px solid var(--accent);
+    color: var(--accent);
+    box-shadow: none;
+    margin-left: 10px;
+  }
+
+  /* ========== FOOTER ========== */
+  .footer { text-align: center; padding: 36px 20px 60px; font-size: 12px; color: var(--gray); line-height: 1.8; }
+  .footer a { color: var(--accent); text-decoration: none; }
+
+  /* ========== SCROLL REVEAL ========== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .avatar, .hero::before { animation: none; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+  }
+
+  @media print {
+    .scroll-bar, .gate, .progress-bar, .day-check, .complete-cta { display: none !important; }
+    body { background: #fff; color: #000; }
+    .day, .smoothie, .complete { background: #fff; border: 1px solid #ccc; page-break-inside: avoid; }
+    .day h2, .smoothie h3, .complete h2 { color: #000; }
+    .day p, .day li { color: #222; }
+  }
+</style>
+</head>
+<body>
+
+<div class="scroll-bar" id="scrollBar"></div>
+
+<!-- ========== EMAIL GATE ========== -->
+<div class="gate" id="gate">
+  <div class="gate-card">
+    <div class="nde">Almost died 4 times. Came back asking better questions.</div>
+    <span class="gate-tag">Free 7-Day Protocol</span>
+    <h1>The 7-Day<br><span class="hl">Heavy Metal Reset</span></h1>
+    <p>The exact day-by-day protocol I use. What to take, when, and what to expect. Drop your email and I will send it over right now.</p>
+    <form id="gateForm">
+      <input type="text" name="firstName" placeholder="First name (optional)" autocomplete="given-name">
+      <input type="email" name="email" placeholder="Your best email" required autocomplete="email">
+      <button type="submit" class="gate-btn" id="gateBtn">SEND ME THE PLAN</button>
+      <div class="gate-msg" id="gateMsg"></div>
+    </form>
+    <div class="gate-small">No spam. I only email when I find something worth sharing. Detox list, separate from anything else.</div>
+  </div>
+</div>
+
+<!-- ========== HERO ========== -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="avatar">DE</div>
+    <span class="tag">7-Day Heavy Metal Reset</span>
+    <h1>Pull the <span class="hl">Metals</span><br>Out. Day by Day.</h1>
+    <p>A week of simple moves. Real products. Real doses. Real results by day 7.</p>
+  </div>
+</div>
+
+<!-- ========== PROGRESS ========== -->
+<div class="progress-bar" id="progressBar">
+  <div class="progress-dot" data-day="1">1</div>
+  <div class="progress-dot" data-day="2">2</div>
+  <div class="progress-dot" data-day="3">3</div>
+  <div class="progress-dot" data-day="4">4</div>
+  <div class="progress-dot" data-day="5">5</div>
+  <div class="progress-dot" data-day="6">6</div>
+  <div class="progress-dot" data-day="7">7</div>
+</div>
+
+<!-- ========== DAY 1 ========== -->
+<div class="day reveal" id="day1">
+  <div class="day-head">
+    <span class="day-num">Day 01</span>
+    <span class="day-phase">Phase 1 · Mobilize</span>
+  </div>
+  <h2>Start The Flow</h2>
+  <p class="why">Today you wake up the metals that have been sitting in your tissue for years. Chlorophyll is one atom different from your blood. It binds metals in the bloodstream and moves them toward elimination.</p>
+
+  <div class="day-mission"><strong>Mission:</strong> 15-20 drops of liquid chlorophyll in 16oz filtered water. Empty stomach. First thing after waking.</div>
+
+  <a class="day-product" href="https://amzn.to/47YDSPn" target="_blank" rel="noopener">
+    <div class="day-product-head">
+      <div class="day-product-icon">🟢</div>
+      <div>
+        <div class="day-product-title">MaryRuth's Liquid Chlorophyll</div>
+        <div class="day-product-meta">Amazon · ~$20 · 2-pack</div>
+      </div>
+    </div>
+    <span class="day-product-cta">Get it on Amazon</span>
+  </a>
+
+  <div class="day-expect"><strong>What to expect:</strong> taste is like wet grass, that is normal. Stool may look greener today (that is chlorophyll leaving, not a problem). Energy should feel a little more stable by evening.</div>
+
+  <div class="day-check" data-day="1">
+    <div class="check-box"><svg width="14" height="11" viewBox="0 0 14 11" fill="none"><path d="M1 5l4 4 8-8" stroke="#0d1b0f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <span class="check-label">I drank my chlorophyll water today</span>
+  </div>
+</div>
+
+<!-- ========== DAY 2 ========== -->
+<div class="day reveal" id="day2">
+  <div class="day-head">
+    <span class="day-num">Day 02</span>
+    <span class="day-phase">Phase 2 · Bind</span>
+  </div>
+  <h2>Grab The Metals</h2>
+  <p class="why">Mobilized metals that do not get bound will redeposit somewhere else in the body. Zeolite is a volcanic mineral with a cage structure that traps heavy metals and carries them out through stool. This is the part most people skip, and it is why they feel worse during detox.</p>
+
+  <div class="day-mission"><strong>Mission:</strong> Keep taking chlorophyll in the morning. Add zeolite 30 minutes before breakfast. Empty stomach matters so the cage grabs metals, not food.</div>
+
+  <a class="day-product" href="https://thedylanewing.thegoodinside.com/shop/product/pure-body-extra-strength" target="_blank" rel="noopener">
+    <div class="day-product-head">
+      <div class="day-product-icon">🪨</div>
+      <div>
+        <div class="day-product-title">Pure Body Extra Strength</div>
+        <div class="day-product-meta">Touchstone · nano zeolite · 25% commission</div>
+      </div>
+    </div>
+    <span class="day-product-cta">Get it direct from Touchstone</span>
+  </a>
+
+  <div class="day-expect"><strong>What to expect:</strong> stool may look darker over the next week. That is metals leaving. Drink more water than usual. If you feel fatigued, that is die-off, and it passes by day 4-5.</div>
+
+  <div class="day-check" data-day="2">
+    <div class="check-box"><svg width="14" height="11" viewBox="0 0 14 11" fill="none"><path d="M1 5l4 4 8-8" stroke="#0d1b0f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <span class="check-label">Chlorophyll AM + zeolite done today</span>
+  </div>
+</div>
+
+<!-- ========== DAY 3 ========== -->
+<div class="day reveal" id="day3">
+  <div class="day-head">
+    <span class="day-num">Day 03</span>
+    <span class="day-phase">Phase 3 · Eliminate</span>
+  </div>
+  <h2>Sweat It Out</h2>
+  <p class="why">Your skin is the biggest detox organ. A 2012 study found sauna sweat contains heavy metals at higher concentrations than blood or urine. Newer research (2024) confirmed sauna helps remove microplastics from reproductive tissue.</p>
+
+  <div class="day-mission"><strong>Mission:</strong> 20-30 minute sauna session. 160-180°F if you can. Hydrate before and after. No sauna? Hot bath with a cup of epsom salt for 30 minutes, windows closed, then cold shower.</div>
+
+  <div class="day-mission" style="border-left-color:var(--accent);background:rgba(149,213,178,0.08);"><strong style="color:var(--accent);">Pro move:</strong> hold an ice pack on your balls during the sauna. Heat stresses everything except what you are cooling, so testosterone production stays up while your whole body sweats out junk. Hot/cold contrast makes the whole detox stronger.</div>
+
+  <div class="day-expect"><strong>What to expect:</strong> you will drop visible water weight today. Mental clarity lifts. You may sleep harder than you have in weeks. Skin looks brighter by tomorrow.</div>
+
+  <div class="day-check" data-day="3">
+    <div class="check-box"><svg width="14" height="11" viewBox="0 0 14 11" fill="none"><path d="M1 5l4 4 8-8" stroke="#0d1b0f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <span class="check-label">Sweat session complete</span>
+  </div>
+</div>
+
+<!-- ========== DAY 4 ========== -->
+<div class="day reveal" id="day4">
+  <div class="day-head">
+    <span class="day-num">Day 04</span>
+    <span class="day-phase">Measure · Baseline</span>
+  </div>
+  <h2>Test Yourself</h2>
+  <p class="why">You cannot fix what you cannot see. Most people detox for weeks without ever knowing what was actually in them. Baseline your levels today. Re-test in 3-4 weeks. Now you have proof, not guessing.</p>
+
+  <div class="day-mission"><strong>Mission:</strong> Order a heavy metal urine test kit today. It takes 3-5 days to arrive and 5-7 more to get results. By day 30 you will have your before/after numbers.</div>
+
+  <a class="day-product" href="https://amzn.to/4swu9aC" target="_blank" rel="noopener">
+    <div class="day-product-head">
+      <div class="day-product-icon">🔬</div>
+      <div>
+        <div class="day-product-title">Heavy Metal Urine Test Kit</div>
+        <div class="day-product-meta">Amazon · ~$90 · 6-panel</div>
+      </div>
+    </div>
+    <span class="day-product-cta">Get it on Amazon</span>
+  </a>
+
+  <div class="day-expect"><strong>Doctor route:</strong> ask for a "provoked urine heavy metal panel." Insurance sometimes covers it. If they refuse, the Amazon kit does the same job.</div>
+
+  <div class="day-check" data-day="4">
+    <div class="check-box"><svg width="14" height="11" viewBox="0 0 14 11" fill="none"><path d="M1 5l4 4 8-8" stroke="#0d1b0f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <span class="check-label">Test kit ordered</span>
+  </div>
+</div>
+
+<!-- ========== DAY 5 · SMOOTHIE ========== -->
+<div class="day reveal" id="day5">
+  <div class="day-head">
+    <span class="day-num">Day 05</span>
+    <span class="day-phase">Stack · Daily Habit</span>
+  </div>
+  <h2>The Smoothie</h2>
+  <p class="why">This is the daily maintenance. Tastes like a tropical green smoothie, does the work of three supplements at once. Keep drinking it after the 7 days end. This is the habit you carry forward.</p>
+
+  <div class="smoothie">
+    <h3>The Daily Detox Smoothie</h3>
+    <ul>
+      <li>1 cup filtered water or coconut water</li>
+      <li>1 frozen banana</li>
+      <li>1 cup frozen pineapple (binds aluminum)</li>
+      <li>Big handful fresh cilantro (crosses blood-brain barrier)</li>
+      <li>1 tsp spirulina powder</li>
+      <li>1 tsp chlorella powder (broken cell wall)</li>
+      <li>15-20 drops liquid chlorophyll</li>
+      <li>½ tsp Celtic salt (minerals)</li>
+      <li>Squeeze of lime (activates chlorophyll)</li>
+    </ul>
+    <div class="smoothie-note">Blend hard. Drink fast (chlorella oxidizes in air). Empty stomach if you can.</div>
+  </div>
+
+  <div class="day-mission" style="border-left-color:var(--accent);background:rgba(149,213,178,0.08);"><strong style="color:var(--accent);">Pro move:</strong> drink the smoothie 30 minutes before your sauna. Minerals and binders go in, metals sweat out 30 minutes later. Whole loop in one morning.</div>
+
+  <div class="day-expect"><strong>What to expect:</strong> skin starts looking different around today. Less puffiness. Brighter eyes. Real energy, not caffeine energy.</div>
+
+  <div class="day-check" data-day="5">
+    <div class="check-box"><svg width="14" height="11" viewBox="0 0 14 11" fill="none"><path d="M1 5l4 4 8-8" stroke="#0d1b0f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <span class="check-label">Smoothie made today</span>
+  </div>
+</div>
+
+<!-- ========== DAY 6 ========== -->
+<div class="day reveal" id="day6">
+  <div class="day-head">
+    <span class="day-num">Day 06</span>
+    <span class="day-phase">Recover · Hydrate</span>
+  </div>
+  <h2>Rest. Let The Body Catch Up.</h2>
+  <p class="why">Detox is the loudest when you are pushing. The real work happens when you stop pushing and let the body finish what you started. Today you hydrate, eat clean, and give your organs room to do what you already paid for.</p>
+
+  <div class="day-mission"><strong>Mission:</strong> 100+ oz filtered water today. Whole food only. No sugar, no seed oils, no processed anything. Skip the sauna. Sleep by 10pm if you can.</div>
+
+  <div class="day-expect"><strong>What to expect:</strong> energy lifts hard today. This is the first day your body feels like it is ahead of the toxin load instead of behind it.</div>
+
+  <div class="day-check" data-day="6">
+    <div class="check-box"><svg width="14" height="11" viewBox="0 0 14 11" fill="none"><path d="M1 5l4 4 8-8" stroke="#0d1b0f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <span class="check-label">100oz water + clean eating + early sleep</span>
+  </div>
+</div>
+
+<!-- ========== DAY 7 ========== -->
+<div class="day reveal" id="day7">
+  <div class="day-head">
+    <span class="day-num">Day 07</span>
+    <span class="day-phase">Integrate · Lock It In</span>
+  </div>
+  <h2>You Did The Week. What's Next.</h2>
+  <p class="why">7 days is enough to feel a real difference. Not enough to be "done." The baseline urine test from day 4 will give you actual numbers in about 3 weeks. That is when you decide to go harder.</p>
+
+  <div class="day-mission"><strong>Today:</strong> chlorophyll morning. Zeolite pre-breakfast. Smoothie mid-morning. One more sauna if you have access. Then reflect on how week 1 felt versus day 1. Write it down.</div>
+
+  <div class="day-expect"><strong>What people notice after 7 days:</strong> clearer skin, less brain fog, deeper sleep, more stable mood, visible water weight down, more patience with their kids. Not everyone gets all of it. Most get 3-4 of them.</div>
+
+  <div class="day-check" data-day="7">
+    <div class="check-box"><svg width="14" height="11" viewBox="0 0 14 11" fill="none"><path d="M1 5l4 4 8-8" stroke="#0d1b0f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <span class="check-label">Week 1 complete</span>
+  </div>
+</div>
+
+<!-- ========== COMPLETE ========== -->
+<div class="complete reveal">
+  <h2>You Did It.</h2>
+  <p>Most people never make it through a full 7 days of anything. You did. That is worth noting.</p>
+  <p>When the test kit comes back (around day 21-28 from order), re-run the protocol for another week. Same stack. This time you will have before and after numbers.</p>
+  <p style="margin-top:18px;">If you want to go deeper, two ways I can help:</p>
+  <a href="https://thedylanewing.com/detox" class="complete-cta">Full Stack + Protocol</a>
+  <a href="https://instagram.com/thedylanewing" class="complete-cta outline">Follow On IG</a>
+</div>
+
+<div class="footer">
+  Questions? DM me on Instagram<br>
+  <a href="https://instagram.com/thedylanewing">@thedylanewing</a><br><br>
+  Affiliate disclosure: I may earn a small commission at no extra cost to you.<br>
+  This is not medical advice. Always consult your doctor.
+</div>
+
+<script>
+const WORKER_URL = 'https://detox-lead.dylanewing.workers.dev';
+const GATE_KEY = 'detoxPlanUnlocked';
+const CHECKS_KEY = 'detoxPlanChecks';
+
+// === Scroll progress ===
+const scrollBar = document.getElementById('scrollBar');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  scrollBar.style.width = ((h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100) + '%';
+}, { passive: true });
+
+// === Scroll reveal ===
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+// === Email gate ===
+const gate = document.getElementById('gate');
+const gateForm = document.getElementById('gateForm');
+const gateBtn = document.getElementById('gateBtn');
+const gateMsg = document.getElementById('gateMsg');
+
+if (localStorage.getItem(GATE_KEY) === '1') gate.classList.add('hidden');
+
+gateForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = gateForm.email.value.trim();
+  const firstName = gateForm.firstName.value.trim();
+  if (!email || !email.includes('@')) return;
+
+  gateBtn.textContent = 'SENDING...';
+  gateBtn.disabled = true;
+  gateMsg.className = 'gate-msg';
+  gateMsg.style.display = 'none';
+
+  try {
+    const res = await fetch(WORKER_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, firstName, tag: 'detox-lead', source: '7-Day Plan' }),
+    });
+    if (!res.ok) throw new Error('fail');
+    localStorage.setItem(GATE_KEY, '1');
+    gate.classList.add('hidden');
+  } catch {
+    gateMsg.textContent = 'Something went wrong. Try again.';
+    gateMsg.className = 'gate-msg error';
+    gateBtn.textContent = 'SEND ME THE PLAN';
+    gateBtn.disabled = false;
+  }
+});
+
+// === Checkboxes + progress ===
+function loadChecks() {
+  try { return JSON.parse(localStorage.getItem(CHECKS_KEY) || '{}'); }
+  catch { return {}; }
+}
+function saveChecks(c) { localStorage.setItem(CHECKS_KEY, JSON.stringify(c)); }
+
+function updateProgress() {
+  const checks = loadChecks();
+  document.querySelectorAll('.progress-dot').forEach(dot => {
+    const day = dot.dataset.day;
+    dot.classList.toggle('done', !!checks[day]);
+  });
+  document.querySelectorAll('.day-check').forEach(chk => {
+    chk.classList.toggle('done', !!checks[chk.dataset.day]);
+  });
+}
+
+document.querySelectorAll('.day-check').forEach(chk => {
+  chk.addEventListener('click', () => {
+    const checks = loadChecks();
+    const day = chk.dataset.day;
+    checks[day] = !checks[day];
+    saveChecks(checks);
+    updateProgress();
+  });
+});
+
+document.querySelectorAll('.progress-dot').forEach(dot => {
+  dot.addEventListener('click', () => {
+    const target = document.getElementById('day' + dot.dataset.day);
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+updateProgress();
+</script>
+</body>
+</html>
