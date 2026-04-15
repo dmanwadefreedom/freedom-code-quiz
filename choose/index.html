@@ -43,6 +43,14 @@
     z-index: 1;
   }
 
+  /* ===== EMBERS CANVAS (three.js particles) ===== */
+  #embers {
+    position: fixed;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+  }
+
   /* ===== CANDLELIGHT HALO ===== */
   .halo {
     position: fixed;
@@ -174,16 +182,23 @@
     flex-direction: column;
     align-items: center;
     gap: 18px;
-    transition: transform 0.6s cubic-bezier(0.3, 0.7, 0.2, 1);
+    transition: transform 0.7s cubic-bezier(0.3, 0.7, 0.2, 1);
+    will-change: transform;
   }
-  .hand-wrap:hover { transform: translateY(-6px); }
+  .hand-wrap:hover { transform: translateY(-8px); }
 
   .hand {
     width: clamp(220px, 32vw, 340px);
     height: clamp(290px, 42vw, 440px);
     position: relative;
     filter: drop-shadow(0 0 30px rgba(255, 185, 106, 0.15));
-    transition: filter 0.6s ease;
+    transition: filter 0.6s ease, transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transform-style: preserve-3d;
+    animation: breathe 5s ease-in-out infinite;
+  }
+  @keyframes breathe {
+    0%, 100% { transform: scale(1) translateY(0); }
+    50%      { transform: scale(1.012) translateY(-2px); }
   }
 
   /* Two stacked photo states, crossfade on hover */
@@ -201,10 +216,54 @@
   .hand .young  { opacity: 0; transform: scale(0.96) rotate(-0.5deg); }
 
   .hand-wrap:hover .hand .old   { opacity: 0; transform: scale(1.04); }
-  .hand-wrap:hover .hand .young { opacity: 1; transform: scale(1) rotate(0); }
+  .hand-wrap:hover .hand .young { opacity: 1; transform: scale(1) rotate(0); animation: crystalPulse 2.8s ease-in-out infinite; }
 
   .hand-wrap:hover .hand {
-    filter: drop-shadow(0 0 60px rgba(255, 185, 106, 0.45));
+    filter: drop-shadow(0 0 70px rgba(255, 185, 106, 0.5));
+  }
+
+  @keyframes crystalPulse {
+    0%, 100% { filter: brightness(1)    saturate(1); }
+    50%      { filter: brightness(1.18) saturate(1.3); }
+  }
+
+  /* Tunnel zoom on click */
+  .hand-wrap.tunnel-red { animation: tunnelRed 0.9s cubic-bezier(0.6, 0, 0.9, 0.3) forwards; }
+  .hand-wrap.tunnel-blue { animation: tunnelBlue 0.9s cubic-bezier(0.6, 0, 0.9, 0.3) forwards; }
+  @keyframes tunnelRed {
+    to { transform: scale(6); opacity: 0; filter: drop-shadow(0 0 200px rgba(255, 80, 60, 0.9)) blur(6px); }
+  }
+  @keyframes tunnelBlue {
+    to { transform: scale(6); opacity: 0; filter: drop-shadow(0 0 200px rgba(60, 140, 255, 0.9)) blur(6px); }
+  }
+
+  /* Tunnel vignette on click */
+  .tunnel-vignette {
+    position: fixed; inset: 0; z-index: 100;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.9s ease;
+  }
+  .tunnel-vignette.active { opacity: 1; }
+  .tunnel-vignette.red   { background: radial-gradient(circle at 30% 50%, transparent 0%, #3a0806 50%, #000 100%); }
+  .tunnel-vignette.blue  { background: radial-gradient(circle at 70% 50%, transparent 0%, #081a3a 50%, #000 100%); }
+
+  /* Entrance */
+  .stage, .title, .candle, .foot { opacity: 0; animation: fadeUp 1.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
+  .candle { animation-delay: 0.2s; }
+  .title { animation-delay: 0.6s; }
+  .stage { animation-delay: 1.0s; }
+  .foot  { animation-delay: 1.4s; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .candle { transform-origin: center; }
+  /* override fadeUp transform for candle (it's position:fixed w/ translate) */
+  .candle { animation-name: fadeCandle; }
+  @keyframes fadeCandle {
+    from { opacity: 0; }
+    to   { opacity: 1; }
   }
 
   /* ===== LABELS ===== */
@@ -289,6 +348,12 @@
 <!-- candlelight halo -->
 <div class="halo"></div>
 
+<!-- three.js ember particles -->
+<canvas id="embers"></canvas>
+
+<!-- tunnel zoom overlay (fires on click) -->
+<div id="tunnel" class="tunnel-vignette"></div>
+
 <!-- candle flame (between the hands) -->
 <div class="candle">
   <div class="flame"></div>
@@ -341,6 +406,151 @@
   <a href="https://thedylanewing.com">thedylanewing.com</a>
   <a href="https://thedylanewing.com/links">all links</a>
 </div>
+
+<!-- === EMBERS (three.js) === -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+  }
+}
+</script>
+<script type="module">
+import * as THREE from 'three';
+
+const canvas = document.getElementById('embers');
+const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: 'high-performance' });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
+camera.position.z = 5;
+
+function resize(){
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+}
+window.addEventListener('resize', resize);
+resize();
+
+// Ember particles (floating dust rising from candle)
+const emberCount = 140;
+const geo = new THREE.BufferGeometry();
+const positions = new Float32Array(emberCount * 3);
+const velocities = new Float32Array(emberCount * 3);
+const lifetimes = new Float32Array(emberCount);
+const sizes = new Float32Array(emberCount);
+
+function respawn(i){
+  positions[i*3]   = (Math.random() - 0.5) * 1.4;   // x, near candle
+  positions[i*3+1] = -0.4 - Math.random() * 0.3;    // y, starts at candle base
+  positions[i*3+2] = (Math.random() - 0.5) * 0.6;   // z, slight depth
+  velocities[i*3]   = (Math.random() - 0.5) * 0.004;
+  velocities[i*3+1] = 0.006 + Math.random() * 0.008;  // rises
+  velocities[i*3+2] = (Math.random() - 0.5) * 0.002;
+  lifetimes[i] = Math.random() * 3.5;
+  sizes[i] = 0.015 + Math.random() * 0.04;
+}
+for (let i = 0; i < emberCount; i++) respawn(i);
+
+geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+geo.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+
+const emberTexture = (() => {
+  const c = document.createElement('canvas');
+  c.width = c.height = 64;
+  const ctx = c.getContext('2d');
+  const g = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+  g.addColorStop(0,   'rgba(255, 230, 180, 1)');
+  g.addColorStop(0.3, 'rgba(255, 170, 90, 0.7)');
+  g.addColorStop(0.6, 'rgba(200, 90, 40, 0.25)');
+  g.addColorStop(1,   'rgba(0,0,0,0)');
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, 64, 64);
+  return new THREE.CanvasTexture(c);
+})();
+
+const mat = new THREE.PointsMaterial({
+  map: emberTexture,
+  color: 0xffc080,
+  size: 0.08,
+  transparent: true,
+  blending: THREE.AdditiveBlending,
+  depthWrite: false,
+  sizeAttenuation: true,
+  opacity: 0.9
+});
+mat.onBeforeCompile = shader => {
+  shader.vertexShader = shader.vertexShader.replace(
+    'gl_PointSize = size;',
+    'gl_PointSize = size * (300.0 / -mvPosition.z);'
+  );
+};
+
+const embers = new THREE.Points(geo, mat);
+scene.add(embers);
+
+let t = 0;
+function animate(){
+  t += 0.016;
+  const pos = geo.attributes.position.array;
+
+  for (let i = 0; i < emberCount; i++){
+    pos[i*3]   += velocities[i*3]   + Math.sin(t * 2 + i) * 0.0008;
+    pos[i*3+1] += velocities[i*3+1];
+    pos[i*3+2] += velocities[i*3+2];
+    lifetimes[i] += 0.016;
+    if (pos[i*3+1] > 2.2 || lifetimes[i] > 5.5) respawn(i);
+  }
+  geo.attributes.position.needsUpdate = true;
+
+  renderer.render(scene, camera);
+  requestAnimationFrame(animate);
+}
+animate();
+</script>
+
+<!-- === PARALLAX + TUNNEL-ZOOM CLICK === -->
+<script>
+(function(){
+  const stage = document.querySelector('.stage');
+  const hands = document.querySelectorAll('.hand-wrap');
+  let mx = 0, my = 0, tx = 0, ty = 0;
+
+  window.addEventListener('pointermove', e => {
+    mx = (e.clientX / window.innerWidth - 0.5) * 2;
+    my = (e.clientY / window.innerHeight - 0.5) * 2;
+  });
+
+  function loop(){
+    tx += (mx - tx) * 0.06;
+    ty += (my - ty) * 0.06;
+    hands.forEach((h, i) => {
+      const strength = 10;
+      const sign = i === 0 ? 1 : -0.6; // left tilts opposite, right subtler
+      h.style.setProperty('--parallax-x', `${-tx * strength * sign}px`);
+      h.style.setProperty('--parallax-y', `${-ty * strength * 0.4}px`);
+      h.style.translate = `var(--parallax-x, 0) var(--parallax-y, 0)`;
+    });
+    requestAnimationFrame(loop);
+  }
+  loop();
+
+  // Tunnel zoom on click
+  const tunnel = document.getElementById('tunnel');
+  hands.forEach(h => {
+    h.addEventListener('click', (e) => {
+      e.preventDefault();
+      const isLeft = h.classList.contains('left');
+      const color = isLeft ? 'red' : 'blue';
+      tunnel.classList.add('active', color);
+      h.classList.add(isLeft ? 'tunnel-red' : 'tunnel-blue');
+      setTimeout(() => { window.location.href = h.href; }, 850);
+    });
+  });
+})();
+</script>
 
 </body>
 </html>
