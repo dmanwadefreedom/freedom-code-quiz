@@ -144,6 +144,28 @@
     filter: drop-shadow(0 0 60px rgba(255, 185, 106, 0.2));
     pointer-events: none;
     animation: breathe 6.5s ease-in-out infinite;
+    transition: opacity 0.9s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+  /* Default state: closed visible, others hidden */
+  .state-closed { opacity: 1; z-index: 3; }
+  .state-left   { opacity: 0; z-index: 2; }
+  .state-right  { opacity: 0; z-index: 2; }
+
+  /* When hovering left hotspot */
+  .stage.hover-left  .state-closed { opacity: 0; }
+  .stage.hover-left  .state-left   { opacity: 1; z-index: 4; animation: crystalPulseRed 2.8s ease-in-out infinite; }
+
+  /* When hovering right hotspot */
+  .stage.hover-right .state-closed { opacity: 0; }
+  .stage.hover-right .state-right  { opacity: 1; z-index: 4; animation: crystalPulseBlue 2.8s ease-in-out infinite; }
+
+  @keyframes crystalPulseRed {
+    0%, 100% { filter: drop-shadow(0 0 60px rgba(255, 185, 106, 0.2)) brightness(1)    saturate(1); }
+    50%      { filter: drop-shadow(0 0 90px rgba(217, 83, 63, 0.35))  brightness(1.12) saturate(1.2); }
+  }
+  @keyframes crystalPulseBlue {
+    0%, 100% { filter: drop-shadow(0 0 60px rgba(255, 185, 106, 0.2)) brightness(1)    saturate(1); }
+    50%      { filter: drop-shadow(0 0 90px rgba(75, 126, 194, 0.35)) brightness(1.12) saturate(1.2); }
   }
   @keyframes breathe {
     0%, 100% { transform: scale(1) translateY(0); }
@@ -297,9 +319,10 @@
 <!-- single scene — both hands in frame -->
 <div class="stage" id="stage">
   <div class="hands-frame">
-    <!-- Poster (still image) + video on top of each other -->
-    <img class="hands-media" id="poster" src="img/matrix_poster.jpg" alt="Two hands offering red and blue crystals" loading="eager">
-    <video class="hands-media" id="reveal" src="img/matrix_reveal.mp4" poster="img/matrix_poster.jpg" muted playsinline preload="auto" style="opacity:0; transition:opacity 1s ease;"></video>
+    <!-- 3 stacked stills: closed (default), left open, right open -->
+    <img class="hands-media state-closed" id="imgClosed" src="img/matrix_closed.jpg"     alt="Both hands closed" loading="eager">
+    <img class="hands-media state-left"   id="imgLeft"   src="img/matrix_leftopen.jpg"   alt="Left hand open red crystal" loading="eager">
+    <img class="hands-media state-right"  id="imgRight"  src="img/matrix_rightopen.jpg"  alt="Right hand open blue crystal" loading="eager">
 
     <!-- Invisible split hotspots routing to different pages -->
     <a class="hot left" href="https://thedylanewing.com/detox">
@@ -564,44 +587,19 @@ import * as THREE from 'three';
 <script>
 (function(){
   const stage  = document.getElementById('stage');
-  const poster = document.getElementById('poster');
-  const video  = document.getElementById('reveal');
   const hots   = document.querySelectorAll('.hot');
   const tunnel = document.getElementById('tunnel');
 
-  // Manual yoyo scrub on hover anywhere over the stage
-  let hovering = false, rafId = null, dir = 1;
-  const SPEED = 0.5;
-  const STEP  = SPEED / 60;
-
-  function fadeIn(){ poster.style.opacity = '0'; video.style.opacity = '1'; }
-  function fadeOut(){ poster.style.opacity = '1'; video.style.opacity = '0'; }
-
-  function tick(){
-    if (!video.duration) { rafId = requestAnimationFrame(tick); return; }
-    video.currentTime += dir * STEP;
-    if (video.currentTime >= video.duration - 0.05) {
-      dir = -1;
-      video.currentTime = video.duration - 0.05;
-    } else if (video.currentTime <= 0.02) {
-      if (!hovering) {
-        video.currentTime = 0;
-        fadeOut();
-        cancelAnimationFrame(rafId); rafId = null;
-        return;
-      }
-      dir = 1;
-      video.currentTime = 0.02;
-    }
-    rafId = requestAnimationFrame(tick);
-  }
-
-  stage.addEventListener('pointerenter', () => {
-    hovering = true; dir = 1; fadeIn();
-    if (!rafId) rafId = requestAnimationFrame(tick);
-  });
-  stage.addEventListener('pointerleave', () => {
-    hovering = false; dir = -1;
+  // Per-side hover: opens just that hand
+  hots.forEach(h => {
+    const side = h.classList.contains('left') ? 'hover-left' : 'hover-right';
+    h.addEventListener('pointerenter', () => {
+      stage.classList.remove('hover-left', 'hover-right');
+      stage.classList.add(side);
+    });
+    h.addEventListener('pointerleave', () => {
+      stage.classList.remove(side);
+    });
   });
 
   // Parallax on mouse move
